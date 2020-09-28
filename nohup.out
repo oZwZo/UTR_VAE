@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "script/SVR_onecycle.py", line 20, in <module>
+    linear_svr.fig.savefig('../linear_C_{}.pdf'.format('_'.join(linear_svr.C_ls)),format='pdf')
+TypeError: sequence item 0: expected str instance, int found
