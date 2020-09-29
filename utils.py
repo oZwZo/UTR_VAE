@@ -7,12 +7,15 @@ import re
 
 
 # ====================|   some path   |=======================
-global top_dir
+global script_dir
 global data_dir
 global cell_lines
 
-top_dir = "/home/wergillius/Project/URT_project"
-data_dir = "/home/wergillius/Data/UTR_data"
+with open("machine_configure.json",'r') as f:
+    config = json.load(f)
+
+script_dir = config['script_dir']
+data_dir = config['data_dir']
 
 match_celline = lambda x: re.match(r"rankedTE_(.*)\.csv",x).group(1)
 data_fn = list(filter(lambda x : '.csv' in x,os.listdir(data_dir)))
