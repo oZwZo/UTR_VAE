@@ -7,7 +7,7 @@ settings.json
 nohup.out
 
 # vscode
-.vscode/*
+.vscode/settings.json
 
 # __pycache__
 __pycache__/*
