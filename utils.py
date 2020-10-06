@@ -3,15 +3,17 @@ from sklearn.model_selection  import train_test_split
 import numpy as np
 import pandas as pd
 import os
+import json
 import re
 
+print(os.path.dirname(__file__))
 
 # ====================|   some path   |=======================
 global script_dir
 global data_dir
 global cell_lines
 
-with open("machine_configure.json",'r') as f:
+with open(os.path.join(os.path.dirname(__file__),"machine_configure.json"),'r') as f:
     config = json.load(f)
 
 script_dir = config['script_dir']
@@ -33,10 +35,12 @@ def read_UTR_csv(data_dir=data_dir,cell_line='ALL'):
     """
     if cell_line == 'ALL':
         cell_line = cell_lines
+    elif type(cell_line) == str:
+        cell_line = [cell_line]
     
     # specify the cell lines
     for ii_cl in cell_line:
-        assert ii_cl in cell_lines ,"%s is not a valid cell line name"%iicl
+        assert ii_cl in cell_lines ,"%s is not a valid cell line name"%ii_cl
 
     # locate the index from cell_lines and get the file_name
     df_ls = [pd.read_csv(
@@ -52,7 +56,7 @@ def read_UTR_csv(data_dir=data_dir,cell_line='ALL'):
 def read_label(df_ls):
     """
     return the TE score given the dataframe list piped from read_UTR_csv
-    """  
+    """
     return [df.TEaverage.values for df in df_ls]
 
 # =====================| one hot encode |=======================
@@ -100,3 +104,18 @@ class Seq_one_hot(object):
         """
         X = self.discretize_seq(data)
         return self.transform(X,flattern)
+    
+    
+def cal_convTrans_shape(L_in,padding,diliation,kernel_size,stride,out_padding=0):
+    """
+    For convolution Transpose 1D decoding , compute the final length
+    """
+    L_out = (L_in -1 )*stride + diliation*(kernel_size -1 )+1-2*padding + out_padding 
+    return L_out
+
+def cal_conv_shape(L_in,padding,diliation,kernel_size,stride):
+    """
+    For convolution 1D encoding , compute the final length 
+    """
+    L_out = 1+ (L_in + 2*padding -diliation*(kernel_size-1) -1)/stride
+    return L_out
