@@ -74,7 +74,8 @@ class AE(nn.Module):
 class VAE(nn.Module):
     def __init__(self,encoder,decoder,latent_dim,out_dim):
         super(VAE,self).__init__()
-        
+        self.latent_dim = latent_dim
+        self.out_dim = out_dim
         # encoder part
         self.Encoder = encoder
         self.out_dim = out_dim
@@ -161,7 +162,12 @@ class VAE(nn.Module):
 
 
 class LSTM_VAE(VAE):
-    def __init__(self,input_size,hidden_size,num_layers,latent_dim):
+    def __init__(self,input_size,hidden_size,num_layers,latent_dim,seq_in_dim):
+        
+        self.hidden_size = hidden_size
+        self.input_size = input_size
+        self.num_layers = num_layers
+        self.seq_in_dim = seq_in_dim
         
         """
         Encoder hidden_state :  [num_layers*num_directions, batch, hidden_size]
@@ -178,11 +184,13 @@ class LSTM_VAE(VAE):
         The output : [batch, 100, 4]
         """
         Decoder = nn.LSTM(input_size=latent_dim,
-                               hidden_size=input_size,
+                               hidden_size=hidden_size,
                                num_layers=num_layers,
                                batch_first=True,
                                bidirectional=False)
         
+        self.fc_code2seq = nn.Linear(latent_dim,seq_in_dim)    # seq_in_dim : int*100
+        self.fc_out2word = nn.Linear(hidden_size,input_size)   # hidden_size 
        
        # the out_dim  will  flatten the cell_state of LSTM encoder output
         out_dim = num_layers*2*hidden_size 
@@ -190,18 +198,54 @@ class LSTM_VAE(VAE):
         
         super(LSTM_VAE,self).__init__(encoder=Encoder,decoder=Decoder,out_dim=out_dim,latent_dim=latent_dim)
         
+        
+        
     def encode(self,X):
         """
         Cover the encode , for LSTM backbone , use the cell state as latent variables
         """
         Z,(hidden_state,cell_state) = self.Encoder(X)        # cell_state : [num_layers*num_directions, batch, hidden_size]
         flat_cell = torch.flatten(cell_state.transpose(1,2),start_dim=1) # -> [batch, num_layers*num_directions*hidden_size]
-        
+    
         # compute
         mu = self.fc_mu(flat_cell)
         sigma = self.fc_sigma(flat_cell)
         return mu, sigma
     
+    def LSTM_seq_in(self,code,warmup=True):
+        """
+        take code as input seq
+        """
+        # transform reparameterized code to input seq
+        batch_size = code.shape[0]
+        code_to_seq = self.fc_code2seq(code)                  # [batch,latent_size] -> [batch,seq_in]
+        in_seq = code_to_seq.view(batch_size,100,-1)       # -> [batch,100,seq_in/100]
+        
+        # warm up with the first 10 step
+        hidden_state = None
+        if warmup:
+            _,hidden_state = self.Decoder(in_seq[:,:10,:])
+        
+        # LSTM reconstruct with warm up hidden state
+        out,_ = self.Decoder(in_seq,hidden_state)           # out: [batch,100,hidden_size]
+        
+        # transform to 4 feature
+        logit = self.fc_out2word(out)                       #logit:[batch,100,4]
+        return logit
+
+    def LSTM_cell_in(self,code,warmup=True):
+        """
+        take code as cell state
+        """
+        logit = []
+        batch_size = code.shape[0]
+        start_don = torch.zeros[batch_size,1,self.latent_size]
+        
+        hidden_state = torch.zeros[]
+        if warmup:
+            _,hidden_state = self.Decoder(start_don,hidden_state)
+        return logit
+        
     def decode(self,code):
         for i in range(100):
             Z = self.Decoder(code)
