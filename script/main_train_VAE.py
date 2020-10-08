@@ -1,38 +1,55 @@
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
-import torch
+import time
+import logging
 import numpy as np 
+
+import torch
+from torch import nn, optim
 from torch import functional as F
+
 from model import DL_models
 from model import reader
+from model import train_val
+from model.optim import ScheduledOptim
 
+# Run name
+
+
+
+# read data
 dataset = reader.UTR_dataset(cell_line='A549')
-
 train_loader,val_loader,test_loader = reader.get_splited_dataloader(dataset,ratio=[0.7,0.1,0.2],batch_size=20,num_workers=4)
 
-conv_sizes = [4,32,128,32]
+# start model
+model = DL_models.LSTM_VAE(input_size=4, 
+                           hidden_size_enc=16, 
+                           hidden_size_dec=8, 
+                           num_layers=2, 
+                           latent_dim=8, 
+                           seq_in_dim=1,
+                           decode_type='seq')
 
-# encoder = DL_models.Conv_backbond(conv_sizes,stride=2,padding=1)
-# decoder = DL_models.Conv_backbond(conv_sizes[::-1],stride=2,padding=0,direction='decode')
-# model = DL_models.VAE(encoder=encoder,decoder=decoder,latent_dim=16,hidden_dim=128)
-hidden_size=8
-L_encoder = DL_models.LSTM_backbond(4,hidden_size=8,num_layers=3,bidirectional=True)
-L_decoder = DL_models.LSTM_backbond(2*hidden_size,hidden_size=4,num_layers=3,bidirectional=False)
-# initiate VAE
-LSTM_out_dim = 2*hidden_size*100
-model = DL_models.VAE(encoder=L_encoder,decoder=L_decoder,latent_dim=16,out_dim=LSTM_out_dim)
+# set optimizer
+optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
+                                      betas=(0.9, 0.98), 
+                                      eps=1e-09, 
+                                      weight_decay=1e-4, 
+                                      amsgrad=True),
+                           n_warmup_steps=20)
 
-for idx,data in enumerate(train_loader):
-    (X,y) = data
-    X = X.float()
-    # X = X.float().transpose(1,2)
-    y = y.long()
+
+for epoch in range(max_epoch):
     
+    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer)
     
-    Z,(hidden_state,cell_state) = L_encoder(X)
-    out,_ = L_decoder(Z)
+    # validate model for every 20 epoch
+    if epoch % 20 == 0:
+        validate_values = train_val.validate(val_loader,model)
     
-    # Z,_ = encoder(X)
-    # out,_ = decoder(Z)
-    print(Z.shape)
+    # TODO : verbose
+    
+    # TODO : compare the result 
+    
+    # TODO : save model 

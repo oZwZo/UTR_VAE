@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import pandas as pd
 from torch import nn
-
+from torch.nn import functional as F
 
 class Conv_backbond(nn.Module):
     def __init__(self,conv_size,kernel_size=3,direction='encode',**kwargs):
@@ -31,19 +31,7 @@ class Conv_backbond(nn.Module):
     def forward(self,X):
         X = self._code(X)
         return X
-
-class LSTM_backbond(nn.Module):
-    def __init__(self,input_size,hidden_size,num_layers,**lstmargs):
-    	super(LSTM_backbond,self).__init__()
-    	self.encoder = nn.LSTM(input_size,hidden_size,num_layers=num_layers,batch_first=True,**lstmargs)
-    
-    def _code(self,X):
-        X = self.encoder(X)
-        return X
-    
-    def forward(self,X):
-        X = self._code(X)
-        return X
+ 
 
 class AE(nn.Module):
     def __init__(self,encoder,decoder):
@@ -60,11 +48,11 @@ class AE(nn.Module):
             nn.init.xavier_uniform_(model.weight_ih_l0)
             nn.init.zeros_(model.bias_hh_l0)
             nn.init.zeros_(model.bias_ih_l0)
-        elif isinstance(m, nn.Conv1d):
-            nn.init.kaiming_normal_(m.weight, nonlinearity='leaky_relu',)
-        elif isinstance(m, nn.BatchNorm1d):
-            nn.init.constant_(m.weight, 1)
-            nn.init.constant_(m.bias, 0)
+        elif isinstance(model, nn.Conv1d):
+            nn.init.kaiming_normal_(model.weight, nonlinearity='leaky_relu',)
+        elif isinstance(model, nn.BatchNorm1d):
+            nn.init.constant_(model.weight, 1)
+            nn.init.constant_(model.bias, 0)
 
     def forward(self,X):
         Z = self.encoder(X)
@@ -98,10 +86,10 @@ class VAE(nn.Module):
             nn.init.zeros_(model.bias_hh_l0)
             nn.init.zeros_(model.bias_ih_l0)
         elif isinstance(model, nn.Conv1d):
-            nn.init.kaiming_normal_(m.weight, nonlinearity='leaky_relu',)
+            nn.init.kaiming_normal_(model.weight, nonlinearity='leaky_relu',)
         elif isinstance(model, nn.BatchNorm1d):
-            nn.init.constant_(m.weight, 1)
-            nn.init.constant_(m.bias, 0)
+            nn.init.constant_(model.weight, 1)
+            nn.init.constant_(model.bias, 0)
 
     def encode(self,X):
         """
@@ -132,8 +120,26 @@ class VAE(nn.Module):
     def forward(self,X):
         mu,sigma = self.encode(X)
         Z = self.reparameterize(mu,sigma)
-        X_reconst = self.Decoder(Z)
+        X_reconst = self.decode(Z)
         return X_reconst, mu,sigma
+    
+    def reconstruct_seq(self,X):
+        """
+        for an original one-hot seq, return the reconstructed one-hot seq
+        argmax was used to rebuilt
+        """
+        X_reconst,mu,sigma = self.forward(X)
+        # make zero
+        seq = torch.zeros_like(X)
+        
+        position = torch.argmax(X_reconst,dim=2)     # X_reconst : b*100*4
+        
+        for batch_idx in range(X.shape[0]):
+            for i,j in enumerate(position[batch_idx]):
+                seq[batch_idx,i,j.item()] = 1
+                
+        return seq
+        
     
     def loss_function(self,
                       *args,
@@ -157,55 +163,57 @@ class VAE(nn.Module):
         kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
 
         loss = recons_loss + kld_weight * kld_loss
-        return {'loss': loss, 'Reconstruction_Loss':recons_loss, 'KLD':-kld_loss}
+        return {'loss': loss, 'MSE':recons_loss, 'KLD':-kld_loss}
 
 
 
 class LSTM_VAE(VAE):
-    def __init__(self,input_size,hidden_size,num_layers,latent_dim,seq_in_dim):
+    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim,decode_type):
         
-        self.hidden_size = hidden_size
+        self.hidden_size_enc = hidden_size_enc
+        self.hidden_size_dec = hidden_size_dec
         self.input_size = input_size
         self.num_layers = num_layers
         self.seq_in_dim = seq_in_dim
+        self.decode_type = decode_type
         
+        # the out_dim  will  flatten the cell_state of LSTM encoder output
+        out_dim = num_layers*2*hidden_size_enc 
+        latent_dim = latent_dim
         """
         Encoder hidden_state :  [num_layers*num_directions, batch, hidden_size]
         """
         Encoder = nn.LSTM(input_size=input_size,
-                               hidden_size=hidden_size,
-                               num_layers=num_layers,
-                               batch_first=True,
-                               bidirectional=True)
+                          hidden_size=hidden_size_enc,
+                          num_layers=num_layers,
+                          batch_first=True,
+                          bidirectional=True)
         """
         Decoder take reparameterize code as hidden state, and start decoding
         hidden required : [3,batch,4]
         The input :  [batch, 1 , ???]
         The output : [batch, 100, 4]
         """
-        Decoder = nn.LSTM(input_size=latent_dim,
-                               hidden_size=hidden_size,
-                               num_layers=num_layers,
-                               batch_first=True,
-                               bidirectional=False)
+        Decoder = nn.LSTM(input_size=seq_in_dim,
+                          hidden_size=hidden_size_dec,
+                          num_layers=num_layers,
+                          batch_first=True,
+                          bidirectional=False)
         
-        self.fc_code2seq = nn.Linear(latent_dim,seq_in_dim)    # seq_in_dim : int*100
-        self.fc_out2word = nn.Linear(hidden_size,input_size)   # hidden_size 
+        
        
-       # the out_dim  will  flatten the cell_state of LSTM encoder output
-        out_dim = num_layers*2*hidden_size 
-        latent_dim = latent_dim
-        
         super(LSTM_VAE,self).__init__(encoder=Encoder,decoder=Decoder,out_dim=out_dim,latent_dim=latent_dim)
         
-        
+        self.fc_code2hs = nn.Linear(latent_dim,num_layers*hidden_size_dec)
+        self.fc_code2seq = nn.Linear(latent_dim,seq_in_dim*100)    # seq_in_dim : int*100
+        self.fc_out2word = nn.Linear(self.hidden_size_dec,input_size)   # hidden_size 
         
     def encode(self,X):
         """
         Cover the encode , for LSTM backbone , use the cell state as latent variables
         """
         Z,(hidden_state,cell_state) = self.Encoder(X)        # cell_state : [num_layers*num_directions, batch, hidden_size]
-        flat_cell = torch.flatten(cell_state.transpose(1,2),start_dim=1) # -> [batch, num_layers*num_directions*hidden_size]
+        flat_cell = torch.flatten(cell_state.transpose(0,1),start_dim=1) # -> [batch, num_layers*num_directions*hidden_size]
     
         # compute
         mu = self.fc_mu(flat_cell)
@@ -239,14 +247,24 @@ class LSTM_VAE(VAE):
         """
         logit = []
         batch_size = code.shape[0]
-        start_don = torch.zeros[batch_size,1,self.latent_size]
-        
-        hidden_state = torch.zeros[]
+        # initiate the seq generation chain
+        start_don = torch.zeros([batch_size,1,self.latent_size])
+        hidden_state = torch.zeros([self.num_layers,batch_size,self.hidden_size])
         if warmup:
-            _,hidden_state = self.Decoder(start_don,hidden_state)
-        return logit
+            _ = start_don
+            _,hidden_state = self.Decoder(_,hidden_state)
         
-    def decode(self,code):
+        out = start_don
         for i in range(100):
-            Z = self.Decoder(code)
-        return Z
+            out,hidden_state = self.Decoder(out,hidden_state)
+            out = self.fc_out2word(out)
+            logit.append(out)
+        
+        return logit
+           
+    def decode(self,code):
+        if self.decode_type == 'seq':
+            logit = self.LSTM_seq_in(code)
+        else:        
+            logit = self.LSTM_cell_in(code)
+        return logit
