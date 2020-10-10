@@ -48,13 +48,11 @@ def train(dataloader,model,optimizer,lr=None):
         # ======== verbose ========
         # record result 5 times for a epoch
         if idx % int(loader_len/5) == 0:
-            train_verbose = "{} / {}({.3f}%): \t TOTAL:{} \t KLD:{} \t MSE:{} \t M_N:{}".format(
-                                                                                                idx,loader_len,idx/loader_len*100,
+            train_verbose = "{} / {}({.3f}%): \t TOTAL:{} \t KLD:{} \t MSE:{} \t M_N:{}".format(idx,loader_len,idx/loader_len*100,
                                                                                                 loss_dict['loss'].item(),
                                                                                                 loss_dict['KLD'].item(),
                                                                                                 loss_dict['MSE'].item(),
-                                                                                                model.kld_weight
-                                                                                                )
+                                                                                                model.kld_weight)
             logger.info(train_verbose)
         
         torch.cuda.empty_cache()
@@ -108,6 +106,7 @@ def validate(dataloader,model):
                                                                                                        MSE_loss,
                                                                                                        model.kld_weight,
                                                                                                        avg_acc)
+    # return these to save current performance
     return Total_loss,avg_acc
             
             
