@@ -1,5 +1,6 @@
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection  import train_test_split
+import logging
 import numpy as np
 import pandas as pd
 import os
@@ -11,6 +12,8 @@ print(os.path.dirname(__file__))
 # ====================|   some path   |=======================
 global script_dir
 global data_dir
+global log_dir
+global pth_dir
 global cell_lines
 
 with open(os.path.join(os.path.dirname(__file__),"machine_configure.json"),'r') as f:
@@ -18,6 +21,8 @@ with open(os.path.join(os.path.dirname(__file__),"machine_configure.json"),'r') 
 
 script_dir = config['script_dir']
 data_dir = config['data_dir']
+log_dir = config['log_dir']
+pth_dir = config['pth_dir']
 
 match_celline = lambda x: re.match(r"rankedTE_(.*)\.csv",x).group(1)
 data_fn = list(filter(lambda x : '.csv' in x,os.listdir(data_dir)))
@@ -104,7 +109,8 @@ class Seq_one_hot(object):
         """
         X = self.discretize_seq(data)
         return self.transform(X,flattern)
-    
+
+# =====================|calculate Conv shape|==================
     
 def cal_convTrans_shape(L_in,padding,diliation,kernel_size,stride,out_padding=0):
     """
@@ -119,3 +125,46 @@ def cal_conv_shape(L_in,padding,diliation,kernel_size,stride):
     """
     L_out = 1+ (L_in + 2*padding -diliation*(kernel_size-1) -1)/stride
     return L_out
+
+# =====================|   logger       |=======================
+
+def setup_logs(save_dir, run_name):
+    """
+
+    :param save_dir:  the directory to set up logs
+    :param type:  'model' for saving logs in 'logs/cpc'; 'imp' for saving logs in 'logs/imp'
+    :param run_name:
+    :return:logger
+    """
+    # initialize logger
+    logger = logging.getLogger("VAE")
+    logger.setLevel(logging.INFO)
+
+    # create the logging file handler
+    log_file = os.path.join(save_dir, run_name + ".log")
+    fh = logging.FileHandler(log_file)
+
+    # create the logging console handler
+    ch = logging.StreamHandler()
+
+    # format
+    formatter = logging.Formatter("%(asctime)s - %(message)s")
+    fh.setFormatter(formatter)
+
+    # add handlers to logger object
+    logger.addHandler(fh)
+    logger.addHandler(ch)
+
+    return logger
+
+
+
+def snapshot(dir_path, run_name, state):
+    snapshot_file = os.path.join(dir_path,
+                                 run_name + '-model_best.pth')
+    # torch.save can save any object
+    # dict type object in our cases
+    torch.save(state, snapshot_file)
+    logger.info("Snapshot saved to {}\n".format(snapshot_file))
+
+    

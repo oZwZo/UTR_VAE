@@ -6,19 +6,19 @@ from torch.nn import functional as F
 
 class Conv_backbond(nn.Module):
     def __init__(self,conv_size,kernel_size=3,direction='encode',**kwargs):
-       super(Conv_backbond,self).__init__()
+        super(Conv_backbond,self).__init__()
 
-       self.channels =  conv_size
-       self.conv = nn.Conv1d if direction == 'encode' else nn.ConvTranspose1d
+        self.channels =  conv_size
+        self.conv = nn.Conv1d if direction == 'encode' else nn.ConvTranspose1d
        
-       self.block = lambda in_channel , out_channel: nn.Sequential(
+        self.block = lambda in_channel , out_channel: nn.Sequential(
            self.conv(in_channel,out_channel,kernel_size=kernel_size,**kwargs),
         #    nn.MaxPool1d(),
            nn.BatchNorm1d(out_channel),
            nn.LeakyReLU()
         )
        
-       self.encoder = nn.ModuleList([self.block(i,j) for i,j in zip(self.channels[:-1],self.channels[1:])])
+        self.encoder = nn.ModuleList([self.block(i,j) for i,j in zip(self.channels[:-1],self.channels[1:])])
 
     #    self.weight_initialize()
     
@@ -31,8 +31,7 @@ class Conv_backbond(nn.Module):
     def forward(self,X):
         X = self._code(X)
         return X
- 
-
+    
 class AE(nn.Module):
     def __init__(self,encoder,decoder):
         super(AE,self).__init__()
@@ -157,6 +156,7 @@ class VAE(nn.Module):
         log_var = args[3]
 
         kld_weight = kwargs['M_N'] # Account for the minibatch samples from the dataset
+        self.kld_weight = kld_weight
         recons_loss =F.mse_loss(recons, input)
 
 

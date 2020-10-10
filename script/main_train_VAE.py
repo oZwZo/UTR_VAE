@@ -14,8 +14,15 @@ from model import reader
 from model import train_val
 from model.optim import ScheduledOptim
 
-# Run name
+# TODO :Run name
+if run_name is None:
+    run_name = model_stype + time.strtime()
 
+# TODO : log dir
+
+logger = utils.setup_logs(save_dir = os.path.join(),
+                          type='VAE',
+                          run_name= )
 
 
 # read data
@@ -40,16 +47,24 @@ optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.pa
                            n_warmup_steps=20)
 
 
+
 for epoch in range(max_epoch):
     
+    logger.info("\n===============================|    epoch {}   |===============================\n")
     train_val.train(dataloader=train_loader,model=model,optimizer=optimizer)
     
     # validate model for every 20 epoch
     if epoch % 20 == 0:
-        validate_values = train_val.validate(val_loader,model)
-    
-    # TODO : verbose
+        val_total_loss,val_avg_acc = train_val.validate(val_loader,model)
     
     # TODO : compare the result 
     
     # TODO : save model 
+    save_path = utils.pth_dir
+    utils.snapshot(save_path,run_name, {
+                'epoch': epoch + 1,
+                'validation_acc': val_avg_acc,
+                'state_dict': model.state_dict(),
+                'validation_loss': val_total_loss,
+                'optimizer': optimizer.state_dict(),
+            }
