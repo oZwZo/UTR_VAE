@@ -1,8 +1,12 @@
 import torch
 import numpy as np
 import pandas as pd
+import torch
 from torch import nn
 from torch.nn import functional as F
+
+global device
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class Conv_backbond(nn.Module):
     def __init__(self,conv_size,kernel_size=3,direction='encode',**kwargs):
@@ -165,7 +169,91 @@ class VAE(nn.Module):
         loss = recons_loss + kld_weight * kld_loss
         return {'loss': loss, 'MSE':recons_loss, 'KLD':-kld_loss}
 
+class LSTM_AE(AE):
+    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim):
+        
+        hidden_size =max(hidden_size_enc,hidden_size_dec)
+        self.hidden_size = hidden_size
+        # self.hidden_size_dec = hidden_size_dec
+        self.input_size = input_size
+        self.num_layers = num_layers
+        self.seq_in_dim = seq_in_dim
+        # self.decode_type = decode_type
+        
+        # the out_dim  will  flatten the cell_state of LSTM encoder output
+        # out_dim = num_layers*2*hidden_size_enc 
+        latent_dim = latent_dim
+        """
+        Encoder hidden_state :  [num_layers*num_directions, batch, hidden_size]
+        """
+        Encoder = nn.LSTM(input_size=input_size,
+                          hidden_size=hidden_size,
+                          num_layers=num_layers,
+                          batch_first=True,
+                          bidirectional=False)
+        """
+        Decoder take reparameterize code as hidden state, and start decoding
+        hidden required : [3,batch,4]
+        The input :  [batch, 1 , ???]
+        The output : [batch, 100, 4]
+        """
+        Decoder = nn.LSTM(input_size=seq_in_dim,
+                          hidden_size=hidden_size,
+                          num_layers=num_layers,
+                          batch_first=True,
+                          bidirectional=False)
+        
+        super(LSTM_AE,self).__init__(encoder=Encoder,decoder=Decoder)
+        
+        self.predict_MLP = nn.Linear(hidden_size,4)
+        self.Entropy = nn.CrossEntropyLoss()
+    
+    def forward(self,X):
+        """
+        Encode -> cell -> Decode <_)
+        """
+        loss = 0
+        batch_size = X.shape[0]
+        out_seq = []
+        
+        Z,hidden = self.encoder(X)
+        
+        X_in = torch.zeros([batch_size,1,self.seq_in_dim]).to(device)
+        
+        for i in range(100):
+            X_out,hidden = self.decoder(X_in,hidden)
+            pred = self.predict_MLP(X_out)
+            X_in = F.softmax(pred,dim=2)
+            
+            # update result
+            target = X[:,i,:].long()
+            
+            out_seq.append(pred)
+        
+        return out_seq
 
+    def loss_function(self,out_seq,Y):
+        loss  = 0 
+        # target = Y.long()       # Y is origin data Batch*100*4
+        
+        for i in range(100):
+            target = torch.argmax(Y[:,i,:],dim=1)
+            loss += self.Entropy(torch.squeeze(out_seq[i]),target)      # use pred instead of X_in, should not softmax 
+        return loss
+        
+        
+    def reconstruct_seq(self,out_seq,X):
+        seq = torch.zeros_like(X)
+        out_seq = torch.cat(out_seq,dim=1)
+        position = torch.argmax(out_seq,dim=2)     # X_reconst : b*100*4
+        
+        for batch_idx in range(X.shape[0]):
+            for i,j in enumerate(position[batch_idx]):
+                seq[batch_idx,i,j.item()] = 1
+                
+        return seq
+        
+        
 
 class LSTM_VAE(VAE):
     def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim,decode_type):

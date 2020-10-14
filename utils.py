@@ -6,6 +6,7 @@ import pandas as pd
 import os
 import json
 import re
+import torch
 
 print(os.path.dirname(__file__))
 
@@ -17,7 +18,7 @@ global pth_dir
 global cell_lines
 
 with open(os.path.join(os.path.dirname(__file__),"machine_configure.json"),'r') as f:
-    config = json.load(f)
+    config = json.load(f)   
 
 script_dir = config['script_dir']
 data_dir = config['data_dir']
@@ -159,12 +160,30 @@ def setup_logs(save_dir, run_name):
 
 
 
-def snapshot(dir_path, run_name, state):
-    snapshot_file = os.path.join(dir_path,
+def snapshot(pth_path, run_name, state):
+    logger = logging.getLogger("VAE")
+    snapshot_file = os.path.join(pth_path,
                                  run_name + '-model_best.pth')
     # torch.save can save any object
     # dict type object in our cases
     torch.save(state, snapshot_file)
     logger.info("Snapshot saved to {}\n".format(snapshot_file))
 
+
+def check_experiment(run_name):
+    """
+    for a experiment, check whether it;s a new run, and create dir 
+    """
+    #run_name = model_stype + time.strftime("__%Y_%m_%d_%H:%M"))
+    model_type,run_time = run_name.split("__")
+    log_path = os.path.join(log_dir,model_type,run_name)
+    pth_path = os.path.join(pth_dir,model_type,run_name)
+    
+    if not os.path.exists(log_path):
+        os.makedirs(log_path)
+    
+    if not os.path.exists(pth_path):
+        os.makedirs(pth_path)
+        
+    
     
