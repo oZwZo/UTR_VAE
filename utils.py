@@ -8,6 +8,7 @@ import json
 import re
 import torch
 
+
 print(os.path.dirname(__file__))
 
 # ====================|   some path   |=======================
@@ -129,7 +130,7 @@ def cal_conv_shape(L_in,padding,diliation,kernel_size,stride):
 
 # =====================|   logger       |=======================
 
-def setup_logs(save_dir, run_name):
+def setup_logs(vae_log_path):
     """
 
     :param save_dir:  the directory to set up logs
@@ -142,7 +143,7 @@ def setup_logs(save_dir, run_name):
     logger.setLevel(logging.INFO)
 
     # create the logging file handler
-    log_file = os.path.join(save_dir, run_name + ".log")
+    log_file = os.path.join(vae_log_path)
     fh = logging.FileHandler(log_file)
 
     # create the logging console handler
@@ -160,30 +161,38 @@ def setup_logs(save_dir, run_name):
 
 
 
-def snapshot(pth_path, run_name, state):
+def snapshot(vae_pth_path, run_name, state):
     logger = logging.getLogger("VAE")
-    snapshot_file = os.path.join(pth_path,
-                                 run_name + '-model_best.pth')
+    snapshot_file = vae_pth_path
     # torch.save can save any object
     # dict type object in our cases
     torch.save(state, snapshot_file)
     logger.info("Snapshot saved to {}\n".format(snapshot_file))
 
 
-def check_experiment(run_name):
+def resume(popen,model,optimizer,logger):
     """
     for a experiment, check whether it;s a new run, and create dir 
     """
     #run_name = model_stype + time.strftime("__%Y_%m_%d_%H:%M"))
-    model_type,run_time = run_name.split("__")
-    log_path = os.path.join(log_dir,model_type,run_name)
-    pth_path = os.path.join(pth_dir,model_type,run_name)
     
-    if not os.path.exists(log_path):
-        os.makedirs(log_path)
+    if popen.Resumable:
+        
+        checkpoint = torch.load(popen.vae_pth_path)   # xx-model-best.pth
+        previous_epoch = checkpoint['epoch']
+        previous_loss = checkpoint['validation_loss']
+        previous_acc = checkpoint['validation_acc']
+        
+        model.load_state_dict(checkpoint['state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer'])
+
+        logger.info("\n\n==================================================================")
+        logger.info('========= Resume from checkpoint: %s ' % popen.vae_pth_path)
+        logger.info("==================================================================\n\n")
+        
+        return previous_epoch,previous_loss,previous_acc
     
-    if not os.path.exists(pth_path):
-        os.makedirs(pth_path)
+    
         
     
     

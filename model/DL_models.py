@@ -170,7 +170,7 @@ class VAE(nn.Module):
         return {'loss': loss, 'MSE':recons_loss, 'KLD':-kld_loss}
 
 class LSTM_AE(AE):
-    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim):
+    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim,discretize_input,t_k,t_b):
         
         hidden_size =max(hidden_size_enc,hidden_size_dec)
         self.hidden_size = hidden_size
@@ -207,8 +207,9 @@ class LSTM_AE(AE):
         
         self.predict_MLP = nn.Linear(hidden_size,4)
         self.Entropy = nn.CrossEntropyLoss()
-    
-    def forward(self,X):
+        self.teaching_rate = lambda epoch : teacher_decay(epoch,t_k,t_b,0)   # for teacher forcing
+        
+    def forward(self,X,epoch):
         """
         Encode -> cell -> Decode <_)
         """
@@ -221,23 +222,47 @@ class LSTM_AE(AE):
         X_in = torch.zeros([batch_size,1,self.seq_in_dim]).to(device)
         
         for i in range(100):
+            
+            # the 
+            if i > 0:
+                X_in = self.input_decision(X,pred,i,epoch)
+            
             X_out,hidden = self.decoder(X_in,hidden)
             pred = self.predict_MLP(X_out)
-            X_in = F.softmax(pred,dim=2)
-            
-            # update result
-            target = X[:,i,:].long()
             
             out_seq.append(pred)
         
         return out_seq
+    
+    def input_decision(self,X,pred,i,epoch):
+        """
+        deal with the output of last timestep : discretize and teacher forcing
+        """
+        batch_size = X.shape[0]
+         
+        #  ========  teacher forcing  =======
+        u = np.random.rand()
+        if u < self.teaching_rate(epoch):
+            # teach
+            X_in = X[:,i,:]
+        #  ========  discretize input =======
+        elif self.discretize_input:
+            dim2posi = torch.argmax(pred,dim=2).view(-1)
+            X_in = torch.zeros_like(pred)
+            for i in range(batch_size):
+                X_in[i,0,dim2posi[i]] = 1
+        else:
+            X_in = F.softmax(pred,dim=2)
+            
+        return X_in
+        
 
     def loss_function(self,out_seq,Y):
         loss  = 0 
         # target = Y.long()       # Y is origin data Batch*100*4
         
         for i in range(100):
-            target = torch.argmax(Y[:,i,:],dim=1)
+            target = torch.argmax(Y[:,i,:],dim=1)                       # dim=1 becuz Y become [batch,4] when we specify i 
             loss += self.Entropy(torch.squeeze(out_seq[i]),target)      # use pred instead of X_in, should not softmax 
         return loss
         
@@ -356,3 +381,9 @@ class LSTM_VAE(VAE):
         else:        
             logit = self.LSTM_cell_in(code)
         return logit
+
+def teacher_decay(epoch,k,b,c=0.1):
+    
+     y = np.exp(-1*k*epoch + b) - c
+     
+     return y if y >0 else 0

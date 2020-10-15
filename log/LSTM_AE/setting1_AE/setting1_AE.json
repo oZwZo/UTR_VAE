@@ -1,8 +1,8 @@
 {
     "epoch":200,
+    "setp_to_check":10,
         
     "model_type":"LSTM_AE",
-
     "run_name":"LSTM_AE_test1",
     "setting_name":"setting1_AE",
 
