@@ -170,7 +170,10 @@ class VAE(nn.Module):
         return {'loss': loss, 'MSE':recons_loss, 'KLD':-kld_loss}
 
 class LSTM_AE(AE):
-    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,latent_dim,seq_in_dim,discretize_input,t_k,t_b):
+    def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,
+                 latent_dim,seq_in_dim,
+                 decode_type,teacher_forcing,discretize_input,
+                 t_k,t_b,bidirectional=False):
         
         hidden_size =max(hidden_size_enc,hidden_size_dec)
         self.hidden_size = hidden_size
@@ -190,7 +193,7 @@ class LSTM_AE(AE):
                           hidden_size=hidden_size,
                           num_layers=num_layers,
                           batch_first=True,
-                          bidirectional=False)
+                          bidirectional=bidirectional)
         """
         Decoder take reparameterize code as hidden state, and start decoding
         hidden required : [3,batch,4]
@@ -207,7 +210,9 @@ class LSTM_AE(AE):
         
         self.predict_MLP = nn.Linear(hidden_size,4)
         self.Entropy = nn.CrossEntropyLoss()
-        self.teaching_rate = lambda epoch : teacher_decay(epoch,t_k,t_b,0)   # for teacher forcing
+        self.teacher_forcing = teacher_forcing
+        self.discretize_input = discretize_input
+        self.teaching_rate = lambda epoch : teacher_decay(epoch,t_k,t_b,0)  # for teacher forcing
         
     def forward(self,X,epoch):
         """
@@ -242,9 +247,9 @@ class LSTM_AE(AE):
          
         #  ========  teacher forcing  =======
         u = np.random.rand()
-        if u < self.teaching_rate(epoch):
+        if (u < self.teaching_rate(epoch)) & (self.teacher_forcing == True):
             # teach
-            X_in = X[:,i,:]
+            X_in = X[:,i,:].unsqueeze(dim=1)
         #  ========  discretize input =======
         elif self.discretize_input:
             dim2posi = torch.argmax(pred,dim=2).view(-1)

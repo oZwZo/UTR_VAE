@@ -65,37 +65,38 @@ best_loss = np.inf
 best_acc = 0
 previous_epoch = 0
 if POPEN.Resumable:
-    previous_epoch,best_loss,best_acc = utils.rxesume(POPEN,model,optimizer,logger)
+    previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
 
 
-for epoch in range(POPEN.max_epoch-previous_epoch):
+for epoch in range(POPEN.max_epoch-previous_epoch+1):
     epoch += previous_epoch
     
     #           ----------| train |----------
     logger.info("\n===============================|    epoch {}   |===============================\n".format(epoch))
-    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN)
-    
+    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+           
     #         -----------| validate |-----------
     
-    if epoch % POPEN.step_to_check == 0:
-        val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN)
+    if epoch % POPEN.config_dict['setp_to_check'] == 0:
+        val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN,epoch=epoch)
     
     #    -----------| compare the result |-----------
-    if (best_loss > val_total_loss) | (best_acc > val_avg_acc):
-        # update best performance
-        best_loss = min(best_loss,val_total_loss)
-        best_acc = max(best_acc,val_avg_acc)
-        
-        # save
-        utils.snapshot(POPEN.vae_pth_path, {
-                    'epoch': epoch + 1,
-                    'validation_acc': val_avg_acc,
-                    'state_dict': model.state_dict(),
-                    'validation_loss': val_total_loss,
-                    'optimizer': optimizer.state_dict(),
-                })
-        
-        # update the popen
-        POPEN.update_ini_file({'run_name':run_name,
-                               "ran_epoch":epoch,
-                               "best_acc":best_acc})
+        if (best_loss > val_total_loss) | (best_acc > val_avg_acc):
+            # update best performance
+            best_loss = min(best_loss,val_total_loss)
+            best_acc = max(best_acc,val_avg_acc)
+            
+            # save
+            utils.snapshot(POPEN.vae_pth_path, {
+                        'epoch': epoch + 1,
+                        'validation_acc': val_avg_acc,
+                        'state_dict': model.state_dict(),
+                        'validation_loss': val_total_loss,
+                        'optimizer': optimizer.state_dict(),
+                    })
+            
+            # update the popen
+            POPEN.update_ini_file({'run_name':run_name,
+                                "ran_epoch":epoch,
+                                "best_acc":best_acc},
+                                logger)

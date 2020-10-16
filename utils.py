@@ -161,7 +161,7 @@ def setup_logs(vae_log_path):
 
 
 
-def snapshot(vae_pth_path, run_name, state):
+def snapshot(vae_pth_path, state):
     logger = logging.getLogger("VAE")
     snapshot_file = vae_pth_path
     # torch.save can save any object
@@ -185,10 +185,12 @@ def resume(popen,model,optimizer,logger):
         
         model.load_state_dict(checkpoint['state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer'])
-
-        logger.info("\n\n==================================================================")
-        logger.info('========= Resume from checkpoint: %s ' % popen.vae_pth_path)
-        logger.info("==================================================================\n\n")
+        
+        
+        logger.info(" \t \t ========================================================= \t \t ")
+        logger.info(' \t \t ==============<<< Resume from checkpoint>>>============== \t \t \n')
+        logger.info(" \t"+popen.vae_pth_path+'\n')
+        logger.info(" \t \t ========================================================= \t \t \n")
         
         return previous_epoch,previous_loss,previous_acc
     

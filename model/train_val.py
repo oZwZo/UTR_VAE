@@ -11,14 +11,14 @@ from torch import optim
 from model.optim import ScheduledOptim , find_lr
 
 
-def train(dataloader,model,optimizer,popen,lr=None):
+def train(dataloader,model,optimizer,popen,epoch,lr=None):
 
     logger = logging.getLogger("VAE")
     loader_len = len(dataloader)       # number of iteration
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     model = model.to(device)
-    
+    model.teacher_forcing = popen.teacher_forcing     # turn on teacher_forcing
     model.train()
     
     for idx,data in enumerate(dataloader):
@@ -30,13 +30,13 @@ def train(dataloader,model,optimizer,popen,lr=None):
         optimizer.zero_grad()
         
         if 'VAE' in popen.model_type:
-            X_reconstruct, mu , sigma  = model(X)
+            X_reconstruct, mu , sigma  = model(X,epoch)
             
             loss_dict = model.loss_function(X_reconstruct,X,mu,sigma,M_N=1)
             loss = loss_dict['loss']
         
         elif popen.model_type.split("_")[1] == "AE":
-            out_seq = model(X)
+            out_seq = model(X,epoch)
             loss = model.loss_function(out_seq,X)
         
         # ======== grd clip and step ========
@@ -48,33 +48,37 @@ def train(dataloader,model,optimizer,popen,lr=None):
         optimizer.step()
         
         # ====== update lr =======
-        if lr is None:
+        if (lr is None) & (popen.optimizer == 'Schedule'):
             lr = optimizer.update_learning_rate()      # see model.optim.py
-        
+        elif popen.optimizer == 'Adam':
+            lr = optimizer.param_groups[0]['lr']
+       
         # ======== verbose ========
         # record result 5 times for a epoch
         if idx % int(loader_len/5) == 0:
             if 'VAE' in popen.model_type:
-                train_verbose = "{} / {}({:.1f}%): \t TOTAL:{} \t KLD:{} \t MSE:{} \t M_N:{} \t lr: {}".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:3d} / {:3d} ({:.1f}%): \t TOTAL:{:.9f} \t KLD:{:.9f} \t MSE:{:.9f} \t M_N:{:2d} \t lr: {:.9f}".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss_dict['loss'].item(),
                                                                                                     loss_dict['KLD'].item(),
                                                                                                     loss_dict['MSE'].item(),
                                                                                                     model.kld_weight,
                                                                                                     lr)
             else:
-                train_verbose = "{} / {}({:.1f}%): \t LOSS:{} \t lr: {}".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:3d} / {:3d} ({:.1f}%): \t LOSS:{:.9f} \t lr: {:.9f} \t teaching_rate: {:.9f} ".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss.item(),
-                                                                                                    lr)
+                                                                                                    lr,
+                                                                                                    model.teaching_rate(epoch))
             logger.info(train_verbose)
         
         torch.cuda.empty_cache()
 
-def validate(dataloader,model,popen):
+def validate(dataloader,model,popen,epoch):
 
     logger = logging.getLogger("VAE")
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     model = model.to(device)
+    model.teacher_forcing = False    # turn off teacher_forcing
     
     # ====== set up empty =====
     Total_loss = 0
@@ -94,7 +98,7 @@ def validate(dataloader,model,popen):
             
             if "VAE" in popen.model_type:
                 # forward and predict
-                X_reconstruct, mu , sigma  = model(X)                    
+                X_reconstruct, mu , sigma  = model(X,epoch)                    
                 seq = model.reconstruct_seq(X)
                             
                 # evaluate loss
@@ -104,10 +108,11 @@ def validate(dataloader,model,popen):
                 MSE_loss += loss['MSE'].item()
                 # std_ls.append(sigma)
             elif "AE" in popen.model_type:
-                out_seq   = model(X)
+                out_seq   = model(X,epoch)
                 loss = model.loss_function(out_seq,X)
                 seq = model.reconstruct_seq(out_seq,X)
                 
+                Total_loss += loss.item()
                 # average within batch
                 avg_acc += torch.mean(X.mul(seq).sum(dim=2).sum(dim=1))  # the product of one-hot seq give identity    
             
@@ -128,7 +133,7 @@ def validate(dataloader,model,popen):
         val_verbose = "\t LOSS:{:.7f}  Avg_ACC: {}".format(loss,avg_acc)
     logger.info(val_verbose)
     # return these to save current performance
-    return Total_loss,avg_acc
+    return Total_loss,avg_acc.item()
             
             
             

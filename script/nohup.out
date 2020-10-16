@@ -6,3 +6,7 @@ Traceback (most recent call last):
   File "main_train_VAE.py", line 3, in <module>
     import utils
 ModuleNotFoundError: No module named 'utils'
+Traceback (most recent call last):
+  File "main_train.py", line 3, in <module>
+    import utils
+ModuleNotFoundError: No module named 'utils'
