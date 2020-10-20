@@ -22,10 +22,10 @@ class ScheduledOptim(object):
 
     def __init__(self, optimizer, n_warmup_steps):
         self.optimizer = optimizer
-        self.d_model = 256
+        self.d_model = 128
         self.n_warmup_steps = n_warmup_steps
         self.n_current_steps = 0 
-        self.delta = 4
+        self.delta = 1
 
     def state_dict(self):
         return self.optimizer.state_dict()
