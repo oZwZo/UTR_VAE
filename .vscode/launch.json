@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE/setting2_AE/setting2_AE.ini"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE/setting8_AE/setting8_AE.ini"]
         },
         {
             "name": "Python: no args",

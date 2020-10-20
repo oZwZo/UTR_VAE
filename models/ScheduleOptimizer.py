@@ -10,16 +10,22 @@ from matplotlib import cm
 global scheduleoptim_text
 scheduleoptim_text="ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), betas=(0.9, 0.98), eps=1e-09, weight_decay=1e-4, amsgrad=True),n_warmup_steps=20)"
 
+scheduleoptim_dict_str="""ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
+                                                    betas=(0.9, 0.98),
+                                                    eps=1e-09, 
+                                                    weight_decay={weight_decay}, 
+                                                    amsgrad={amsgrad}),
+                                         n_warmup_steps={n_warmup_steps})"""
 
 class ScheduledOptim(object):
     """A simple wrapper class for learning rate scheduling"""
 
     def __init__(self, optimizer, n_warmup_steps):
         self.optimizer = optimizer
-        self.d_model = 128 
+        self.d_model = 256
         self.n_warmup_steps = n_warmup_steps
         self.n_current_steps = 0 
-        self.delta = 1
+        self.delta = 4
 
     def state_dict(self):
         return self.optimizer.state_dict()
@@ -49,6 +55,7 @@ class ScheduledOptim(object):
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = new_lr
         return new_lr
+
 
 def find_lr(net,train_data,Variable):
     criterion = torch.nn.CrossEntropyLoss()

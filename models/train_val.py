@@ -4,11 +4,11 @@ import time
 import logging
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
-from model import DL_models
-from model import reader
+from models import DL_models
+from models import reader
 import torch
 from torch import optim
-from model.optim import ScheduledOptim , find_lr
+from models.ScheduleOptimizer import ScheduledOptim , find_lr
 
 
 def train(dataloader,model,optimizer,popen,epoch,lr=None):
@@ -42,13 +42,14 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         # ======== grd clip and step ========
         
         loss.backward()
+        
         _ = torch.nn.utils.clip_grad_norm_(
-            filter(lambda p: p.requires_grad, model.parameters()), max_norm=10)
+            filter(lambda p: p.requires_grad, model.parameters()), max_norm=5)
         
         optimizer.step()
         
         # ====== update lr =======
-        if (lr is None) & (popen.optimizer == 'Schedule'):
+        if (lr is None) & (type(optimizer) == ScheduledOptim):
             lr = optimizer.update_learning_rate()      # see model.optim.py
         elif popen.optimizer == 'Adam':
             lr = optimizer.param_groups[0]['lr']

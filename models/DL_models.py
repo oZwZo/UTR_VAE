@@ -250,6 +250,8 @@ class LSTM_AE(AE):
         if (u < self.teaching_rate(epoch)) & (self.teacher_forcing == True):
             # teach
             X_in = X[:,i,:].unsqueeze(dim=1)
+        elif self.teacher_forcing == 'fixed':
+            X_in = X[:,i,:].unsqueeze(dim=1)
         #  ========  discretize input =======
         elif self.discretize_input:
             dim2posi = torch.argmax(pred,dim=2).view(-1)

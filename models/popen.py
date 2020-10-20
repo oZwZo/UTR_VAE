@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import utils
 import json
-from model import DL_models
+from models import DL_models
 import configparser
 import logging
 
@@ -56,8 +56,11 @@ class Auto_popen(object):
         elif type(self.config_dict['teacher_forcing']) == list:
             self.teacher_forcing = True
             t_k,t_b = self.config_dict['teacher_forcing']
+        elif self.config_dict['teacher_forcing'] is 'fixed':
+            t_k = t_b = 100
         elif self.config_dict['teacher_forcing'] is False:
-            t_k,t_b = 100
+            t_k = t_b = 100
+            
         
         if "LSTM" in self.model_type:
             self.model_args=[self.config_dict["input_size"],
