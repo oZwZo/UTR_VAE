@@ -113,5 +113,5 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
                                 "best_acc":best_acc},
                                 logger)
             
-        elif (epoch - best_epoch >= 10)&((type(optimizer) == ScheduledOptim)):
+        elif (epoch - best_epoch >= 2*POPEN.config_dict['setp_to_check'])&((type(optimizer) == ScheduledOptim)):
             optimizer.increase_delta()

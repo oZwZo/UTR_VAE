@@ -125,7 +125,7 @@ def validate(dataloader,model,popen,epoch):
     # ======== verbose ========
     logger.info("\n===============================| start validation |===============================\n")
     if "VAE" in popen.model_type:
-        val_verbose = "\t TOTAL:{:.7f} \n\t KLD:{:.7f} \n\t MSE:{:.7f} \n\t M_N:{} \n\t Avg_ACC: {}".format(Total_loss,
+        val_verbose = "\t  :{:.7f} \n\t KLD:{:.7f} \n\t MSE:{:.7f} \n\t M_N:{} \n\t Avg_ACC: {}".format(Total_loss,
                                                                                                        KLD_loss,
                                                                                                        MSE_loss,
                                                                                                        model.kld_weight,

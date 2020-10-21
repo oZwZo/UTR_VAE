@@ -183,6 +183,9 @@ class LSTM_AE(AE):
         self.seq_in_dim = seq_in_dim
         # self.decode_type = decode_type
         
+        self.t_k = t_k
+        self.t_b = t_b
+        
         # the out_dim  will  flatten the cell_state of LSTM encoder output
         # out_dim = num_layers*2*hidden_size_enc 
         latent_dim = latent_dim
@@ -212,7 +215,9 @@ class LSTM_AE(AE):
         self.Entropy = nn.CrossEntropyLoss()
         self.teacher_forcing = teacher_forcing
         self.discretize_input = discretize_input
-        self.teaching_rate = lambda epoch : teacher_decay(epoch,t_k,t_b,0)  # for teacher forcing
+    
+    def teaching_rate(self,epoch):
+        return teacher_decay(epoch,self.t_k,self.t_b,0.1)  # for teacher forcing
         
     def forward(self,X,epoch):
         """
@@ -225,6 +230,7 @@ class LSTM_AE(AE):
         Z,hidden = self.encoder(X)
         
         X_in = torch.zeros([batch_size,1,self.seq_in_dim]).to(device)
+        # X_in = X[:,0,:].unsqueeze(dim=1).clone()
         
         for i in range(100):
             
@@ -391,6 +397,6 @@ class LSTM_VAE(VAE):
 
 def teacher_decay(epoch,k,b,c=0.1):
     
-     y = np.exp(-1*k*epoch + b) - c
+     y = np.exp(-1*k*epoch + b) 
      
-     return y if y >0 else 0
+     return y if y >c else c
