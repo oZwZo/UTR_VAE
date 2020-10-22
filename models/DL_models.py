@@ -181,6 +181,7 @@ class LSTM_AE(AE):
         self.input_size = input_size
         self.num_layers = num_layers
         self.seq_in_dim = seq_in_dim
+        self.bidirectional=bidirectional
         # self.decode_type = decode_type
         
         self.t_k = t_k
@@ -203,9 +204,10 @@ class LSTM_AE(AE):
         The input :  [batch, 1 , ???]
         The output : [batch, 100, 4]
         """
+        decoder_layer = num_layers*2 if bidirectional else num_layers
         Decoder = nn.LSTM(input_size=seq_in_dim,
                           hidden_size=hidden_size,
-                          num_layers=num_layers,
+                          num_layers=decoder_layer,
                           batch_first=True,
                           bidirectional=False)
         

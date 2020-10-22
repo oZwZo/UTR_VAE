@@ -90,13 +90,16 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
     
     if epoch % POPEN.config_dict['setp_to_check'] == 0:
         val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN,epoch=epoch)
-        best_epoch = epoch
-    
+        
+        DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}
+        POPEN.update_ini_file(DICT,logger)
+        
     #    -----------| compare the result |-----------
-        if (best_loss > val_total_loss) | (best_acc > val_avg_acc):
+        if (best_loss > val_total_loss) | (best_acc < val_avg_acc):
             # update best performance
             best_loss = min(best_loss,val_total_loss)
             best_acc = max(best_acc,val_avg_acc)
+            best_epoch = epoch
             
             # save
             utils.snapshot(POPEN.vae_pth_path, {
@@ -113,5 +116,10 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
                                 "best_acc":best_acc},
                                 logger)
             
-        elif (epoch - best_epoch >= 2*POPEN.config_dict['setp_to_check'])&((type(optimizer) == ScheduledOptim)):
+        elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
             optimizer.increase_delta()
+            
+        elif (epoch - best_epoch >= 30)&(epoch > POPEN.max_epoch/2):
+            # at the late phase of training
+            logger.info("<<<<<<<<<<< Early Stopping >>>>>>>>>>")
+            break

@@ -186,6 +186,9 @@ def resume(popen,model,optimizer,logger):
         model.load_state_dict(checkpoint['state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         
+        # very important
+        optimizer.n_current_steps = popen.n_current_steps
+        optimizer.delta = popen.delta
         
         logger.info(" \t \t ========================================================= \t \t ")
         logger.info(' \t \t ==============<<< Resume from checkpoint>>>============== \t \t \n')
