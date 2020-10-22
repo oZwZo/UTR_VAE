@@ -63,7 +63,7 @@ class Auto_popen(object):
             
         
         if "LSTM" in self.model_type:
-            self.model_args=[self.config_dict["input_size"],
+            self.model_args=[self.input_size,
                              self.config_dict["hidden_size_enc"],
                              self.config_dict["hidden_size_dec"],
                              self.config_dict["num_layers"],

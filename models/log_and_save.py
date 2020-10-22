@@ -141,7 +141,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -155,6 +155,7 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,**kwa
         ax = axs[i]
         for st,log in enumerate(log_list):
             DF = log.__getattribute__(dataset+"_verbose_DF")
-            ax.plot(DF[metric].values[1:],label=log_name_ls[st],**kwargs)
-            ax.set_title("VAL "+metric)
+            X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
+            ax.plot(X[1:],DF[metric].values[1:],label=log_name_ls[st],**kwargs)
+            ax.set_title(" ".join([dataset.capitalize(),metric]))
         ax.legend()

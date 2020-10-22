@@ -24,8 +24,9 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     for idx,data in enumerate(dataloader):
         X,y = data       
         X = X.float().to(device)
-        y = y.long().to(device)
+        Y = Y.float().to(device)
         X.required_grad = True  # check !!!
+        Y = Y if X.shape == Y.shape else None  # for mask data
         
         optimizer.zero_grad()
         
@@ -36,8 +37,11 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss = loss_dict['loss']
         
         elif popen.model_type.split("_")[1] == "AE":
-            out_seq = model(X,epoch)
-            loss = model.loss_function(out_seq,X)
+            out_seq = model(X=X,epoch=epoch,Y=Y)
+            if Y is None:
+                loss = model.loss_function(out_seq,X)
+            else:
+                loss = model.loss_function(out_seq,Y)
         
         # ======== grd clip and step ========
         

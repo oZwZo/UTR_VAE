@@ -214,14 +214,14 @@ class LSTM_AE(AE):
         
         super(LSTM_AE,self).__init__(encoder=Encoder,decoder=Decoder)
         if self.fc_output is None:
-            self.predict_MLP = nn.Linear(hidden_size,input_size)
+            self.predict_MLP = nn.Linear(hidden_size,4)
         else:
             # a defualt neuron 
             self.fc_output = self.fc_output if type(self.fc_output) == int else 128
             self.predict_MLP = nn.Sequential(
                 nn.Linear(hidden_size,self.fc_output),
                 nn.ReLU(),
-                nn.Linear(self.fc_output,input_size)
+                nn.Linear(self.fc_output,4)
             )
         self.Entropy = nn.CrossEntropyLoss()
         self.teacher_forcing = teacher_forcing
@@ -230,14 +230,13 @@ class LSTM_AE(AE):
     def teaching_rate(self,epoch):
         return teacher_decay(epoch,self.t_k,self.t_b,0.1)  # for teacher forcing
         
-    def forward(self,X,epoch,Y=None):
+    def forward(self,X,epoch):
         """
         Encode -> cell -> Decode <_)
         """
         loss = 0
         batch_size = X.shape[0]
         out_seq = []
-        Y = X if Y == None else Y
         
         Z,hidden = self.encoder(X)
         
@@ -248,7 +247,7 @@ class LSTM_AE(AE):
             
             # the 
             if i > 0:
-                X_in = self.input_decision(Y,pred,i,epoch)
+                X_in = self.input_decision(X,pred,i,epoch)
             
             X_out,hidden = self.decoder(X_in,hidden)
             pred = self.predict_MLP(X_out)
