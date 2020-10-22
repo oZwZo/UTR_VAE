@@ -173,7 +173,7 @@ class LSTM_AE(AE):
     def __init__(self,input_size,hidden_size_enc,hidden_size_dec,num_layers,
                  latent_dim,seq_in_dim,
                  decode_type,teacher_forcing,discretize_input,
-                 t_k,t_b,bidirectional=False):
+                 t_k,t_b,bidirectional=False,fc_output=None):
         
         hidden_size =max(hidden_size_enc,hidden_size_dec)
         self.hidden_size = hidden_size
@@ -187,6 +187,7 @@ class LSTM_AE(AE):
         self.t_k = t_k
         self.t_b = t_b
         
+        self.fc_output = fc_output
         # the out_dim  will  flatten the cell_state of LSTM encoder output
         # out_dim = num_layers*2*hidden_size_enc 
         latent_dim = latent_dim
@@ -212,8 +213,16 @@ class LSTM_AE(AE):
                           bidirectional=False)
         
         super(LSTM_AE,self).__init__(encoder=Encoder,decoder=Decoder)
-        
-        self.predict_MLP = nn.Linear(hidden_size,4)
+        if self.fc_output is None:
+            self.predict_MLP = nn.Linear(hidden_size,4)
+        else:
+            # a defualt neuron 
+            self.fc_output = self.fc_output if type(self.fc_output) == int else 128
+            self.predict_MLP = nn.Sequential(
+                nn.Linear(hidden_size,self.fc_output),
+                nn.ReLU(),
+                nn.Linear(self.fc_output,4)
+            )
         self.Entropy = nn.CrossEntropyLoss()
         self.teacher_forcing = teacher_forcing
         self.discretize_input = discretize_input

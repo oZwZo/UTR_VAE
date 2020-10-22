@@ -73,7 +73,8 @@ class Auto_popen(object):
                              self.config_dict['teacher_forcing'],
                              self.config_dict['discretize_input'],
                              t_k,t_b,
-                             self.config_dict["bidirectional"]]
+                             self.config_dict["bidirectional"],
+                             self.config_dict["fc_output"]]
             
         if "Conv" in self.model_type:
             self.model_args=[self.config_dict["enc_Conv_size"],
