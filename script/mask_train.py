@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
 args = parser.parse_args()
 
-POPEN = Auto_popen(args.config_file)
+POPEN = Auto_popen(args.config_file,True)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 

@@ -8,10 +8,19 @@
             "name": "main_train",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE/setting10_AE/setting10_AE.ini"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE/setting10_AE/st10_b10_NwO_fc.ini"]
+        },
+        {
+            "name": "mask_train",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/wergillius/Project/UTR_VAE/script/mask_train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE_mask/setting5/mask_setting5.ini"]
         },
         {
             "name": "Python: no args",

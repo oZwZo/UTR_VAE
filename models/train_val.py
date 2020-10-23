@@ -24,7 +24,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     for idx,data in enumerate(dataloader):
         X,y = data       
         X = X.float().to(device)
-        Y = Y.float().to(device)
+        Y = y.float().to(device)
         X.required_grad = True  # check !!!
         Y = Y if X.shape == Y.shape else None  # for mask data
         

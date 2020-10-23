@@ -1,13 +1,14 @@
 # local configure
 machine_configure.json
 settings.json
-launch.json
+./.vscode/launch.json
 
 # nohup
 nohup.out
 
 # vscode
 ./.vscode/settings.json
+.vscode/*
 
 # __pycache__
 # .ipynb_checkpoints
