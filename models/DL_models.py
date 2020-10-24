@@ -41,7 +41,8 @@ class AE(nn.Module):
         super(AE,self).__init__()
         self.encoder = encoder
         self.decoder = decoder
-    
+        self.apply(self._weight_initialize)
+        
     def weight_initialize(self, model):
         if type(model) in [nn.Linear]:
         	nn.init.xavier_uniform_(model.weight)
@@ -282,16 +283,29 @@ class LSTM_AE(AE):
         return X_in
         
 
-    def loss_function(self,out_seq,Y):
+    def loss_function(self,out_seq,X,Y=None):
         loss  = 0 
         # target = Y.long()       # Y is origin data Batch*100*4
-        
+        if Y is None:
+            Y = X      # if is not mask sequence , use X to compute loss , but if mask sequence, use Y
+                    
         for i in range(100):
             target = torch.argmax(Y[:,i,:],dim=1)                       # dim=1 becuz Y become [batch,4] when we specify i 
             loss += self.Entropy(torch.squeeze(out_seq[i]),target)      # use pred instead of X_in, should not softmax 
         return loss
         
-        
+    def compute_acc(self,out_seq,X,Y=None):
+        """
+        compute the reconstruction accuracy
+        """
+        if Y is None:
+            Y = X
+        batch_size = X.shape[0]       # B*100*4
+        out_seq = torch.cat(out_seq,dim=1)
+        true_max=torch.argmax(Y,dim=2)
+        recon_max=torch.argmax(out,dim=2)
+        return torch.sum(true_max == recon_max).item() / batch_size
+    
     def reconstruct_seq(self,out_seq,X):
         seq = torch.zeros_like(X)
         out_seq = torch.cat(out_seq,dim=1)

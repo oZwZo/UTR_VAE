@@ -5,6 +5,7 @@ import torch
 import utils
 import json
 from models import DL_models
+from models import CNN_models
 import configparser
 import logging
 
@@ -49,9 +50,12 @@ class Auto_popen(object):
         """
         assert we type in the correct model type and group them into model_args
         """
-        assert self.model_type in dir(DL_models), "model type not correct"
-        
-        self.Model_Class = eval("DL_models.{}".format(self.model_type))
+        if "Conv" in self.model_type:
+            assert self.model_type in dir(CNN_models), "model type not correct"
+            self.Model_Class = eval("CNN_models.{}".format(self.model_type))
+        else:
+            assert self.model_type in dir(DL_models), "model type not correct"
+            self.Model_Class = eval("DL_models.{}".format(self.model_type))
         
         # teacher foring
         if self.config_dict['teacher_forcing'] is True:
@@ -82,8 +86,8 @@ class Auto_popen(object):
                              self.config_dict["fc_output"]]
             
         if "Conv" in self.model_type:
-            self.model_args=[self.config_dict["enc_Conv_size"],
-                             self.config_dict['dec_Conv_size'],
+            self.model_args=[self.config_dict["channel_ls"],
+                             self.config_dict['padding_ls'],
                              self.config_dict["latent_dim"],
                              self.config_dict["seq_in_dim"]]
     

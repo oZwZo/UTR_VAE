@@ -114,14 +114,14 @@ class Seq_one_hot(object):
 
 # =====================|calculate Conv shape|==================
     
-def cal_convTrans_shape(L_in,padding,diliation,kernel_size,stride,out_padding=0):
+def cal_convTrans_shape(L_in,kernel_size,padding=0,stride=1,diliation=1,out_padding=0):
     """
     For convolution Transpose 1D decoding , compute the final length
     """
     L_out = (L_in -1 )*stride + diliation*(kernel_size -1 )+1-2*padding + out_padding 
     return L_out
 
-def cal_conv_shape(L_in,padding,diliation,kernel_size,stride):
+def cal_conv_shape(L_in,kernel_size,padding=0,diliation=1,stride=1):
     """
     For convolution 1D encoding , compute the final length 
     """

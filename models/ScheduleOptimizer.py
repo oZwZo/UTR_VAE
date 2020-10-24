@@ -22,7 +22,7 @@ class ScheduledOptim(object):
 
     def __init__(self, optimizer, n_warmup_steps):
         self.optimizer = optimizer
-        self.d_model = 256 # 128
+        self.d_model = 128
         self.n_warmup_steps = n_warmup_steps
         self.n_current_steps = 0 
         self.delta = 1
@@ -43,7 +43,7 @@ class ScheduledOptim(object):
 
     def increase_delta(self):
         self.delta *= 2
-        self.delta = min(4,self.delta)
+        self.delta = min(1024,self.delta)
 
     def update_learning_rate(self):
         """Learning rate scheduling per step"""
@@ -51,7 +51,7 @@ class ScheduledOptim(object):
         self.n_current_steps += self.delta
         new_lr = np.power(self.d_model, -0.5) * np.min([
             np.power(self.n_current_steps, -0.5),
-            np.power(self.n_warmup_steps, -2.1) * self.n_current_steps])
+            np.power(self.n_warmup_steps, -1.5) * self.n_current_steps])
             # -1.5
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = new_lr

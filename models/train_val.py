@@ -38,10 +38,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         
         elif popen.model_type.split("_")[1] == "AE":
             out_seq = model(X=X,epoch=epoch,Y=Y)
-            if Y is None:
-                loss = model.loss_function(out_seq,X)
-            else:
-                loss = model.loss_function(out_seq,Y)
+            loss = model.loss_function(out_seq,X,Y)
         
         # ======== grd clip and step ========
         
@@ -96,10 +93,11 @@ def validate(dataloader,model,popen,epoch):
     model.eval()
     with torch.no_grad():
         for idx,data in enumerate(dataloader):
-            X,y = data
+            X,y = data       
             X = X.float().to(device)
-            y = y.long().to(device)
+            Y = y.float().to(device)
             X.required_grad = True  # check !!!
+            Y = Y if X.shape == Y.shape else None  # for mask data
             
             if "VAE" in popen.model_type:
                 # forward and predict
@@ -113,15 +111,13 @@ def validate(dataloader,model,popen,epoch):
                 MSE_loss += loss['MSE'].item()
                 # std_ls.append(sigma)
             elif "AE" in popen.model_type:
-                out_seq   = model(X,epoch)
-                loss = model.loss_function(out_seq,X)
-                seq = model.reconstruct_seq(out_seq,X)
-                
+                out_seq = model(X,epoch)
+                loss = model.loss_function(out_seq,X,Y)
+            
                 Total_loss += loss.item()
                 # average within batch
-                avg_acc += torch.mean(X.mul(seq).sum(dim=2).sum(dim=1))  # the product of one-hot seq give identity    
-            
-            
+                avg_acc += model.compute_acc(out_seq,X,Y)  # the product of one-hot seq give identity  
+                
             torch.cuda.empty_cache()
             
     avg_acc /= (idx+1)  # # average among batch
