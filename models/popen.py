@@ -10,7 +10,7 @@ import configparser
 import logging
 
 class Auto_popen(object):
-    def __init__(self,config_file,mask_data=False):
+    def __init__(self,config_file):
         """
         read the config_fiel
         """
@@ -28,15 +28,10 @@ class Auto_popen(object):
         
         # assign some attr from config_dict         
         self.set_attr_from_dict(self.config_dict.keys())
-        
-        if mask_data:
-            self.mask_type="_mask"
-        else:
-            self.mask_type=""
-        
+        self._dataset = "_" + self.dataset if self.dataset is not '' else self.dataset
         # the saving direction
-        self.vae_log_path = os.path.join(self.log_dir,self.model_type+self.mask_type,self.setting_name,self.run_name +'.log')
-        self.vae_pth_path = os.path.join(self.pth_dir,self.model_type+self.mask_type,self.setting_name,self.run_name + '-model_best.pth')
+        self.vae_log_path = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name,self.run_name +'.log')
+        self.vae_pth_path = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name,self.run_name + '-model_best.pth')
         self.Resumable = False
         
         # generate self.model_args
@@ -95,8 +90,8 @@ class Auto_popen(object):
         """
         check any unfinished experiment ?
         """
-        log_save_dir = os.path.join(self.log_dir,self.model_type+self.mask_type,self.setting_name)
-        pth_save_dir = os.path.join(self.pth_dir,self.model_type+self.mask_type,self.setting_name)
+        log_save_dir = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name)
+        pth_save_dir = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name)
         # make dirs 
         if not os.path.exists(log_save_dir):
             os.makedirs(log_save_dir)

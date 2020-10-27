@@ -11,7 +11,16 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE/setting10_AE/st10_b10_NwO_fc.ini"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Conv_AE_mix/setting1/mix_test.ini"]
+        },
+        {
+            "name": "CNN_main",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Conv_AE/setting1/setting1.ini"]
         },
         {
             "name": "mask_train",
@@ -20,7 +29,25 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/mask_train.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE_mask/setting5/mask_setting5.ini"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE_mask/setting1/mask_L2.ini"]
+        },
+        {
+            "name": "mask_train",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/wergillius/Project/UTR_VAE/script/mask_train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/LSTM_AE_mask/setting1/mask_L2.ini"]
+        },
+        {
+            "name": "CNN_mask",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/wergillius/Project/UTR_VAE/script/mask_train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Conv_AE_mask/setting1/mask_setting1.ini"]
         },
         {
             "name": "Python: no args",

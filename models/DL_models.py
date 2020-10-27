@@ -41,7 +41,7 @@ class AE(nn.Module):
         super(AE,self).__init__()
         self.encoder = encoder
         self.decoder = decoder
-        self.apply(self._weight_initialize)
+        self.apply(self.weight_initialize)
         
     def weight_initialize(self, model):
         if type(model) in [nn.Linear]:
@@ -303,7 +303,7 @@ class LSTM_AE(AE):
         batch_size = X.shape[0]       # B*100*4
         out_seq = torch.cat(out_seq,dim=1)
         true_max=torch.argmax(Y,dim=2)
-        recon_max=torch.argmax(out,dim=2)
+        recon_max=torch.argmax(out_seq,dim=2)
         return torch.sum(true_max == recon_max).item() / batch_size
     
     def reconstruct_seq(self,out_seq,X):

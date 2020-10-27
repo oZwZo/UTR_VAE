@@ -97,4 +97,15 @@ def get_mask_dataloader(batch_size,num_workers):
     dataset_ls = [mask_reader(os.path.join(data_dir,'mask_data',set+"_mask.npy")) for set in set_ls]
     
     return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in dataset_ls]
+
+def get_mix_dataloader(batch_size,num_workers):
+    """
+    (train_loader,val_loader,test_loader) 
+    This is a splited data-loader with seed `42` on cell line `A549` and "human-library" and "snv-library"
+    each sequence have `5` nucleotide
+    """
+    set_ls = ['train','val','test']
+    dataset_ls = [mask_reader(os.path.join(data_dir,'mix_data',"mix_%s.npy"%set)) for set in set_ls]
+    
+    return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in dataset_ls]
     

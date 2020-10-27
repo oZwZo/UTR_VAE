@@ -69,11 +69,11 @@ def read_label(df_ls):
 # =====================| one hot encode |=======================
 
 class Seq_one_hot(object):
-    def __init__(self,seq_type='nn'):
+    def __init__(self,seq_type='nn',seq_len=100):
         """
         initiate the sequence one hot encoder
         """
-        self.seq_len=100
+        self.seq_len=seq_len
         self.seq_type =seq_type
         self.enable_encoder()
         

@@ -42,11 +42,16 @@ POPEN.check_experiment(logger)
 #                               |=====================================|
 
 # read data
-dataset = reader.UTR_dataset(cell_line=POPEN.cell_line)
-train_loader,val_loader,test_loader = reader.get_splited_dataloader(dataset,
-                                                                    ratio=[0.7,0.1,0.2],
-                                                                    batch_size=POPEN.batch_size,
-                                                                    num_workers=4)
+if POPEN.dataset == 'mix':
+     train_loader,val_loader,test_loader  = reader.get_mix_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+elif POPEN.dataset == "mask":
+    train_loader,val_loader,test_loader = reader.get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+else:
+    dataset = reader.UTR_dataset(cell_line=POPEN.cell_line)
+    train_loader,val_loader,test_loader = reader.get_splited_dataloader(dataset,
+                                                                        ratio=[0.7,0.1,0.2],
+                                                                        batch_size=POPEN.batch_size,
+                                                                        num_workers=4)
 # ===========  setup model  ===========
 Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
 model = Model_Class(*POPEN.model_args).cuda()

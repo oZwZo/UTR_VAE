@@ -44,8 +44,9 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         
         loss.backward()
         
-        _ = torch.nn.utils.clip_grad_norm_(
-            filter(lambda p: p.requires_grad, model.parameters()), max_norm=5)
+        if "LSTM" in popen.model_type:
+            _ = torch.nn.utils.clip_grad_norm_(
+                filter(lambda p: p.requires_grad, model.parameters()), max_norm=5)
         
         optimizer.step()
         
@@ -134,7 +135,7 @@ def validate(dataloader,model,popen,epoch):
         val_verbose = "\t LOSS:{:.7f}  Avg_ACC: {}".format(loss,avg_acc)
     logger.info(val_verbose)
     # return these to save current performance
-    return Total_loss,avg_acc.item()
+    return Total_loss,avg_acc
             
             
             

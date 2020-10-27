@@ -48,7 +48,7 @@ class Conv_AE(AE):
         self.teaching_rate = lambda x : 0   # just for compatibility
     def encode(self,X):
         if X.shape[1] == 100:
-            X = X.tranpose(1,2)  # to B*4*100
+            X = X.transpose(1,2)  # to B*4*100
         Z = X
         for model in self.encoder:
             Z = model(Z)
@@ -63,7 +63,7 @@ class Conv_AE(AE):
     def forward(self, X,epoch=None,Y=None):
         Z = self.encode(X)
         out = self.decode(Z)
-        return out
+        return out.transpose(1,2)
     
     def loss_function(self,out,X,Y=None):
         """
