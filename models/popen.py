@@ -48,7 +48,7 @@ class Auto_popen(object):
         if "Conv" in self.model_type:
             assert self.model_type in dir(CNN_models), "model type not correct"
             self.Model_Class = eval("CNN_models.{}".format(self.model_type))
-        else:
+        elif "LSTM" in self.model_type:
             assert self.model_type in dir(DL_models), "model type not correct"
             self.Model_Class = eval("DL_models.{}".format(self.model_type))
         

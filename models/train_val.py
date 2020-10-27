@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import numpy as np
 import logging
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
@@ -87,7 +88,7 @@ def validate(dataloader,model,popen,epoch):
     Total_loss = 0
     KLD_loss = 0
     MSE_loss = 0
-    avg_acc = 0
+    acc_ls = []
     std_ls = []
     
     # ======== evaluate =======
@@ -117,11 +118,11 @@ def validate(dataloader,model,popen,epoch):
             
                 Total_loss += loss.item()
                 # average within batch
-                avg_acc += model.compute_acc(out_seq,X,Y)  # the product of one-hot seq give identity  
+                acc_ls.append(model.compute_acc(out_seq,X,Y))  # the product of one-hot seq give identity  
                 
             torch.cuda.empty_cache()
             
-    avg_acc /= (idx+1)  # # average among batch
+    avg_acc = np.mean(acc_ls)  # # average among batch
     
     # ======== verbose ========
     logger.info("\n===============================| start validation |===============================\n")

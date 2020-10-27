@@ -30,11 +30,11 @@ class Conv_AE(AE):
         self.Conv_block = lambda inChan,outChan,padding: nn.Sequential(
                     nn.Conv1d(inChan,outChan,4,stride=2,padding=padding),
                     nn.BatchNorm1d(outChan),
-                    nn.LeakyReLU())
+                    nn.ReLU())
         self.Deconv_block = lambda inChan,outChan,padding: nn.Sequential(
                     nn.ConvTranspose1d(inChan,outChan,4,stride=2,padding=padding),
                     nn.BatchNorm1d(outChan),
-                    nn.LeakyReLU())
+                    nn.ReLU())
         
         Encoder = nn.ModuleList(
             [self.Conv_block(channel_ls[i],channel_ls[i+1],padding_ls[i]) for i in range(len(channel_ls)-1)]
@@ -87,7 +87,6 @@ class Conv_AE(AE):
         recon_max=torch.argmax(out,dim=2)
         return torch.sum(true_max == recon_max).item() /batch_size
 
-        
     def reconstruct_seq(self,out_seq,X):
         seq = torch.zeros_like(X)
         position = torch.argmax(out_seq,dim=2)     # X_reconst : b*100*4
