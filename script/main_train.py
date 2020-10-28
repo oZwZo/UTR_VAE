@@ -23,6 +23,7 @@ args = parser.parse_args()
 POPEN = Auto_popen(args.config_file)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# cuda2 = torch.device('cuda:2')
 
 # Run name
 if POPEN.run_name is None:
@@ -55,7 +56,6 @@ else:
 # ===========  setup model  ===========
 Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
 model = Model_Class(*POPEN.model_args).cuda()
-
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 

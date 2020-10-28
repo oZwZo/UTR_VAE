@@ -28,7 +28,7 @@ class Auto_popen(object):
         
         # assign some attr from config_dict         
         self.set_attr_from_dict(self.config_dict.keys())
-        self._dataset = "_" + self.dataset if self.dataset is not '' else self.dataset
+        self._dataset = "_" + self.dataset if self.dataset != '' else self.dataset
         # the saving direction
         self.vae_log_path = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name,self.run_name +'.log')
         self.vae_pth_path = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name,self.run_name + '-model_best.pth')
@@ -83,8 +83,8 @@ class Auto_popen(object):
         if "Conv" in self.model_type:
             self.model_args=[self.config_dict["channel_ls"],
                              self.config_dict['padding_ls'],
-                             self.config_dict["latent_dim"],
-                             self.config_dict["seq_in_dim"]]
+                             self.config_dict['diliat_ls'],
+                             self.config_dict["latent_dim"]]
     
     def check_experiment(self,logger):
         """

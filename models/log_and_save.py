@@ -33,7 +33,7 @@ class Log_parser(object):
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
         self.start_val_line_matcher = r"\s*.* start validation .*\s*"
         self.match_logging_time = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} -"
-        self.match_percentage = r"\s*\d{1,3} / \d{1,3}\s*\((\d|\.){,4}%\):"
+        self.match_percentage = r"\s*\d{1,6} / \d{1,6}\s*\((\d|\.){,4}%\):"
         
         self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(\d|\.){,40})"%(x,x)
         

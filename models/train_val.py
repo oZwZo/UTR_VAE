@@ -33,10 +33,10 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         
         if 'VAE' in popen.model_type:
             X_reconstruct, mu , sigma  = model(X,epoch)
-            
-            loss_dict = model.loss_function(X_reconstruct,X,mu,sigma,M_N=1)
+            loss_dict = model.loss_function(X_reconstruct,X,Y,mu,sigma,kld_weight=popen.kld_weight)
             loss = loss_dict['loss']
-        
+            Avg_acc = model.compute_acc(X_reconstruct,X,Y)
+            
         elif popen.model_type.split("_")[1] == "AE":
             out_seq = model(X=X,epoch=epoch,Y=Y)
             loss = model.loss_function(out_seq,X,Y)
@@ -61,14 +61,15 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         # record result 5 times for a epoch
         if idx % int(loader_len/5) == 0:
             if 'VAE' in popen.model_type:
-                train_verbose = "{:3d} / {:3d} ({:.1f}%): \t TOTAL:{:.9f} \t KLD:{:.9f} \t MSE:{:.9f} \t M_N:{:2d} \t lr: {:.9f}".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t TOTAL:{:.9f} \t KLD:{:.9f} \t MSE:{:.9f} \t M_N:{:3d} \t lr: {:.9f} \t Avg_ACC: {}".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss_dict['loss'].item(),
                                                                                                     loss_dict['KLD'].item(),
                                                                                                     loss_dict['MSE'].item(),
                                                                                                     model.kld_weight,
-                                                                                                    lr)
+                                                                                                    lr,
+                                                                                                    Avg_acc)
             else:
-                train_verbose = "{:3d} / {:3d} ({:.1f}%): \t LOSS:{:.9f} \t lr: {:.9f} \t teaching_rate: {:.9f} ".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t lr: {:.9f} \t teaching_rate: {:.9f} ".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss.item(),
                                                                                                     lr,
                                                                                                     model.teaching_rate(epoch))
@@ -104,10 +105,10 @@ def validate(dataloader,model,popen,epoch):
             if "VAE" in popen.model_type:
                 # forward and predict
                 X_reconstruct, mu , sigma  = model(X,epoch)                    
-                seq = model.reconstruct_seq(X)
+                acc_ls.append(model.compute_acc(X_reconstruct,X,Y))
                             
                 # evaluate loss
-                loss = model.loss_function(X_reconstruct,X,mu,sigma,M_N=1)
+                loss = model.loss_function(X_reconstruct,X,Y,mu,sigma,kld_weight=popen.kld_weight)
                 Total_loss += loss['loss'].item()
                 KLD_loss += loss['KLD'].item()
                 MSE_loss += loss['MSE'].item()
@@ -127,7 +128,7 @@ def validate(dataloader,model,popen,epoch):
     # ======== verbose ========
     logger.info("\n===============================| start validation |===============================\n")
     if "VAE" in popen.model_type:
-        val_verbose = "\t  :{:.7f} \n\t KLD:{:.7f} \n\t MSE:{:.7f} \n\t M_N:{} \n\t Avg_ACC: {}".format(Total_loss,
+        val_verbose = "\t  Total:{:.7f} \n\t KLD:{:.7f} \n\t MSE:{:.7f} \n\t M_N:{} \n\t Avg_ACC: {}".format(Total_loss,
                                                                                                        KLD_loss,
                                                                                                        MSE_loss,
                                                                                                        model.kld_weight,
