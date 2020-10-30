@@ -15,8 +15,10 @@ def snapshot(dir_path, run_name, state,logger):
     logger.info("Snapshot saved to {}\n".format(snapshot_file))
 
 class Log_parser(object):
-    def __init__(self,log_path):
+    def __init__(self,log_path,val_split_line=False):
         #           --------   read   --------
+        self.val_split_line = val_split_line
+        
         if os.path.exists(log_path):
             with open(log_path,'r') as f:
                 log_file = f.readlines()
@@ -33,9 +35,9 @@ class Log_parser(object):
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
         self.start_val_line_matcher = r"\s*.* start validation .*\s*"
         self.match_logging_time = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} -"
-        self.match_percentage = r"\s*\d{1,6} / \d{1,6}\s*\((\d|\.){,4}%\):"
+        self.match_percentage = r"\s*\d{1,6} /\s*\d{1,6}\s*\((\d|\.){,4}%\):"
         
-        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(\d|\.){,40})"%(x,x)
+        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(-|\d|\.){,40})"%(x,x)
         
         #          -------- high level matcher --------
         self.train_verbose_finder = self.match_logging_time + self.match_percentage
@@ -100,6 +102,8 @@ class Log_parser(object):
         self.start_val_posi = self.position_matching(self.start_val_line_matcher)
         self.val_verbose_posi = np.array(self.start_val_posi) +2  # observe from log
         self.val_verbose_lines = self.log_file[self.val_verbose_posi]
+        if self.val_split_line:
+            self.val_verbose_lines = ["\t".join(self.log_file[[posi,posi+1,posi+2,posi+3,posi+4]]) for posi in self.val_verbose_posi]
          
         test_v_v = self.val_verbose_lines[0]
         
@@ -141,7 +145,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -149,13 +153,19 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
     if layout is None:
         axs = fig.subplots(1,n);
     else:
-        axs = fig.subplots(*layout)
+        row,column = layout 
+        axs = fig.subplots(row,column)
     
     for i,metric in enumerate(log_list[0].__getattribute__(dataset+"_metric")):
-        ax = axs[i]
+        # layout 
+        
+        if layout is None:
+            ax = axs[i]  
+        else:
+            ax = axs[i//column,i%column]
         for st,log in enumerate(log_list):
             DF = log.__getattribute__(dataset+"_verbose_DF")
             X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
-            ax.plot(X[1:],DF[metric].values[1:],label=log_name_ls[st],**kwargs)
+            ax.plot(X[start_from:],DF[metric].values[start_from:],label=log_name_ls[st],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
         ax.legend()

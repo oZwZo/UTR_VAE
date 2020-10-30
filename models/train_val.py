@@ -61,7 +61,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         # record result 5 times for a epoch
         if idx % int(loader_len/5) == 0:
             if 'VAE' in popen.model_type:
-                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t TOTAL:{:.9f} \t KLD:{:.9f} \t MSE:{:.9f} \t M_N:{:3d} \t lr: {:.9f} \t Avg_ACC: {}".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t TOTAL:{:.9f} \t KLD:{:.9f} \t MSE:{:.9f} \t M_N:{} \t lr: {:.9f} \t Avg_ACC: {}".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss_dict['loss'].item(),
                                                                                                     loss_dict['KLD'].item(),
                                                                                                     loss_dict['MSE'].item(),
@@ -128,7 +128,7 @@ def validate(dataloader,model,popen,epoch):
     # ======== verbose ========
     logger.info("\n===============================| start validation |===============================\n")
     if "VAE" in popen.model_type:
-        val_verbose = "\t  Total:{:.7f} \n\t KLD:{:.7f} \n\t MSE:{:.7f} \n\t M_N:{} \n\t Avg_ACC: {}".format(Total_loss,
+        val_verbose = "\t  TOTAL:{:.7f} \t KLD:{:.7f} \t MSE:{:.7f} \t M_N:{} \t Avg_ACC: {}".format(Total_loss,
                                                                                                        KLD_loss,
                                                                                                        MSE_loss,
                                                                                                        model.kld_weight,
