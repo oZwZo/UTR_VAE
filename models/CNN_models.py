@@ -11,7 +11,7 @@ global device
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class Conv_AE(AE):
-    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
         """
         Conv1D backbone Auto-encoder that encode 100bp sequence data and reconstruct them.
         Symmentric design of `Encoder` and `Decoder`
@@ -31,11 +31,11 @@ class Conv_AE(AE):
         
         # the basic element block of CNN
         self.Conv_block = lambda inChan,outChan,padding,diliation: nn.Sequential(
-                    nn.Conv1d(inChan,outChan,4,stride=2,padding=padding,dilation=diliation),
+                    nn.Conv1d(inChan,outChan,kernel_size,stride=2,padding=padding,dilation=diliation),
                     nn.BatchNorm1d(outChan),
                     nn.ReLU())
         self.Deconv_block = lambda inChan,outChan,padding,diliation: nn.Sequential(
-                    nn.ConvTranspose1d(inChan,outChan,4,stride=2,padding=padding,dilation=diliation),
+                    nn.ConvTranspose1d(inChan,outChan,kernel_size,stride=2,padding=padding,dilation=diliation),
                     nn.BatchNorm1d(outChan),
                     nn.ReLU())
         
@@ -100,7 +100,7 @@ class Conv_AE(AE):
 
 
 class Conv_VAE(Conv_AE):
-    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
         # set up attr
         self.channel_ls = channel_ls
         self.padding_ls = padding_ls
@@ -111,7 +111,7 @@ class Conv_VAE(Conv_AE):
         self.out_length = int(self.compute_out_dim())
         self.out_dim = int(self.out_length * self.channel_ls[-1])
         # 
-        super(Conv_VAE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim)
+        super(Conv_VAE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
         self.fc_mu = nn.Linear(self.out_dim,self.latent_dim)
         self.fc_sigma = nn.Linear(self.out_dim,self.latent_dim)
         self.fc_decode = nn.Linear(self.latent_dim,self.out_dim)

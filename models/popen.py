@@ -82,9 +82,10 @@ class Auto_popen(object):
             
         if "Conv" in self.model_type:
             self.model_args=[self.config_dict["channel_ls"],
-                             self.config_dict['padding_ls'],
-                             self.config_dict['diliat_ls'],
-                             self.config_dict["latent_dim"]]
+                             self.config_dict["padding_ls"],
+                             self.config_dict["diliat_ls"],
+                             self.config_dict["latent_dim"],
+                             self.config_dict["kernel_size"]]
     
     def check_experiment(self,logger):
         """
