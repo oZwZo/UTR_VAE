@@ -15,7 +15,6 @@ class Conv_AE(AE):
         """
         Conv1D backbone Auto-encoder that encode 100bp sequence data and reconstruct them.
         Symmentric design of `Encoder` and `Decoder`
-        Fixed kernel size=4 for each layer
         Arguments:
         ...channel_ls : a list of channel for Conv1D, the longer the channel, the deeper the network
         ...padding_ls : list of padding for each Conv layer to ensure we reconstruct extactly 100 bp back 
@@ -101,6 +100,15 @@ class Conv_AE(AE):
 
 class Conv_VAE(Conv_AE):
     def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
+        """
+        Conv1D backbone Auto-encoder that encode 100bp sequence data and reconstruct them.
+        Symmentric design of `Encoder` and `Decoder`
+        Arguments:
+        ...channel_ls : a list of channel for Conv1D, the longer the channel, the deeper the network
+        ...padding_ls : list of padding for each Conv layer to ensure we reconstruct extactly 100 bp back 
+        ...latent_dim : for VAE, of no use now. For the compatibility.
+        ...seq_in_dim : for VAE, of no use now. For the compatibility.
+        """
         # set up attr
         self.channel_ls = channel_ls
         self.padding_ls = padding_ls
@@ -173,3 +181,43 @@ class Conv_VAE(Conv_AE):
         kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)  # why is it negative ???
         loss = recons_loss + kld_weight * kld_loss
         return {'loss': loss, 'MSE':recons_loss, 'KLD':kld_loss}
+    
+class Conv_VAE_Asig(Conv_VAE):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
+        """
+        GIVE Conv_VAE model activation function when project Covolution result to Gaussian parameter
+        ... fc_mu  : Linear -> BN -> ReLU
+        ... fc_sigma : Linear -> Sigmoid
+        """
+        super(Conv_VAE_Asig,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
+        
+        self.fc_mu = nn.Sequential(
+            nn.Linear(self.out_dim,self.latent_dim),
+            nn.BatchNorm1d(self.latent_dim),
+            nn.Tanh())
+        self.fc_sigma = nn.Sequential(
+            nn.Linear(self.out_dim,self.latent_dim),
+            nn.Sigmoid())
+        
+class Conv_VAE_resnet(Conv_VAE):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
+        """
+        GIVE Conv_VAE model activation function when project Covolution result to Gaussian parameter
+        ... fc_mu  : Linear -> BN -> ReLU
+        ... fc_sigma : Linear -> Sigmoid
+        """
+        super(Conv_VAE_Asig,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
+        
+    def encode(self,X):
+        if X.shape[1] == 100:
+            X = X.transpose(1,2)  # to B*4*100
+        Z = X
+        for model in self.encoder: 
+            Z = model(Z) + Z    # then out put and input should be the same shape
+        return Z
+    
+    def decode(self,Z):
+        out = Z
+        for model in self.decoder:
+            out = model(out) + out
+        return out

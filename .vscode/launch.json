@@ -11,7 +11,7 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Conv_AE_mix/setting6/super_large.ini"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Conv_VAE_Asig_mix/Sigmoid/test_sigmoid0.ini"]
         },
         {
             "name": "Python: no args",

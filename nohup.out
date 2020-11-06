@@ -2283,3 +2283,6 @@ Snapshot saved to /data/users/wergillius/UTR_VAE/pth/LSTM_VAE__2020_10_11_01:12-
 135 / 139(97.1%): 	 TOTAL:0.18979276716709137 	 KLD:1.206994113545079e-07 	 MSE:0.18979288637638092 	 M_N:1
 Snapshot saved to /data/users/wergillius/UTR_VAE/pth/LSTM_VAE__2020_10_11_01:12-model_best.pth
 
+usage: the main to train model [-h] --config_file CONFIG_FILE
+the main to train model: error: argument --config_file: expected one argument
+/home/wergillius/Project/UTR_VAE
