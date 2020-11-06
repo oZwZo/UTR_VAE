@@ -197,6 +197,7 @@ class Conv_VAE_Asig(Conv_VAE):
             nn.Tanh())
         self.fc_sigma = nn.Sequential(
             nn.Linear(self.out_dim,self.latent_dim),
+            nn.BatchNorm1d(self.latent_dim),
             nn.Sigmoid())
         
 class Conv_VAE_resnet(Conv_VAE):
