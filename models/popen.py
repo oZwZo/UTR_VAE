@@ -6,6 +6,7 @@ import utils
 import json
 from models import DL_models
 from models import CNN_models
+from models import MTL_models
 import configparser
 import logging
 
@@ -51,6 +52,9 @@ class Auto_popen(object):
         elif "LSTM" in self.model_type:
             assert self.model_type in dir(DL_models), "model type not correct"
             self.Model_Class = eval("DL_models.{}".format(self.model_type))
+        else:
+            assert self.model_type in dir(MTL_models), "model type not correct"
+            self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
         # teacher foring
         if self.config_dict['teacher_forcing'] is True:
@@ -81,11 +85,12 @@ class Auto_popen(object):
                              self.config_dict["fc_output"]]
             
         if "Conv" in self.model_type:
-            self.model_args=[self.config_dict["channel_ls"],
-                             self.config_dict["padding_ls"],
-                             self.config_dict["diliat_ls"],
-                             self.config_dict["latent_dim"],
-                             self.config_dict["kernel_size"]]
+            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read]
+        
+        if 'MTL' in self.dataset:
+            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read]
     
     def check_experiment(self,logger):
         """

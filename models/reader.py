@@ -1,9 +1,11 @@
 import torch
 from torch.utils.data import  DataLoader, Dataset ,random_split
 import numpy as np
+import pandas as pd
 import os
 import sys
 import json
+from torch import nn
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from utils import Seq_one_hot,read_UTR_csv,read_label
 
@@ -37,7 +39,50 @@ def one_hot(seq,complementary=False):
             continue      # for nucleotide that are not in A C G T   
     return oh_array 
 
+class MTL_enc_dataset(Dataset):
+    def __init__(self,csv_path='/data/users/wergillius/UTR_VAE/multi_task/pretrain_MTL_UTR.csv',pad_to=100,columns=None):
+        """
+        the dataset for Multi-task learning, will return sequence in one-hot encoded version, together with some auxilary task label
+        arguments:
+        ...csv_path: abs path of csv file, column `utr` should be in the csv
+        ...pad_to : maximum length of the sequences
+        ...columns : list  contains what  axuslary task label will be 
+        """
+        self.csv_path = csv_path
+        self.pad_to = pad_to
+        self.csv = pd.read_csv(csv_path)     # read Df
+        self.seqs = self.csv.utr.values       # take out all the sequence in DF
+        self.columns = columns
+                
+    def __len__(self):
+        return self.csv.shape[0]
+    
+    def __getitem__(self,index):
+        seq = self.seqs[index]        # sequence: str of len 25~100
+        
+        seq_oh = one_hot(seq)         # seq_oh : np array, one hot encoding sequence 
+        X = self.pad_zeros(seq_oh)    # X  : torch.tensor , zero padded to 100
+        
+        if self.columns == None:
+            # which means no auxilary label is needed
+            item = X,X
+        elif (type(self.columns) == list) & (len(self.columns)!=0):
+            # return what's in columns
+            aux_labels = self.csv.loc[:,self.columns].values[index]
+            item = X ,aux_labels
+        return item
+        
+    def pad_zeros(self,X):
+        """
+        zero padding at the right end of the sequence
+        """
+        gap = self.pad_to - X.shape[0]
+        pad_fn = nn.ZeroPad2d([0,0,0,gap])  #  (padding_left , padding_right , padding_top , padding_bottom )
+        # gap_array = np.zeros()
+        X_padded = pad_fn(torch.tensor(X))
+        return X_padded
 
+        
 class UTR_dataset(Dataset):
     def __init__(self,cell_line:str,script_dir = script_dir,data_dir = data_dir):
         # read csv first
@@ -90,23 +135,23 @@ class mask_reader(Dataset):
         return (self.X[index,:,:],self.Y[index,:,:])
     
 
-def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers):
-    """
-    split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
-    dataset : the defined <UTR_dataset>
-    ratio : the ratio of train : val : test
-    batch_size : int
-    """
+# def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers):
+#     """
+#     split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
+#     dataset : the defined <UTR_dataset>
+#     ratio : the ratio of train : val : test
+#     batch_size : int
+#     """
 
-    # make ratio to length
-    total_len = len(dataset)
-    lengths = [int(total_len*ratio[0]),int(len(dataset)*ratio[1])]
-    lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
+#     # make ratio to length
+#     total_len = len(dataset)
+#     lengths = [int(total_len*ratio[0]),int(len(dataset)*ratio[1])]
+#     lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
-    set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
+#     set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
     
 
-    return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
+    # return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
 
 def get_mask_dataloader(batch_size,num_workers):
     """

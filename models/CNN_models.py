@@ -116,7 +116,7 @@ class Conv_VAE(Conv_AE):
         self.latent_dim = latent_dim
         
         # compute the out dim
-        self.out_length = int(self.compute_out_dim())
+        self.out_length = int(self.compute_out_dim(kernel_size))
         self.out_dim = int(self.out_length * self.channel_ls[-1])
         # 
         super(Conv_VAE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
@@ -124,13 +124,13 @@ class Conv_VAE(Conv_AE):
         self.fc_sigma = nn.Linear(self.out_dim,self.latent_dim)
         self.fc_decode = nn.Linear(self.latent_dim,self.out_dim)
         
-    def compute_out_dim(self):
+    def compute_out_dim(self,kernel_size):
         """
         manually compute the final length of convolved sequence
         """
         L_in = 100
         for i in range(len(self.channel_ls)-1):
-            L_out = cal_conv_shape(L_in,4,stride=2,padding=self.padding_ls[i],diliation=self.diliat_ls[i])
+            L_out = cal_conv_shape(L_in,kernel_size,stride=2,padding=self.padding_ls[i],diliation=self.diliat_ls[i])
             L_in = L_out
         return L_out
 
@@ -211,4 +211,17 @@ class Conv_VAE_Asig(Conv_VAE):
             nn.Linear(self.out_dim,self.latent_dim),
             nn.BatchNorm1d(self.latent_dim),
             nn.Sigmoid())
-        
+
+def cal_convTrans_shape(L_in,kernel_size,padding=0,stride=1,diliation=1,out_padding=0):
+    """
+    For convolution Transpose 1D decoding , compute the final length
+    """
+    L_out = (L_in -1 )*stride + diliation*(kernel_size -1 )+1-2*padding + out_padding 
+    return L_out
+
+def cal_conv_shape(L_in,kernel_size,padding=0,diliation=1,stride=1):
+    """
+    For convolution 1D encoding , compute the final length 
+    """
+    L_out = 1+ (L_in + 2*padding -diliation*(kernel_size-1) -1)/stride
+    return L_out
