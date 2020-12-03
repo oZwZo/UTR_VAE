@@ -19,3 +19,7 @@ nohup.out
 
 *.ipynb
 *.=checkpoint.ipynb
+
+ipynb/*
+
+

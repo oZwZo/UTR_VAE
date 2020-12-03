@@ -5,7 +5,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 from .DL_models import AE,VAE
-from utils import cal_convTrans_shape , cal_conv_shape
+# from utils import cal_convTrans_shape , cal_conv_shape
 
 global device
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -146,6 +146,18 @@ class Conv_VAE(Conv_AE):
         eps = torch.randn_like(std)
         return eps * std + mu
     
+    def embed(self,X,epoch=None,Y=None):
+        batch_size = X.shape[0]
+        # encode and flatten
+        Z = self.encode(X)
+        Z = Z.view(batch_size,self.out_dim)
+        
+        # project to N(µ, ∑)
+        mu = self.fc_mu(Z)
+        sigma = self.fc_sigma(Z)
+        code = self.reparameterize(mu,sigma)
+        return code
+    
     def forward(self,X,epoch=None,Y=None):
         batch_size = X.shape[0]
         # encode and flatten
@@ -200,25 +212,3 @@ class Conv_VAE_Asig(Conv_VAE):
             nn.BatchNorm1d(self.latent_dim),
             nn.Sigmoid())
         
-class Conv_VAE_resnet(Conv_VAE):
-    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size):
-        """
-        GIVE Conv_VAE model activation function when project Covolution result to Gaussian parameter
-        ... fc_mu  : Linear -> BN -> ReLU
-        ... fc_sigma : Linear -> Sigmoid
-        """
-        super(Conv_VAE_Asig,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
-        
-    def encode(self,X):
-        if X.shape[1] == 100:
-            X = X.transpose(1,2)  # to B*4*100
-        Z = X
-        for model in self.encoder: 
-            Z = model(Z) + Z    # then out put and input should be the same shape
-        return Z
-    
-    def decode(self,Z):
-        out = Z
-        for model in self.decoder:
-            out = model(out) + out
-        return out

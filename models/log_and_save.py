@@ -37,7 +37,7 @@ class Log_parser(object):
         self.match_logging_time = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} -"
         self.match_percentage = r"\s*\d{1,6} /\s*\d{1,6}\s*\((\d|\.){,4}%\):"
         
-        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(-|\d|\.){,40})"%(x,x)
+        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(-|\d|\.|e){,40})"%(x,x)
         
         #          -------- high level matcher --------
         self.train_verbose_finder = self.match_logging_time + self.match_percentage

@@ -7,7 +7,14 @@ import os
 import json
 import re
 import torch
-
+import torch
+from torch import nn
+from torch import optim
+from models import CNN_models
+from models import log_and_save
+# from models import reader
+from models.ScheduleOptimizer import ScheduledOptim, scheduleoptim_text
+from models.popen import Auto_popen
 
 print(os.path.dirname(__file__))
 
@@ -114,19 +121,19 @@ class Seq_one_hot(object):
 
 # =====================|calculate Conv shape|==================
     
-def cal_convTrans_shape(L_in,kernel_size,padding=0,stride=1,diliation=1,out_padding=0):
-    """
-    For convolution Transpose 1D decoding , compute the final length
-    """
-    L_out = (L_in -1 )*stride + diliation*(kernel_size -1 )+1-2*padding + out_padding 
-    return L_out
+# def cal_convTrans_shape(L_in,kernel_size,padding=0,stride=1,diliation=1,out_padding=0):
+#     """
+#     For convolution Transpose 1D decoding , compute the final length
+#     """
+#     L_out = (L_in -1 )*stride + diliation*(kernel_size -1 )+1-2*padding + out_padding 
+#     return L_out
 
-def cal_conv_shape(L_in,kernel_size,padding=0,diliation=1,stride=1):
-    """
-    For convolution 1D encoding , compute the final length 
-    """
-    L_out = 1+ (L_in + 2*padding -diliation*(kernel_size-1) -1)/stride
-    return L_out
+# def cal_conv_shape(L_in,kernel_size,padding=0,diliation=1,stride=1):
+#     """
+#     For convolution 1D encoding , compute the final length 
+#     """
+#     L_out = 1+ (L_in + 2*padding -diliation*(kernel_size-1) -1)/stride
+#     return L_out
 
 # =====================|   logger       |=======================
 
@@ -196,8 +203,25 @@ def resume(popen,model,optimizer,logger):
         logger.info(" \t \t ========================================================= \t \t \n")
         
         return previous_epoch,previous_loss,previous_acc
+
+# def read_model(ini_file):
+#     """
+#     after training , read the model for a given ini_file
+#     """
+#     popen = Auto_popen(ini_file)
+
+#     device = "cuda" if torch.cuda.is_available() else 'cpu'
     
-    
+#     model = CNN_models.Conv_AE(*popen.model_args).to(device)
+#     optimizer = eval(scheduleoptim_text)
+#     logger = logging.getLogger("UTR")
+
+#     # resume
+#     if popen.Resumable:
+#         resume(popen,model,optimizer,logger)
+#     else:
+#         raise NotImplementedError("the  model resumable is False")
+#     return model
         
     
     
