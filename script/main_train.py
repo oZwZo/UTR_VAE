@@ -82,7 +82,7 @@ else:
                             lr=POPEN.lr,
                             betas=(0.9, 0.98), 
                             eps=1e-09, 
-                            weight_decay=1e-4)
+                            weight_decay=POPEN.l2)
 # =========== resume ===========
 best_loss = np.inf
 best_acc = 0
@@ -135,7 +135,7 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
         elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
             optimizer.increase_delta()
             
-        elif (epoch - best_epoch >= 30)&(epoch > POPEN.max_epoch/2):
+        elif (epoch - best_epoch >= 60)&(epoch > POPEN.max_epoch/2):
             # at the late phase of training
             logger.info("<<<<<<<<<<< Early Stopping >>>>>>>>>>")
             break

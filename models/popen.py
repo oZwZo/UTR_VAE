@@ -29,6 +29,7 @@ class Auto_popen(object):
         
         # assign some attr from config_dict         
         self.set_attr_from_dict(self.config_dict.keys())
+        self.check_run_and_setting_name()                          # check run name
         self._dataset = "_" + self.dataset if self.dataset != '' else self.dataset
         # the saving direction
         self.vae_log_path = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name,self.run_name +'.log')
@@ -41,6 +42,12 @@ class Auto_popen(object):
     def set_attr_from_dict(self,attr_ls):
         for attr in attr_ls:
             self.__setattr__(attr,self.config_dict[attr])
+
+    def check_run_and_setting_name(self):
+        file_name = self.config_file.split("/")[-1]
+        dir_name = self.config_file.split("/")[-2]
+        self.setting_name = dir_name
+        assert self.run_name == file_name.split(".")[0]
         
     def get_model_config(self):
         """

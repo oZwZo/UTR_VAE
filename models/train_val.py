@@ -43,6 +43,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             Y = Y.squeeze().long()
             X_reconstruct,TE_pred = model(X)
             loss_dcit = model.chimela_loss(X_reconstruct,X,TE_pred,Y,popen.chimerla_weight)
+            acc = model.compute_acc(TE_pred,Y)
             loss = loss_dcit['Total']
         # ======== grd clip and step ========
         
@@ -72,11 +73,13 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
                                                                                                     lr,
                                                                                                     Avg_acc)
             elif popen.dataset == 'MTL':
-                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t MSE: {:.9f} \t CrossEntropy: {:.9f} \t lr: {:.9f}".format(idx,loader_len,idx/loader_len*100,
+                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t MSE: {:.9f} \t CrossEntropy: {:.9f} \t Avg_ACC: {} \t lr: {:.9f}".format(idx,loader_len,idx/loader_len*100,
                                                                                                     loss.item(),
                                                                                                     loss_dcit['MSE'].item(),
                                                                                                     loss_dcit['CrossEntropy'].item(),
-                                                                                                    lr)
+                                                                                                    acc,
+                                                                                                    lr
+                                                                                                    )
             
             else:
                 train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t lr: {:.9f} \t teaching_rate: {:.9f} ".format(idx,loader_len,idx/loader_len*100,
@@ -158,10 +161,10 @@ def validate(dataloader,model,popen,epoch):
                                                                                                        model.kld_weight,
                                                                                                        avg_acc)
     elif popen.dataset == 'MTL':
-        val_verbose = "\t  TOTAL:{:.7f} \t CrossEntropy:{:.7f} \t MSE:{:.7f} \t chimerla_weight: {} \t Avg_ACC: {}".format(Total_loss,
-                                                                                                       KLD_loss,
+        val_verbose = "\t  TOTAL:{:.7f} \t MSE:{:.7f} \t CrossEntropy:{:.7f} \t chimerla_weight: {} \t Avg_ACC: {}".format(Total_loss,
                                                                                                        MSE_loss,
-                                                                                                       popen.chimerla_weight,
+                                                                                                       KLD_loss,
+                                                                                                       popen.chimerla_weight[0]/popen.chimerla_weight[1],
                                                                                                        avg_acc)
     else:
         val_verbose = "\t LOSS:{:.7f}  Avg_ACC: {}".format(loss,avg_acc)

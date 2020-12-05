@@ -2,6 +2,7 @@ import os
 import sys
 import torch
 from torch import nn
+import numpy as np
 from .CNN_models import Conv_AE,Conv_VAE,cal_conv_shape
 
 class TO_SEQ_TE(Conv_AE):
@@ -124,4 +125,145 @@ class TO_SEQ_TE(Conv_AE):
         return L_out
         
         
+class TO_TE_nSS(nn.Module):
+    def __init__(self,VAE_latent_dim,Linear_chann_ls,num_label,TE_chann_ls=None,SS_chann_ls=None,dropout_rate=0.2):
+        """
+        the downstream model that hands over the VAE encoder and predict the TE-score, secondary structure loop number
+        Arguments:
+        ...VAE_latent_dim:
+        ...Linear_chann_ls:
+        ...num_label  :
+        ...nSS_num_label :
+        """
+        
+        #TODO: args : pre-train ini ? , VAE_latent_dim 
+        
+        self.VAE_latent_dim = VAE_latent_dim
+        self.Linear_chann_ls = [VAE_latent_dim] + Linear_chann_ls
+        self.num_label = num_label
+        self.dropout_rate = dropout_rate
+        
+        self.Norm_warmup = nn.Sequential(
+            nn.ReLU(),
+            nn.BatchNorm1d(VAE_latent_dim)  # i.e. 64
+        )
+        
+        # a stacked- deep dose network 
+        self.hard_share_dense = nn.ModuleList(
+            [self.linear_block(in_dim,out_dim) for in_dim,out_dim in zip(self.Linear_chann_ls[:-1],self.Linear_chann_ls[1:])]
+            )                                            #   B*64 -> B*hs_out 
+        
+        # Attention : 
+        # each header take charge of each aux task
+        self.hs_out = Linear_chann_ls[-1]
+        
+        self.TE_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
+                                    "Wk":nn.Linear(self.host_out,64)})  # have transform of value !!
+        
+        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
+                                    "Wk":nn.Linear(self.host_out,64)})
+        
+        
+        # the network for TE range prediction
+        if TE_chann_ls == None:
+            TE_chann_ls = [128,64,32,16]
+        TE_chann_ls = [self.hs_out] + TE_chann_ls
+        self.TE_dense = nn.ModuleList([self.linear_block(in_dim,out_dim) for in_dim,out_dim in zip(TE_chann_ls[:-1],TE_chann_ls[1:])])
+        self.TE_out_fc = nn.Linear(TE_chann_ls[-1],num_label[0])
+        
+        if SS_chann_ls == None:
+            SS_chann_ls = [128,32]
+        SS_chann_ls = [self.hs_out] + SS_chann_ls
+        self.SS_dense = nn.ModuleList([self.linear_block(in_dim,out_dim,0.3) for in_dim,out_dim in zip(SS_chann_ls[:-1],SS_chann_ls[1:])])
+        self.SS_out_fc = nn.Linear(SS_chann_ls[-1],num_label[1])
+            
+        
+    def linear_block(self,in_Chan,out_Chan,dropout_rate=self.dropout_rate):
+        """
+        building block func to define dose network
+        """
+        block = nn.Sequential(
+            nn.Linear(in_Chan,out_Chan),
+            nn.Dropout(dropout_rate),
+            nn.ReLU(),
+            nn.BatchNorm1d(out_Chan)
+        )
+        return block
     
+    def attention_forward(self,W_dict,X):
+        """
+        compute the attention for each task
+        """
+        # some dimension 
+        dk = next(W_dict['Wq'].parameters()).shape[0]
+        dv = next(W_dict['Wv'].parameters()).shape[0]
+        dk_sqrt = int(np.sqrt(dk))
+        if len(X.shape)==2: 
+            X = X.unsqueeze(2)      # make it 3 dimentional
+        
+        # computation part         X: B*X_dim*1
+        query = W_dict['Wq'](X)     # B*X_dim*dk
+        key = W_dict['Wk'](X)       # B*X_dim*dk
+        #
+        
+        # attetnion
+        sim_M = torch.bmm(query,key.transpose(1,2))/8  # B* X_dim * X_dim
+        attention = torch.softmax(sim_M,dim=-1)
+        # result
+        result = torch.bmm(attention,X).squeeze(2)    # B*X_dim*1 -> B*X_dim
+        
+        return result,attention
+        
+    def forward(self,X):
+        
+        # forward the share part
+        share_output = X
+        for layer in self.hard_share_dense:
+            share_output = layer(share_output)
+        
+        # aux task 1 : TE score rank prediction 0-4, catagorical
+        TE_input = self.attention_forward(self.TE_at,share_output)
+        for layer in self.TE_dense:
+            TE_input = layer(TE_input)
+        TE_out = self.TE_out_fc(TE_input)
+        
+        
+        # aux task 2 : SS num prediction , contineous
+        SS_input = self.attention_forward(self.SS_at,share_output)
+        for layer in self.SS_dense:
+            SS_input = layer(SS_input)
+        SS_out = self.SS_out_fc(SS_input)
+        
+        return TE_out,SS_out
+        
+        
+        
+        
+
+class self_attention(nn.Module):
+    
+    def __init__(self,X_dim,n_head,d_k,d_v):
+        self.W_q = nn.Linear(self.host_out,n_head*d_k)    # makes \sqrt_{d_k} easier 
+        self.W_k = nn.Linear(self.host_out,n_head*d_k)
+        self.W_v = nn.Linear(self.host_out,n_head*d_v)     # the values dimension can be higher
+        
+        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
+                                    "Wk":nn.Linear(self.host_out,64)})
+    
+    def self_at_forward(self,W_dict):
+        
+        # some dimension 
+        dk = next(W_dict['Wq'].parameters()).shape[0]
+        dv = next(W_dict['Wv'].parameters()).shape[0]
+        dk_sqrt = int(np.sqrt(dk))
+        
+        query = W_dict['Wq'](X)     # B*X_dim*dk
+        key = W_dict['Wk'](X)       # B* host_out -> B*64
+        values = W_dict['Wv'](X)    # B* host_out -> B*128
+        
+        sim_M = torch.bmm(querys,keys.transpose(1,2))/8  # B* X_dim * X_dim
+        attention = torch.softmax(sim_M,dim=-1)
+        # result
+        result = torch.bmm(attention,X).squeeze(2)    # B*X_dim*1 -> B*X_dim
+        
+        return result

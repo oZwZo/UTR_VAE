@@ -29,15 +29,15 @@ class Log_parser(object):
             print('log path error !')
         self.log_file = log_file
         
-        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N']
+        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight']
         
         #          --------  basic  matcher   --------
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
         self.start_val_line_matcher = r"\s*.* start validation .*\s*"
         self.match_logging_time = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} -"
-        self.match_percentage = r"\s*\d{1,6} /\s*\d{1,6}\s*\((\d|\.){,4}%\):"
+        self.match_percentage = r"\s*\d{1,6} /\s*\d{1,6}\s*\((\d|\.){,6}%\):"
         
-        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(-|\d|\.|e){,40})"%(x,x)
+        self.match_sub_verbose = lambda x : r"\s*%s:\s*(?P<%s>(-|\d|\.|e|){,40})"%(x,x)
         
         #          -------- high level matcher --------
         self.train_verbose_finder = self.match_logging_time + self.match_percentage
@@ -115,7 +115,11 @@ class Log_parser(object):
         
         
         #   ----|| automatically determine val verbose matcher ||----
-        self.val_verbose_matcher = self.match_logging_time
+        self.val_verbose_matcher = self.match_logging_time 
+        
+        if re.match(self.match_logging_time + self.match_percentage,test_v_v) is not None:
+            self.val_verbose_matcher += self.match_percentage        # detect whether validation set also get percentage info
+        
         for metric in self.val_metric:
             self.val_verbose_matcher += self.match_sub_verbose(metric)
         
@@ -156,7 +160,12 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
         row,column = layout 
         axs = fig.subplots(row,column)
     
-    for i,metric in enumerate(log_list[0].__getattribute__(dataset+"_metric")):
+    all_metric = [logg.__getattribute__(dataset+"_metric") for logg in log_list]
+    share_metric = [all_metric[0]]
+    for logg_metric in all_metric[1:]:
+        share_metric = np.intersect1d(share_metric,logg_metric)
+    
+    for i,metric in enumerate(share_metric):
         # layout 
         
         if layout is None:
