@@ -11,8 +11,8 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TO_SEQ_TE_MTL/test_setting/Seq_ranges.ini",
-                     "--cuda","1"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TO_SEQ_TE_MTL/slr_reg/weight_1_e-3_slr.ini",
+                     "--cuda","2"]
         },
         {
             "name": "Python: no args",
