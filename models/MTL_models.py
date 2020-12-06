@@ -5,6 +5,7 @@ from torch import nn
 import numpy as np
 from .CNN_models import Conv_AE,Conv_VAE,cal_conv_shape
 
+
 class TO_SEQ_TE(Conv_AE):
     # TODO: figure the `args` : kernel_sizef
     def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label):
@@ -125,7 +126,7 @@ class TO_SEQ_TE(Conv_AE):
         return L_out
         
         
-class TO_TE_nSS(nn.Module):
+class TWO_TASK_AT(nn.Module):
     def __init__(self,VAE_latent_dim,Linear_chann_ls,num_label,TE_chann_ls=None,SS_chann_ls=None,dropout_rate=0.2):
         """
         the downstream model that hands over the VAE encoder and predict the TE-score, secondary structure loop number
@@ -135,7 +136,7 @@ class TO_TE_nSS(nn.Module):
         ...num_label  :
         ...nSS_num_label :
         """
-        
+        super(TWO_TASK_AT,self).__init__()
         #TODO: args : pre-train ini ? , VAE_latent_dim 
         
         self.VAE_latent_dim = VAE_latent_dim
@@ -157,11 +158,11 @@ class TO_TE_nSS(nn.Module):
         # each header take charge of each aux task
         self.hs_out = Linear_chann_ls[-1]
         
-        self.TE_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
-                                    "Wk":nn.Linear(self.host_out,64)})  # have transform of value !!
+        self.TE_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
+                                    "Wk":nn.Linear(self.hs_out,64)})  # have transform of value !!
         
-        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
-                                    "Wk":nn.Linear(self.host_out,64)})
+        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
+                                    "Wk":nn.Linear(self.hs_out,64)})
         
         
         # the network for TE range prediction
@@ -176,12 +177,16 @@ class TO_TE_nSS(nn.Module):
         SS_chann_ls = [self.hs_out] + SS_chann_ls
         self.SS_dense = nn.ModuleList([self.linear_block(in_dim,out_dim,0.3) for in_dim,out_dim in zip(SS_chann_ls[:-1],SS_chann_ls[1:])])
         self.SS_out_fc = nn.Linear(SS_chann_ls[-1],num_label[1])
-            
         
-    def linear_block(self,in_Chan,out_Chan,dropout_rate=self.dropout_rate):
+        self.Cn_loss = nn.CrossEntropyLoss(reduction = 'mean')   #
+        self.MSE_loss = nn.MSELoss(reduction = 'mean')           #            
+        
+    def linear_block(self,in_Chan,out_Chan,dropout_rate=None):
         """
         building block func to define dose network
         """
+        if dropout_rate is None:
+            dropout_rate = self.dropout_rate
         block = nn.Sequential(
             nn.Linear(in_Chan,out_Chan),
             nn.Dropout(dropout_rate),
@@ -235,31 +240,75 @@ class TO_TE_nSS(nn.Module):
         SS_out = self.SS_out_fc(SS_input)
         
         return TE_out,SS_out
+    
+    def loss_function(self,X_pred,Y,chimerla_weight):
+        """
+        loss function of multi-task
+        """
         
+        assert len(chimerla_weight)==3
+         
+        Lamb1,Lamb2,alpha = chimerla_weight
+        assert (alpha >0 ) & (alpha<1)
+        # model out : (TE_out : B*5, SS_out : B*5)
+        TE_pred = X_pred[0]
+        loop_pred = X_pred[1][:-1]
+        match_pred = X_pred[1][-1]
         
+        # True values  Y: B*6
+        TE_true = Y[:,0].long()
+        loop_true = Y[:,1:-1].float()
+        match_true = Y[:,-1].float()
         
+        # 3 type of loss
+        TE_loss = self.Cn_loss(TE_pred,TE_true)
+        loop_loss = self.MSE_loss(loop_pred,loop_true)
+        match_loss = self.MSE_loss(match_pred,match_true)
         
+        # LOSS = 
+        Total_loss = Lamb1*TE_loss + Lamb2((1-alpha)*loop_loss + alpha*match_loss)
+        
+        return Total_loss
 
+        
+        
+class Enc_n_Down(nn.Module):
+    
+    def __init__(self,pretrain_enc,downstream):
+        self.pretrain_model = pretrain_enc
+        self.MTL_downstream = downstream
+        for param in self.pretrain_model.parameters():
+                param.requires_grad = False
+        
+    def forward(self,X):
+        code = self.pretrain_model.embed(X)
+        out = self.MTL_downstream(code)
+        
+        return out
+    
+    def loss_fn(self,X,Y,**args):    
+        return self.MTL_downstream.loss_function(X,Y,**args)
+        
 class self_attention(nn.Module):
     
     def __init__(self,X_dim,n_head,d_k,d_v):
-        self.W_q = nn.Linear(self.host_out,n_head*d_k)    # makes \sqrt_{d_k} easier 
-        self.W_k = nn.Linear(self.host_out,n_head*d_k)
-        self.W_v = nn.Linear(self.host_out,n_head*d_v)     # the values dimension can be higher
+        self.W_q = nn.Linear(self.hs_out,n_head*d_k)    # makes \sqrt_{d_k} easier 
+        self.W_k = nn.Linear(self.hs_out,n_head*d_k)
+        self.W_v = nn.Linear(self.hs_out,n_head*d_v)     # the values dimension can be higher
         
-        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.host_out,64),
-                                    "Wk":nn.Linear(self.host_out,64)})
+        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
+                                    "Wk":nn.Linear(self.hs_out,64)})
     
-    def self_at_forward(self,W_dict):
+    def self_at_forward(self,W_dict,X):
         
         # some dimension 
         dk = next(W_dict['Wq'].parameters()).shape[0]
         dv = next(W_dict['Wv'].parameters()).shape[0]
         dk_sqrt = int(np.sqrt(dk))
         
-        query = W_dict['Wq'](X)     # B*X_dim*dk
-        key = W_dict['Wk'](X)       # B* host_out -> B*64
-        values = W_dict['Wv'](X)    # B* host_out -> B*128
+        querys = W_dict['Wq'](X)     # B*X_dim*dk
+        keys = W_dict['Wk'](X)       # B* hs_out -> B*64
+        values = W_dict['Wv'](X)    # B* hs_out -> B*128
         
         sim_M = torch.bmm(querys,keys.transpose(1,2))/8  # B* X_dim * X_dim
         attention = torch.softmax(sim_M,dim=-1)
@@ -267,3 +316,4 @@ class self_attention(nn.Module):
         result = torch.bmm(attention,X).squeeze(2)    # B*X_dim*1 -> B*X_dim
         
         return result
+    

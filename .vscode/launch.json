@@ -11,7 +11,7 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TO_SEQ_TE_MTL/slr_reg/weight_1_e-3_slr.ini",
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TWO_TASK_AT_MTL/test_run/debug_running.ini",
                      "--cuda","2"]
         },
         {

@@ -177,6 +177,12 @@ def snapshot(vae_pth_path, state):
     logger.info("Snapshot saved to {}\n".format(snapshot_file))
 
 
+def load_model(popen,model,logger):
+    checkpoint = torch.load(popen.vae_pth_path) 
+    model.load_state_dict(checkpoint['state_dict'])
+    logger.info(' \t \t ==============<<< encoder load from >>>============== \t \t \n')
+    logger.info(" \t"+popen.pretrain_pth+'\n')
+
 def resume(popen,model,optimizer,logger):
     """
     for a experiment, check whether it;s a new run, and create dir 

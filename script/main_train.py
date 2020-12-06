@@ -58,6 +58,8 @@ elif POPEN.dataset == "MTL":
                                             num_workers=8)
     train_loader = loader_ls[0]
     val_loader = loader_ls[1]
+
+    
 else:
     dataset = reader.UTR_dataset(cell_line=POPEN.cell_line)
     train_loader,val_loader,test_loader = reader.get_splited_dataloader(dataset,
@@ -65,8 +67,24 @@ else:
                                                                         batch_size=POPEN.batch_size,
                                                                         num_workers=4)
 # ===========  setup model  ===========
-Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
-model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+    
+# -- pretrain -- 
+if POPEN.pretrain_pth is not None:
+    # load pretran model
+    pretrain_popen = Auto_popen(POPEN.pretrain_pth)
+    pretrain_model = pretrain_model.Model_Class(*pretrain_popen.model_args)
+    utils.load_model(pretrain_popen,pretrain_model,logger)  
+    
+    downstream_class = POPEN.Model_Class  # DL_models.LSTM_AE
+    downstream_model = Model_Class(*POPEN.model_args)
+    
+    # merge 
+    model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
+    
+# -- end2end -- 
+else:
+    Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
+    model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 

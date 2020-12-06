@@ -64,7 +64,7 @@ class Auto_popen(object):
             self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
         # teacher foring
-        if self.config_dict['teacher_forcing'] is True:
+        if self.teacher_forcing is True:
             # default setting
             self.teacher_forcing = True
             t_k,t_b = (0.032188758248682,0.032188758248682)  # k = b , k = log5 / 50
@@ -95,8 +95,12 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
         
-        if 'MTL' in self.dataset:
+        if 'TO_SEQ_TE' in self.model_type:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read]
+        
+        if "TWO_TASK_AT" in self.model_type:
+            args_to_read = ["latent_dim","linear_chann_ls","num_label","te_chann_ls","ss_chann_ls","dropout_rate"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
     
     def check_experiment(self,logger):
