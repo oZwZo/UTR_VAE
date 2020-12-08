@@ -68,6 +68,8 @@ class TO_SEQ_TE(Conv_AE):
             nn.ReLU()
         )
         
+        self.loss_dict_keys = ["Total","MSE","CrossEntropy"]
+        
     def forward(self,X):
         batch_size= X.shape[0]
         
@@ -89,25 +91,33 @@ class TO_SEQ_TE(Conv_AE):
         
         # prediction taskz
         TE_pred = self.predictor(Z_to_pred).squeeze(1)
-        return X_reconst, TE_pred  
+        
+        if X.shape[1] != 4:
+            X = X.transpose(1,2)
+        mse_loss = self.mse_fn(X_reconst,X)     # compute mse loss here so that we don;t need X in the chimela loss
+        return mse_loss,X_reconst, TE_pred  
     
-    def chimela_loss(self,X_reconst,X_true,TE_pred,TE_true,Lambda):
+    def chimela_loss(self,out,Y,Lambda):
         """
+        ALL chimela loss should only take 3 arguments : out , Y and lambda 
         Total Loss =  lambda_0 * MSE_Loss + lambda_1 * CrossEntropy_Loss
         """
-        if X_true.shape[1] != 4:
-            X_true = X_true.transpose(1,2)
-        mse_loss = self.mse_fn(X_reconst,X_true)
+        mse_loss ,X_reconst, TE_pred = out        
+        TE_true = Y.squeeze().long()
+        
+        
         ce_loss = self.cn_fn(TE_pred,TE_true)
         
         total_loss = Lambda[0]*mse_loss + Lambda[1]*ce_loss
         
         return {"Total":total_loss,"MSE":mse_loss,"CrossEntropy":ce_loss}
     
-    def compute_acc(self,TE_pred,TE_true):
+    def compute_acc(self,out,Y):
         """
         compute the accuracy of TE range class prediction
         """
+        mse_loss ,X_reconst, TE_pred = out 
+        TE_true = Y
         batch_size = TE_true.shape[0]
         
         with torch.no_grad():
@@ -158,11 +168,11 @@ class TWO_TASK_AT(nn.Module):
         # each header take charge of each aux task
         self.hs_out = Linear_chann_ls[-1]
         
-        self.TE_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
-                                    "Wk":nn.Linear(self.hs_out,64)})  # have transform of value !!
+        self.TE_at = nn.ModuleDict({"Wq":nn.Linear(1,64),
+                                    "Wk":nn.Linear(1,64)})  # have transform of value !!
         
-        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
-                                    "Wk":nn.Linear(self.hs_out,64)})
+        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(1,64),
+                                    "Wk":nn.Linear(1,64)})
         
         
         # the network for TE range prediction
@@ -180,6 +190,8 @@ class TWO_TASK_AT(nn.Module):
         
         self.Cn_loss = nn.CrossEntropyLoss(reduction = 'mean')   #
         self.MSE_loss = nn.MSELoss(reduction = 'mean')           #            
+        
+        self.loss_dict_keys = ["Total","TE", "Loop" , "Match"]
         
     def linear_block(self,in_Chan,out_Chan,dropout_rate=None):
         """
@@ -201,7 +213,7 @@ class TWO_TASK_AT(nn.Module):
         """
         # some dimension 
         dk = next(W_dict['Wq'].parameters()).shape[0]
-        dv = next(W_dict['Wv'].parameters()).shape[0]
+        # dv = next(W_dict['Wv'].parameters()).shape[0]
         dk_sqrt = int(np.sqrt(dk))
         if len(X.shape)==2: 
             X = X.unsqueeze(2)      # make it 3 dimentional
@@ -227,21 +239,21 @@ class TWO_TASK_AT(nn.Module):
             share_output = layer(share_output)
         
         # aux task 1 : TE score rank prediction 0-4, catagorical
-        TE_input = self.attention_forward(self.TE_at,share_output)
+        TE_input,attention = self.attention_forward(self.TE_at,share_output)
         for layer in self.TE_dense:
             TE_input = layer(TE_input)
         TE_out = self.TE_out_fc(TE_input)
         
         
         # aux task 2 : SS num prediction , contineous
-        SS_input = self.attention_forward(self.SS_at,share_output)
+        SS_input,attention2 = self.attention_forward(self.SS_at,share_output)
         for layer in self.SS_dense:
             SS_input = layer(SS_input)
         SS_out = self.SS_out_fc(SS_input)
         
         return TE_out,SS_out
     
-    def loss_function(self,X_pred,Y,chimerla_weight):
+    def chimela_loss(self,X_pred,Y,chimerla_weight):
         """
         loss function of multi-task
         """
@@ -252,8 +264,8 @@ class TWO_TASK_AT(nn.Module):
         assert (alpha >0 ) & (alpha<1)
         # model out : (TE_out : B*5, SS_out : B*5)
         TE_pred = X_pred[0]
-        loop_pred = X_pred[1][:-1]
-        match_pred = X_pred[1][-1]
+        loop_pred = X_pred[1][:,:-1]
+        match_pred = X_pred[1][:,-1]
         
         # True values  Y: B*6
         TE_true = Y[:,0].long()
@@ -266,17 +278,38 @@ class TWO_TASK_AT(nn.Module):
         match_loss = self.MSE_loss(match_pred,match_true)
         
         # LOSS = 
-        Total_loss = Lamb1*TE_loss + Lamb2((1-alpha)*loop_loss + alpha*match_loss)
+        Total_loss = Lamb1*TE_loss + Lamb2*((1-alpha)*loop_loss + alpha*match_loss)
         
-        return Total_loss
+        return {"Total":Total_loss,"TE": TE_loss, "Loop":loop_loss , "Match":match_loss}
+    
+    
+    def compute_acc(self,out,Y):
+        """
+        all compute_acc takes 2 arguments out,Y
+        This function only compute the accuracy of TE prediction
+        """
+        TE_pred = out[0]
+        TE_true = Y[:,0].long()
+        
+        batch_size = Y.shape[0]
+        
+        with torch.no_grad():
+            pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
+            
+        return pred / batch_size
 
         
         
 class Enc_n_Down(nn.Module):
     
     def __init__(self,pretrain_enc,downstream):
+        super(Enc_n_Down,self).__init__()
         self.pretrain_model = pretrain_enc
         self.MTL_downstream = downstream
+        try:
+            self.loss_dict_keys = self.MTL_downstream.loss_dict_keys
+        except:
+            self.loss_dict_keys = None
         for param in self.pretrain_model.parameters():
                 param.requires_grad = False
         
@@ -286,8 +319,11 @@ class Enc_n_Down(nn.Module):
         
         return out
     
-    def loss_fn(self,X,Y,**args):    
-        return self.MTL_downstream.loss_function(X,Y,**args)
+    def chimela_loss(self,X,Y,chimerla_weight):    
+        return self.MTL_downstream.chimela_loss(X,Y,chimerla_weight)
+    
+    def compute_acc(self,out,Y):
+        return self.MTL_downstream.compute_acc(out,Y)
         
 class self_attention(nn.Module):
     

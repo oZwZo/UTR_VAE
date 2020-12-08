@@ -29,7 +29,7 @@ class Log_parser(object):
             print('log path error !')
         self.log_file = log_file
         
-        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight']
+        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match']
         
         #          --------  basic  matcher   --------
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
@@ -149,7 +149,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -174,7 +174,23 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
             ax = axs[i//column,i%column]
         for st,log in enumerate(log_list):
             DF = log.__getattribute__(dataset+"_verbose_DF")
+            if (dataset == 'train') & (type(mean_of_train)==int):
+                DF = mean_of(mean_of_train,DF)
             X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
             ax.plot(X[start_from:],DF[metric].values[start_from:],label=log_name_ls[st],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
         ax.legend()
+        
+def mean_of(x,DF):
+    
+    values = DF.values
+    mean_ls = []
+    
+    for i in range(0,values.shape[0],x):
+        
+        mean_ls.append(np.mean(values[i:i+x,:],axis=0))
+    
+    mean_ls = np.array(mean_ls)
+    mean_DF = pd.DataFrame(mean_ls,columns=DF.columns)
+    
+    return mean_DF

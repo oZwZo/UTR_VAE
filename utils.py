@@ -181,7 +181,7 @@ def load_model(popen,model,logger):
     checkpoint = torch.load(popen.vae_pth_path) 
     model.load_state_dict(checkpoint['state_dict'])
     logger.info(' \t \t ==============<<< encoder load from >>>============== \t \t \n')
-    logger.info(" \t"+popen.pretrain_pth+'\n')
+    logger.info(" \t"+popen.vae_pth_path+'\n')
 
 def resume(popen,model,optimizer,logger):
     """

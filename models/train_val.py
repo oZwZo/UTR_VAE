@@ -40,11 +40,10 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss = model.loss_function(out_seq,X,Y)
         
         elif popen.dataset == 'MTL':
-            Y = Y.squeeze().long()
-            X_reconstruct,TE_pred = model(X)
-            loss_dcit = model.chimela_loss(X_reconstruct,X,TE_pred,Y,popen.chimerla_weight)
-            acc = model.compute_acc(TE_pred,Y)
-            loss = loss_dcit['Total']
+            out = model(X)
+            loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
+            acc = model.compute_acc(out,Y)
+            loss = loss_dict['Total']
         # ======== grd clip and step ========
         
         loss.backward()
@@ -73,13 +72,16 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
                                                                                                     lr,
                                                                                                     Avg_acc)
             elif popen.dataset == 'MTL':
-                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t MSE: {:.9f} \t CrossEntropy: {:.9f} \t Avg_ACC: {} \t lr: {:.9f}".format(idx,loader_len,idx/loader_len*100,
-                                                                                                    loss.item(),
-                                                                                                    loss_dcit['MSE'].item(),
-                                                                                                    loss_dcit['CrossEntropy'].item(),
-                                                                                                    acc,
-                                                                                                    lr
-                                                                                                    )
+                loss_dict_keys = list(loss_dict.keys())
+
+                train_verbose = "{:5d} / {:5d} ({:.1f}%): \t Avg_ACC: {:.7f} \t lr: {:.9f}"
+                verbose_args = [idx,loader_len,idx/loader_len*100,acc,lr]
+                for key in loss_dict_keys:
+                    train_verbose += "\t %s:{:.9f}"%key
+                    verbose_args.append(loss_dict[key])
+                    
+                train_verbose = train_verbose.format(*verbose_args)                
+                
             
             else:
                 train_verbose = "{:5d} / {:5d} ({:.1f}%): \t LOSS:{:.9f} \t lr: {:.9f} \t teaching_rate: {:.9f} ".format(idx,loader_len,idx/loader_len*100,
@@ -99,6 +101,9 @@ def validate(dataloader,model,popen,epoch):
     model.teacher_forcing = False    # turn off teacher_forcing
     
     # ====== set up empty =====
+    if model.loss_dict_keys is not None:
+        loss_verbose = {key:0 for key in model.loss_dict_keys}
+    
     Total_loss = 0
     KLD_loss = 0
     MSE_loss = 0
@@ -137,15 +142,16 @@ def validate(dataloader,model,popen,epoch):
                 
             elif popen.dataset == 'MTL':
                 Y = Y.squeeze().long()
-                X_reconstruct,TE_pred = model(X)
-                loss_dcit = model.chimela_loss(X_reconstruct,X,TE_pred,Y,popen.chimerla_weight)
-                Total_loss += loss_dcit['Total'].item()
-                KLD_loss += loss_dcit['CrossEntropy'].item()
-                MSE_loss += loss_dcit['MSE'].item()
+                out = model(X)
+                loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
+                
+                
+                for key in model.loss_dict_keys:
+                    loss_verbose[key]  += loss_dict[key].item()
                 
                 # TODO : compute acc of classification
                 
-                acc_ls.append(model.compute_acc(TE_pred,Y))
+                acc_ls.append(model.compute_acc(out,Y))
                 
             with torch.cuda.device(popen.cuda_id):  
                 torch.cuda.empty_cache()
@@ -161,11 +167,19 @@ def validate(dataloader,model,popen,epoch):
                                                                                                        model.kld_weight,
                                                                                                        avg_acc)
     elif popen.dataset == 'MTL':
-        val_verbose = "\t  TOTAL:{:.7f} \t MSE:{:.7f} \t CrossEntropy:{:.7f} \t chimerla_weight: {} \t Avg_ACC: {}".format(Total_loss,
-                                                                                                       MSE_loss,
-                                                                                                       KLD_loss,
-                                                                                                       popen.chimerla_weight[0]/popen.chimerla_weight[1],
-                                                                                                       avg_acc)
+        
+        # this part try to scale verbose to whatever it takes in `loss_dict_keys`
+        
+        val_verbose = "\t chimerla_weight: {} \t Avg_ACC: {:.7f}"
+        chimela_weight = popen.chimerla_weight[0]/popen.chimerla_weight[1] if popen.chimerla_weight[1] != 0 else popen.chimerla_weight[0]
+        verbose_args = [chimela_weight,avg_acc]
+        
+        for key in model.loss_dict_keys:
+            val_verbose += " \t  "  + key + ":{:.7f}" 
+            verbose_args.append(loss_verbose[key])
+        
+        val_verbose = val_verbose.format(*verbose_args)
+        
     else:
         val_verbose = "\t LOSS:{:.7f}  Avg_ACC: {}".format(loss,avg_acc)
     logger.info(val_verbose)
