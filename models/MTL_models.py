@@ -4,7 +4,7 @@ import torch
 from torch import nn
 import numpy as np
 from .CNN_models import Conv_AE,Conv_VAE,cal_conv_shape
-
+from .Self_attention import self_attention
 
 class TO_SEQ_TE(Conv_AE):
     # TODO: figure the `args` : kernel_sizef
@@ -54,6 +54,7 @@ class TO_SEQ_TE(Conv_AE):
             nn.ReLU(),
             
             nn.Conv1d(16,4,kernel_size=3,stride=2),
+            # nn.Dropout(0.3),
             nn.BatchNorm1d(4),
             nn.ReLU(),
             
@@ -62,6 +63,7 @@ class TO_SEQ_TE(Conv_AE):
             nn.ReLU(),
             
             nn.Linear(31,64),
+            # nn.Dropout(0.4),
             nn.ReLU(),
             
             nn.Linear(64,num_label),
@@ -117,7 +119,7 @@ class TO_SEQ_TE(Conv_AE):
         compute the accuracy of TE range class prediction
         """
         mse_loss ,X_reconst, TE_pred = out 
-        TE_true = Y
+        TE_true = Y.squeeze()
         batch_size = TE_true.shape[0]
         
         with torch.no_grad():
@@ -135,7 +137,105 @@ class TO_SEQ_TE(Conv_AE):
             L_in = L_out
         return L_out
         
+class TRANSFORMER_SEQ_TE(TO_SEQ_TE):
+    # TODO: figure the `args` : kernel_sizef
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label):
+        super(TRANSFORMER_SEQ_TE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label)
         
+        de_diliat_ls = self.diliat_ls[::-1]
+        de_channel_ls = [chann*2 for chann in self.channel_ls[::-1]]
+        de_channel_ls[-1] = self.channel_ls[0]
+        de_padding_ls = self.padding_ls[::-1]
+        
+        self.out_len = int(self.compute_out_dim(kernel_size))
+        self.out_dim = self.out_len * channel_ls[-1]
+        
+        
+        # shared function           # out of conv : B * Chan * out_len
+        
+        d_k = 64
+        n_head = 2
+        d_v = [channel_ls[-1]] + [64,128,128]    # list
+        
+        self.fc_hard_share = nn.Sequential(
+            self_attention(d_v[0],n_head,d_k,d_v[1]),
+            nn.ReLU(),
+            # nn.BatchNorm1d(d_v[1]),
+            
+            self_attention(d_v[1]*n_head,n_head,d_k,d_v[2]), 
+            nn.ReLU(),
+            # nn.BatchNorm1d(d_v[2]),
+            
+            self_attention(d_v[2]*n_head,n_head,d_k,d_v[3]), 
+            nn.ReLU(),
+            # nn.BatchNorm1d(d_v[3])
+        ) 
+        
+        # two linear transform to two task
+        self.fc_to_dec = nn.Linear(512,self.out_dim*2)
+        self.fc_to_pre = nn.Linear(512,256)
+        
+        self.decoder = nn.ModuleList(
+            [self.Deconv_block(de_channel_ls[i],de_channel_ls[i+1],de_padding_ls[i],de_diliat_ls[i]) for i in range(len(channel_ls)-1)]
+        )
+        
+        self.mse_fn = nn.MSELoss()
+        self.cn_fn = nn.CrossEntropyLoss()
+        
+        # num_label
+        self.predictor =nn.Sequential(
+            nn.Conv1d(1,16,kernel_size=4,stride=2),
+            nn.BatchNorm1d(16),
+            nn.ReLU(),
+            
+            nn.Conv1d(16,4,kernel_size=3,stride=2),
+            # nn.Dropout(0.3),
+            nn.BatchNorm1d(4),
+            nn.ReLU(),
+            
+            nn.Conv1d(4,1,kernel_size=3,stride=2),
+            nn.BatchNorm1d(1),
+            nn.ReLU(),
+            
+            nn.Linear(31,64),
+            # nn.Dropout(0.4),
+            nn.ReLU(),
+            
+            nn.Linear(64,num_label),
+            nn.ReLU()
+        )
+        
+        self.loss_dict_keys = ["Total","MSE","CrossEntropy"]
+        
+    def forward(self,X):
+        batch_size= X.shape[0]
+        
+        Z = self.encode(X)
+         
+        # reshape 
+        Z_flat = Z.view(batch_size,self.out_len,-1)   # B * out_len * channel_ls[-1]
+        
+        # transform Z throgh the hard share fc 
+        Z_trans = self.fc_hard_share(Z_flat)          # B * out_len * n_head * dv_ls [-1] 
+        
+        # linear transform to sub-task
+        Z_to_dec = Z_trans[:,:,:,0]
+        Z_to_pred = Z_trans[:,:,:,1]    
+        # Z_to_dec = self.fc_to_dec(Z_trans)
+        # Z_to_pred = self.fc_to_pre(Z_trans).unsqueeze(1)
+        
+        # reconstruction task
+        Z_to_dec = Z_to_dec.view(batch_size,-1,self.out_len) 
+        X_reconst = self.decode(Z_to_dec)
+        
+        # prediction taskz
+        TE_pred = self.predictor(Z_to_pred).squeeze(1)
+        
+        if X.shape[1] != 4:
+            X = X.transpose(1,2)
+        mse_loss = self.mse_fn(X_reconst,X)     # compute mse loss here so that we don;t need X in the chimela loss
+        return mse_loss,X_reconst, TE_pred  
+
 class TWO_TASK_AT(nn.Module):
     def __init__(self,VAE_latent_dim,Linear_chann_ls,num_label,TE_chann_ls=None,SS_chann_ls=None,dropout_rate=0.2):
         """
@@ -325,31 +425,3 @@ class Enc_n_Down(nn.Module):
     def compute_acc(self,out,Y):
         return self.MTL_downstream.compute_acc(out,Y)
         
-class self_attention(nn.Module):
-    
-    def __init__(self,X_dim,n_head,d_k,d_v):
-        self.W_q = nn.Linear(self.hs_out,n_head*d_k)    # makes \sqrt_{d_k} easier 
-        self.W_k = nn.Linear(self.hs_out,n_head*d_k)
-        self.W_v = nn.Linear(self.hs_out,n_head*d_v)     # the values dimension can be higher
-        
-        self.SS_at = nn.ModuleDict({"Wq":nn.Linear(self.hs_out,64),
-                                    "Wk":nn.Linear(self.hs_out,64)})
-    
-    def self_at_forward(self,W_dict,X):
-        
-        # some dimension 
-        dk = next(W_dict['Wq'].parameters()).shape[0]
-        dv = next(W_dict['Wv'].parameters()).shape[0]
-        dk_sqrt = int(np.sqrt(dk))
-        
-        querys = W_dict['Wq'](X)     # B*X_dim*dk
-        keys = W_dict['Wk'](X)       # B* hs_out -> B*64
-        values = W_dict['Wv'](X)    # B* hs_out -> B*128
-        
-        sim_M = torch.bmm(querys,keys.transpose(1,2))/8  # B* X_dim * X_dim
-        attention = torch.softmax(sim_M,dim=-1)
-        # result
-        result = torch.bmm(attention,X).squeeze(2)    # B*X_dim*1 -> B*X_dim
-        
-        return result
-    

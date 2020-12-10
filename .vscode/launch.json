@@ -11,8 +11,8 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TWO_TASK_AT_MTL/test_run/debug_running.ini",
-                     "--cuda","2"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/TRANSFORMER_SEQ_TE_MTL/test_run/test_run.ini",
+                     "--cuda","0"]
         },
         {
             "name": "Python: no args",

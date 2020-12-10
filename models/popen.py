@@ -99,6 +99,10 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
         
+        if 'TRANSFORMER_SEQ_TE' in self.model_type:
+            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read]
+        
         if "TWO_TASK_AT" in self.model_type:
             args_to_read = ["latent_dim","linear_chann_ls","num_label","te_chann_ls","ss_chann_ls","dropout_rate"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]

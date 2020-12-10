@@ -19,11 +19,12 @@ from models.popen import Auto_popen
 
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
-parser.add_argument('--cuda',type=int,default=None,required=True)
+parser.add_argument('--cuda',type=int,default=None,required=False)
 args = parser.parse_args()
 
 POPEN = Auto_popen(args.config_file)
-POPEN.cuda_id = args.cuda
+if args.cuda is not None:
+    POPEN.cuda_id = args.cuda
 
 # device = 'cuda' if torch.cuda.is_available() else 'cpu'
 # cuda2 = torch.device('cuda:2')
@@ -72,11 +73,11 @@ else:
 if POPEN.pretrain_pth is not None:
     # load pretran model
     pretrain_popen = Auto_popen(POPEN.pretrain_pth)
-    pretrain_model = pretrain_model.Model_Class(*pretrain_popen.model_args)
+    pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
     utils.load_model(pretrain_popen,pretrain_model,logger)  
     
-    downstream_class = POPEN.Model_Class  # DL_models.LSTM_AE
-    downstream_model = Model_Class(*POPEN.model_args)
+    # DL_models.LSTM_AE
+    downstream_model = POPEN.Model_Class(*POPEN.model_args)
     
     # merge 
     model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)

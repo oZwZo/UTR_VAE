@@ -105,7 +105,7 @@ class Log_parser(object):
         if self.val_split_line:
             self.val_verbose_lines = ["\t".join(self.log_file[[posi,posi+1,posi+2,posi+3,posi+4]]) for posi in self.val_verbose_posi]
          
-        test_v_v = self.val_verbose_lines[0]
+        test_v_v = self.val_verbose_lines[1]
         
          # using the esting trainverbose to determine metric order
         val_metric = np.array([metric for metric in self.possible_metric if metric in test_v_v])
