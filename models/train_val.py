@@ -44,7 +44,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
             acc = model.compute_acc(out,Y)
             loss = loss_dict['Total']
-            # loss += 1e-3*torch.sum(next(model.predictor.parameters())**2)
+            if type(popen.te_net_l2) == int:
+                loss += popen.te_net_l2*torch.sum(next(model.predictor.parameters())**2)
         # ======== grd clip and step ========
         
         loss.backward()

@@ -20,6 +20,7 @@ class Auto_popen(object):
         self.data_dir = utils.data_dir
         self.log_dir = utils.log_dir
         self.pth_dir = utils.pth_dir
+        self.te_net_l2 = None
         
         # transform to dict and convert to  specific data type
         self.config = configparser.ConfigParser()

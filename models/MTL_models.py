@@ -23,7 +23,7 @@ class TO_SEQ_TE(Conv_AE):
         # shared function 
         self.fc_hard_share = nn.Sequential(
             nn.Linear(self.out_dim,1024),
-            nn.Dropout(0.2),
+            nn.Dropout(0.2),   
             nn.BatchNorm1d(1024),
             nn.ReLU(),
             
@@ -32,6 +32,7 @@ class TO_SEQ_TE(Conv_AE):
             nn.ReLU(),
             
             nn.Linear(2048,512),
+            # nn.Dropout(0.5),
             nn.BatchNorm1d(512),
             nn.ReLU()
         ) 
@@ -50,11 +51,12 @@ class TO_SEQ_TE(Conv_AE):
         # num_label
         self.predictor =nn.Sequential(
             nn.Conv1d(1,16,kernel_size=4,stride=2),
+            # nn.Dropout(0.5),
             nn.BatchNorm1d(16),
             nn.ReLU(),
             
             nn.Conv1d(16,4,kernel_size=3,stride=2),
-            # nn.Dropout(0.3),
+            # nn.Dropout(0.5),
             nn.BatchNorm1d(4),
             nn.ReLU(),
             
@@ -63,7 +65,7 @@ class TO_SEQ_TE(Conv_AE):
             nn.ReLU(),
             
             nn.Linear(31,64),
-            # nn.Dropout(0.4),
+            # nn.Dropout(0.5),
             nn.ReLU(),
             
             nn.Linear(64,num_label),
@@ -127,7 +129,7 @@ class TO_SEQ_TE(Conv_AE):
             
         return pred / batch_size
     
-    def compute_out_dim(self,kernel_size):
+    def compute_out_dim(self,kernel_size,L_in = 100):
         """
         manually compute the final length of convolved sequence
         """
@@ -142,19 +144,11 @@ class TRANSFORMER_SEQ_TE(TO_SEQ_TE):
     def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label):
         super(TRANSFORMER_SEQ_TE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label)
         
-        de_diliat_ls = self.diliat_ls[::-1]
         de_channel_ls = [chann*2 for chann in self.channel_ls[::-1]]
-        de_channel_ls[-1] = self.channel_ls[0]
-        de_padding_ls = self.padding_ls[::-1]
-        
-        self.out_len = int(self.compute_out_dim(kernel_size))
-        self.out_dim = self.out_len * channel_ls[-1]
-        
-        
         # shared function           # out of conv : B * Chan * out_len
         
         d_k = 64
-        n_head = 2
+        n_head = 1
         d_v = [channel_ls[-1]] + [64,128,128]    # list
         
         self.fc_hard_share = nn.Sequential(
@@ -172,36 +166,32 @@ class TRANSFORMER_SEQ_TE(TO_SEQ_TE):
         ) 
         
         # two linear transform to two task
-        self.fc_to_dec = nn.Linear(512,self.out_dim*2)
-        self.fc_to_pre = nn.Linear(512,256)
-        
-        self.decoder = nn.ModuleList(
-            [self.Deconv_block(de_channel_ls[i],de_channel_ls[i+1],de_padding_ls[i],de_diliat_ls[i]) for i in range(len(channel_ls)-1)]
-        )
-        
-        self.mse_fn = nn.MSELoss()
-        self.cn_fn = nn.CrossEntropyLoss()
+        self.fc_to_dec = nn.Linear(n_head*d_v[3],de_channel_ls[0])
+        self.fc_to_pre = nn.Linear(n_head*d_v[3],48)   # i.e.  B* len * 128 *n_head -> B* len * 32
         
         # num_label
+        # input : B* len * 32
+        # TODO : predictor list 
         self.predictor =nn.Sequential(
-            nn.Conv1d(1,16,kernel_size=4,stride=2),
+            nn.Conv1d(48,32,kernel_size=4,stride=1),
+            nn.BatchNorm1d(32),
+            nn.ReLU(),
+            
+            nn.Conv1d(32,16,kernel_size=4,stride=1),
+            # nn.Dropout(0.3),
             nn.BatchNorm1d(16),
             nn.ReLU(),
             
-            nn.Conv1d(16,4,kernel_size=3,stride=2),
-            # nn.Dropout(0.3),
+            nn.Conv1d(16,4,kernel_size=4,stride=1),      # out : len : 15.0
             nn.BatchNorm1d(4),
-            nn.ReLU(),
-            
-            nn.Conv1d(4,1,kernel_size=3,stride=2),
-            nn.BatchNorm1d(1),
-            nn.ReLU(),
-            
-            nn.Linear(31,64),
+            nn.ReLU())
+        
+        self.predictor_fc =nn.Sequential(
+            nn.Linear(15*4,128),
             # nn.Dropout(0.4),
             nn.ReLU(),
             
-            nn.Linear(64,num_label),
+            nn.Linear(128,num_label),
             nn.ReLU()
         )
         
@@ -218,18 +208,21 @@ class TRANSFORMER_SEQ_TE(TO_SEQ_TE):
         # transform Z throgh the hard share fc 
         Z_trans = self.fc_hard_share(Z_flat)          # B * out_len * n_head * dv_ls [-1] 
         
-        # linear transform to sub-task
-        Z_to_dec = Z_trans[:,:,:,0]
-        Z_to_pred = Z_trans[:,:,:,1]    
-        # Z_to_dec = self.fc_to_dec(Z_trans)
-        # Z_to_pred = self.fc_to_pre(Z_trans).unsqueeze(1)
+        # head as task
+        # Z_to_dec = Z_trans[:,:,:,0]
+        # Z_to_pred = Z_trans[:,:,:,1]   
+        
+        # linear transform to sub-task 
+        Z_to_dec = self.fc_to_dec(Z_trans).transpose(1,2)
+        Z_to_pred = self.fc_to_pre(Z_trans).transpose(1,2)
         
         # reconstruction task
-        Z_to_dec = Z_to_dec.view(batch_size,-1,self.out_len) 
+        Z_to_dec = Z_to_dec
         X_reconst = self.decode(Z_to_dec)
         
         # prediction taskz
-        TE_pred = self.predictor(Z_to_pred).squeeze(1)
+        TE_conv_out = self.predictor(Z_to_pred).view(batch_size,-1)
+        TE_pred = self.predictor_fc(TE_conv_out)
         
         if X.shape[1] != 4:
             X = X.transpose(1,2)
