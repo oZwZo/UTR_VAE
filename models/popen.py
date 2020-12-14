@@ -7,6 +7,7 @@ import json
 from models import DL_models
 from models import CNN_models
 from models import MTL_models
+from models import Baseline_models
 import configparser
 import logging
 
@@ -61,6 +62,8 @@ class Auto_popen(object):
             assert self.model_type in dir(DL_models), "model type not correct"
             self.Model_Class = eval("DL_models.{}".format(self.model_type))
         else:
+            if self.model_type in dir(Baseline_models):
+                self.Model_Class = eval("Baseline_models.{}".format(self.model_type))
             assert self.model_type in dir(MTL_models), "model type not correct"
             self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
@@ -96,13 +99,9 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
         
-        if 'TO_SEQ_TE' in self.model_type:
+        if  self.model_type in  ['TO_SEQ_TE','TRANSFORMER_SEQ_TE','Baseline']:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
-            self.model_args=[self.__getattribute__(args) for args in args_to_read]
-        
-        if 'TRANSFORMER_SEQ_TE' in self.model_type:
-            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
-            self.model_args=[self.__getattribute__(args) for args in args_to_read]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read] 
         
         if "TWO_TASK_AT" in self.model_type:
             args_to_read = ["latent_dim","linear_chann_ls","num_label","te_chann_ls","ss_chann_ls","dropout_rate"]
