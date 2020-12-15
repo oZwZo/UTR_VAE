@@ -181,7 +181,7 @@ def validate(dataloader,model,popen,epoch):
         
         for key in model.loss_dict_keys:
             val_verbose += " \t  "  + key + ":{:.7f}" 
-            verbose_args.append(loss_verbose[key])
+            verbose_args.append(loss_verbose[key]/idx)
         
         val_verbose = val_verbose.format(*verbose_args)
         

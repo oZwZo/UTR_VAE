@@ -107,6 +107,11 @@ class Baseline(nn.Module):
         """
         
         batch_size = Y.shape[0]
+        if out.shape != Y.shape:
+            if len(out.shape) == 2:
+                out = out.squeeze()
+            if len(Y.shape) == 2:
+                Y = Y.squeeze()
         with torch.no_grad():
             loss = self.acc_hinge(out,Y,self.Lambda)
             n_inrange = (loss==0).squeeze().sum().item()
@@ -126,10 +131,13 @@ class Baseline(nn.Module):
         batch_size = Y.shape[0]
         
         #  Hinge or MSE
-        loss = self.regression_loss(out,Y,Lambda).squeeze()
+        if self.loss_fn in ['mse','MSE']:
+            loss = self.regression_loss(out,Y)
+        else:
+            loss = self.regression_loss(out,Y,Lambda).squeeze()
         with torch.no_grad():
-            MAE = torch.abs(out-Y).sum().item()                            # Mean Absolute Error
-            RMSE = torch.sqrt( torch.sum((out-Y)**2) / batch_size).item()  # Root Mean Square Error
+            MAE = torch.abs(out-Y).mean()                                  # Mean Absolute Error
+            RMSE = torch.sqrt( torch.sum((out-Y)**2) / batch_size)         # Root Mean Square Error
         return {"Total":loss,"MAE":MAE,"RMSE":RMSE}
     
     def compute_out_dim(self,kernel_size,L_in = 100):
