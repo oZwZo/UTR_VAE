@@ -24,5 +24,3 @@ def read_bpseq(test_bpseq_path):
     assert len(ptable) == int(bp_seq[-1].split(" ")[0])
 
     return seq,ptable
-
-def 

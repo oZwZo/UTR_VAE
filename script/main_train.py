@@ -107,6 +107,8 @@ best_loss = np.inf
 best_acc = 0
 best_epoch = 0
 previous_epoch = 0
+POPEN.train_mean = -0.0027311546037015106
+POPEN.val_mean = 0.010948733354481285
 if POPEN.Resumable:
     previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
 

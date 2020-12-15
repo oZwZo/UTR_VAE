@@ -35,7 +35,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss = loss_dict['loss']
             Avg_acc = model.compute_acc(X_reconstruct,X,Y)
             
-        elif popen.model_type.split("_")[1] == "AE":
+        elif 'AE' in popen.model_type:
             out_seq = model(X=X,epoch=epoch,Y=Y)
             loss = model.loss_function(out_seq,X,Y)
         
@@ -173,7 +173,10 @@ def validate(dataloader,model,popen,epoch):
         # this part try to scale verbose to whatever it takes in `loss_dict_keys`
         
         val_verbose = "\t chimerla_weight: {} \t Avg_ACC: {:.7f}"
-        chimela_weight = popen.chimerla_weight[0]/popen.chimerla_weight[1] if popen.chimerla_weight[1] != 0 else popen.chimerla_weight[0]
+        if type(popen.chimerla_weight) == list:
+            chimela_weight = popen.chimerla_weight[0]/popen.chimerla_weight[1] if popen.chimerla_weight[1] != 0 else popen.chimerla_weight[0]
+        elif type(popen.chimerla_weight) == float:
+            chimela_weight = popen.chimerla_weight
         verbose_args = [chimela_weight,avg_acc]
         
         for key in model.loss_dict_keys:

@@ -22,6 +22,7 @@ class Auto_popen(object):
         self.log_dir = utils.log_dir
         self.pth_dir = utils.pth_dir
         self.te_net_l2 = None
+        self.loss_fn = None
         
         # transform to dict and convert to  specific data type
         self.config = configparser.ConfigParser()
@@ -64,8 +65,9 @@ class Auto_popen(object):
         else:
             if self.model_type in dir(Baseline_models):
                 self.Model_Class = eval("Baseline_models.{}".format(self.model_type))
-            assert self.model_type in dir(MTL_models), "model type not correct"
-            self.Model_Class = eval("MTL_models.{}".format(self.model_type))
+            else:
+                assert self.model_type in dir(MTL_models), "model type not correct"
+                self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
         # teacher foring
         if self.teacher_forcing is True:
@@ -99,8 +101,12 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
         
-        if  self.model_type in  ['TO_SEQ_TE','TRANSFORMER_SEQ_TE','Baseline']:
+        if  self.model_type in  ['TO_SEQ_TE','TRANSFORMER_SEQ_TE']:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
+            self.model_args=[self.__getattribute__(args) for args in args_to_read] 
+            
+        if self.model_type  in  ['Baseline']:
+            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label","loss_fn"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
         
         if "TWO_TASK_AT" in self.model_type:
