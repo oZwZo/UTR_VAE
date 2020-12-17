@@ -29,7 +29,7 @@ class Log_parser(object):
             print('log path error !')
         self.log_file = log_file
         
-        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match']
+        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match','MAE','RMSE']
         
         #          --------  basic  matcher   --------
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
@@ -69,6 +69,8 @@ class Log_parser(object):
         
         # using the esting trainverbose to determine metric order
         train_metric = np.array([metric for metric in self.possible_metric if metric in test_t_v])
+        train_metric = self.check_dup_metric(train_metric,test_t_v)
+        
         train_metric_posi = np.array([test_t_v.index(metric) for metric in train_metric])
         
         order = train_metric_posi.argsort()
@@ -78,7 +80,17 @@ class Log_parser(object):
         self.train_verbose_matcher = self.train_verbose_finder
         for metric in self.train_metric:
             self.train_verbose_matcher += self.match_sub_verbose(metric)
-            
+    
+    def check_dup_metric(self,train_metric,test_t_v):
+        """
+        to deal with the problem of `MSE` and `RMSE` 
+        """
+        train_metric = list(train_metric)
+        if ("MSE" in train_metric) & ("RMSE" in train_metric):
+            if test_t_v.index('MSE') == test_t_v.index('RMSE')+1:
+                train_metric.remove('MSE')
+        return np.array(train_metric)
+    
     def extract_training_verbose_data(self):
         """
         regular expression to match the printed metric during training and save to pd.DataFrame
@@ -109,6 +121,7 @@ class Log_parser(object):
         
          # using the esting trainverbose to determine metric order
         val_metric = np.array([metric for metric in self.possible_metric if metric in test_v_v])
+        val_metric = self.check_dup_metric(val_metric,test_v_v)
         val_metric_posi = np.array([test_v_v.index(metric) for metric in val_metric])
         order = val_metric_posi.argsort()    # sort 
         self.val_metric = val_metric[order]
@@ -194,3 +207,13 @@ def mean_of(x,DF):
     mean_DF = pd.DataFrame(mean_ls,columns=DF.columns)
     
     return mean_DF
+
+def read_log_of_a_dir(log_dir):
+    """
+    ...log_dir : abs path of log dir
+    """
+    file_ls = [file for file in os.listdir(log_dir) if ".log" in file]
+    log_path = [os.path.join(log_dir,file) for file in file_ls]
+    log_name = [file.replace('.log','') for file in file_ls]
+    log_ls = [Log_parser(file) for file in log_path]
+    return log_ls,log_name

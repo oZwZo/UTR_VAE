@@ -10,7 +10,7 @@ class TO_SEQ_TE(Conv_AE):
     # TODO: figure the `args` : kernel_sizef
     def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label):
         super(TO_SEQ_TE,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size)
-        
+        self.num_label = num_label
         de_diliat_ls = self.diliat_ls[::-1]
         de_channel_ls = [chann*2 for chann in self.channel_ls[::-1]]
         de_channel_ls[-1] = self.channel_ls[0]
@@ -46,7 +46,10 @@ class TO_SEQ_TE(Conv_AE):
         )
         
         self.mse_fn = nn.MSELoss()
-        self.cn_fn = nn.CrossEntropyLoss()
+        if num_label == 1:
+            self.cn_fn = nn.MSELoss(reduction='mean')
+        else:
+            self.cn_fn = nn.CrossEntropyLoss()
         
         # num_label
         self.predictor =nn.Sequential(
@@ -68,8 +71,8 @@ class TO_SEQ_TE(Conv_AE):
             # nn.Dropout(0.5),
             nn.ReLU(),
             
-            nn.Linear(64,num_label),
-            nn.ReLU()
+            nn.Linear(64,num_label)#,             if model report error pls look back here
+            # nn.ReLU()
         )
         
         self.loss_dict_keys = ["Total","MSE","CrossEntropy"]
@@ -107,7 +110,10 @@ class TO_SEQ_TE(Conv_AE):
         Total Loss =  lambda_0 * MSE_Loss + lambda_1 * CrossEntropy_Loss
         """
         mse_loss ,X_reconst, TE_pred = out        
-        TE_true = Y.squeeze().long()
+        if self.num_label == 1:
+            TE_true = Y
+        else:
+            TE_true = Y.squeeze().long()
         
         
         ce_loss = self.cn_fn(TE_pred,TE_true)
@@ -121,11 +127,14 @@ class TO_SEQ_TE(Conv_AE):
         compute the accuracy of TE range class prediction
         """
         mse_loss ,X_reconst, TE_pred = out 
-        TE_true = Y.squeeze()
+        TE_true = Y
         batch_size = TE_true.shape[0]
-        
+        epsilon = 0.3
         with torch.no_grad():
-            pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
+            if self.num_label == 1:
+                pred = torch.sum(torch.abs(TE_pred - TE_true) < epsilon).item()
+            else:
+                pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
             
         return pred / batch_size
     
@@ -228,6 +237,52 @@ class TRANSFORMER_SEQ_TE(TO_SEQ_TE):
             X = X.transpose(1,2)
         mse_loss = self.mse_fn(X_reconst,X)     # compute mse loss here so that we don;t need X in the chimela loss
         return mse_loss,X_reconst, TE_pred  
+
+class TRANSFORMER_SEQ_RL(TRANSFORMER_SEQ_TE):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label):
+        super(TRANSFORMER_SEQ_RL,self).__init__(channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label)
+        self.predictor_fc =nn.Sequential(
+            nn.Linear(12*4,128),
+            # nn.Dropout(0.4),
+            nn.ReLU(),
+            
+            nn.Linear(128,num_label),
+        )
+        self.regression_loss = nn.MSELoss(reduction='mean')
+        self.loss_dict_keys = ["Total","MSE","RegLoss"]
+        
+    def chimela_loss(self,out,Y,Lambda):
+        """
+        ALL chimela loss should only take 3 arguments : out , Y and lambda 
+        Total Loss =  lambda_0 * MSE_Loss + lambda_1 * CrossEntropy_Loss
+        """
+        mse_loss ,X_reconst, TE_pred = out        
+        TE_true = Y
+        
+        ce_loss = self.regression_loss(TE_pred,TE_true)
+        
+        total_loss = Lambda[0]*mse_loss + Lambda[1]*ce_loss
+        
+        return {"Total":total_loss,"MSE":mse_loss,"RegLoss":ce_loss}
+    
+    def compute_acc(self,out,Y):
+        """
+        compute the accuracy of TE range class prediction
+        """
+        
+        mse_loss ,X_reconst, TE_pred = out 
+        TE_true = Y
+        batch_size = TE_true.shape[0]
+        
+        
+        
+        with torch.no_grad():
+            # number that are
+            pred = torch.sum(torch.abs(TE_pred - TE_true) < epsilon).item()
+            
+        return pred / batch_size
+    
+
 
 class TWO_TASK_AT(nn.Module):
     def __init__(self,VAE_latent_dim,Linear_chann_ls,num_label,TE_chann_ls=None,SS_chann_ls=None,dropout_rate=0.2):

@@ -21,7 +21,7 @@ class Baseline(nn.Module):
         self.channel_ls = channel_ls
         self.padding_ls = padding_ls
         self.diliat_ls =  diliat_ls
-        self.loss_dict_keys = ['Total','MAE','RMSE']
+        self.loss_dict_keys = ['Total','MAE','R.M.S.E']
         # the basic element block of CNN
         
         #         ==<<|  Conv layers  |>>==
@@ -138,7 +138,7 @@ class Baseline(nn.Module):
         with torch.no_grad():
             MAE = torch.abs(out-Y).mean()                                  # Mean Absolute Error
             RMSE = torch.sqrt( torch.sum((out-Y)**2) / batch_size)         # Root Mean Square Error
-        return {"Total":loss,"MAE":MAE,"RMSE":RMSE}
+        return {"Total":loss,"MAE":MAE,"R.M.S.E":RMSE}
     
     def compute_out_dim(self,kernel_size,L_in = 100):
         """

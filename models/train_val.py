@@ -143,7 +143,7 @@ def validate(dataloader,model,popen,epoch):
                 acc_ls.append(model.compute_acc(out_seq,X,Y))  # the product of one-hot seq give identity  
                 
             elif popen.dataset == 'MTL':
-                Y = Y.squeeze().long()
+                
                 out = model(X)
                 loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
                 

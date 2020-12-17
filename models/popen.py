@@ -57,16 +57,16 @@ class Auto_popen(object):
         assert we type in the correct model type and group them into model_args
         """
         if "Conv" in self.model_type:
-            assert self.model_type in dir(CNN_models), "model type not correct"
+            assert self.model_type in dir(CNN_models), "model type not in CNN models"
             self.Model_Class = eval("CNN_models.{}".format(self.model_type))
         elif "LSTM" in self.model_type:
-            assert self.model_type in dir(DL_models), "model type not correct"
+            assert self.model_type in dir(DL_models), "model type not in DL models"
             self.Model_Class = eval("DL_models.{}".format(self.model_type))
         else:
             if self.model_type in dir(Baseline_models):
                 self.Model_Class = eval("Baseline_models.{}".format(self.model_type))
             else:
-                assert self.model_type in dir(MTL_models), "model type not correct"
+                assert self.model_type in dir(MTL_models), "model type not in MTL models"
                 self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
         # teacher foring
@@ -101,7 +101,7 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
         
-        if  self.model_type in  ['TO_SEQ_TE','TRANSFORMER_SEQ_TE']:
+        if  self.model_type in  ['TO_SEQ_TE','TRANSFORMER_SEQ_TE','TRANSFORMER_SEQ_RL']:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
             

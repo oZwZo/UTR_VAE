@@ -111,7 +111,9 @@ def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers):
     # make ratio to length
     total_len = len(dataset)
     lengths = [int(total_len*ratio[0]),int(len(dataset)*ratio[1])]
-    lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
+    
+    if total_len-sum(lengths) >0:
+        lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
     set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
     
