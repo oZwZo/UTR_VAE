@@ -11,7 +11,7 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Baseline_MTL/Loss_function/mse_loss_slr.ini",
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Basline/Hi_baseline_MTL/test_run/debug_run.ini",
                      "--cuda","0"]
         },
         {

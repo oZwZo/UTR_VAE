@@ -35,7 +35,7 @@ class Auto_popen(object):
         self.check_run_and_setting_name()                          # check run name
         self._dataset = "_" + self.dataset if self.dataset != '' else self.dataset
         # the saving direction
-        self.vae_log_path = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name,self.run_name +'.log')
+        self.vae_log_path = config_file.replace('.ini','.log')
         self.vae_pth_path = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name,self.run_name + '-model_best.pth')
         self.Resumable = False
         
@@ -105,7 +105,7 @@ class Auto_popen(object):
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
             
-        if self.model_type  in  ['Baseline']:
+        if self.model_type  in  ['Baseline','Hi_baseline']:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label","loss_fn"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
         
