@@ -17,7 +17,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     model = model.cuda(popen.cuda_id)
-    model.teacher_forcing = popen.teacher_forcing     # turn on teacher_forcing
+    # model.teacher_forcing = popen.teacher_forcing     # turn on teacher_forcing
     model.train()
     
     for idx,data in enumerate(dataloader):
@@ -39,13 +39,22 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             out_seq = model(X=X,epoch=epoch,Y=Y)
             loss = model.loss_function(out_seq,X,Y)
         
-        elif popen.dataset == 'MTL':
+        elif popen.path_category == 'MTL':
             out = model(X)
+            # TODO : debug here
             loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
             acc = model.compute_acc(out,Y)
             loss = loss_dict['Total']
             if type(popen.te_net_l2) == int:
                 loss += popen.te_net_l2*torch.sum(next(model.predictor.parameters())**2)
+        
+        elif popen.path_category == 'Backbone':
+            out = model(X)
+            # TODO : debug here
+            loss_dict = model.compute_loss(out,Y,popen)
+            loss = loss_dict['Total']
+            acc = model.compute_acc(out,Y)
+        
         # ======== grd clip and step ========
         
         loss.backward()
@@ -142,11 +151,13 @@ def validate(dataloader,model,popen,epoch):
                 # average within batch
                 acc_ls.append(model.compute_acc(out_seq,X,Y))  # the product of one-hot seq give identity  
                 
-            elif popen.dataset == 'MTL':
+            elif popen.path_category == 'MTL':
                 
                 out = model(X)
-                loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
-                
+                if popen.path_category == 'Backbone':
+                    loss_dict = model.compute_loss(out,Y,popen)
+                else:
+                    loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
                 
                 for key in model.loss_dict_keys:
                     loss_verbose[key]  += loss_dict[key].item()
@@ -154,6 +165,7 @@ def validate(dataloader,model,popen,epoch):
                 # TODO : compute acc of classification
                 
                 acc_ls.append(model.compute_acc(out,Y))
+            
                 
             with torch.cuda.device(popen.cuda_id):  
                 torch.cuda.empty_cache()

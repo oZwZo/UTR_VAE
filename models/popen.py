@@ -8,6 +8,7 @@ from models import DL_models
 from models import CNN_models
 from models import MTL_models
 from models import Baseline_models
+from models import Backbone
 import configparser
 import logging
 
@@ -35,6 +36,7 @@ class Auto_popen(object):
         self.check_run_and_setting_name()                          # check run name
         self._dataset = "_" + self.dataset if self.dataset != '' else self.dataset
         # the saving direction
+        self.path_category = self.config_file.split('/')[-4]
         self.vae_log_path = config_file.replace('.ini','.log')
         self.vae_pth_path = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name,self.run_name + '-model_best.pth')
         self.Resumable = False
@@ -63,39 +65,41 @@ class Auto_popen(object):
             assert self.model_type in dir(DL_models), "model type not in DL models"
             self.Model_Class = eval("DL_models.{}".format(self.model_type))
         else:
-            if self.model_type in dir(Baseline_models):
+            if self.model_type in dir(Backbone):
+                self.Model_Class = eval("Backbone.{}".format(self.model_type))
+            elif self.model_type in dir(Baseline_models):
                 self.Model_Class = eval("Baseline_models.{}".format(self.model_type))
             else:
                 assert self.model_type in dir(MTL_models), "model type not in MTL models"
                 self.Model_Class = eval("MTL_models.{}".format(self.model_type))
         
         # teacher foring
-        if self.teacher_forcing is True:
-            # default setting
-            self.teacher_forcing = True
-            t_k,t_b = (0.032188758248682,0.032188758248682)  # k = b , k = log5 / 50
-        elif type(self.config_dict['teacher_forcing']) == list:
-            self.teacher_forcing = True
-            t_k,t_b = self.config_dict['teacher_forcing']
-        elif self.config_dict['teacher_forcing'] == 'fixed':
-            t_k = t_b = 100
-        elif self.config_dict['teacher_forcing'] == False:
-            t_k = t_b = 100
+        # if self.teacher_forcing is True:
+        #     # default setting
+        #     self.teacher_forcing = True
+        #     t_k,t_b = (0.032188758248682,0.032188758248682)  # k = b , k = log5 / 50
+        # elif type(self.config_dict['teacher_forcing']) == list:
+        #     self.teacher_forcing = True
+        #     t_k,t_b = self.config_dict['teacher_forcing']
+        # elif self.config_dict['teacher_forcing'] == 'fixed':
+        #     t_k = t_b = 100
+        # elif self.config_dict['teacher_forcing'] == False:
+        #     t_k = t_b = 100
             
         
-        if "LSTM" in self.model_type:
-            self.model_args=[self.input_size,
-                             self.config_dict["hidden_size_enc"],
-                             self.config_dict["hidden_size_dec"],
-                             self.config_dict["num_layers"],
-                             self.config_dict["latent_dim"],
-                             self.config_dict["seq_in_dim"],
-                             self.config_dict["decode_type"],
-                             self.config_dict['teacher_forcing'],
-                             self.config_dict['discretize_input'],
-                             t_k,t_b,
-                             self.config_dict["bidirectional"],
-                             self.config_dict["fc_output"]]
+        # if "LSTM" in self.model_type:
+        #     self.model_args=[self.input_size,
+        #                      self.config_dict["hidden_size_enc"],
+        #                      self.config_dict["hidden_size_dec"],
+        #                      self.config_dict["num_layers"],
+        #                      self.config_dict["latent_dim"],
+        #                      self.config_dict["seq_in_dim"],
+        #                      self.config_dict["decode_type"],
+        #                      self.config_dict['teacher_forcing'],
+        #                      self.config_dict['discretize_input'],
+        #                      t_k,t_b,
+        #                      self.config_dict["bidirectional"],
+        #                      self.config_dict["fc_output"]]
             
         if "Conv" in self.model_type:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]
@@ -112,12 +116,24 @@ class Auto_popen(object):
         if "TWO_TASK_AT" in self.model_type:
             args_to_read = ["latent_dim","linear_chann_ls","num_label","te_chann_ls","ss_chann_ls","dropout_rate"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
-    
+
+        if self.model_type in ['RL_regressor','Reconstruction','Motif_detection']:           # Backbone
+            # conv_args define the soft-sharing part
+            conv_args = ["channel_ls","kernel_size","stride","padding_ls","diliation_ls"]
+            self.conv_args = tuple([self.__getattribute__(arg) for arg in conv_args])
+            
+            # left args dfine the tower part in which the arguments are different among tasks
+            left_args={'RL_regressor':["tower_width","dropout_rate"],
+                       'Reconstruction':["VAE","latent_dim"],
+                       'Motif_detection':["motifs","tower_width"]}[self.model_type]
+            
+            self.model_args = [self.conv_args] + [self.__getattribute__(arg) for arg in left_args]
+            
     def check_experiment(self,logger):
         """
         check any unfinished experiment ?
         """
-        log_save_dir = os.path.join(self.log_dir,self.model_type+self._dataset,self.setting_name)
+        log_save_dir = os.path.dirname(self.vae_log_path)
         pth_save_dir = os.path.join(self.pth_dir,self.model_type+self._dataset,self.setting_name)
         # make dirs 
         if not os.path.exists(log_save_dir):
@@ -144,3 +160,11 @@ class Auto_popen(object):
         
         logger.info('   ini file updated    ')
         
+    def chimera_weight_update(self):
+        # TODO : progressively update the loss weight between tasks
+        
+        # TODO : 1. scale the loss into the same magnitude
+        
+        # TODO : 2. update the weight by their own learning progress
+        
+        return None

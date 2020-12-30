@@ -277,7 +277,14 @@ class Hi_baseline(Baseline):
             #     pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
             
         return pred / batch_size
-        
+
+class Hiep_baseline(Hi_baseline):
+    def __init__(self):
+        """
+        try MMoe with hierarchical sharing
+        """
+    
+
 class MyHingeLoss(torch.nn.Module):
 
     def __init__(self,reduction='mean'):

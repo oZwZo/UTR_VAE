@@ -9,11 +9,7 @@ import numpy as np
 import torch
 from torch import nn, optim
 from torch import functional as F
-from models import MTL_models
-from models import CNN_models
-from models import DL_models
-from models import reader
-from models import train_val
+from models import MTL_models,CNN_models,DL_models,reader,train_val, Backbone, Baseline_models
 from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
 from models.popen import Auto_popen
 
@@ -52,7 +48,7 @@ if POPEN.dataset == 'mix':
 elif POPEN.dataset == "mask":
     train_loader,val_loader,test_loader = reader.get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
 elif POPEN.dataset == "MTL":
-    dataset = reader.MTL_enc_dataset(csv_path=POPEN.csv_path,columns=POPEN.aux_task_columns)
+    dataset = reader.MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,columns=POPEN.aux_task_columns)
     loader_ls = reader.get_splited_dataloader(dataset,
                                             ratio=[0.8,0.2],
                                             batch_size=POPEN.batch_size,
