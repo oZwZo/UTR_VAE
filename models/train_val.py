@@ -49,11 +49,22 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
                 loss += popen.te_net_l2*torch.sum(next(model.predictor.parameters())**2)
         
         elif popen.path_category == 'Backbone':
+            Y = X if popen.model_type == 'Reconstruction' else Y
             out = model(X)
             # TODO : debug here
             loss_dict = model.compute_loss(out,Y,popen)
             loss = loss_dict['Total']
             acc = model.compute_acc(out,Y)
+        
+        elif popen.path_category == 'CrossStitch':
+            Y = (X,Y)
+            out = model(X)
+            # TODO : debug here
+            loss_dict = model.compute_loss(out,Y,popen)
+            loss = loss_dict['Total']
+            acc_dict = model.compute_acc(out,Y)
+            loss_dict = loss_dict.update(acc_dict)
+            acc = acc_dict['RL_Acc']
         
         # ======== grd clip and step ========
         
@@ -151,10 +162,10 @@ def validate(dataloader,model,popen,epoch):
                 # average within batch
                 acc_ls.append(model.compute_acc(out_seq,X,Y))  # the product of one-hot seq give identity  
                 
-            elif popen.path_category == 'MTL':
+            elif popen.dataset == 'MTL':
                 
                 out = model(X)
-                if popen.path_category == 'Backbone':
+                if popen.path_category != 'MTL':
                     loss_dict = model.compute_loss(out,Y,popen)
                 else:
                     loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
@@ -163,8 +174,12 @@ def validate(dataloader,model,popen,epoch):
                     loss_verbose[key]  += loss_dict[key].item()
                 
                 # TODO : compute acc of classification
-                
-                acc_ls.append(model.compute_acc(out,Y))
+                if popen.path_category == 'CrossStitch':
+                    acc_dict = model.compute_acc(out,Y)
+                    acc_ls.append(acc_dict['RL'])
+                    loss_dict = loss_dict.update(acc_dict)
+                else:
+                    acc_ls.append(model.compute_acc(out,Y))
             
                 
             with torch.cuda.device(popen.cuda_id):  
@@ -183,14 +198,17 @@ def validate(dataloader,model,popen,epoch):
     elif popen.dataset == 'MTL':
         
         # this part try to scale verbose to whatever it takes in `loss_dict_keys`
-        
-        val_verbose = "\t chimerla_weight: {} \t Avg_ACC: {:.7f}"
-        if type(popen.chimerla_weight) == list:
-            chimela_weight = popen.chimerla_weight[0]/popen.chimerla_weight[1] if popen.chimerla_weight[1] != 0 else popen.chimerla_weight[0]
-        elif type(popen.chimerla_weight) == float:
-            chimela_weight = popen.chimerla_weight
-        verbose_args = [chimela_weight,avg_acc]
-        
+        if popen.path_category == 'MTL':
+            val_verbose = "\t chimerla_weight: {} \t Avg_ACC: {:.7f}"
+            if type(popen.chimerla_weight) == list:
+                chimela_weight = popen.chimerla_weight[0]/popen.chimerla_weight[1] if popen.chimerla_weight[1] != 0 else popen.chimerla_weight[0]
+            elif type(popen.chimerla_weight) == float:
+                chimela_weight = popen.chimerla_weight
+            verbose_args = [chimela_weight,avg_acc]
+        elif  popen.path_category == 'Backbone':
+            val_verbose = "\t Avg_ACC: {:.7f}"
+            verbose_args = [avg_acc]
+            
         for key in model.loss_dict_keys:
             val_verbose += " \t  "  + key + ":{:.7f}" 
             verbose_args.append(loss_verbose[key]/idx)

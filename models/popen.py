@@ -9,6 +9,7 @@ from models import CNN_models
 from models import MTL_models
 from models import Baseline_models
 from models import Backbone
+from models import Cross_stitch
 import configparser
 import logging
 
@@ -69,6 +70,8 @@ class Auto_popen(object):
                 self.Model_Class = eval("Backbone.{}".format(self.model_type))
             elif self.model_type in dir(Baseline_models):
                 self.Model_Class = eval("Baseline_models.{}".format(self.model_type))
+            elif self.model_type in dir(Cross_stitch):
+                self.Model_Class = eval("Cross_stitch.{}".format(self.model_type))
             else:
                 assert self.model_type in dir(MTL_models), "model type not in MTL models"
                 self.Model_Class = eval("MTL_models.{}".format(self.model_type))
@@ -124,10 +127,15 @@ class Auto_popen(object):
             
             # left args dfine the tower part in which the arguments are different among tasks
             left_args={'RL_regressor':["tower_width","dropout_rate"],
-                       'Reconstruction':["VAE","latent_dim"],
-                       'Motif_detection':["motifs","tower_width"]}[self.model_type]
+                       'Reconstruction':["variational","latent_dim"],
+                       'Motif_detection':["aux_task_columns","tower_width"]}[self.model_type]
             
             self.model_args = [self.conv_args] + [self.__getattribute__(arg) for arg in left_args]
+        
+        if self.path_category == 'CrossStitch':
+            
+            self.model_args = [self.__getattribute__(arg) for arg in ['tasks','alpha','beta']]
+        
             
     def check_experiment(self,logger):
         """

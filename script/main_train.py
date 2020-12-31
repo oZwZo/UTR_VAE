@@ -79,6 +79,15 @@ if POPEN.pretrain_pth is not None:
     model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
     
 # -- end2end -- 
+elif POPEN.path_category == "CrossStitch":
+    backbone = {}
+    for t in POPEN.tasks:
+        task_popen = Auto_popen(POPEN.backbone_config[t])
+        task_model = task_popen.Model_Class(*task_popen.model_args).cuda(POPEN.cuda_id)
+        utils.load_model(task_popen,task_model,logger)
+        backbone[t] = task_model
+    POPEN.model_args = [backbone] + POPEN.model_args
+    model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
 else:
     Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
     model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)

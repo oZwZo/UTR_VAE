@@ -6,10 +6,10 @@ class Conv1d_block(nn.Module):
     """
     the Convolution backbone define by a list of convolution block
     """
-    def __init__(self,Channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
+    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
         """
         Argument
-            Channel_ls : list, [int] , channel for each conv layer
+            channel_ls : list, [int] , channel for each conv layer
             kernel_size : int
             stride :  list , [int]
             padding_ls :   list , [int]
@@ -17,23 +17,23 @@ class Conv1d_block(nn.Module):
         """
         super(Conv1d_block,self).__init__()
         ### property
-        self.Channel_ls = Channel_ls
+        self.channel_ls = channel_ls
         self.kernel_size = kernel_size
         self.stride = stride
         if padding_ls is None:
-            self.padding_ls = [0] * (len(Channel_ls) - 1)
+            self.padding_ls = [0] * (len(channel_ls) - 1)
         else:
-            assert len(padding_ls) == len(Channel_ls) - 1
+            assert len(padding_ls) == len(channel_ls) - 1
             self.padding_ls = padding_ls
         if diliation_ls is None:
-            self.diliation_ls = [1] * (len(Channel_ls) - 1)
+            self.diliation_ls = [1] * (len(channel_ls) - 1)
         else:
-            assert len(diliation_ls) == len(Channel_ls) - 1
+            assert len(diliation_ls) == len(channel_ls) - 1
             self.diliation_ls = diliation_ls
         
         self.encoder = nn.ModuleList(
             #                   in_C         out_C           padding            diliation
-            [self.Conv_block(Channel_ls[i],Channel_ls[i+1],self.padding_ls[i],self.diliation_ls[i],self.stride[i]) for i in range(len(self.padding_ls))]
+            [self.Conv_block(channel_ls[i],channel_ls[i+1],self.padding_ls[i],self.diliation_ls[i],self.stride[i]) for i in range(len(self.padding_ls))]
         )
         
     def Conv_block(self,in_Chan,out_Chan,padding,dilation,stride): 
@@ -46,7 +46,10 @@ class Conv1d_block(nn.Module):
         return block
     
     def forward(self,x):
-        out = x.transpose(1,2)
+        if x.shape[2] == 4:
+            out = x.transpose(1,2)
+        else:
+            out = x
         for block in self.encoder:
             out = block(out)
         return out
@@ -55,7 +58,7 @@ class Conv1d_block(nn.Module):
         """
         return the activation of each stage for exchanging information
         """
-        assert stage < len(self.encodre)
+        assert stage < len(self.encoder)
         
         out = self.encoder[stage](x)
         return out
@@ -80,19 +83,19 @@ class ConvTranspose1d_block(Conv1d_block):
     """
     the Convolution transpose backbone define by a list of convolution block
     """
-    def __init__(self,Channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
-        Channel_ls = Channel_ls[::-1]
+    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
+        channel_ls = channel_ls[::-1]
         stride = stride[::-1]
-        padding_ls =  padding_ls[::-1] if padding_ls  is not None else  [0] * (len(Channel_ls) - 1)
-        diliation_ls =  diliation_ls[::-1] if diliation_ls  is not None else  [1] * (len(Channel_ls) - 1)
-        super(ConvTranspose1d_block,self).__init__(Channel_ls,kernel_size,stride,padding_ls,diliation_ls)
+        padding_ls =  padding_ls[::-1] if padding_ls  is not None else  [0] * (len(channel_ls) - 1)
+        diliation_ls =  diliation_ls[::-1] if diliation_ls  is not None else  [1] * (len(channel_ls) - 1)
+        super(ConvTranspose1d_block,self).__init__(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
         
     def Conv_block(self,in_Chan,out_Chan,padding,dilation,stride): 
         """
         replace `Conv1d` with `ConvTranspose1d`
         """
         block = nn.Sequential(
-                nn.ConvTranspose1d(in_Chan,out_Chan,self.kernel_size,stride,padding,dilation),
+                nn.ConvTranspose1d(in_Chan,out_Chan,self.kernel_size,stride,padding,dilation=dilation),
                 nn.BatchNorm1d(out_Chan),
                 nn.ReLU())
         
@@ -128,14 +131,14 @@ class backbone_model(nn.Module):
         the most bottle model which define a soft-sharing convolution block some forward method 
         """
         super(backbone_model,self).__init__()
-        Channel_ls,kernel_size,stride,padding_ls,diliation_ls = conv_args
+        channel_ls,kernel_size,stride,padding_ls,diliation_ls = conv_args
         L_in = 100 if kernel_size %2 == 0 else 101
         # model
-        self.soft_share = Conv1d_block(Channel_ls,kernel_size,stride,padding_ls,diliation_ls)
+        self.soft_share = Conv1d_block(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
         # property
-        self.stage = list(range(len(Channel_ls)-1))
+        self.stage = list(range(len(channel_ls)-1))
         self.out_length = self.soft_share.last_out_len(L_in)
-        self.out_dim = self.soft_share.last_out_len(L_in)*Channel_ls[-1]
+        self.out_dim = self.soft_share.last_out_len(L_in)*channel_ls[-1]
     
     def forward_stage(self,X,stage):
         return self.soft_share.forward_stage(X,stage)
@@ -157,7 +160,7 @@ class RL_regressor(backbone_model):
         """
         backbone for RL regressor task  ,the same soft share should be used among task
         Arguments:
-            conv_args: (Channel_ls,kernel_size,stride,padding_ls,diliation_ls)
+            conv_args: (channel_ls,kernel_size,stride,padding_ls,diliation_ls)
         """
         super(RL_regressor,self).__init__(conv_args)
         
@@ -202,19 +205,19 @@ class RL_regressor(backbone_model):
         return {"Total":loss}
     
 class Reconstruction(backbone_model):
-    def __init__(self,conv_args,VAE=False,latent_dim=80):
+    def __init__(self,conv_args,variational=False,latent_dim=80):
         """
         the sequence reconstruction backbone
         """
-        self.VAE = VAE
+        self.variational = variational
         self.latent_dim = latent_dim
-        super(Reconstruction,self).__ini__(conv_args)
+        super(Reconstruction,self).__init__(conv_args)
         
         #  ------- architecture -------
         self.tower = ConvTranspose1d_block(*conv_args)
         
         #  ---- VAE only ----
-        if self.VAE == True:
+        if self.variational == True:
             self.fc_mu = nn.Linear(self.out_dim,self.latent_dim)
             self.fc_sigma = nn.Linear(self.out_dim,self.latent_dim)
             self.fc_decode = nn.Linear(self.latent_dim,self.out_dim)
@@ -222,7 +225,7 @@ class Reconstruction(backbone_model):
         #  ------- task specific -------
         self.loss_fn = nn.MSELoss(reduction='mean')
         self.task_name = 'Reconstruction'
-        self.loss_dict_keys = ['Total', 'MSE', 'KLD'] if self.VAE else ['Total']
+        self.loss_dict_keys = ['Total', 'MSE', 'KLD'] if self.variational else ['Total']
         
     def reparameterize(self, mu: torch.Tensor, sigma: torch.Tensor):
         """
@@ -239,57 +242,61 @@ class Reconstruction(backbone_model):
     def forward_tower(self,Z):
         batch_size = Z.shape[0]
         re_code = Z
-        if self.VAE:
+        if self.variational:
              # project to N(µ, ∑)
             Z_flat = Z.view(batch_size,-1)
             mu = self.fc_mu(Z_flat)
-            sigma = self.fc_sigma
+            sigma = self.fc_sigma(Z_flat)
             code = self.reparameterize(mu,sigma)
             
             re_code = self.fc_decode(code)
-            re_code = re_code.view(batch_size,self.channel_ls[-1],self.out_length)    
+            re_code = re_code.view(batch_size,self.soft_share.channel_ls[-1],self.out_length)    
         # decode
         recon_X = self.tower(re_code)
         
         return recon_X,mu,sigma
     
-    def forward(self,X):
-        Z = self.soft_share(X)
-        out = self.forward_tower(Z)
-        recons_loss =self.loss_fn(out[0], X)
-        return out,recons_loss
+    # def forward(self,X):
+        
+    #     Z = self.soft_share(X)
+    #     out = self.forward_tower(Z)
+    #     recons_loss =self.loss_fn(out[0], X.transpose(1,2))
+        
+    #     with torch.no_grad():
+    #         true_max=torch.argmax(X,dim=2)
+    #         recon_max=torch.argmax(out[0],dim=1)
+    #         acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
+    #     return out
     
     def compute_loss(self,out,Y,popen):
         """
         Computes the VAE loss function.
         KL(N(\mu, \sigma), N(0, 1)) = \log \frac{1}{\sigma} + \frac{\sigma^2 + \mu^2}{2} - \frac{1}{2}
         """
-        (recons,mu,sigma),recons_loss = out
-        log_var = sigma
+        recons,mu,sigma = out
 
         # Account for the minibatch samples from the dataset
-        
+        recons_loss =self.loss_fn(out[0], Y.transpose(1,2))
         loss =recons_loss
         loss_dict = {'Total': loss}
         
-        if self.VAE:
+        if self.variational:
             self.kld_weight = popen.kld_weight
-            kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)  # why is it negative ???
+            kld_loss = torch.mean(-0.5 * torch.sum(1 + sigma - mu ** 2 - sigma.exp(), dim = 1), dim = 0)  # why is it negative ???
             loss = recons_loss + popen.kld_weight * kld_loss
             loss_dict = {'Total': loss, 'MSE':recons_loss, 'KLD':kld_loss}
         return loss_dict
     
-    def compute_acc(self,out,X,Y=None):
+    def compute_acc(self,out,Y=None):
         """
         compute the reconstruction accuracy
         """
-        (recons,mu,sigma),recons_loss = out
-        if Y is None:
-            Y = X
-        batch_size = X.shape[0]       # B*4*100
-        true_max=torch.argmax(Y,dim=1)
-        recon_max=torch.argmax(recons,dim=1)
-        return torch.sum(true_max == recon_max).item() /batch_size
+        recons,mu,sigma = out
+        with torch.no_grad():
+            true_max=torch.argmax(Y,dim=2)
+            recon_max=torch.argmax(out[0],dim=1)
+            acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
+        return acc
 
 class Motif_detection(backbone_model):
     def __init__(self,conv_args,motifs:list,tower_width=40):
@@ -327,7 +334,7 @@ class Motif_detection(backbone_model):
         
         for i in range(X.shape[1]):
             x = X[:,i]
-            y = Y[:,i].long()
+            y = Y[:,i]
             loss += self.loss_fn(x,y)
         return {"Total":loss}
     
@@ -336,6 +343,6 @@ class Motif_detection(backbone_model):
         decision = X > threshold
         decision = decision.long()
         Y = Y.long()
-        
-        acc = torch.sum(decision == Y) / (X.shape[0]*X.shape[1])
+        with torch.no_grad():
+            acc = torch.sum(decision == Y).item() / (X.shape[0]*X.shape[1])
         return acc
