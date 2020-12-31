@@ -63,7 +63,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss_dict = model.compute_loss(out,Y,popen)
             loss = loss_dict['Total']
             acc_dict = model.compute_acc(out,Y)
-            loss_dict = loss_dict.update(acc_dict)
+            loss_dict = {**loss_dict,**acc_dict}
+            model.loss_dict_keys = loss_dict.keys()
             acc = acc_dict['RL_Acc']
         
         # ======== grd clip and step ========
@@ -123,6 +124,7 @@ def validate(dataloader,model,popen,epoch):
     model.teacher_forcing = False    # turn off teacher_forcing
     
     # ====== set up empty =====
+    model.loss_dict_keys = ['RL_loss', 'Recons_loss', 'Motif_loss', 'Total', 'RL_Acc', 'Recons_Acc', 'Motif_Acc']
     if model.loss_dict_keys is not None:
         loss_verbose = {key:0 for key in model.loss_dict_keys}
     
@@ -166,20 +168,22 @@ def validate(dataloader,model,popen,epoch):
                 
                 out = model(X)
                 if popen.path_category != 'MTL':
+                    Y = (X,Y)
                     loss_dict = model.compute_loss(out,Y,popen)
                 else:
                     loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
                 
-                for key in model.loss_dict_keys:
-                    loss_verbose[key]  += loss_dict[key].item()
-                
+        
                 # TODO : compute acc of classification
                 if popen.path_category == 'CrossStitch':
                     acc_dict = model.compute_acc(out,Y)
-                    acc_ls.append(acc_dict['RL'])
-                    loss_dict = loss_dict.update(acc_dict)
+                    acc_ls.append(acc_dict['RL_Acc'])
+                    loss_dict = {**loss_dict,**acc_dict}
                 else:
                     acc_ls.append(model.compute_acc(out,Y))
+                
+                for key in model.loss_dict_keys:
+                    loss_verbose[key]  += loss_dict[key].item() if type(loss_dict[key]) == torch.Tensor else loss_dict[key]
             
                 
             with torch.cuda.device(popen.cuda_id):  
@@ -205,7 +209,7 @@ def validate(dataloader,model,popen,epoch):
             elif type(popen.chimerla_weight) == float:
                 chimela_weight = popen.chimerla_weight
             verbose_args = [chimela_weight,avg_acc]
-        elif  popen.path_category == 'Backbone':
+        elif  (popen.path_category == 'Backbone') | (popen.path_category == 'CrossStitch'):
             val_verbose = "\t Avg_ACC: {:.7f}"
             verbose_args = [avg_acc]
             

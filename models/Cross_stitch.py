@@ -117,7 +117,7 @@ class CrossStitch_Model(nn.Module):
             backbone = self.backbone[t]
             t_out = out[t]
             t_Y = Y[t]
-            acc_dict[t+"Acc"] = backbone.compute_acc(t_out,t_Y)
+            acc_dict[t+"_Acc"] = backbone.compute_acc(t_out,t_Y)
         return acc_dict
     
     def compute_loss(self,out,Y,popen):
