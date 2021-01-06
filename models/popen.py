@@ -25,6 +25,7 @@ class Auto_popen(object):
         self.pth_dir = utils.pth_dir
         self.te_net_l2 = None
         self.loss_fn = None
+        self.loss_schema = 'constant'
         
         # transform to dict and convert to  specific data type
         self.config = configparser.ConfigParser()

@@ -71,7 +71,7 @@ class CrossStitch_Model(nn.Module):
             beta  : float,1-alpha , how much information to share   
         """    
         super(CrossStitch_Model,self).__init__()
-        self.backbone = backbone
+        self.backbone = nn.ModuleDict(backbone)
         self.tasks = tasks
         self.alpha = alpha
         self.beta = beta
@@ -84,7 +84,7 @@ class CrossStitch_Model(nn.Module):
         """
         check the accordance of model architectrue among tasks and stage
         """
-        assert list(self.backbone.keys()) == self.tasks, "tasks disaccordant"
+        assert set(list(self.backbone.keys())) == set(self.tasks) , "tasks disaccordant"
         self.stage = self.backbone[self.tasks[0]].stage
         self.channel_ls = self.backbone[self.tasks[0]].soft_share.channel_ls
         

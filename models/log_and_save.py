@@ -29,7 +29,7 @@ class Log_parser(object):
             print('log path error !')
         self.log_file = log_file
         
-        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match','MAE','RMSE']
+        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match','MAE','RMSE','RL_loss','Recons_loss','Motif_loss','RL_Acc','Recons_Acc','Motif_Acc']
         
         #          --------  basic  matcher   --------
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"

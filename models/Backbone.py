@@ -291,12 +291,13 @@ class Reconstruction(backbone_model):
         """
         compute the reconstruction accuracy
         """
+        pad_to = Y.shape[1]
         recons,mu,sigma = out
         with torch.no_grad():
             true_max=torch.argmax(Y,dim=2)
             recon_max=torch.argmax(out[0],dim=1)
             acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
-        return acc
+        return acc / pad_to
 
 class Motif_detection(backbone_model):
     def __init__(self,conv_args,motifs:list,tower_width=40):
@@ -315,9 +316,9 @@ class Motif_detection(backbone_model):
         )
         
         # task specific
-        self.loss_fn = nn.BCELoss(reduction='mean')
+        self.loss_fn = nn.BCELoss()
         self.loss_dict_keys = ['Total']
-        
+    
     def forward_tower(self,Z):
         """
         predicting several motifs at the same times
@@ -330,7 +331,7 @@ class Motif_detection(backbone_model):
         return out
     
     def compute_loss(self,X,Y,popen):
-        loss = 0
+        loss = popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters())))
         
         for i in range(X.shape[1]):
             x = X[:,i]
@@ -346,3 +347,12 @@ class Motif_detection(backbone_model):
         with torch.no_grad():
             acc = torch.sum(decision == Y).item() / (X.shape[0]*X.shape[1])
         return acc
+    
+class Motif_detection_logit(Motif_detection):
+    def __init__(self,conv_args,motifs:list,tower_width=40):
+        """
+        can detect different motif
+        """
+        super(Motif_detection,self).__init__(conv_args,motifs,tower_width)
+        self.fc_out = nn.Linear(tower_width,self.num_labels)
+        self.loss_fn = nn.BCEWithLogitsLoss()

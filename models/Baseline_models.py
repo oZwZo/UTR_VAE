@@ -115,13 +115,13 @@ class Baseline(nn.Module):
             if len(Y.shape) == 2:
                 Y = Y.squeeze()
         with torch.no_grad(): 
-            loss = self.acc_hinge(rl_pred,Y,epsilon)
+            loss = self.acc_hinge(rl_pred,Y,epsilon=0.3)
             n_inrange = (loss==0).squeeze().sum().item()
         
         return n_inrange / batch_size
        
         
-    def chimela_loss(self,out,Y,Lambda):
+    def compute_loss(self,out,Y,popen):
         """
         it's termed `chimela_loss` to keep compatability with MTL MODELS (the same dataset was used)
         `chiemela_loss` requires three input : 
@@ -129,7 +129,7 @@ class Baseline(nn.Module):
         ...Y:
         ...Lambda : which is the epsilon of hinge loss if possible
         """
-        self.Lambda = Lambda
+        self.Lambda = popen.chimerla_weight
         batch_size = Y.shape[0]
         rl_pred = out[self.rl_posi] if type(out) == tuple else out
         
@@ -235,7 +235,7 @@ class Hi_baseline(Baseline):
         
         return out
 
-    def chimela_loss(self,out,Y,Lambda):
+    def compute_loss(self,out,Y,popen):
         """
         it's termed `chimela_loss` to keep compatability with MTL MODELS (the same dataset was used)
         `chiemela_loss` requires three input : 
@@ -243,7 +243,7 @@ class Hi_baseline(Baseline):
         ...Y:
         ...Lambda : which is the epsilon of hinge loss if possible
         """
-        self.Lambda = Lambda
+        self.Lambda = popen.chimerla_weight
         batch_size = Y.shape[0]
         uAUG_pred, rl_pred = out
         rl_true,uAUG_true = Y[:,0],Y[:,1]

@@ -12,6 +12,7 @@ from torch import functional as F
 from models import MTL_models,CNN_models,DL_models,reader,train_val, Backbone, Baseline_models
 from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
 from models.popen import Auto_popen
+from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
 
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
@@ -52,7 +53,7 @@ elif POPEN.dataset == "MTL":
     loader_ls = reader.get_splited_dataloader(dataset,
                                             ratio=[0.8,0.2],
                                             batch_size=POPEN.batch_size,
-                                            num_workers=8)
+                                            num_workers=4)
     train_loader = loader_ls[0]
     val_loader = loader_ls[1]
 
@@ -83,7 +84,7 @@ elif POPEN.path_category == "CrossStitch":
     backbone = {}
     for t in POPEN.tasks:
         task_popen = Auto_popen(POPEN.backbone_config[t])
-        task_model = task_popen.Model_Class(*task_popen.model_args).cuda(POPEN.cuda_id)
+        task_model = task_popen.Model_Class(*task_popen.model_args)
         utils.load_model(task_popen,task_model,logger)
         backbone[t] = task_model
     POPEN.model_args = [backbone] + POPEN.model_args
@@ -107,6 +108,11 @@ else:
                             betas=(0.9, 0.98), 
                             eps=1e-09, 
                             weight_decay=POPEN.l2)
+
+if POPEN.loss_schema == 'DTP':
+    POPEN.loss_schedualer = Dynamic_Task_Priority(POPEN.tasks,POPEN.gamma,POPEN.chimerla_weight)
+elif POPEN.loss_schema == 'DWA':
+    POPEN.loss_schedualer = Dynamic_Weight_Averaging(POPEN.tasks,POPEN.tau,POPEN.chimerla_weight)
 # =========== resume ===========
 best_loss = np.inf
 best_acc = 0
