@@ -1,0 +1,112 @@
+2021-01-04 11:18:13,035 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:18:13,036 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:18:13,076 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:18:13,076 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:18:13,098 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:18:13,098 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:18:13,105 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:18:14,913 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.1562500 	 lr: 0.000100000	 RL_loss:1.034054399	 Recons_loss:0.007347229	 Motif_loss:0.118603349	 Total:0.114678010	 RL_Acc:0.156250000	 Recons_Acc:99.281250000	 Motif_Acc:0.996093750
+2021-01-04 11:20:10,028 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:20:10,028 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:20:10,069 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:20:10,069 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:20:10,091 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:20:10,091 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:20:10,097 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:20:16,527 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000100000	 RL_loss:0.705827594	 Recons_loss:0.009096849	 Motif_loss:0.105610490	 Total:0.050400853	 RL_Acc:0.250000000	 Recons_Acc:99.000000000	 Motif_Acc:0.996093750
+2021-01-04 11:23:44,497 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:23:44,498 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:23:44,544 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:23:44,544 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:23:44,568 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:23:44,568 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:23:44,574 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:23:46,350 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.658657134	 Recons_loss:0.007397783	 Motif_loss:0.149152905	 Total:0.051547043	 RL_Acc:0.281250000	 Recons_Acc:99.125000000	 Motif_Acc:0.996093750
+2021-01-04 11:24:50,024 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:24:50,025 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:24:50,084 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:24:50,085 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:24:50,128 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:24:50,129 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:24:50,141 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:25:31,300 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:25:31,301 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:25:31,354 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:25:31,354 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:25:31,399 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:25:31,399 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:25:31,413 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:25:33,159 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000100000	 RL_loss:0.756802678	 Recons_loss:0.007255164	 Motif_loss:0.074602611	 Total:0.048927981	 RL_Acc:0.250000000	 Recons_Acc:99.406250000	 Motif_Acc:1.000000000	 DTP_omega_RL:0.050000000	 DTP_omega_Recons:0.500000000	 DTP_omega_Motif:0.100000000
+2021-01-04 11:27:53,919 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000100000	 RL_loss:0.804986179	 Recons_loss:0.003793487	 Motif_loss:0.081583746	 Total:0.570059061	 RL_Acc:0.406250000	 Recons_Acc:100.312500000	 Motif_Acc:0.996093750	 DTP_omega_RL:0.534842011	 DTP_omega_Recons:1.853455082	 DTP_omega_Motif:0.000006235
+2021-01-04 11:31:49,149 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:31:49,150 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:31:49,186 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:31:49,187 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:31:49,207 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:31:49,207 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:31:49,213 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:31:50,842 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.560604572	 Recons_loss:0.007447198	 Motif_loss:0.205687419	 Total:0.052322570	 RL_Acc:0.281250000	 Recons_Acc:0.984220297	 Motif_Acc:0.992187500	 DTP_wt_RL:0.050000000	 DTP_wt_Recons:0.500000000	 DTP_wt_Motif:0.100000000
+2021-01-04 11:34:12,075 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.567080975	 Recons_loss:0.013011744	 Motif_loss:0.412783831	 Total:0.397418886	 RL_Acc:0.437500000	 Recons_Acc:0.962871287	 Motif_Acc:0.980468750	 DTP_wt_RL:0.465006697	 DTP_wt_Recons:0.000638292	 DTP_wt_Motif:0.000171902
+2021-01-04 11:36:31,244 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000100000	 RL_loss:0.440953642	 Recons_loss:0.025432710	 Motif_loss:0.266622514	 Total:0.205102980	 RL_Acc:0.343750000	 Recons_Acc:0.934096535	 Motif_Acc:0.996093750	 DTP_wt_RL:0.700770413	 DTP_wt_Recons:0.001653436	 DTP_wt_Motif:0.000005276
+2021-01-04 11:38:51,987 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000100000	 RL_loss:0.323134750	 Recons_loss:0.057818372	 Motif_loss:0.174299985	 Total:0.151018038	 RL_Acc:0.375000000	 Recons_Acc:0.858601485	 Motif_Acc:0.992187500	 DTP_wt_RL:0.613018283	 DTP_wt_Recons:0.009414842	 DTP_wt_Motif:0.000023159
+2021-01-04 11:42:57,642 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000100000	 RL_loss:0.317709208	 Recons_loss:0.089411020	 Motif_loss:0.082901835	 Total:0.197026074	 RL_Acc:0.406250000	 Recons_Acc:0.773514851	 Motif_Acc:0.996093750	 DTP_wt_RL:0.534842011	 DTP_wt_Recons:0.030547598	 DTP_wt_Motif:0.000006235
+2021-01-04 11:55:40,569 - 
+===============================| start validation |===============================
+
+2021-01-04 11:55:40,571 - 	 Avg_ACC: 0.3810357 	  RL_loss:0.5096344 	  Recons_loss:0.0963134 	  Motif_loss:0.2415135 	  Total:0.3158587 	  RL_Acc:0.3812536 	  Recons_Acc:0.7607133 	  Motif_Acc:0.9914527
+2021-01-04 11:55:40,575 -    ini file updated    
+2021-01-04 11:55:40,589 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/test_run_DTP-model_best.pth
+
+2021-01-04 11:55:40,591 -    ini file updated    
+2021-01-04 11:55:40,591 - 
+===============================|    epoch 1   |===============================
+
+2021-01-04 11:55:43,796 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.248383164	 Recons_loss:0.092047095	 Motif_loss:0.375493854	 Total:0.155555248	 RL_Acc:0.437500000	 Recons_Acc:0.764851485	 Motif_Acc:0.988281250	 DTP_wt_RL:0.465006697	 DTP_wt_Recons:0.036057634	 DTP_wt_Motif:0.000061153

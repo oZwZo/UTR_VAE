@@ -1,0 +1,375 @@
+2021-01-04 12:24:56,726 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:24:56,727 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 12:24:56,768 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:24:56,768 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 12:24:56,792 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:24:56,792 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 12:24:56,802 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 12:24:57,702 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.754852176	 Recons_loss:0.007672149	 Motif_loss:0.095160998	 Total:0.051094785	 RL_Acc:0.281250000	 Recons_Acc:0.980507426	 Motif_Acc:1.000000000	 DTP_wt_RL:0.050000000	 DTP_wt_Recons:0.500000000	 DTP_wt_Motif:0.100000000
+2021-01-04 12:32:20,227 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.585993409	 Recons_loss:0.006922896	 Motif_loss:0.114642657	 Total:0.470817357	 RL_Acc:0.281250000	 Recons_Acc:0.983601485	 Motif_Acc:1.000000000	 DTP_wt_RL:0.911742515	 DTP_wt_Recons:0.288309412	 DTP_wt_Motif:-0.000000000
+2021-01-04 12:39:45,050 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.418922693	 Recons_loss:0.007076068	 Motif_loss:0.328225166	 Total:0.197987363	 RL_Acc:0.437500000	 Recons_Acc:0.978032178	 Motif_Acc:0.992187500	 DTP_wt_RL:0.465006697	 DTP_wt_Recons:0.452313358	 DTP_wt_Motif:0.000027019
+2021-01-04 12:47:10,215 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000100000	 RL_loss:0.291300595	 Recons_loss:0.008229139	 Motif_loss:0.150297180	 Total:0.139185950	 RL_Acc:0.500000000	 Recons_Acc:0.976175743	 Motif_Acc:0.992187500	 DTP_wt_RL:0.346573590	 DTP_wt_Recons:0.518402952	 DTP_wt_Motif:0.000030879
+2021-01-04 14:35:26,481 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 14:35:26,482 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 14:35:26,523 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 14:35:26,524 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 14:35:26,546 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 14:35:26,546 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 14:35:26,553 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 14:35:28,262 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000100000	 RL_loss:0.781920791	 Recons_loss:0.007120578	 Motif_loss:0.164776623	 Total:0.059133992	 RL_Acc:0.218750000	 Recons_Acc:0.984529703	 Motif_Acc:0.996093750	 DTP_wt_RL:0.050000000	 DTP_wt_Recons:0.500000000	 DTP_wt_Motif:0.100000000
+2021-01-04 14:39:15,384 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000100000	 RL_loss:0.458525956	 Recons_loss:0.007255470	 Motif_loss:0.147070572	 Total:0.216493174	 RL_Acc:0.468750000	 Recons_Acc:0.982054455	 Motif_Acc:0.996093750	 DTP_wt_RL:0.402520529	 DTP_wt_Recons:0.481650473	 DTP_wt_Motif:0.000007195
+2021-01-04 14:43:08,750 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.496856153	 Recons_loss:0.007338125	 Motif_loss:0.179760277	 Total:0.268820137	 RL_Acc:0.281250000	 Recons_Acc:0.981745050	 Motif_Acc:0.992187500	 DTP_wt_RL:0.911742515	 DTP_wt_Recons:0.289126773	 DTP_wt_Motif:0.000017369
+2021-01-04 14:46:59,978 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.411719382	 Recons_loss:0.008702144	 Motif_loss:0.233429387	 Total:0.332053363	 RL_Acc:0.437500000	 Recons_Acc:0.980198020	 Motif_Acc:0.984375000	 DTP_wt_RL:0.465006697	 DTP_wt_Recons:0.450816795	 DTP_wt_Motif:0.000109364
+2021-01-04 14:50:55,669 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000100000	 RL_loss:1.035664797	 Recons_loss:0.009062218	 Motif_loss:0.182415456	 Total:0.557733417	 RL_Acc:0.218750000	 Recons_Acc:0.975866337	 Motif_Acc:0.996093750	 DTP_wt_RL:1.187363870	 DTP_wt_Recons:0.226909018	 DTP_wt_Motif:0.000003358
+2021-01-04 14:59:39,449 - 
+===============================| start validation |===============================
+
+2021-01-04 14:59:39,449 - 	 Avg_ACC: 0.3858929 	  RL_loss:0.5052558 	  Recons_loss:0.0090024 	  Motif_loss:0.2344391 	  Total:0.1126916 	  RL_Acc:0.3861135 	  Recons_Acc:0.9760912 	  Motif_Acc:0.9915934
+2021-01-04 14:59:39,453 -    ini file updated    
+2021-01-04 14:59:39,483 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t2-model_best.pth
+
+2021-01-04 14:59:39,485 -    ini file updated    
+2021-01-04 14:59:39,485 - 
+===============================|    epoch 1   |===============================
+
+2021-01-04 14:59:41,189 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000100000	 RL_loss:1.007756233	 Recons_loss:0.009282891	 Motif_loss:0.417306572	 Total:0.219301373	 RL_Acc:0.312500000	 Recons_Acc:0.974628713	 Motif_Acc:0.980468750	 DTP_wt_RL:0.799666182	 DTP_wt_Recons:0.324772515	 DTP_wt_Motif:0.000122787
+2021-01-05 16:22:08,008 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 16:22:17,373 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:22:17,376 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 16:22:17,421 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:22:17,423 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 16:22:17,447 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:22:17,448 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 16:49:39,617 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 16:49:39,617 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 16:49:41,816 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,816 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,818 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 16:49:41,818 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 16:49:41,849 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,849 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,851 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 16:49:41,851 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 16:49:41,869 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,869 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 16:49:41,871 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 16:49:41,871 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 17:22:09,881 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 17:22:15,242 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:15,245 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 17:22:15,282 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:15,284 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 17:22:15,303 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:15,305 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 17:22:45,142 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 17:22:45,142 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 17:22:47,607 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,607 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,609 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 17:22:47,609 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 17:22:47,669 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,669 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,671 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 17:22:47,671 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 17:22:47,699 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,699 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:22:47,701 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 17:22:47,701 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 17:38:25,209 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 17:38:25,209 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-05 17:38:28,813 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,813 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,816 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 17:38:28,816 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-05 17:38:28,860 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,860 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,863 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 17:38:28,863 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-05 17:38:28,888 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,888 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-05 17:38:28,891 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-05 17:38:28,891 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 09:53:02,404 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 09:53:02,404 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 09:53:08,880 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:08,880 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:08,885 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 09:53:08,885 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 09:53:08,943 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:08,943 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:08,946 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 09:53:08,946 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 09:53:08,997 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:08,997 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 09:53:09,000 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 09:53:09,000 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 09:53:09,107 -  	 	 ========================================================= 	 	 
+2021-01-06 09:53:09,107 -  	 	 ========================================================= 	 	 
+2021-01-06 09:53:09,110 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 09:53:09,110 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 09:53:09,112 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t2_blr-model_best.pth
+
+2021-01-06 09:53:09,112 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t2_blr-model_best.pth
+
+2021-01-06 09:53:09,114 -  	 	 ========================================================= 	 	 
+
+2021-01-06 09:53:09,114 -  	 	 ========================================================= 	 	 
+
+2021-01-06 10:09:21,654 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:09:21,654 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:09:35,432 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:09:35,432 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:46:15,393 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:46:15,393 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 10:46:19,928 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:19,928 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:19,934 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 10:46:19,934 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 10:46:20,005 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:20,005 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:20,013 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 10:46:20,013 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 10:46:20,070 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:20,070 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 10:46:20,074 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 10:46:20,074 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 10:46:20,254 -  	 	 ========================================================= 	 	 
+2021-01-06 10:46:20,254 -  	 	 ========================================================= 	 	 
+2021-01-06 10:46:20,260 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 10:46:20,260 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 10:46:20,267 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t2_blr-model_best.pth
+
+2021-01-06 10:46:20,267 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t2_blr-model_best.pth
+
+2021-01-06 10:46:20,273 -  	 	 ========================================================= 	 	 
+
+2021-01-06 10:46:20,273 -  	 	 ========================================================= 	 	 
+
+2021-01-06 12:12:58,008 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 12:12:58,008 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 12:13:06,054 -  	 	 ========================================================= 	 	 
+2021-01-06 12:13:06,054 -  	 	 ========================================================= 	 	 
+2021-01-06 12:13:06,065 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 12:13:06,065 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 12:13:06,070 -  	/data/users/wergillius/UTR_VAE/pth/Baseline_MTL/unmod_df/rl_mse-model_best.pth
+
+2021-01-06 12:13:06,070 -  	/data/users/wergillius/UTR_VAE/pth/Baseline_MTL/unmod_df/rl_mse-model_best.pth
+
+2021-01-06 12:13:06,077 -  	 	 ========================================================= 	 	 
+
+2021-01-06 12:13:06,077 -  	 	 ========================================================= 	 	 
+
+2021-01-06 13:12:01,250 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 13:12:01,250 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 13:12:08,535 -  	 	 ========================================================= 	 	 
+2021-01-06 13:12:08,535 -  	 	 ========================================================= 	 	 
+2021-01-06 13:12:08,551 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 13:12:08,551 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 13:12:08,558 -  	/data/users/wergillius/UTR_VAE/pth/Baseline_MTL/unmod_df/rl_mse-model_best.pth
+
+2021-01-06 13:12:08,558 -  	/data/users/wergillius/UTR_VAE/pth/Baseline_MTL/unmod_df/rl_mse-model_best.pth
+
+2021-01-06 13:12:08,573 -  	 	 ========================================================= 	 	 
+
+2021-01-06 13:12:08,573 -  	 	 ========================================================= 	 	 
+
+2021-01-06 13:59:10,300 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 13:59:10,300 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 13:59:17,418 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,418 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,429 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 13:59:17,429 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 13:59:17,495 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,495 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,506 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 13:59:17,506 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 13:59:17,570 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,570 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 13:59:17,577 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 13:59:17,577 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 13:59:25,835 -  	 	 ========================================================= 	 	 
+2021-01-06 13:59:25,835 -  	 	 ========================================================= 	 	 
+2021-01-06 13:59:25,850 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 13:59:25,850 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 13:59:25,862 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_sslr-model_best.pth
+
+2021-01-06 13:59:25,862 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_sslr-model_best.pth
+
+2021-01-06 13:59:25,874 -  	 	 ========================================================= 	 	 
+
+2021-01-06 13:59:25,874 -  	 	 ========================================================= 	 	 
+
+2021-01-06 14:32:27,009 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 14:32:27,009 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-06 14:32:33,156 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,156 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,170 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 14:32:33,170 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-06 14:32:33,270 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,270 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,280 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 14:32:33,280 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-06 14:32:33,340 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,340 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-06 14:32:33,348 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 14:32:33,348 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-06 14:32:33,779 -  	 	 ========================================================= 	 	 
+2021-01-06 14:32:33,779 -  	 	 ========================================================= 	 	 
+2021-01-06 14:32:33,793 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 14:32:33,793 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-06 14:32:33,805 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11-model_best.pth
+
+2021-01-06 14:32:33,805 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11-model_best.pth
+
+2021-01-06 14:32:33,819 -  	 	 ========================================================= 	 	 
+
+2021-01-06 14:32:33,819 -  	 	 ========================================================= 	 	 
+

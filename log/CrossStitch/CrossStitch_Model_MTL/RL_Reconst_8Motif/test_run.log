@@ -1,437 +1,562 @@
-2020-12-31 16:17:58,367 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+2020-12-31 17:48:13,690 -  	 	 ==============<<< encoder load from >>>============== 	 	 
 
-2020-12-31 16:17:58,367 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+2020-12-31 17:48:13,691 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
 
-2020-12-31 16:19:01,341 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+2020-12-31 17:48:13,733 -  	 	 ==============<<< encoder load from >>>============== 	 	 
 
-2020-12-31 16:19:01,342 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+2020-12-31 17:48:13,734 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
 
-2020-12-31 16:19:03,359 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+2020-12-31 17:48:13,755 -  	 	 ==============<<< encoder load from >>>============== 	 	 
 
-2020-12-31 16:19:03,359 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
+2020-12-31 17:48:13,755 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
 
-2020-12-31 16:19:05,029 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:19:05,029 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:20:10,886 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:20:10,886 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:20:10,931 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:20:10,931 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:20:10,955 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:20:10,955 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:21:09,953 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:09,954 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:21:09,995 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:09,995 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:21:10,017 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:10,017 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:21:47,038 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:47,039 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:21:47,081 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:47,081 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:21:47,104 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:21:47,104 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:23:40,685 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:23:40,686 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:23:40,724 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:23:40,725 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:23:40,745 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:23:40,745 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:24:01,936 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:24:01,937 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:24:01,989 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:24:01,990 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:24:02,031 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:24:02,032 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:30:55,637 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:30:55,638 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:30:55,682 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:30:55,682 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:30:55,705 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:30:55,705 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:30:55,712 - 
+2020-12-31 17:48:13,759 - 
 ===============================|    epoch 0   |===============================
 
-2020-12-31 16:31:23,049 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:31:23,049 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:31:23,092 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:31:23,093 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:31:23,116 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:31:23,116 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:31:23,123 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:32:24,987 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:32:24,988 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:32:25,026 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:32:25,026 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:32:25,046 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:32:25,046 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:32:25,052 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:49:00,694 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:00,694 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:49:00,735 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:00,735 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:49:00,756 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:00,757 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:49:00,763 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:49:30,290 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:30,291 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:49:30,331 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:30,332 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:49:30,353 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:49:30,354 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:49:30,360 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:53:36,612 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:53:36,613 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:53:36,652 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:53:36,652 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:53:36,672 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:53:36,673 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:53:36,678 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:54:11,798 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:11,799 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:54:11,837 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:11,837 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:54:11,858 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:11,858 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:54:11,864 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:54:38,963 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:38,964 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:54:39,006 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:39,006 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:54:39,028 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:54:39,028 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:54:39,035 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 16:59:48,813 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:59:48,814 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 16:59:48,857 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:59:48,857 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 16:59:48,880 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 16:59:48,880 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 16:59:48,887 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:01:59,297 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:01:59,298 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:01:59,350 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:01:59,350 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:01:59,377 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:01:59,378 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:01:59,386 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:02:44,479 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:02:44,480 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:02:44,523 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:02:44,523 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:02:44,547 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:02:44,547 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:02:44,554 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:03:46,504 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:03:46,504 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:03:46,542 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:03:46,542 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:03:46,563 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:03:46,563 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:03:46,569 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:05:43,971 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:05:43,972 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:05:44,014 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:05:44,015 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:05:44,038 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:05:44,038 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:05:44,045 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:05:45,808 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.669326901	 Recons_loss:0.128646955	 Motif_loss:0.267618865	 Total:0.231599271	 RL_Acc:0.250000000	 Recons_Acc:95.625000000	 Motif_Acc:0.988281250
-2020-12-31 17:08:02,336 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.735282660	 Recons_loss:0.130614311	 Motif_loss:0.189456016	 Total:0.196799293	 RL_Acc:0.375000000	 Recons_Acc:94.656250000	 Motif_Acc:0.992187500
-2020-12-31 17:10:23,740 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.397147715	 Recons_loss:0.118905798	 Motif_loss:0.120347768	 Total:0.139484167	 RL_Acc:0.312500000	 Recons_Acc:96.750000000	 Motif_Acc:0.996093750
-2020-12-31 17:12:44,951 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.426447749	 Recons_loss:0.115064688	 Motif_loss:0.096222378	 Total:0.126965925	 RL_Acc:0.343750000	 Recons_Acc:96.812500000	 Motif_Acc:0.996093750
-2020-12-31 17:15:10,225 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.362895906	 Recons_loss:0.113681965	 Motif_loss:0.130197912	 Total:0.140084729	 RL_Acc:0.437500000	 Recons_Acc:96.687500000	 Motif_Acc:0.996093750
-2020-12-31 17:28:08,227 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:28:08,228 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:28:08,270 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:28:08,271 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:28:08,294 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:28:08,294 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:28:08,301 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:29:57,562 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:29:57,563 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:29:57,603 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:29:57,604 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:29:57,625 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:29:57,626 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:29:57,632 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:30:52,953 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:30:52,954 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:30:52,993 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:30:52,993 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:30:53,013 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:30:53,013 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:30:53,019 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:32:22,768 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:32:22,769 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:32:22,808 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:32:22,809 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:32:22,830 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:32:22,830 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:32:22,836 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:33:15,659 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:15,660 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:33:15,703 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:15,703 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:33:15,726 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:15,726 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:33:15,733 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:33:38,593 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:38,593 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:33:38,635 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:38,635 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:33:38,657 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:33:38,657 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:33:38,664 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:36:11,985 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:36:11,986 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:36:12,040 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:36:12,041 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:36:12,070 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:36:12,071 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:36:12,079 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:39:16,602 - 
+2020-12-31 17:48:15,146 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:1.274426460	 Recons_loss:0.129492894	 Motif_loss:0.180871248	 Total:0.218903393	 RL_Acc:0.375000000	 Recons_Acc:95.375000000	 Motif_Acc:0.996093750
+2020-12-31 17:50:41,697 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.576758385	 Recons_loss:0.126739547	 Motif_loss:0.216270372	 Total:0.200342894	 RL_Acc:0.343750000	 Recons_Acc:94.718750000	 Motif_Acc:0.996093750
+2020-12-31 17:53:45,274 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.500765920	 Recons_loss:0.119420618	 Motif_loss:0.111707643	 Total:0.140602425	 RL_Acc:0.343750000	 Recons_Acc:96.187500000	 Motif_Acc:0.996093750
+2020-12-31 17:56:44,969 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.376150608	 Recons_loss:0.121443853	 Motif_loss:0.127091348	 Total:0.143075138	 RL_Acc:0.406250000	 Recons_Acc:94.875000000	 Motif_Acc:0.996093750
+2020-12-31 17:59:35,447 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.652831316	 Recons_loss:0.111441389	 Motif_loss:0.360198438	 Total:0.268461466	 RL_Acc:0.437500000	 Recons_Acc:96.968750000	 Motif_Acc:0.988281250
+2020-12-31 18:05:50,772 - 
 ===============================| start validation |===============================
 
-2020-12-31 17:40:15,359 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+2020-12-31 18:05:50,772 - 	 Avg_ACC: 0.3558571 	  RL_loss:0.5547374 	  Recons_loss:0.1112531 	  Motif_loss:0.1601250 	  Total:0.1634259 	  RL_Acc:0.3560606 	  Recons_Acc:96.6144225 	  Motif_Acc:0.9953098
+2020-12-31 18:05:50,774 -    ini file updated    
+2020-12-31 18:05:51,669 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/RL_Reconst_8Motif/test_run-model_best.pth
 
-2020-12-31 17:40:15,360 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
-
-2020-12-31 17:40:15,436 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:40:15,436 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
-
-2020-12-31 17:40:15,474 -  	 	 ==============<<< encoder load from >>>============== 	 	 
-
-2020-12-31 17:40:15,474 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
-
-2020-12-31 17:40:15,485 - 
-===============================|    epoch 0   |===============================
-
-2020-12-31 17:43:01,834 - 
-===============================| start validation |===============================
-
-2020-12-31 17:43:01,835 - 	 Avg_ACC: 0.3119821 	  RL_loss:0.6478676 	  Recons_loss:0.1294174 	  Motif_loss:0.1732890 	  Total:0.1837466 	  RL_Acc:0.3121605 	  Recons_Acc:95.3538272 	  Motif_Acc:0.9947269
-2020-12-31 17:43:01,842 -    ini file updated    
-2020-12-31 17:43:01,874 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/RL_Reconst_8Motif/test_run-model_best.pth
-
-2020-12-31 17:43:01,875 -    ini file updated    
-2020-12-31 17:43:01,875 - 
+2020-12-31 18:05:51,670 -    ini file updated    
+2020-12-31 18:05:51,671 - 
 ===============================|    epoch 1   |===============================
 
-2020-12-31 17:43:01,876 - 
+2020-12-31 18:05:53,381 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.385333598	 Recons_loss:0.110194743	 Motif_loss:0.088673383	 Total:0.118700743	 RL_Acc:0.312500000	 Recons_Acc:97.062500000	 Motif_Acc:1.000000000
+2020-12-31 18:08:39,993 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.402953565	 Recons_loss:0.109877214	 Motif_loss:0.063417122	 Total:0.106794849	 RL_Acc:0.406250000	 Recons_Acc:96.062500000	 Motif_Acc:1.000000000
+2020-12-31 18:11:27,524 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.265827835	 Recons_loss:0.108955614	 Motif_loss:0.035070166	 Total:0.085304283	 RL_Acc:0.468750000	 Recons_Acc:96.156250000	 Motif_Acc:1.000000000
+2020-12-31 18:14:17,991 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.336856902	 Recons_loss:0.106918111	 Motif_loss:0.072446376	 Total:0.106525093	 RL_Acc:0.500000000	 Recons_Acc:95.781250000	 Motif_Acc:1.000000000
+2020-12-31 18:17:09,312 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.270182490	 Recons_loss:0.106394850	 Motif_loss:0.152967080	 Total:0.143190086	 RL_Acc:0.562500000	 Recons_Acc:95.406250000	 Motif_Acc:0.996093750
+2020-12-31 18:19:57,340 - 
 ===============================|    epoch 2   |===============================
 
-2020-12-31 17:43:01,876 - 
+2020-12-31 18:19:58,986 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.257615268	 Recons_loss:0.103178032	 Motif_loss:0.065563306	 Total:0.097251430	 RL_Acc:0.468750000	 Recons_Acc:95.625000000	 Motif_Acc:1.000000000
+2020-12-31 18:22:46,994 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.275604725	 Recons_loss:0.103547387	 Motif_loss:0.140252888	 Total:0.135680377	 RL_Acc:0.406250000	 Recons_Acc:94.968750000	 Motif_Acc:0.996093750
+2020-12-31 18:25:32,522 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.503635406	 Recons_loss:0.099206254	 Motif_loss:0.340174109	 Total:0.244871944	 RL_Acc:0.343750000	 Recons_Acc:95.906250000	 Motif_Acc:0.992187500
+2020-12-31 18:28:23,367 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.368974090	 Recons_loss:0.104371980	 Motif_loss:0.022587752	 Total:0.081928566	 RL_Acc:0.562500000	 Recons_Acc:93.656250000	 Motif_Acc:1.000000000
+2020-12-31 18:31:12,566 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.490905076	 Recons_loss:0.100418061	 Motif_loss:0.061346121	 Total:0.105427347	 RL_Acc:0.437500000	 Recons_Acc:94.625000000	 Motif_Acc:1.000000000
+2020-12-31 18:33:57,698 - 
 ===============================|    epoch 3   |===============================
 
-2020-12-31 17:43:01,876 - 
+2020-12-31 18:33:59,535 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.368001163	 Recons_loss:0.100075722	 Motif_loss:0.062423136	 Total:0.099649489	 RL_Acc:0.343750000	 Recons_Acc:93.937500000	 Motif_Acc:1.000000000
+2020-12-31 18:36:46,398 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.392815173	 Recons_loss:0.100817442	 Motif_loss:0.037180170	 Total:0.088639565	 RL_Acc:0.218750000	 Recons_Acc:94.312500000	 Motif_Acc:1.000000000
+2020-12-31 18:39:36,130 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.357888311	 Recons_loss:0.100927331	 Motif_loss:0.282839298	 Total:0.209777728	 RL_Acc:0.281250000	 Recons_Acc:92.593750000	 Motif_Acc:0.992187500
+2020-12-31 18:42:24,557 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.368155628	 Recons_loss:0.102108926	 Motif_loss:0.121638305	 Total:0.130281389	 RL_Acc:0.343750000	 Recons_Acc:92.812500000	 Motif_Acc:0.996093750
+2020-12-31 18:45:09,351 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.276825875	 Recons_loss:0.103310227	 Motif_loss:0.100427262	 Total:0.115710035	 RL_Acc:0.468750000	 Recons_Acc:92.187500000	 Motif_Acc:1.000000000
+2020-12-31 18:47:53,937 - 
 ===============================|    epoch 4   |===============================
 
-2020-12-31 17:43:01,876 - 
+2020-12-31 18:47:55,779 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.170927793	 Recons_loss:0.099090502	 Motif_loss:0.062589020	 Total:0.089386150	 RL_Acc:0.562500000	 Recons_Acc:93.312500000	 Motif_Acc:0.996093750
+2020-12-31 18:50:42,533 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.497358382	 Recons_loss:0.100853622	 Motif_loss:0.087702736	 Total:0.119146101	 RL_Acc:0.343750000	 Recons_Acc:92.593750000	 Motif_Acc:1.000000000
+2020-12-31 18:53:27,476 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:1.006444693	 Recons_loss:0.101301223	 Motif_loss:0.051537104	 Total:0.126741394	 RL_Acc:0.312500000	 Recons_Acc:92.500000000	 Motif_Acc:1.000000000
+2020-12-31 18:56:11,968 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.1250000 	 lr: 0.000010000	 RL_loss:0.641953051	 Recons_loss:0.101426698	 Motif_loss:0.143560588	 Total:0.154591292	 RL_Acc:0.125000000	 Recons_Acc:92.343750000	 Motif_Acc:0.992187500
+2020-12-31 18:58:58,413 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.353552580	 Recons_loss:0.100664422	 Motif_loss:0.182583511	 Total:0.159301594	 RL_Acc:0.343750000	 Recons_Acc:92.312500000	 Motif_Acc:0.992187500
+2020-12-31 19:01:42,633 - 
 ===============================|    epoch 5   |===============================
 
-2020-12-31 17:43:01,876 - 
+2020-12-31 19:01:44,519 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.322588325	 Recons_loss:0.102613062	 Motif_loss:0.328155130	 Total:0.231513515	 RL_Acc:0.500000000	 Recons_Acc:92.218750000	 Motif_Acc:0.988281250
+2020-12-31 19:04:30,402 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.513204873	 Recons_loss:0.100861222	 Motif_loss:0.192980900	 Total:0.172581315	 RL_Acc:0.281250000	 Recons_Acc:91.875000000	 Motif_Acc:0.996093750
+2020-12-31 19:07:21,060 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.278519452	 Recons_loss:0.100893900	 Motif_loss:0.059758123	 Total:0.094251983	 RL_Acc:0.437500000	 Recons_Acc:92.062500000	 Motif_Acc:1.000000000
+2020-12-31 19:10:06,573 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.488550365	 Recons_loss:0.099397115	 Motif_loss:0.166180804	 Total:0.157216474	 RL_Acc:0.375000000	 Recons_Acc:92.750000000	 Motif_Acc:0.996093750
+2020-12-31 19:12:51,674 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.466724098	 Recons_loss:0.103906117	 Motif_loss:0.377745181	 Total:0.264161855	 RL_Acc:0.312500000	 Recons_Acc:91.843750000	 Motif_Acc:0.984375000
+2020-12-31 19:15:36,522 - 
 ===============================|    epoch 6   |===============================
 
-2020-12-31 17:43:01,877 - 
+2020-12-31 19:15:38,270 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.344824851	 Recons_loss:0.101907402	 Motif_loss:0.105003417	 Total:0.120696649	 RL_Acc:0.343750000	 Recons_Acc:92.093750000	 Motif_Acc:0.996093750
+2020-12-31 19:18:25,010 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.362805128	 Recons_loss:0.101109527	 Motif_loss:0.143322915	 Total:0.140356481	 RL_Acc:0.375000000	 Recons_Acc:91.656250000	 Motif_Acc:0.996093750
+2020-12-31 19:21:10,734 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.276537955	 Recons_loss:0.100248180	 Motif_loss:0.170402408	 Total:0.149152189	 RL_Acc:0.375000000	 Recons_Acc:92.250000000	 Motif_Acc:0.996093750
+2020-12-31 19:23:58,299 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.249560356	 Recons_loss:0.101587698	 Motif_loss:0.196325213	 Total:0.161434472	 RL_Acc:0.343750000	 Recons_Acc:91.937500000	 Motif_Acc:0.992187500
+2020-12-31 19:26:48,694 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.470586061	 Recons_loss:0.105332181	 Motif_loss:0.271751910	 Total:0.212071359	 RL_Acc:0.375000000	 Recons_Acc:90.906250000	 Motif_Acc:0.992187500
+2020-12-31 19:29:33,304 - 
 ===============================|    epoch 7   |===============================
 
-2020-12-31 17:43:01,877 - 
+2020-12-31 19:29:35,064 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.512296319	 Recons_loss:0.101525858	 Motif_loss:0.051124651	 Total:0.101940073	 RL_Acc:0.281250000	 Recons_Acc:91.750000000	 Motif_Acc:1.000000000
+2020-12-31 19:32:20,788 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.323853105	 Recons_loss:0.103409618	 Motif_loss:0.149782956	 Total:0.142788947	 RL_Acc:0.281250000	 Recons_Acc:91.031250000	 Motif_Acc:0.992187500
+2020-12-31 19:35:07,043 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.471231401	 Recons_loss:0.103212580	 Motif_loss:0.090279855	 Total:0.120307788	 RL_Acc:0.375000000	 Recons_Acc:92.000000000	 Motif_Acc:0.996093750
+2020-12-31 19:37:54,182 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.487775564	 Recons_loss:0.101994589	 Motif_loss:0.139961988	 Total:0.145367056	 RL_Acc:0.406250000	 Recons_Acc:91.937500000	 Motif_Acc:0.996093750
+2020-12-31 19:40:37,992 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.308074534	 Recons_loss:0.101917699	 Motif_loss:0.112875573	 Total:0.122800365	 RL_Acc:0.468750000	 Recons_Acc:92.187500000	 Motif_Acc:0.992187500
+2020-12-31 19:43:22,232 - 
 ===============================|    epoch 8   |===============================
 
-2020-12-31 17:43:01,877 - 
+2020-12-31 19:43:23,940 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.505043983	 Recons_loss:0.101792887	 Motif_loss:0.414325446	 Total:0.283311367	 RL_Acc:0.375000000	 Recons_Acc:91.656250000	 Motif_Acc:0.992187500
+2020-12-31 19:46:08,513 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.451385826	 Recons_loss:0.101790659	 Motif_loss:0.187004074	 Total:0.166966662	 RL_Acc:0.375000000	 Recons_Acc:91.593750000	 Motif_Acc:0.992187500
+2020-12-31 19:48:54,415 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.448057145	 Recons_loss:0.105242372	 Motif_loss:0.088777870	 Total:0.119412981	 RL_Acc:0.437500000	 Recons_Acc:90.406250000	 Motif_Acc:0.996093750
+2020-12-31 19:51:38,329 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.385244906	 Recons_loss:0.103037059	 Motif_loss:0.027935572	 Total:0.084748559	 RL_Acc:0.531250000	 Recons_Acc:91.406250000	 Motif_Acc:1.000000000
+2020-12-31 19:54:22,752 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.723763943	 Recons_loss:0.104163282	 Motif_loss:0.114389896	 Total:0.145464793	 RL_Acc:0.406250000	 Recons_Acc:91.437500000	 Motif_Acc:0.992187500
+2020-12-31 19:57:08,217 - 
 ===============================|    epoch 9   |===============================
 
-2020-12-31 17:43:01,877 - 
+2020-12-31 19:57:10,043 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.901941001	 Recons_loss:0.105184697	 Motif_loss:0.050257135	 Total:0.122817963	 RL_Acc:0.250000000	 Recons_Acc:91.343750000	 Motif_Acc:1.000000000
+2020-12-31 19:59:56,167 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.341964066	 Recons_loss:0.101438493	 Motif_loss:0.126668617	 Total:0.131151766	 RL_Acc:0.468750000	 Recons_Acc:92.031250000	 Motif_Acc:0.996093750
+2020-12-31 20:02:41,078 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:1.094818830	 Recons_loss:0.104010403	 Motif_loss:0.316100538	 Total:0.264796406	 RL_Acc:0.281250000	 Recons_Acc:91.406250000	 Motif_Acc:0.992187500
+2020-12-31 20:05:27,245 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.430677176	 Recons_loss:0.105141550	 Motif_loss:0.176404670	 Total:0.162306964	 RL_Acc:0.406250000	 Recons_Acc:91.125000000	 Motif_Acc:0.996093750
+2020-12-31 20:08:12,590 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.330754638	 Recons_loss:0.103796944	 Motif_loss:0.161706209	 Total:0.149289310	 RL_Acc:0.437500000	 Recons_Acc:91.500000000	 Motif_Acc:0.996093750
+2020-12-31 20:10:56,883 - 
 ===============================|    epoch 10   |===============================
+
+2020-12-31 20:10:58,764 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.509676814	 Recons_loss:0.104088344	 Motif_loss:0.188815340	 Total:0.171935678	 RL_Acc:0.343750000	 Recons_Acc:90.937500000	 Motif_Acc:0.996093750
+2020-12-31 20:13:42,377 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.376105547	 Recons_loss:0.104549013	 Motif_loss:0.153132975	 Total:0.147646278	 RL_Acc:0.468750000	 Recons_Acc:91.125000000	 Motif_Acc:0.992187500
+2020-12-31 20:16:28,399 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.872226298	 Recons_loss:0.102791354	 Motif_loss:0.239439249	 Total:0.214726627	 RL_Acc:0.375000000	 Recons_Acc:91.656250000	 Motif_Acc:0.988281250
+2020-12-31 20:19:12,693 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.303685188	 Recons_loss:0.102612130	 Motif_loss:0.026349626	 Total:0.079665139	 RL_Acc:0.406250000	 Recons_Acc:91.406250000	 Motif_Acc:1.000000000
+2020-12-31 20:21:58,652 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.294476569	 Recons_loss:0.101909786	 Motif_loss:0.024925493	 Total:0.078141466	 RL_Acc:0.468750000	 Recons_Acc:91.281250000	 Motif_Acc:1.000000000
+2020-12-31 20:28:13,784 - 
+===============================| start validation |===============================
+
+2020-12-31 20:28:13,785 - 	 Avg_ACC: 0.3775893 	  RL_loss:0.5139019 	  Recons_loss:0.1037539 	  Motif_loss:0.1536853 	  Total:0.1544147 	  RL_Acc:0.3778052 	  Recons_Acc:91.4745212 	  Motif_Acc:0.9954818
+2020-12-31 20:28:13,786 -    ini file updated    
+2020-12-31 20:28:13,794 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/RL_Reconst_8Motif/test_run-model_best.pth
+
+2020-12-31 20:28:13,795 -    ini file updated    
+2020-12-31 20:28:13,795 - 
+===============================|    epoch 11   |===============================
+
+2020-12-31 20:28:15,490 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.174526632	 Recons_loss:0.100997433	 Motif_loss:0.070817798	 Total:0.094633952	 RL_Acc:0.500000000	 Recons_Acc:92.343750000	 Motif_Acc:1.000000000
+2020-12-31 20:31:00,196 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.297907710	 Recons_loss:0.104065888	 Motif_loss:0.089805327	 Total:0.111830994	 RL_Acc:0.406250000	 Recons_Acc:91.187500000	 Motif_Acc:1.000000000
+2020-12-31 20:33:45,452 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.924557924	 Recons_loss:0.102636993	 Motif_loss:0.225405067	 Total:0.210248932	 RL_Acc:0.250000000	 Recons_Acc:91.343750000	 Motif_Acc:0.996093750
+2020-12-31 20:36:29,468 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.392546296	 Recons_loss:0.103446886	 Motif_loss:0.079401247	 Total:0.111051381	 RL_Acc:0.437500000	 Recons_Acc:91.312500000	 Motif_Acc:0.996093750
+2020-12-31 20:39:14,875 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.396378249	 Recons_loss:0.104894720	 Motif_loss:0.088333517	 Total:0.116433039	 RL_Acc:0.343750000	 Recons_Acc:90.625000000	 Motif_Acc:0.996093750
+2020-12-31 20:41:59,716 - 
+===============================|    epoch 12   |===============================
+
+2020-12-31 20:42:01,420 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.486898094	 Recons_loss:0.104619592	 Motif_loss:0.063320465	 Total:0.108314931	 RL_Acc:0.406250000	 Recons_Acc:91.031250000	 Motif_Acc:1.000000000
+2020-12-31 20:44:45,903 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.176471010	 Recons_loss:0.101831228	 Motif_loss:0.050557878	 Total:0.085018098	 RL_Acc:0.531250000	 Recons_Acc:91.718750000	 Motif_Acc:1.000000000
+2020-12-31 20:47:32,251 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.309680343	 Recons_loss:0.105961218	 Motif_loss:0.098803967	 Total:0.117866613	 RL_Acc:0.406250000	 Recons_Acc:90.406250000	 Motif_Acc:0.992187500
+2020-12-31 20:50:17,415 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.944329143	 Recons_loss:0.104956552	 Motif_loss:0.072638765	 Total:0.136014104	 RL_Acc:0.375000000	 Recons_Acc:90.875000000	 Motif_Acc:1.000000000
+2020-12-31 20:53:02,110 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:0.641672611	 Recons_loss:0.106932834	 Motif_loss:0.294670999	 Total:0.232885540	 RL_Acc:0.187500000	 Recons_Acc:90.281250000	 Motif_Acc:0.992187500
+2020-12-31 20:55:46,260 - 
+===============================|    epoch 13   |===============================
+
+2020-12-31 20:55:48,099 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.454480767	 Recons_loss:0.103937782	 Motif_loss:0.115593560	 Total:0.132489711	 RL_Acc:0.468750000	 Recons_Acc:91.312500000	 Motif_Acc:0.992187500
+2020-12-31 20:58:33,437 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.1250000 	 lr: 0.000010000	 RL_loss:0.867613554	 Recons_loss:0.105760820	 Motif_loss:0.121557966	 Total:0.157040074	 RL_Acc:0.125000000	 Recons_Acc:90.906250000	 Motif_Acc:0.996093750
+2020-12-31 21:01:20,637 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.1562500 	 lr: 0.000010000	 RL_loss:0.529174626	 Recons_loss:0.104017094	 Motif_loss:0.122364104	 Total:0.139649332	 RL_Acc:0.156250000	 Recons_Acc:90.781250000	 Motif_Acc:0.996093750
+2020-12-31 21:04:05,502 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.494088948	 Recons_loss:0.104215428	 Motif_loss:0.099488989	 Total:0.126556665	 RL_Acc:0.406250000	 Recons_Acc:91.156250000	 Motif_Acc:0.996093750
+2020-12-31 21:06:50,630 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.375452101	 Recons_loss:0.103484027	 Motif_loss:0.326830268	 Total:0.233929753	 RL_Acc:0.312500000	 Recons_Acc:91.718750000	 Motif_Acc:0.996093750
+2020-12-31 21:09:35,802 - 
+===============================|    epoch 14   |===============================
+
+2020-12-31 21:09:37,484 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.613132954	 Recons_loss:0.102113664	 Motif_loss:0.213847369	 Total:0.188637167	 RL_Acc:0.343750000	 Recons_Acc:92.000000000	 Motif_Acc:0.992187500
+2020-12-31 21:12:23,567 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.6250000 	 lr: 0.000010000	 RL_loss:0.270980477	 Recons_loss:0.103135690	 Motif_loss:0.151061505	 Total:0.140647620	 RL_Acc:0.625000000	 Recons_Acc:91.812500000	 Motif_Acc:0.988281250
+2020-12-31 21:15:11,482 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.399042547	 Recons_loss:0.103729270	 Motif_loss:0.121875815	 Total:0.132754669	 RL_Acc:0.468750000	 Recons_Acc:91.468750000	 Motif_Acc:0.996093750
+2020-12-31 21:18:02,315 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.409983367	 Recons_loss:0.103876963	 Motif_loss:0.093016848	 Total:0.118946075	 RL_Acc:0.343750000	 Recons_Acc:90.843750000	 Motif_Acc:0.996093750
+2020-12-31 21:20:49,024 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.434510708	 Recons_loss:0.103346825	 Motif_loss:0.126830637	 Total:0.136814266	 RL_Acc:0.312500000	 Recons_Acc:91.218750000	 Motif_Acc:0.996093750
+2020-12-31 21:23:37,572 - 
+===============================|    epoch 15   |===============================
+
+2020-12-31 21:23:39,230 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.329561502	 Recons_loss:0.103094965	 Motif_loss:0.276102155	 Total:0.206076637	 RL_Acc:0.406250000	 Recons_Acc:91.781250000	 Motif_Acc:0.988281250
+2020-12-31 21:26:28,486 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.355869234	 Recons_loss:0.105321676	 Motif_loss:0.162522718	 Total:0.151715666	 RL_Acc:0.500000000	 Recons_Acc:91.531250000	 Motif_Acc:0.988281250
+2020-12-31 21:29:17,259 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.348345459	 Recons_loss:0.104322352	 Motif_loss:0.059637081	 Total:0.099396989	 RL_Acc:0.343750000	 Recons_Acc:90.812500000	 Motif_Acc:1.000000000
+2020-12-31 21:32:05,081 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.303739339	 Recons_loss:0.103032023	 Motif_loss:0.207493231	 Total:0.170449585	 RL_Acc:0.406250000	 Recons_Acc:91.718750000	 Motif_Acc:0.996093750
+2020-12-31 21:34:50,973 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.381662428	 Recons_loss:0.104076728	 Motif_loss:0.197318971	 Total:0.169780970	 RL_Acc:0.375000000	 Recons_Acc:91.281250000	 Motif_Acc:0.992187500
+2020-12-31 21:37:40,387 - 
+===============================|    epoch 16   |===============================
+
+2020-12-31 21:37:42,175 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.350097656	 Recons_loss:0.106548667	 Motif_loss:0.260814846	 Total:0.201186642	 RL_Acc:0.312500000	 Recons_Acc:90.906250000	 Motif_Acc:0.992187500
+2020-12-31 21:40:28,740 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.349507570	 Recons_loss:0.105392613	 Motif_loss:0.135442883	 Total:0.137893125	 RL_Acc:0.406250000	 Recons_Acc:91.562500000	 Motif_Acc:0.996093750
+2020-12-31 21:43:15,712 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.310453862	 Recons_loss:0.105549879	 Motif_loss:0.074530333	 Total:0.105562799	 RL_Acc:0.343750000	 Recons_Acc:91.218750000	 Motif_Acc:0.996093750
+2020-12-31 21:46:02,299 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.565917134	 Recons_loss:0.104235142	 Motif_loss:0.072486833	 Total:0.116656847	 RL_Acc:0.312500000	 Recons_Acc:91.937500000	 Motif_Acc:1.000000000
+2020-12-31 21:48:51,782 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.206610292	 Recons_loss:0.105260819	 Motif_loss:0.248580888	 Total:0.187251374	 RL_Acc:0.562500000	 Recons_Acc:91.093750000	 Motif_Acc:0.984375000
+2020-12-31 21:51:39,844 - 
+===============================|    epoch 17   |===============================
+
+2020-12-31 21:51:41,630 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.600421906	 Recons_loss:0.106504738	 Motif_loss:0.077756368	 Total:0.122151650	 RL_Acc:0.375000000	 Recons_Acc:90.906250000	 Motif_Acc:0.996093750
+2020-12-31 21:54:28,979 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:1.849951744	 Recons_loss:0.100223996	 Motif_loss:0.149312600	 Total:0.217265889	 RL_Acc:0.343750000	 Recons_Acc:92.718750000	 Motif_Acc:0.992187500
+2020-12-31 21:57:16,858 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.249335021	 Recons_loss:0.103489444	 Motif_loss:0.041862063	 Total:0.085142508	 RL_Acc:0.500000000	 Recons_Acc:91.375000000	 Motif_Acc:1.000000000
+2020-12-31 22:00:03,067 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.231998920	 Recons_loss:0.111052245	 Motif_loss:0.151825055	 Total:0.143038601	 RL_Acc:0.406250000	 Recons_Acc:89.562500000	 Motif_Acc:0.992187500
+2020-12-31 22:02:48,158 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.318015873	 Recons_loss:0.104642734	 Motif_loss:0.209504396	 Total:0.172974348	 RL_Acc:0.343750000	 Recons_Acc:91.218750000	 Motif_Acc:0.996093750
+2020-12-31 22:05:32,248 - 
+===============================|    epoch 18   |===============================
+
+2020-12-31 22:05:34,053 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.349981606	 Recons_loss:0.103921123	 Motif_loss:0.081988379	 Total:0.110453829	 RL_Acc:0.406250000	 Recons_Acc:91.156250000	 Motif_Acc:1.000000000
+2020-12-31 22:08:19,356 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.348521292	 Recons_loss:0.104846790	 Motif_loss:0.070979081	 Total:0.105338998	 RL_Acc:0.343750000	 Recons_Acc:90.937500000	 Motif_Acc:0.996093750
+2020-12-31 22:11:04,500 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.0937500 	 lr: 0.000010000	 RL_loss:0.704958797	 Recons_loss:0.106342390	 Motif_loss:0.245928302	 Total:0.211383283	 RL_Acc:0.093750000	 Recons_Acc:91.187500000	 Motif_Acc:0.984375000
+2020-12-31 22:13:50,095 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.437962472	 Recons_loss:0.100211285	 Motif_loss:0.050848838	 Total:0.097428188	 RL_Acc:0.218750000	 Recons_Acc:92.250000000	 Motif_Acc:1.000000000
+2020-12-31 22:16:38,568 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.267715752	 Recons_loss:0.104507178	 Motif_loss:0.445279449	 Total:0.288279116	 RL_Acc:0.500000000	 Recons_Acc:91.562500000	 Motif_Acc:0.980468750
+2020-12-31 22:19:24,932 - 
+===============================|    epoch 19   |===============================
+
+2020-12-31 22:19:26,615 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.870610833	 Recons_loss:0.104466915	 Motif_loss:0.329392046	 Total:0.260460019	 RL_Acc:0.343750000	 Recons_Acc:91.562500000	 Motif_Acc:0.988281250
+2020-12-31 22:22:11,676 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.405694395	 Recons_loss:0.103409015	 Motif_loss:0.189723939	 Total:0.166851193	 RL_Acc:0.250000000	 Recons_Acc:90.875000000	 Motif_Acc:0.996093750
+2020-12-31 22:24:57,553 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.724770069	 Recons_loss:0.103241622	 Motif_loss:0.108776122	 Total:0.142247379	 RL_Acc:0.343750000	 Recons_Acc:91.437500000	 Motif_Acc:0.996093750
+2020-12-31 22:27:42,073 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.322093636	 Recons_loss:0.103918880	 Motif_loss:0.228248268	 Total:0.182188258	 RL_Acc:0.562500000	 Recons_Acc:91.656250000	 Motif_Acc:0.992187500
+2020-12-31 22:30:28,421 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.331459969	 Recons_loss:0.104624897	 Motif_loss:0.167622775	 Total:0.152696833	 RL_Acc:0.343750000	 Recons_Acc:91.812500000	 Motif_Acc:0.996093750
+2020-12-31 22:33:13,122 - 
+===============================|    epoch 20   |===============================
+
+2020-12-31 22:33:14,951 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.447567225	 Recons_loss:0.103148982	 Motif_loss:0.133355409	 Total:0.140630558	 RL_Acc:0.375000000	 Recons_Acc:92.093750000	 Motif_Acc:0.996093750
+2020-12-31 22:36:00,487 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:1.151261330	 Recons_loss:0.101340130	 Motif_loss:0.452223480	 Total:0.334344864	 RL_Acc:0.281250000	 Recons_Acc:92.156250000	 Motif_Acc:0.984375000
+2020-12-31 22:38:47,292 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.359879315	 Recons_loss:0.104997694	 Motif_loss:0.051204115	 Total:0.096094869	 RL_Acc:0.406250000	 Recons_Acc:91.250000000	 Motif_Acc:1.000000000
+2020-12-31 22:41:33,978 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.905655265	 Recons_loss:0.102080211	 Motif_loss:0.078047171	 Total:0.135346442	 RL_Acc:0.437500000	 Recons_Acc:92.281250000	 Motif_Acc:0.996093750
+2020-12-31 22:44:19,890 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.311171681	 Recons_loss:0.108407959	 Motif_loss:0.178026080	 Total:0.158775598	 RL_Acc:0.437500000	 Recons_Acc:90.750000000	 Motif_Acc:0.992187500
+2020-12-31 22:50:31,694 - 
+===============================| start validation |===============================
+
+2020-12-31 22:50:31,694 - 	 Avg_ACC: 0.3721964 	  RL_loss:0.5249411 	  Recons_loss:0.1043343 	  Motif_loss:0.1500894 	  Total:0.1534589 	  RL_Acc:0.3724092 	  Recons_Acc:91.4547063 	  Motif_Acc:0.9954997
+2020-12-31 22:50:31,697 -    ini file updated    
+2020-12-31 22:50:31,697 - 
+===============================|    epoch 21   |===============================
+
+2020-12-31 22:50:33,482 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.823627591	 Recons_loss:0.105122000	 Motif_loss:0.250914812	 Total:0.219199792	 RL_Acc:0.375000000	 Recons_Acc:90.812500000	 Motif_Acc:0.996093750
+2020-12-31 22:53:18,357 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:1.010132551	 Recons_loss:0.103462450	 Motif_loss:0.163169816	 Total:0.183822766	 RL_Acc:0.281250000	 Recons_Acc:91.343750000	 Motif_Acc:0.992187500
+2020-12-31 22:56:05,395 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.285174012	 Recons_loss:0.104935154	 Motif_loss:0.154653057	 Total:0.144052804	 RL_Acc:0.406250000	 Recons_Acc:91.406250000	 Motif_Acc:0.996093750
+2020-12-31 22:58:52,630 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.673334837	 Recons_loss:0.106063761	 Motif_loss:0.100292124	 Total:0.136844680	 RL_Acc:0.281250000	 Recons_Acc:90.906250000	 Motif_Acc:0.996093750
+2020-12-31 23:01:38,672 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.239530653	 Recons_loss:0.102846563	 Motif_loss:0.187019914	 Total:0.156909764	 RL_Acc:0.406250000	 Recons_Acc:91.656250000	 Motif_Acc:0.996093750
+2020-12-31 23:04:23,788 - 
+===============================|    epoch 22   |===============================
+
+2020-12-31 23:04:25,514 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.515394688	 Recons_loss:0.107441992	 Motif_loss:0.077942975	 Total:0.118462220	 RL_Acc:0.562500000	 Recons_Acc:90.781250000	 Motif_Acc:0.996093750
+2020-12-31 23:07:12,646 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.700279236	 Recons_loss:0.108394377	 Motif_loss:0.185189262	 Total:0.181805789	 RL_Acc:0.218750000	 Recons_Acc:89.593750000	 Motif_Acc:0.992187500
+2020-12-31 23:09:57,836 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:1.084493518	 Recons_loss:0.104646564	 Motif_loss:0.056500323	 Total:0.134798124	 RL_Acc:0.281250000	 Recons_Acc:91.187500000	 Motif_Acc:1.000000000
+2020-12-31 23:12:43,091 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.685669899	 Recons_loss:0.100115024	 Motif_loss:0.030997116	 Total:0.099839568	 RL_Acc:0.250000000	 Recons_Acc:92.031250000	 Motif_Acc:1.000000000
+2020-12-31 23:15:28,642 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.306871980	 Recons_loss:0.102724254	 Motif_loss:0.373251289	 Total:0.253331363	 RL_Acc:0.343750000	 Recons_Acc:91.781250000	 Motif_Acc:0.992187500
+2020-12-31 23:18:13,123 - 
+===============================|    epoch 23   |===============================
+
+2020-12-31 23:18:15,020 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:0.389700651	 Recons_loss:0.106832102	 Motif_loss:0.168299481	 Total:0.157050818	 RL_Acc:0.187500000	 Recons_Acc:90.000000000	 Motif_Acc:0.996093750
+2020-12-31 23:20:59,595 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.528537571	 Recons_loss:0.106326163	 Motif_loss:0.087287523	 Total:0.123233721	 RL_Acc:0.437500000	 Recons_Acc:91.437500000	 Motif_Acc:0.996093750
+2020-12-31 23:23:43,721 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.362630546	 Recons_loss:0.105598360	 Motif_loss:0.098363914	 Total:0.120112665	 RL_Acc:0.406250000	 Recons_Acc:90.937500000	 Motif_Acc:0.996093750
+2020-12-31 23:26:31,063 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.577638149	 Recons_loss:0.104152784	 Motif_loss:0.091420032	 Total:0.126668304	 RL_Acc:0.312500000	 Recons_Acc:91.406250000	 Motif_Acc:0.992187500
+2020-12-31 23:29:16,215 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.584929824	 Recons_loss:0.102935106	 Motif_loss:0.288112491	 Total:0.224770293	 RL_Acc:0.437500000	 Recons_Acc:91.406250000	 Motif_Acc:0.992187500
+2020-12-31 23:32:01,088 - 
+===============================|    epoch 24   |===============================
+
+2020-12-31 23:32:02,772 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.563377559	 Recons_loss:0.104914546	 Motif_loss:0.091909692	 Total:0.126580998	 RL_Acc:0.500000000	 Recons_Acc:91.500000000	 Motif_Acc:1.000000000
+2020-12-31 23:34:46,960 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.657617748	 Recons_loss:0.103523403	 Motif_loss:0.126551643	 Total:0.147918403	 RL_Acc:0.312500000	 Recons_Acc:91.562500000	 Motif_Acc:0.992187500
+2020-12-31 23:37:32,201 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.695128202	 Recons_loss:0.102256298	 Motif_loss:0.043654710	 Total:0.107711911	 RL_Acc:0.375000000	 Recons_Acc:91.718750000	 Motif_Acc:1.000000000
+2020-12-31 23:40:18,835 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.394314855	 Recons_loss:0.102118179	 Motif_loss:0.230787873	 Total:0.186168760	 RL_Acc:0.437500000	 Recons_Acc:91.750000000	 Motif_Acc:0.988281250
+2020-12-31 23:43:03,946 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.711785316	 Recons_loss:0.106096722	 Motif_loss:0.075276002	 Total:0.126275629	 RL_Acc:0.375000000	 Recons_Acc:90.843750000	 Motif_Acc:1.000000000
+2020-12-31 23:45:48,277 - 
+===============================|    epoch 25   |===============================
+
+2020-12-31 23:45:50,058 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.391803652	 Recons_loss:0.106069796	 Motif_loss:0.194760889	 Total:0.170005530	 RL_Acc:0.500000000	 Recons_Acc:90.187500000	 Motif_Acc:0.992187500
+2020-12-31 23:48:35,625 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.227786228	 Recons_loss:0.103543028	 Motif_loss:0.212723941	 Total:0.169522792	 RL_Acc:0.531250000	 Recons_Acc:91.093750000	 Motif_Acc:0.984375000
+2020-12-31 23:51:23,986 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.544841230	 Recons_loss:0.102964006	 Motif_loss:0.096986912	 Total:0.127217516	 RL_Acc:0.406250000	 Recons_Acc:91.781250000	 Motif_Acc:0.992187500
+2020-12-31 23:54:09,729 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.373972952	 Recons_loss:0.102578104	 Motif_loss:0.045399688	 Total:0.092687547	 RL_Acc:0.531250000	 Recons_Acc:90.937500000	 Motif_Acc:1.000000000
+2020-12-31 23:56:56,151 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.447860241	 Recons_loss:0.104797162	 Motif_loss:0.104551837	 Total:0.127067506	 RL_Acc:0.375000000	 Recons_Acc:90.937500000	 Motif_Acc:0.996093750
+2020-12-31 23:59:41,498 - 
+===============================|    epoch 26   |===============================
+
+2020-12-31 23:59:43,193 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.293977857	 Recons_loss:0.103556633	 Motif_loss:0.165058091	 Total:0.149006248	 RL_Acc:0.343750000	 Recons_Acc:91.312500000	 Motif_Acc:0.996093750
+2021-01-01 00:02:29,901 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.537610352	 Recons_loss:0.101777717	 Motif_loss:0.272971302	 Total:0.214255035	 RL_Acc:0.406250000	 Recons_Acc:91.687500000	 Motif_Acc:0.996093750
+2021-01-01 00:05:17,280 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.461644202	 Recons_loss:0.105277687	 Motif_loss:0.152685419	 Total:0.152063757	 RL_Acc:0.406250000	 Recons_Acc:91.718750000	 Motif_Acc:0.996093750
+2021-01-01 00:08:02,893 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.477353424	 Recons_loss:0.101376154	 Motif_loss:0.124600269	 Total:0.136855885	 RL_Acc:0.468750000	 Recons_Acc:91.906250000	 Motif_Acc:0.996093750
+2021-01-01 00:10:49,333 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.425036192	 Recons_loss:0.101530448	 Motif_loss:0.070721097	 Total:0.107377581	 RL_Acc:0.343750000	 Recons_Acc:92.593750000	 Motif_Acc:1.000000000
+2021-01-01 00:13:35,528 - 
+===============================|    epoch 27   |===============================
+
+2021-01-01 00:13:37,287 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.431971967	 Recons_loss:0.108200863	 Motif_loss:0.154489711	 Total:0.152943879	 RL_Acc:0.406250000	 Recons_Acc:90.843750000	 Motif_Acc:0.992187500
+2021-01-01 00:16:21,816 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.629846096	 Recons_loss:0.105337813	 Motif_loss:0.228357598	 Total:0.198339999	 RL_Acc:0.468750000	 Recons_Acc:91.031250000	 Motif_Acc:0.992187500
+2021-01-01 00:19:07,097 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.494310737	 Recons_loss:0.105219424	 Motif_loss:0.060794145	 Total:0.107722320	 RL_Acc:0.312500000	 Recons_Acc:91.156250000	 Motif_Acc:1.000000000
+2021-01-01 00:21:51,776 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.450520337	 Recons_loss:0.103991687	 Motif_loss:0.042952821	 Total:0.095998272	 RL_Acc:0.406250000	 Recons_Acc:91.812500000	 Motif_Acc:1.000000000
+2021-01-01 00:24:37,683 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.1562500 	 lr: 0.000010000	 RL_loss:1.050150275	 Recons_loss:0.101217195	 Motif_loss:0.210518792	 Total:0.208375514	 RL_Acc:0.156250000	 Recons_Acc:92.375000000	 Motif_Acc:0.992187500
+2021-01-01 00:27:24,239 - 
+===============================|    epoch 28   |===============================
+
+2021-01-01 00:27:25,954 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.436847746	 Recons_loss:0.103644356	 Motif_loss:0.069512233	 Total:0.108420685	 RL_Acc:0.406250000	 Recons_Acc:91.781250000	 Motif_Acc:0.996093750
+2021-01-01 00:30:11,187 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.811217785	 Recons_loss:0.102099270	 Motif_loss:0.097576380	 Total:0.140398711	 RL_Acc:0.281250000	 Recons_Acc:92.281250000	 Motif_Acc:0.996093750
+2021-01-01 00:32:55,556 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.290105373	 Recons_loss:0.102140509	 Motif_loss:0.153894186	 Total:0.142522618	 RL_Acc:0.562500000	 Recons_Acc:92.375000000	 Motif_Acc:0.992187500
+2021-01-01 00:35:42,490 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.289577544	 Recons_loss:0.103544116	 Motif_loss:0.391834348	 Total:0.262168109	 RL_Acc:0.437500000	 Recons_Acc:92.250000000	 Motif_Acc:0.984375000
+2021-01-01 00:38:28,544 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.288218737	 Recons_loss:0.102948308	 Motif_loss:0.105136022	 Total:0.118453100	 RL_Acc:0.406250000	 Recons_Acc:91.437500000	 Motif_Acc:0.992187500
+2021-01-01 00:41:14,565 - 
+===============================|    epoch 29   |===============================
+
+2021-01-01 00:41:16,266 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.380267978	 Recons_loss:0.103010759	 Motif_loss:0.185870856	 Total:0.163454205	 RL_Acc:0.406250000	 Recons_Acc:91.687500000	 Motif_Acc:0.992187500
+2021-01-01 00:44:01,433 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.820926666	 Recons_loss:0.104882590	 Motif_loss:0.080523580	 Total:0.133749425	 RL_Acc:0.250000000	 Recons_Acc:91.406250000	 Motif_Acc:1.000000000
+2021-01-01 00:46:47,274 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.204854995	 Recons_loss:0.107609876	 Motif_loss:0.065174982	 Total:0.096635178	 RL_Acc:0.500000000	 Recons_Acc:90.250000000	 Motif_Acc:0.996093750
+2021-01-01 00:49:32,681 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.520084977	 Recons_loss:0.099953398	 Motif_loss:0.102666311	 Total:0.127314106	 RL_Acc:0.312500000	 Recons_Acc:92.437500000	 Motif_Acc:0.996093750
+2021-01-01 00:52:17,719 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.478559136	 Recons_loss:0.102466628	 Motif_loss:0.338192672	 Total:0.244257599	 RL_Acc:0.343750000	 Recons_Acc:92.250000000	 Motif_Acc:0.992187500
+2021-01-01 00:55:03,008 - 
+===============================|    epoch 30   |===============================
+
+2021-01-01 00:55:04,762 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.419118732	 Recons_loss:0.106884710	 Motif_loss:0.176690638	 Total:0.162743613	 RL_Acc:0.343750000	 Recons_Acc:90.593750000	 Motif_Acc:0.992187500
+2021-01-01 00:57:49,679 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.573437572	 Recons_loss:0.104137607	 Motif_loss:0.146454826	 Total:0.153968096	 RL_Acc:0.343750000	 Recons_Acc:91.718750000	 Motif_Acc:0.992187500
+2021-01-01 01:00:36,959 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.522207677	 Recons_loss:0.099955097	 Motif_loss:0.065244026	 Total:0.108709946	 RL_Acc:0.343750000	 Recons_Acc:92.656250000	 Motif_Acc:0.996093750
+2021-01-01 01:03:22,786 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.224317163	 Recons_loss:0.107799292	 Motif_loss:0.437279642	 Total:0.283755332	 RL_Acc:0.406250000	 Recons_Acc:90.437500000	 Motif_Acc:0.984375000
+2021-01-01 01:06:10,580 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:1.017336488	 Recons_loss:0.103496768	 Motif_loss:0.192772701	 Total:0.199001551	 RL_Acc:0.375000000	 Recons_Acc:91.250000000	 Motif_Acc:0.996093750
+2021-01-01 01:12:22,773 - 
+===============================| start validation |===============================
+
+2021-01-01 01:12:22,774 - 	 Avg_ACC: 0.3750536 	  RL_loss:0.5190549 	  Recons_loss:0.1044093 	  Motif_loss:0.1491780 	  Total:0.1527464 	  RL_Acc:0.3752680 	  Recons_Acc:91.4380182 	  Motif_Acc:0.9956046
+2021-01-01 01:12:22,775 -    ini file updated    
+2021-01-01 01:12:22,776 - 
+===============================|    epoch 31   |===============================
+
+2021-01-01 01:12:24,566 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:1.433473110	 Recons_loss:0.104087561	 Motif_loss:0.081797749	 Total:0.164616317	 RL_Acc:0.406250000	 Recons_Acc:91.656250000	 Motif_Acc:0.996093750
+2021-01-01 01:15:10,143 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.833335876	 Recons_loss:0.101539671	 Motif_loss:0.165519908	 Total:0.175196588	 RL_Acc:0.218750000	 Recons_Acc:92.500000000	 Motif_Acc:0.996093750
+2021-01-01 01:17:56,638 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.256803244	 Recons_loss:0.105235137	 Motif_loss:0.165218145	 Total:0.148066804	 RL_Acc:0.406250000	 Recons_Acc:91.437500000	 Motif_Acc:0.996093750
+2021-01-01 01:20:44,769 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.497979134	 Recons_loss:0.105244435	 Motif_loss:0.128797621	 Total:0.141919985	 RL_Acc:0.312500000	 Recons_Acc:91.500000000	 Motif_Acc:0.996093750
+2021-01-01 01:23:29,339 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.704995096	 Recons_loss:0.101551458	 Motif_loss:0.050265271	 Total:0.111158118	 RL_Acc:0.375000000	 Recons_Acc:92.156250000	 Motif_Acc:1.000000000
+2021-01-01 01:26:14,351 - 
+===============================|    epoch 32   |===============================
+
+2021-01-01 01:26:16,188 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.222560957	 Recons_loss:0.105092570	 Motif_loss:0.115162767	 Total:0.121255718	 RL_Acc:0.562500000	 Recons_Acc:91.562500000	 Motif_Acc:0.996093750
+2021-01-01 01:29:02,510 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.210981593	 Recons_loss:0.103774503	 Motif_loss:0.392273068	 Total:0.258572876	 RL_Acc:0.437500000	 Recons_Acc:91.750000000	 Motif_Acc:0.976562500
+2021-01-01 01:31:46,620 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.562529027	 Recons_loss:0.101100184	 Motif_loss:0.177825809	 Total:0.167589441	 RL_Acc:0.312500000	 Recons_Acc:92.375000000	 Motif_Acc:0.988281250
+2021-01-01 01:34:31,986 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.267553866	 Recons_loss:0.106659159	 Motif_loss:0.186061502	 Total:0.159738034	 RL_Acc:0.468750000	 Recons_Acc:90.937500000	 Motif_Acc:0.988281250
+2021-01-01 01:37:19,348 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:1.068218112	 Recons_loss:0.106201120	 Motif_loss:0.256524235	 Total:0.234773576	 RL_Acc:0.437500000	 Recons_Acc:90.937500000	 Motif_Acc:0.992187500
+2021-01-01 01:40:05,285 - 
+===============================|    epoch 33   |===============================
+
+2021-01-01 01:40:06,996 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.453693926	 Recons_loss:0.101369843	 Motif_loss:0.185916886	 Total:0.166328073	 RL_Acc:0.375000000	 Recons_Acc:92.187500000	 Motif_Acc:0.992187500
+2021-01-01 01:42:52,305 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.287854463	 Recons_loss:0.102826163	 Motif_loss:0.158441514	 Total:0.145026565	 RL_Acc:0.312500000	 Recons_Acc:91.812500000	 Motif_Acc:0.996093750
+2021-01-01 01:45:36,789 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.464843363	 Recons_loss:0.105539776	 Motif_loss:0.086155832	 Total:0.119089976	 RL_Acc:0.312500000	 Recons_Acc:91.218750000	 Motif_Acc:1.000000000
+2021-01-01 01:48:22,301 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.329340458	 Recons_loss:0.104058251	 Motif_loss:0.230168805	 Total:0.183580548	 RL_Acc:0.500000000	 Recons_Acc:91.437500000	 Motif_Acc:0.996093750
+2021-01-01 01:51:08,866 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.305024505	 Recons_loss:0.099684335	 Motif_loss:0.133157402	 Total:0.131672099	 RL_Acc:0.406250000	 Recons_Acc:92.437500000	 Motif_Acc:0.996093750
+2021-01-01 01:53:54,722 - 
+===============================|    epoch 34   |===============================
+
+2021-01-01 01:53:56,481 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.474272847	 Recons_loss:0.102252960	 Motif_loss:0.107156843	 Total:0.128418535	 RL_Acc:0.375000000	 Recons_Acc:92.125000000	 Motif_Acc:0.996093750
+2021-01-01 01:56:42,942 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.815154910	 Recons_loss:0.101388462	 Motif_loss:0.084143005	 Total:0.133523479	 RL_Acc:0.343750000	 Recons_Acc:92.093750000	 Motif_Acc:0.996093750
+2021-01-01 01:59:26,849 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.402333796	 Recons_loss:0.102522276	 Motif_loss:0.305646479	 Total:0.224201068	 RL_Acc:0.500000000	 Recons_Acc:91.125000000	 Motif_Acc:0.988281250
+2021-01-01 02:02:11,615 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.671697617	 Recons_loss:0.103528813	 Motif_loss:0.277671158	 Total:0.224184871	 RL_Acc:0.250000000	 Recons_Acc:91.468750000	 Motif_Acc:0.984375000
+2021-01-01 02:04:58,256 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.561413467	 Recons_loss:0.105428964	 Motif_loss:0.114905410	 Total:0.138237864	 RL_Acc:0.250000000	 Recons_Acc:91.218750000	 Motif_Acc:1.000000000
+2021-01-01 02:07:45,811 - 
+===============================|    epoch 35   |===============================
+
+2021-01-01 02:07:47,539 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.471464217	 Recons_loss:0.109390564	 Motif_loss:0.048579585	 Total:0.102558285	 RL_Acc:0.312500000	 Recons_Acc:90.218750000	 Motif_Acc:1.000000000
+2021-01-01 02:10:32,292 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.547009110	 Recons_loss:0.104896843	 Motif_loss:0.231973276	 Total:0.195785522	 RL_Acc:0.468750000	 Recons_Acc:91.343750000	 Motif_Acc:0.992187500
+2021-01-01 02:13:18,045 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.329851508	 Recons_loss:0.104482763	 Motif_loss:0.097819500	 Total:0.117643714	 RL_Acc:0.375000000	 Recons_Acc:91.031250000	 Motif_Acc:0.996093750
+2021-01-01 02:16:02,815 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.564217329	 Recons_loss:0.101845324	 Motif_loss:0.144589096	 Total:0.151428074	 RL_Acc:0.281250000	 Recons_Acc:92.156250000	 Motif_Acc:0.996093750
+2021-01-01 02:18:48,062 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.303339601	 Recons_loss:0.103960007	 Motif_loss:0.078076407	 Total:0.106185183	 RL_Acc:0.531250000	 Recons_Acc:91.562500000	 Motif_Acc:0.996093750
+2021-01-01 02:21:33,176 - 
+===============================|    epoch 36   |===============================
+
+2021-01-01 02:21:35,030 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.345536292	 Recons_loss:0.103476390	 Motif_loss:0.046115443	 Total:0.092072733	 RL_Acc:0.375000000	 Recons_Acc:91.281250000	 Motif_Acc:1.000000000
+2021-01-01 02:24:20,768 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.305958331	 Recons_loss:0.102909707	 Motif_loss:0.038976334	 Total:0.086240932	 RL_Acc:0.500000000	 Recons_Acc:91.906250000	 Motif_Acc:1.000000000
+2021-01-01 02:27:05,381 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.478221416	 Recons_loss:0.105794929	 Motif_loss:0.045204379	 Total:0.099410728	 RL_Acc:0.343750000	 Recons_Acc:90.593750000	 Motif_Acc:1.000000000
+2021-01-01 02:29:50,757 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.838285625	 Recons_loss:0.103276253	 Motif_loss:0.237733543	 Total:0.212419182	 RL_Acc:0.437500000	 Recons_Acc:91.937500000	 Motif_Acc:0.988281250
+2021-01-01 02:32:38,272 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.284418106	 Recons_loss:0.106342547	 Motif_loss:0.259273767	 Total:0.197029069	 RL_Acc:0.406250000	 Recons_Acc:90.500000000	 Motif_Acc:0.988281250
+2021-01-01 02:35:23,254 - 
+===============================|    epoch 37   |===============================
+
+2021-01-01 02:35:24,956 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.689164639	 Recons_loss:0.107553832	 Motif_loss:0.075612739	 Total:0.126041517	 RL_Acc:0.281250000	 Recons_Acc:90.781250000	 Motif_Acc:1.000000000
+2021-01-01 02:38:09,482 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.453077435	 Recons_loss:0.103288561	 Motif_loss:0.036900438	 Total:0.092748374	 RL_Acc:0.343750000	 Recons_Acc:91.312500000	 Motif_Acc:1.000000000
+2021-01-01 02:40:54,444 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.287992358	 Recons_loss:0.108736932	 Motif_loss:0.084430128	 Total:0.110983148	 RL_Acc:0.375000000	 Recons_Acc:90.312500000	 Motif_Acc:0.996093750
+2021-01-01 02:43:39,374 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.483314812	 Recons_loss:0.106904790	 Motif_loss:0.126100630	 Total:0.140668452	 RL_Acc:0.500000000	 Recons_Acc:90.562500000	 Motif_Acc:0.988281250
+2021-01-01 02:46:25,968 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.666221201	 Recons_loss:0.102381319	 Motif_loss:0.234190032	 Total:0.201596737	 RL_Acc:0.281250000	 Recons_Acc:92.000000000	 Motif_Acc:0.996093750
+2021-01-01 02:49:10,245 - 
+===============================|    epoch 38   |===============================
+
+2021-01-01 02:49:11,962 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000010000	 RL_loss:0.259522110	 Recons_loss:0.102812663	 Motif_loss:0.190663427	 Total:0.159714147	 RL_Acc:0.562500000	 Recons_Acc:91.718750000	 Motif_Acc:0.992187500
+2021-01-01 02:51:58,637 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.350531399	 Recons_loss:0.102249101	 Motif_loss:0.045449153	 Total:0.091375694	 RL_Acc:0.531250000	 Recons_Acc:91.781250000	 Motif_Acc:1.000000000
+2021-01-01 02:54:43,150 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.294586003	 Recons_loss:0.103028893	 Motif_loss:0.131440625	 Total:0.131964058	 RL_Acc:0.468750000	 Recons_Acc:91.937500000	 Motif_Acc:0.996093750
+2021-01-01 02:57:27,693 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.623311877	 Recons_loss:0.104978308	 Motif_loss:0.078820735	 Total:0.123065114	 RL_Acc:0.312500000	 Recons_Acc:91.312500000	 Motif_Acc:1.000000000
+2021-01-01 03:00:14,964 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.566989660	 Recons_loss:0.101908594	 Motif_loss:0.080571666	 Total:0.119589612	 RL_Acc:0.406250000	 Recons_Acc:91.781250000	 Motif_Acc:1.000000000
+2021-01-01 03:03:00,527 - 
+===============================|    epoch 39   |===============================
+
+2021-01-01 03:03:02,378 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.210752532	 Recons_loss:0.100882232	 Motif_loss:0.207173213	 Total:0.164565355	 RL_Acc:0.437500000	 Recons_Acc:92.281250000	 Motif_Acc:0.992187500
+2021-01-01 03:05:48,780 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.396028668	 Recons_loss:0.103143483	 Motif_loss:0.217224419	 Total:0.179985389	 RL_Acc:0.312500000	 Recons_Acc:91.218750000	 Motif_Acc:0.984375000
+2021-01-01 03:08:35,469 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.567290843	 Recons_loss:0.105805457	 Motif_loss:0.132992744	 Total:0.147763640	 RL_Acc:0.218750000	 Recons_Acc:91.250000000	 Motif_Acc:0.992187500
+2021-01-01 03:11:21,469 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.204862908	 Recons_loss:0.103845775	 Motif_loss:0.324421406	 Total:0.224376738	 RL_Acc:0.437500000	 Recons_Acc:92.218750000	 Motif_Acc:0.976562500
+2021-01-01 03:14:07,632 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.364279270	 Recons_loss:0.104132712	 Motif_loss:0.054501846	 Total:0.097531244	 RL_Acc:0.437500000	 Recons_Acc:91.625000000	 Motif_Acc:1.000000000
+2021-01-01 03:16:52,960 - 
+===============================|    epoch 40   |===============================
+
+2021-01-01 03:16:54,727 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.364157617	 Recons_loss:0.102210388	 Motif_loss:0.174834028	 Total:0.156730086	 RL_Acc:0.312500000	 Recons_Acc:91.843750000	 Motif_Acc:0.996093750
+2021-01-01 03:19:40,729 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.343423486	 Recons_loss:0.103208296	 Motif_loss:0.065678120	 Total:0.101614386	 RL_Acc:0.437500000	 Recons_Acc:91.468750000	 Motif_Acc:1.000000000
+2021-01-01 03:22:25,856 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.474191844	 Recons_loss:0.104832344	 Motif_loss:0.103316844	 Total:0.127784193	 RL_Acc:0.343750000	 Recons_Acc:90.812500000	 Motif_Acc:0.996093750
+2021-01-01 03:25:11,720 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.637037456	 Recons_loss:0.102389917	 Motif_loss:0.035921603	 Total:0.101007633	 RL_Acc:0.281250000	 Recons_Acc:91.906250000	 Motif_Acc:1.000000000
+2021-01-01 03:27:57,104 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.422524065	 Recons_loss:0.102653489	 Motif_loss:0.301653981	 Total:0.223279953	 RL_Acc:0.312500000	 Recons_Acc:91.375000000	 Motif_Acc:0.992187500
+2021-01-01 03:34:08,844 - 
+===============================| start validation |===============================
+
+2021-01-01 03:34:08,844 - 	 Avg_ACC: 0.3730357 	  RL_loss:0.5275491 	  Recons_loss:0.1042478 	  Motif_loss:0.1499974 	  Total:0.1535001 	  RL_Acc:0.3732490 	  Recons_Acc:91.4830975 	  Motif_Acc:0.9956582
+2021-01-01 03:34:08,846 -    ini file updated    
+2021-01-01 03:34:08,846 - 
+===============================|    epoch 41   |===============================
+
+2021-01-01 03:34:10,656 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.582342625	 Recons_loss:0.103371121	 Motif_loss:0.240178570	 Total:0.200891972	 RL_Acc:0.312500000	 Recons_Acc:91.593750000	 Motif_Acc:0.992187500
+2021-01-01 03:36:57,016 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.806132734	 Recons_loss:0.105015963	 Motif_loss:0.200474650	 Total:0.193051949	 RL_Acc:0.250000000	 Recons_Acc:91.281250000	 Motif_Acc:0.996093750
+2021-01-01 03:39:41,119 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.297431558	 Recons_loss:0.108767129	 Motif_loss:0.127624124	 Total:0.133067206	 RL_Acc:0.281250000	 Recons_Acc:90.000000000	 Motif_Acc:0.996093750
+2021-01-01 03:42:26,426 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.334728122	 Recons_loss:0.107883044	 Motif_loss:0.257970691	 Total:0.199663267	 RL_Acc:0.500000000	 Recons_Acc:90.906250000	 Motif_Acc:0.992187500
+2021-01-01 03:45:12,811 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.393585742	 Recons_loss:0.107594937	 Motif_loss:0.175435826	 Total:0.161194667	 RL_Acc:0.468750000	 Recons_Acc:90.500000000	 Motif_Acc:0.988281250
+2021-01-01 03:48:00,024 - 
+===============================|    epoch 42   |===============================
+
+2021-01-01 03:48:01,728 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.399764895	 Recons_loss:0.103199244	 Motif_loss:0.266820163	 Total:0.204997942	 RL_Acc:0.343750000	 Recons_Acc:91.406250000	 Motif_Acc:0.996093750
+2021-01-01 03:50:47,022 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.446159780	 Recons_loss:0.104537681	 Motif_loss:0.142071545	 Total:0.145612597	 RL_Acc:0.406250000	 Recons_Acc:91.437500000	 Motif_Acc:1.000000000
+2021-01-01 03:53:31,835 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.396902174	 Recons_loss:0.108569875	 Motif_loss:0.108022273	 Total:0.128141195	 RL_Acc:0.500000000	 Recons_Acc:89.343750000	 Motif_Acc:1.000000000
+2021-01-01 03:56:17,665 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.718692064	 Recons_loss:0.105176836	 Motif_loss:0.285662770	 Total:0.231354401	 RL_Acc:0.312500000	 Recons_Acc:91.000000000	 Motif_Acc:0.992187500
+2021-01-01 03:59:03,286 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5937500 	 lr: 0.000010000	 RL_loss:0.247774854	 Recons_loss:0.100191146	 Motif_loss:0.194988966	 Total:0.159978807	 RL_Acc:0.593750000	 Recons_Acc:92.625000000	 Motif_Acc:0.996093750
+2021-01-01 04:01:49,817 - 
+===============================|    epoch 43   |===============================
+
+2021-01-01 04:01:51,568 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.289936483	 Recons_loss:0.104273051	 Motif_loss:0.113058574	 Total:0.123162635	 RL_Acc:0.531250000	 Recons_Acc:91.281250000	 Motif_Acc:0.996093750
+2021-01-01 04:04:36,614 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.419758379	 Recons_loss:0.108410925	 Motif_loss:0.092868112	 Total:0.121627435	 RL_Acc:0.375000000	 Recons_Acc:90.375000000	 Motif_Acc:0.996093750
+2021-01-01 04:07:22,365 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.438847482	 Recons_loss:0.104520120	 Motif_loss:0.225357115	 Total:0.186880991	 RL_Acc:0.375000000	 Recons_Acc:91.562500000	 Motif_Acc:0.996093750
+2021-01-01 04:10:09,053 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.320231795	 Recons_loss:0.101770230	 Motif_loss:0.069932014	 Total:0.101862714	 RL_Acc:0.406250000	 Recons_Acc:92.218750000	 Motif_Acc:1.000000000
+2021-01-01 04:12:55,157 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.252446949	 Recons_loss:0.105906561	 Motif_loss:0.077174112	 Total:0.104162686	 RL_Acc:0.437500000	 Recons_Acc:90.812500000	 Motif_Acc:1.000000000
+2021-01-01 04:15:41,345 - 
+===============================|    epoch 44   |===============================
+
+2021-01-01 04:15:43,027 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:1.209510446	 Recons_loss:0.104864702	 Motif_loss:0.152725264	 Total:0.189270496	 RL_Acc:0.312500000	 Recons_Acc:91.343750000	 Motif_Acc:0.988281250
+2021-01-01 04:18:29,497 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.525857210	 Recons_loss:0.110897064	 Motif_loss:0.028115733	 Total:0.095799260	 RL_Acc:0.468750000	 Recons_Acc:89.437500000	 Motif_Acc:1.000000000
+2021-01-01 04:21:14,464 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.264177561	 Recons_loss:0.106879950	 Motif_loss:0.099387936	 Total:0.116342820	 RL_Acc:0.500000000	 Recons_Acc:91.250000000	 Motif_Acc:0.996093750
+2021-01-01 04:24:00,034 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.327536553	 Recons_loss:0.103513949	 Motif_loss:0.147968426	 Total:0.142118022	 RL_Acc:0.375000000	 Recons_Acc:91.656250000	 Motif_Acc:0.996093750
+2021-01-01 04:26:45,052 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.487827599	 Recons_loss:0.105008900	 Motif_loss:0.397228360	 Total:0.275510013	 RL_Acc:0.343750000	 Recons_Acc:91.218750000	 Motif_Acc:0.984375000
+2021-01-01 04:29:32,294 - 
+===============================|    epoch 45   |===============================
+
+2021-01-01 04:29:34,096 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.353602052	 Recons_loss:0.103834949	 Motif_loss:0.302605450	 Total:0.220900312	 RL_Acc:0.468750000	 Recons_Acc:91.281250000	 Motif_Acc:0.988281250
+2021-01-01 04:32:19,311 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5937500 	 lr: 0.000010000	 RL_loss:0.237033680	 Recons_loss:0.107920408	 Motif_loss:0.062252127	 Total:0.096937954	 RL_Acc:0.593750000	 Recons_Acc:90.843750000	 Motif_Acc:1.000000000
+2021-01-01 04:35:05,490 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.316656590	 Recons_loss:0.107009485	 Motif_loss:0.103817455	 Total:0.121246301	 RL_Acc:0.500000000	 Recons_Acc:91.062500000	 Motif_Acc:1.000000000
+2021-01-01 04:37:50,628 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.607483804	 Recons_loss:0.106903657	 Motif_loss:0.101130210	 Total:0.134391129	 RL_Acc:0.250000000	 Recons_Acc:90.843750000	 Motif_Acc:0.996093750
+2021-01-01 04:40:36,511 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.553764224	 Recons_loss:0.102871209	 Motif_loss:0.059737358	 Total:0.108992495	 RL_Acc:0.343750000	 Recons_Acc:91.781250000	 Motif_Acc:1.000000000
+2021-01-01 04:43:24,497 - 
+===============================|    epoch 46   |===============================
+
+2021-01-01 04:43:26,217 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.664272130	 Recons_loss:0.103304103	 Motif_loss:0.199478388	 Total:0.184604853	 RL_Acc:0.375000000	 Recons_Acc:91.000000000	 Motif_Acc:0.992187500
+2021-01-01 04:46:11,918 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.445738733	 Recons_loss:0.103650019	 Motif_loss:0.403346121	 Total:0.275784999	 RL_Acc:0.375000000	 Recons_Acc:91.187500000	 Motif_Acc:0.984375000
+2021-01-01 04:48:57,460 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.286912560	 Recons_loss:0.100520164	 Motif_loss:0.367917418	 Total:0.248564422	 RL_Acc:0.406250000	 Recons_Acc:92.187500000	 Motif_Acc:0.988281250
+2021-01-01 04:51:42,927 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:0.546356678	 Recons_loss:0.105742350	 Motif_loss:0.134871200	 Total:0.147624612	 RL_Acc:0.187500000	 Recons_Acc:91.125000000	 Motif_Acc:0.996093750
+2021-01-01 04:54:29,512 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.255071998	 Recons_loss:0.103505164	 Motif_loss:0.040796980	 Total:0.084904671	 RL_Acc:0.437500000	 Recons_Acc:91.250000000	 Motif_Acc:1.000000000
+2021-01-01 04:57:14,694 - 
+===============================|    epoch 47   |===============================
+
+2021-01-01 04:57:16,406 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.539858103	 Recons_loss:0.104909733	 Motif_loss:0.035453804	 Total:0.097174674	 RL_Acc:0.281250000	 Recons_Acc:91.187500000	 Motif_Acc:1.000000000
+2021-01-01 05:00:03,597 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:0.799349308	 Recons_loss:0.105379187	 Motif_loss:0.119203895	 Total:0.152259007	 RL_Acc:0.187500000	 Recons_Acc:91.031250000	 Motif_Acc:1.000000000
+2021-01-01 05:02:50,125 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.499642432	 Recons_loss:0.101076618	 Motif_loss:0.077596381	 Total:0.114318624	 RL_Acc:0.343750000	 Recons_Acc:91.312500000	 Motif_Acc:1.000000000
+2021-01-01 05:05:37,290 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.380911827	 Recons_loss:0.101675287	 Motif_loss:0.097858176	 Total:0.118812323	 RL_Acc:0.375000000	 Recons_Acc:91.875000000	 Motif_Acc:0.996093750
+2021-01-01 05:08:23,306 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.1562500 	 lr: 0.000010000	 RL_loss:0.646717072	 Recons_loss:0.102207258	 Motif_loss:0.062606364	 Total:0.114742666	 RL_Acc:0.156250000	 Recons_Acc:91.625000000	 Motif_Acc:0.996093750
+2021-01-01 05:11:09,262 - 
+===============================|    epoch 48   |===============================
+
+2021-01-01 05:11:10,892 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.340699941	 Recons_loss:0.107061908	 Motif_loss:0.202201813	 Total:0.171666861	 RL_Acc:0.468750000	 Recons_Acc:91.593750000	 Motif_Acc:0.992187500
+2021-01-01 05:13:57,067 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.372690499	 Recons_loss:0.102814540	 Motif_loss:0.110452853	 Total:0.125268221	 RL_Acc:0.375000000	 Recons_Acc:91.500000000	 Motif_Acc:0.992187500
+2021-01-01 05:16:41,944 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.776834249	 Recons_loss:0.109265879	 Motif_loss:0.166425303	 Total:0.176687300	 RL_Acc:0.375000000	 Recons_Acc:90.125000000	 Motif_Acc:0.988281250
+2021-01-01 05:19:28,254 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.248176217	 Recons_loss:0.101632155	 Motif_loss:0.084720917	 Total:0.105585352	 RL_Acc:0.468750000	 Recons_Acc:92.281250000	 Motif_Acc:0.992187500
+2021-01-01 05:22:15,552 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.524847150	 Recons_loss:0.105239689	 Motif_loss:0.058112089	 Total:0.107918248	 RL_Acc:0.281250000	 Recons_Acc:91.250000000	 Motif_Acc:1.000000000
+2021-01-01 05:25:01,319 - 
+===============================|    epoch 49   |===============================
+
+2021-01-01 05:25:03,360 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.362036586	 Recons_loss:0.104089022	 Motif_loss:0.288265377	 Total:0.214279026	 RL_Acc:0.343750000	 Recons_Acc:91.281250000	 Motif_Acc:0.992187500
+2021-01-01 05:27:48,536 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.549494743	 Recons_loss:0.103228219	 Motif_loss:0.102416001	 Total:0.130296841	 RL_Acc:0.375000000	 Recons_Acc:92.000000000	 Motif_Acc:0.996093750
+2021-01-01 05:30:34,411 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:2.285462856	 Recons_loss:0.103895284	 Motif_loss:0.083688371	 Total:0.208064973	 RL_Acc:0.406250000	 Recons_Acc:90.968750000	 Motif_Acc:1.000000000
+2021-01-01 05:33:20,067 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:1.225476503	 Recons_loss:0.102650926	 Motif_loss:0.150916845	 Total:0.188057721	 RL_Acc:0.218750000	 Recons_Acc:92.031250000	 Motif_Acc:0.992187500
+2021-01-01 05:36:06,081 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.685190856	 Recons_loss:0.101491243	 Motif_loss:0.059750620	 Total:0.114880472	 RL_Acc:0.281250000	 Recons_Acc:91.937500000	 Motif_Acc:1.000000000
+2021-01-01 05:38:53,638 - 
+===============================|    epoch 50   |===============================
+
+2021-01-01 05:38:55,454 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.419131696	 Recons_loss:0.107746705	 Motif_loss:0.073547877	 Total:0.111603878	 RL_Acc:0.281250000	 Recons_Acc:90.875000000	 Motif_Acc:1.000000000
+2021-01-01 05:41:42,599 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.574010730	 Recons_loss:0.105987415	 Motif_loss:0.218084678	 Total:0.190736592	 RL_Acc:0.406250000	 Recons_Acc:91.187500000	 Motif_Acc:0.980468750
+2021-01-01 05:44:28,737 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.245078698	 Recons_loss:0.105859026	 Motif_loss:0.086847842	 Total:0.108607367	 RL_Acc:0.531250000	 Recons_Acc:90.781250000	 Motif_Acc:0.996093750
+2021-01-01 05:47:15,302 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.220213979	 Recons_loss:0.106617779	 Motif_loss:0.036967970	 Total:0.082803577	 RL_Acc:0.531250000	 Recons_Acc:90.875000000	 Motif_Acc:1.000000000
+2021-01-01 05:50:00,921 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.619702220	 Recons_loss:0.103001803	 Motif_loss:0.129913539	 Total:0.147442788	 RL_Acc:0.281250000	 Recons_Acc:92.125000000	 Motif_Acc:0.996093750
+2021-01-01 05:56:17,524 - 
+===============================| start validation |===============================
+
+2021-01-01 05:56:17,525 - 	 Avg_ACC: 0.3731250 	  RL_loss:0.5254764 	  Recons_loss:0.1041525 	  Motif_loss:0.1459298 	  Total:0.1513150 	  RL_Acc:0.3733383 	  Recons_Acc:91.4841695 	  Motif_Acc:0.9957878
+2021-01-01 05:56:17,528 -    ini file updated    
+2021-01-01 05:56:17,529 - 
+===============================|    epoch 51   |===============================
+
+2021-01-01 05:56:19,334 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.355840147	 Recons_loss:0.103510782	 Motif_loss:0.167791590	 Total:0.153443187	 RL_Acc:0.406250000	 Recons_Acc:91.687500000	 Motif_Acc:0.996093750
+2021-01-01 05:59:07,003 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.641624570	 Recons_loss:0.104512177	 Motif_loss:0.301836222	 Total:0.235255435	 RL_Acc:0.437500000	 Recons_Acc:91.312500000	 Motif_Acc:0.988281250
+2021-01-01 06:01:52,178 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.355852932	 Recons_loss:0.103905000	 Motif_loss:0.068297245	 Total:0.103893772	 RL_Acc:0.406250000	 Recons_Acc:91.531250000	 Motif_Acc:1.000000000
+2021-01-01 06:04:38,564 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.565373182	 Recons_loss:0.104990900	 Motif_loss:0.226938739	 Total:0.194233477	 RL_Acc:0.343750000	 Recons_Acc:91.656250000	 Motif_Acc:0.992187500
+2021-01-01 06:07:24,705 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:1.260522366	 Recons_loss:0.103832766	 Motif_loss:0.111838073	 Total:0.170861542	 RL_Acc:0.187500000	 Recons_Acc:90.500000000	 Motif_Acc:1.000000000
+2021-01-01 06:10:11,639 - 
+===============================|    epoch 52   |===============================
+
+2021-01-01 06:10:13,407 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.370268017	 Recons_loss:0.106687769	 Motif_loss:0.132896617	 Total:0.138305604	 RL_Acc:0.343750000	 Recons_Acc:90.937500000	 Motif_Acc:1.000000000
+2021-01-01 06:12:59,846 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.321412891	 Recons_loss:0.105198219	 Motif_loss:0.095781676	 Total:0.116560593	 RL_Acc:0.375000000	 Recons_Acc:91.406250000	 Motif_Acc:0.996093750
+2021-01-01 06:15:45,117 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.603151381	 Recons_loss:0.104373425	 Motif_loss:0.071148843	 Total:0.117918700	 RL_Acc:0.281250000	 Recons_Acc:91.343750000	 Motif_Acc:1.000000000
+2021-01-01 06:18:31,788 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.1562500 	 lr: 0.000010000	 RL_loss:0.656535864	 Recons_loss:0.103184789	 Motif_loss:0.050537717	 Total:0.109688044	 RL_Acc:0.156250000	 Recons_Acc:92.125000000	 Motif_Acc:1.000000000
+2021-01-01 06:21:17,350 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.442406297	 Recons_loss:0.101754472	 Motif_loss:0.057500746	 Total:0.101747923	 RL_Acc:0.343750000	 Recons_Acc:92.187500000	 Motif_Acc:1.000000000
+2021-01-01 06:24:04,504 - 
+===============================|    epoch 53   |===============================
+
+2021-01-01 06:24:06,203 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.369980276	 Recons_loss:0.104460105	 Motif_loss:0.043300986	 Total:0.092379563	 RL_Acc:0.437500000	 Recons_Acc:91.687500000	 Motif_Acc:1.000000000
+2021-01-01 06:26:51,521 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.618152440	 Recons_loss:0.103712589	 Motif_loss:0.038529664	 Total:0.102028750	 RL_Acc:0.312500000	 Recons_Acc:91.093750000	 Motif_Acc:1.000000000
+2021-01-01 06:29:38,478 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.760473490	 Recons_loss:0.100070596	 Motif_loss:0.242534861	 Total:0.209326401	 RL_Acc:0.250000000	 Recons_Acc:93.031250000	 Motif_Acc:0.984375000
+2021-01-01 06:32:24,473 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.1875000 	 lr: 0.000010000	 RL_loss:0.520597577	 Recons_loss:0.101481192	 Motif_loss:0.125599250	 Total:0.139570102	 RL_Acc:0.187500000	 Recons_Acc:92.468750000	 Motif_Acc:0.996093750
+2021-01-01 06:35:09,472 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.192940056	 Recons_loss:0.102903888	 Motif_loss:0.064137854	 Total:0.093167871	 RL_Acc:0.437500000	 Recons_Acc:91.906250000	 Motif_Acc:0.996093750
+2021-01-01 06:37:56,561 - 
+===============================|    epoch 54   |===============================
+
+2021-01-01 06:37:58,579 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.596457422	 Recons_loss:0.105860710	 Motif_loss:0.152174905	 Total:0.158840686	 RL_Acc:0.312500000	 Recons_Acc:90.718750000	 Motif_Acc:0.988281250
+2021-01-01 06:40:43,929 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.624303460	 Recons_loss:0.105205581	 Motif_loss:0.204014793	 Total:0.185825348	 RL_Acc:0.500000000	 Recons_Acc:91.625000000	 Motif_Acc:0.996093750
+2021-01-01 06:43:30,938 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.298615217	 Recons_loss:0.103431761	 Motif_loss:0.307029217	 Total:0.220161244	 RL_Acc:0.468750000	 Recons_Acc:91.125000000	 Motif_Acc:0.984375000
+2021-01-01 06:46:17,482 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.757856369	 Recons_loss:0.102374725	 Motif_loss:0.143372238	 Total:0.160766304	 RL_Acc:0.218750000	 Recons_Acc:92.125000000	 Motif_Acc:0.992187500
+2021-01-01 06:49:03,456 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.688351989	 Recons_loss:0.101425588	 Motif_loss:0.068277396	 Total:0.119269088	 RL_Acc:0.343750000	 Recons_Acc:91.625000000	 Motif_Acc:1.000000000
+2021-01-01 06:51:49,830 - 
+===============================|    epoch 55   |===============================
+
+2021-01-01 06:51:51,496 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.396572679	 Recons_loss:0.102940276	 Motif_loss:0.074746385	 Total:0.108671963	 RL_Acc:0.500000000	 Recons_Acc:91.937500000	 Motif_Acc:0.996093750
+2021-01-01 06:54:37,441 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.283275843	 Recons_loss:0.105054840	 Motif_loss:0.332469791	 Total:0.232926100	 RL_Acc:0.468750000	 Recons_Acc:90.687500000	 Motif_Acc:0.984375000
+2021-01-01 06:57:24,580 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.279355943	 Recons_loss:0.100046344	 Motif_loss:0.213963836	 Total:0.170972884	 RL_Acc:0.500000000	 Recons_Acc:92.656250000	 Motif_Acc:0.996093750
+2021-01-01 07:00:12,446 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.242455035	 Recons_loss:0.105758175	 Motif_loss:0.053303916	 Total:0.091653794	 RL_Acc:0.406250000	 Recons_Acc:91.031250000	 Motif_Acc:1.000000000
+2021-01-01 07:03:00,598 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.644013524	 Recons_loss:0.108028769	 Motif_loss:0.105818026	 Total:0.139124066	 RL_Acc:0.250000000	 Recons_Acc:90.656250000	 Motif_Acc:0.996093750
+2021-01-01 07:05:45,543 - 
+===============================|    epoch 56   |===============================
+
+2021-01-01 07:05:47,288 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.893458128	 Recons_loss:0.101027749	 Motif_loss:0.219720602	 Total:0.205047086	 RL_Acc:0.250000000	 Recons_Acc:92.312500000	 Motif_Acc:0.996093750
+2021-01-01 07:08:34,468 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.384624302	 Recons_loss:0.102496669	 Motif_loss:0.228466600	 Total:0.184712857	 RL_Acc:0.500000000	 Recons_Acc:91.375000000	 Motif_Acc:0.992187500
+2021-01-01 07:11:20,504 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:1.196546316	 Recons_loss:0.106196001	 Motif_loss:0.063663669	 Total:0.144757152	 RL_Acc:0.312500000	 Recons_Acc:90.843750000	 Motif_Acc:0.996093750
+2021-01-01 07:14:06,393 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.6250000 	 lr: 0.000010000	 RL_loss:0.519994855	 Recons_loss:0.110264622	 Motif_loss:0.101806112	 Total:0.132035106	 RL_Acc:0.625000000	 Recons_Acc:89.687500000	 Motif_Acc:0.996093750
+2021-01-01 07:16:51,441 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.423203558	 Recons_loss:0.103126049	 Motif_loss:0.124193519	 Total:0.134819955	 RL_Acc:0.468750000	 Recons_Acc:91.312500000	 Motif_Acc:0.996093750
+2021-01-01 07:19:38,356 - 
+===============================|    epoch 57   |===============================
+
+2021-01-01 07:19:40,154 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.991801620	 Recons_loss:0.105411291	 Motif_loss:0.349336445	 Total:0.276963949	 RL_Acc:0.281250000	 Recons_Acc:91.062500000	 Motif_Acc:0.984375000
+2021-01-01 07:22:26,550 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.441951841	 Recons_loss:0.103009850	 Motif_loss:0.051290765	 Total:0.099247903	 RL_Acc:0.531250000	 Recons_Acc:91.718750000	 Motif_Acc:1.000000000
+2021-01-01 07:25:12,412 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.348757684	 Recons_loss:0.105735555	 Motif_loss:0.174869537	 Total:0.157740429	 RL_Acc:0.500000000	 Recons_Acc:91.156250000	 Motif_Acc:0.992187500
+2021-01-01 07:27:57,618 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000010000	 RL_loss:0.410268903	 Recons_loss:0.103917509	 Motif_loss:0.116484120	 Total:0.130714267	 RL_Acc:0.250000000	 Recons_Acc:92.281250000	 Motif_Acc:0.992187500
+2021-01-01 07:30:44,671 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.356236875	 Recons_loss:0.102866553	 Motif_loss:0.021938363	 Total:0.080214307	 RL_Acc:0.343750000	 Recons_Acc:91.718750000	 Motif_Acc:1.000000000
+2021-01-01 07:33:31,891 - 
+===============================|    epoch 58   |===============================
+
+2021-01-01 07:33:33,777 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000010000	 RL_loss:0.945411921	 Recons_loss:0.104763933	 Motif_loss:0.061668459	 Total:0.130486786	 RL_Acc:0.343750000	 Recons_Acc:91.750000000	 Motif_Acc:1.000000000
+2021-01-01 07:36:21,890 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.501043975	 Recons_loss:0.102835149	 Motif_loss:0.092613496	 Total:0.122776523	 RL_Acc:0.437500000	 Recons_Acc:92.125000000	 Motif_Acc:1.000000000
+2021-01-01 07:39:06,696 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.5312500 	 lr: 0.000010000	 RL_loss:0.285520583	 Recons_loss:0.105482161	 Motif_loss:0.181951076	 Total:0.157992646	 RL_Acc:0.531250000	 Recons_Acc:91.250000000	 Motif_Acc:0.996093750
+2021-01-01 07:41:53,079 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.479838014	 Recons_loss:0.103241637	 Motif_loss:0.153886244	 Total:0.152555853	 RL_Acc:0.312500000	 Recons_Acc:91.375000000	 Motif_Acc:0.992187500
+2021-01-01 07:44:39,411 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000010000	 RL_loss:0.329988480	 Recons_loss:0.103220657	 Motif_loss:0.088688262	 Total:0.112453885	 RL_Acc:0.375000000	 Recons_Acc:92.187500000	 Motif_Acc:0.996093750
+2021-01-01 07:47:26,003 - 
+===============================|    epoch 59   |===============================
+
+2021-01-01 07:47:27,739 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000010000	 RL_loss:0.335778415	 Recons_loss:0.102685660	 Motif_loss:0.115071498	 Total:0.125667498	 RL_Acc:0.312500000	 Recons_Acc:91.937500000	 Motif_Acc:0.996093750
+2021-01-01 07:50:13,538 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000010000	 RL_loss:0.438807398	 Recons_loss:0.102223068	 Motif_loss:0.230805978	 Total:0.188454896	 RL_Acc:0.500000000	 Recons_Acc:91.812500000	 Motif_Acc:0.988281250
+2021-01-01 07:52:58,900 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000010000	 RL_loss:0.367157102	 Recons_loss:0.103125401	 Motif_loss:0.063661210	 Total:0.101751164	 RL_Acc:0.468750000	 Recons_Acc:91.750000000	 Motif_Acc:1.000000000
+2021-01-01 07:55:46,267 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.382437289	 Recons_loss:0.101561964	 Motif_loss:0.199714929	 Total:0.169760317	 RL_Acc:0.281250000	 Recons_Acc:91.437500000	 Motif_Acc:0.996093750
+2021-01-01 07:58:32,384 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000010000	 RL_loss:0.244005710	 Recons_loss:0.101415917	 Motif_loss:0.086067587	 Total:0.105942041	 RL_Acc:0.437500000	 Recons_Acc:91.718750000	 Motif_Acc:0.996093750
+2021-01-01 08:01:19,583 - 
+===============================|    epoch 60   |===============================
+
+2021-01-01 08:01:21,374 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.670969069	 Recons_loss:0.103096098	 Motif_loss:0.055893239	 Total:0.113043122	 RL_Acc:0.406250000	 Recons_Acc:90.906250000	 Motif_Acc:1.000000000
+2021-01-01 08:04:08,970 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000010000	 RL_loss:0.578440964	 Recons_loss:0.106803760	 Motif_loss:0.102051020	 Total:0.133349448	 RL_Acc:0.218750000	 Recons_Acc:90.781250000	 Motif_Acc:0.996093750
+2021-01-01 08:06:55,810 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000010000	 RL_loss:0.300758958	 Recons_loss:0.103271917	 Motif_loss:0.280027866	 Total:0.206687838	 RL_Acc:0.406250000	 Recons_Acc:91.562500000	 Motif_Acc:0.988281250
+2021-01-01 08:09:42,026 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.463506132	 Recons_loss:0.106810316	 Motif_loss:0.149691731	 Total:0.151426330	 RL_Acc:0.281250000	 Recons_Acc:90.531250000	 Motif_Acc:0.996093750
+2021-01-01 08:12:28,822 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000010000	 RL_loss:0.382496357	 Recons_loss:0.102949344	 Motif_loss:0.256536931	 Total:0.198867962	 RL_Acc:0.281250000	 Recons_Acc:91.875000000	 Motif_Acc:0.988281250
+2021-01-01 08:18:44,610 - 
+===============================| start validation |===============================
+
+2021-01-01 08:18:44,610 - 	 Avg_ACC: 0.3721071 	  RL_loss:0.5241352 	  Recons_loss:0.1042166 	  Motif_loss:0.1461922 	  Total:0.1514111 	  RL_Acc:0.3723199 	  Recons_Acc:91.4855274 	  Motif_Acc:0.9957543
+2021-01-01 08:18:44,613 -    ini file updated    
+2021-01-02 17:43:27,008 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-01-02 17:43:36,003 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-02 17:43:36,008 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-02 17:43:36,152 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-02 17:43:36,154 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_4_2-model_best.pth
+
+2021-01-02 17:43:36,212 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-02 17:43:36,213 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-02 17:43:39,475 -  	 	 ========================================================= 	 	 
+2021-01-02 17:43:39,476 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-01-02 17:43:39,477 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/RL_Reconst_8Motif/test_run-model_best.pth
+
+2021-01-02 17:43:39,477 -  	 	 ========================================================= 	 	 
 

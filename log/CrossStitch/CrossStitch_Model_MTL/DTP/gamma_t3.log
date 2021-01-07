@@ -1,0 +1,36 @@
+2021-01-04 12:25:31,228 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:25:31,228 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 12:25:31,264 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:25:31,264 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 12:25:31,282 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 12:25:31,282 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 12:25:31,286 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 12:25:32,347 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.2500000 	 lr: 0.000100000	 RL_loss:0.668411314	 Recons_loss:0.008940294	 Motif_loss:0.261961043	 Total:0.064086817	 RL_Acc:0.250000000	 Recons_Acc:0.978341584	 Motif_Acc:0.992187500	 DTP_wt_RL:0.050000000	 DTP_wt_Recons:0.500000000	 DTP_wt_Motif:0.100000000
+2021-01-04 12:33:00,514 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000100000	 RL_loss:0.352976859	 Recons_loss:0.009368888	 Motif_loss:0.070744224	 Total:0.188885167	 RL_Acc:0.468750000	 Recons_Acc:0.974628713	 Motif_Acc:1.000000000	 DTP_wt_RL:0.402520529	 DTP_wt_Recons:0.008559478	 DTP_wt_Motif:-0.000000000
+2021-01-04 12:40:29,072 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000100000	 RL_loss:0.369316310	 Recons_loss:0.025267357	 Motif_loss:0.135275766	 Total:0.226939633	 RL_Acc:0.343750000	 Recons_Acc:0.934405941	 Motif_Acc:0.992187500	 DTP_wt_RL:0.700770413	 DTP_wt_Recons:0.019006712	 DTP_wt_Motif:0.000021229
+2021-01-04 12:47:56,369 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.455612361	 Recons_loss:0.046603829	 Motif_loss:0.064731099	 Total:0.214050218	 RL_Acc:0.437500000	 Recons_Acc:0.876547030	 Motif_Acc:1.000000000	 DTP_wt_RL:0.465006697	 DTP_wt_Recons:0.053352256	 DTP_wt_Motif:-0.000000000
+2021-01-04 12:55:07,601 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5000000 	 lr: 0.000100000	 RL_loss:0.313979566	 Recons_loss:0.054596175	 Motif_loss:0.033957038	 Total:0.222687840	 RL_Acc:0.500000000	 Recons_Acc:0.865099010	 Motif_Acc:1.000000000	 DTP_wt_RL:0.346573590	 DTP_wt_Recons:0.068550086	 DTP_wt_Motif:-0.000000000
+2021-01-04 13:10:58,964 - 
+===============================| start validation |===============================
+
+2021-01-04 13:10:58,965 - 	 Avg_ACC: 0.3785357 	  RL_loss:0.5145287 	  Recons_loss:0.0541859 	  Motif_loss:0.2411161 	  Total:0.2424418 	  RL_Acc:0.3787521 	  Recons_Acc:0.8654686 	  Motif_Acc:0.9914170
+2021-01-04 13:10:58,966 -    ini file updated    
+2021-01-04 13:10:58,979 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/DTP/gamma_t3-model_best.pth
+
+2021-01-04 13:10:58,980 -    ini file updated    
+2021-01-04 13:10:58,980 - 
+===============================|    epoch 1   |===============================
+
+2021-01-04 13:10:59,922 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000100000	 RL_loss:0.382069767	 Recons_loss:0.054512568	 Motif_loss:0.151838198	 Total:0.180866137	 RL_Acc:0.375000000	 Recons_Acc:0.865717822	 Motif_Acc:0.992187500	 DTP_wt_RL:0.613018283	 DTP_wt_Recons:0.051098807	 DTP_wt_Motif:0.000023159
+2021-01-04 13:17:57,350 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000100000	 RL_loss:0.428534478	 Recons_loss:0.054720614	 Motif_loss:0.195303887	 Total:0.232303306	 RL_Acc:0.375000000	 Recons_Acc:0.858292079	 Motif_Acc:0.992187500	 DTP_wt_RL:0.613018283	 DTP_wt_Recons:0.054914834	 DTP_wt_Motif:0.000023159
+2021-01-04 13:25:11,150 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.2187500 	 lr: 0.000100000	 RL_loss:0.477480173	 Recons_loss:0.051119871	 Motif_loss:0.151856527	 Total:0.145181775	 RL_Acc:0.218750000	 Recons_Acc:0.875309406	 Motif_Acc:0.992187500	 DTP_wt_RL:1.187363870	 DTP_wt_Recons:0.027027248	 DTP_wt_Motif:0.000013509
+2021-01-04 13:32:30,406 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.3437500 	 lr: 0.000100000	 RL_loss:0.219557941	 Recons_loss:0.054034892	 Motif_loss:0.851990402	 Total:0.300051749	 RL_Acc:0.343750000	 Recons_Acc:0.865099010	 Motif_Acc:0.984375000	 DTP_wt_RL:0.700770413	 DTP_wt_Recons:0.047128184	 DTP_wt_Motif:0.000085929
+2021-01-04 13:39:52,825 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000100000	 RL_loss:0.681377292	 Recons_loss:0.056933947	 Motif_loss:0.091002420	 Total:0.420610487	 RL_Acc:0.406250000	 Recons_Acc:0.857054455	 Motif_Acc:0.996093750	 DTP_wt_RL:0.534842011	 DTP_wt_Recons:0.060191886	 DTP_wt_Motif:0.000006235

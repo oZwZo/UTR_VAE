@@ -1,0 +1,33 @@
+2021-01-04 11:39:59,283 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:39:59,283 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-01-04 11:39:59,323 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:39:59,323 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-01-04 11:39:59,344 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-01-04 11:39:59,345 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-01-04 11:39:59,350 - 
+===============================|    epoch 0   |===============================
+
+2021-01-04 11:40:02,874 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.4375000 	 lr: 0.000100000	 RL_loss:0.360682368	 Recons_loss:0.009044584	 Motif_loss:0.087324202	 Total:0.031288832	 RL_Acc:0.437500000	 Recons_Acc:0.978650990	 Motif_Acc:1.000000000
+2021-01-04 11:45:31,112 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.2812500 	 lr: 0.000100000	 RL_loss:0.963092923	 Recons_loss:0.004580808	 Motif_loss:0.395118415	 Total:0.089956895	 RL_Acc:0.281250000	 Recons_Acc:0.989480198	 Motif_Acc:0.984375000
+2021-01-04 11:50:48,661 -  2800 /  7000 (40.0%): 	 Avg_ACC: 0.4687500 	 lr: 0.000100000	 RL_loss:0.395943105	 Recons_loss:0.008068553	 Motif_loss:0.139091104	 Total:0.037740543	 RL_Acc:0.468750000	 Recons_Acc:0.979269802	 Motif_Acc:0.992187500
+2021-01-04 11:56:02,094 -  4200 /  7000 (60.0%): 	 Avg_ACC: 0.4062500 	 lr: 0.000100000	 RL_loss:0.365271509	 Recons_loss:0.007135527	 Motif_loss:0.136979595	 Total:0.035529301	 RL_Acc:0.406250000	 Recons_Acc:0.978960396	 Motif_Acc:0.996093750
+2021-01-04 12:00:01,147 -  5600 /  7000 (80.0%): 	 Avg_ACC: 0.5625000 	 lr: 0.000100000	 RL_loss:0.334800005	 Recons_loss:0.006425958	 Motif_loss:0.160648301	 Total:0.036017813	 RL_Acc:0.562500000	 Recons_Acc:0.982363861	 Motif_Acc:0.992187500
+2021-01-04 12:08:51,387 - 
+===============================| start validation |===============================
+
+2021-01-04 12:08:51,387 - 	 Avg_ACC: 0.3736071 	  RL_loss:0.5186227 	  Recons_loss:0.0077751 	  Motif_loss:0.1546294 	  Total:0.0452816 	  RL_Acc:0.3738208 	  Recons_Acc:0.9794879 	  Motif_Acc:0.9954550
+2021-01-04 12:08:51,388 -    ini file updated    
+2021-01-04 12:08:51,396 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/kld_w1e5/kld_w1e_5_lr-model_best.pth
+
+2021-01-04 12:08:51,397 -    ini file updated    
+2021-01-04 12:08:51,397 - 
+===============================|    epoch 1   |===============================
+
+2021-01-04 12:08:53,489 -     0 /  7000 (0.0%): 	 Avg_ACC: 0.3750000 	 lr: 0.000100000	 RL_loss:0.345649779	 Recons_loss:0.008707491	 Motif_loss:0.098192908	 Total:0.031455528	 RL_Acc:0.375000000	 Recons_Acc:0.975247525	 Motif_Acc:1.000000000
+2021-01-04 12:12:57,477 -  1400 /  7000 (20.0%): 	 Avg_ACC: 0.3125000 	 lr: 0.000100000	 RL_loss:0.296376824	 Recons_loss:0.006873145	 Motif_loss:0.243164629	 Total:0.042571880	 RL_Acc:0.312500000	 Recons_Acc:0.983910891	 Motif_Acc:0.992187500
