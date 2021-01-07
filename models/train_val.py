@@ -8,6 +8,7 @@ import utils
 import torch
 from torch import optim
 from models.ScheduleOptimizer import ScheduledOptim , find_lr
+from models.loss import Dynamic_Task_Priority as DTP
 
 
 def train(dataloader,model,optimizer,popen,epoch,lr=None):
@@ -39,7 +40,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             out_seq = model(X=X,epoch=epoch,Y=Y)
             loss = model.loss_function(out_seq,X,Y)
         
-        elif popen.path_category == 'MTL':
+        elif (popen.path_category == 'MTL'):
             out = model(X)
             # TODO : debug here
             loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
@@ -48,7 +49,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             if type(popen.te_net_l2) == int:
                 loss += popen.te_net_l2*torch.sum(next(model.predictor.parameters())**2)
         
-        elif popen.path_category == 'Backbone':
+        elif (popen.path_category == 'Backbone')|(popen.path_category == 'Baseline'):
             Y = X if popen.model_type == 'Reconstruction' else Y
             out = model(X)
             # TODO : debug here
@@ -64,17 +65,10 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             loss = loss_dict['Total']
             acc_dict = model.compute_acc(out,Y)
             loss_dict = {**loss_dict,**acc_dict}
-            model.loss_dict_keys = loss_dict.keys()
+            model.loss_dict_keys = list(loss_dict.keys())
             acc = acc_dict['RL_Acc']
         
-        # ======== grd clip and step ========
-        
-        loss.backward()
-        
-        if "LSTM" in popen.model_type:
-            _ = torch.nn.utils.clip_grad_norm_(
-                filter(lambda p: p.requires_grad, model.parameters()), max_norm=5)
-        
+        loss.backward()        
         optimizer.step()
         
         # ====== update lr =======
@@ -82,6 +76,11 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             lr = optimizer.update_learning_rate()      # see model.optim.py
         elif popen.optimizer == 'Adam':
             lr = optimizer.param_groups[0]['lr']
+        if popen.loss_schema != 'constant':
+            popen.chimerla_weight = popen.loss_schedualer._update(loss_dict)
+            for t in popen.tasks:
+                loss_dict[popen.loss_schema+"_wt_"+t] = popen.chimerla_weight[t]
+        
        
         # ======== verbose ========
         # record result 5 times for a epoch
@@ -124,7 +123,7 @@ def validate(dataloader,model,popen,epoch):
     model.teacher_forcing = False    # turn off teacher_forcing
     
     # ====== set up empty =====
-    model.loss_dict_keys = ['RL_loss', 'Recons_loss', 'Motif_loss', 'Total', 'RL_Acc', 'Recons_Acc', 'Motif_Acc']
+    # model.loss_dict_keys = ['RL_loss', 'Recons_loss', 'Motif_loss', 'Total', 'RL_Acc', 'Recons_Acc', 'Motif_Acc']
     if model.loss_dict_keys is not None:
         loss_verbose = {key:0 for key in model.loss_dict_keys}
     
@@ -167,11 +166,14 @@ def validate(dataloader,model,popen,epoch):
             elif popen.dataset == 'MTL':
                 
                 out = model(X)
-                if popen.path_category != 'MTL':
-                    Y = (X,Y)
-                    loss_dict = model.compute_loss(out,Y,popen)
-                else:
+                
+                if popen.path_category == 'MTL':
                     loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
+                else:
+                    Y = X if popen.model_type == 'Reconstruction' else Y
+                    if popen.path_category == 'CrossStitch':
+                        Y = (X,Y)
+                    loss_dict = model.compute_loss(out,Y,popen)
                 
         
                 # TODO : compute acc of classification
@@ -209,7 +211,7 @@ def validate(dataloader,model,popen,epoch):
             elif type(popen.chimerla_weight) == float:
                 chimela_weight = popen.chimerla_weight
             verbose_args = [chimela_weight,avg_acc]
-        elif  (popen.path_category == 'Backbone') | (popen.path_category == 'CrossStitch'):
+        elif  (popen.path_category == 'Backbone') | (popen.path_category == 'CrossStitch')|(popen.path_category == 'Baseline'):
             val_verbose = "\t Avg_ACC: {:.7f}"
             verbose_args = [avg_acc]
             

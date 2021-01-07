@@ -162,7 +162,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -177,7 +177,8 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
     share_metric = [all_metric[0]]
     for logg_metric in all_metric[1:]:
         share_metric = np.intersect1d(share_metric,logg_metric)
-    
+    if define_order is not None:
+        assert set(define_order) == set(share_metric)
     for i,metric in enumerate(share_metric):
         # layout 
         
