@@ -53,7 +53,8 @@ elif POPEN.dataset == "MTL":
     loader_ls = reader.get_splited_dataloader(dataset,
                                             ratio=[0.8,0.2],
                                             batch_size=POPEN.batch_size,
-                                            num_workers=4)
+                                            num_workers=4,
+                                            split_like_paper=POPEN.split_like_paper) # new function
     train_loader = loader_ls[0]
     val_loader = loader_ls[1]
 

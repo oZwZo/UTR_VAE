@@ -201,7 +201,7 @@ class RL_regressor(backbone_model):
     
     def compute_loss(self,out,Y,popen):
         out,Y = self.squeeze_out_Y(out,Y)
-        loss = self.loss_fn(out,Y)
+        loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         return {"Total":loss}
     
 class Reconstruction(backbone_model):
@@ -277,7 +277,7 @@ class Reconstruction(backbone_model):
 
         # Account for the minibatch samples from the dataset
         recons_loss =self.loss_fn(out[0], Y.transpose(1,2))
-        loss =recons_loss
+        loss =recons_loss + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         loss_dict = {'Total': loss}
         
         if self.variational:
