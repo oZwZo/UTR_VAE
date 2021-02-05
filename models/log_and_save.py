@@ -15,10 +15,10 @@ def snapshot(dir_path, run_name, state,logger):
     logger.info("Snapshot saved to {}\n".format(snapshot_file))
 
 class Log_parser(object):
-    def __init__(self,log_path,val_split_line=False):
+    def __init__(self,log_path,val_split_line=False,use_line_as_valtest=1):
         #           --------   read   --------
         self.val_split_line = val_split_line
-        
+        self.use_line_as_valtest = use_line_as_valtest
         if os.path.exists(log_path):
             with open(log_path,'r') as f:
                 log_file = f.readlines()
@@ -117,7 +117,7 @@ class Log_parser(object):
         if self.val_split_line:
             self.val_verbose_lines = ["\t".join(self.log_file[[posi,posi+1,posi+2,posi+3,posi+4]]) for posi in self.val_verbose_posi]
          
-        test_v_v = self.val_verbose_lines[1]
+        test_v_v = self.val_verbose_lines[self.use_line_as_valtest]
         
          # using the esting trainverbose to determine metric order
         val_metric = np.array([metric for metric in self.possible_metric if metric in test_v_v])
