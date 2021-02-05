@@ -113,7 +113,7 @@ def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers,split_like_
     columns = dataset.columns
     pad_to = dataset.pad_to
     csv_path = dataset.csv_path
-    if split_like_paper:
+    if split_like_paper == True:
         # 
         train_set = copy.deepcopy(dataset)
         train_set.csv = train_set.csv.sort_values('total_reads',axis=0,ascending=False).iloc[20000:,:]
@@ -122,6 +122,17 @@ def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers,split_like_
         set_ls = [train_set,val_set]
         
         return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
+    
+    elif type(split_like_paper) == list:
+        # read two csv
+        if not (os.path.exists(split_like_paper[0]) & os.path.exists(split_like_paper[1])):
+            raise FileNotFoundError('can not find these two dataset')
+        train_set =  MTL_enc_dataset(csv_path=split_like_paper[0],pad_to=pad_to,columns=columns)
+        val_set = MTL_enc_dataset(csv_path=split_like_paper[1],pad_to=pad_to,columns=columns)
+        set_ls = [train_set,val_set]
+        
+        return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
+    
     else:
         total_len = len(dataset)
         lengths = [int(total_len*ratio[0]),int(len(dataset)*ratio[1])]
