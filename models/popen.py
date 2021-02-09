@@ -115,7 +115,7 @@ class Auto_popen(object):
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
             
         if self.model_type  in  ['Baseline','Hi_baseline']:
-            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","num_label","loss_fn"]
+            args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size","dropout_ls","num_label","loss_fn","pad_to"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read] 
         
         if "TWO_TASK_AT" in self.model_type:

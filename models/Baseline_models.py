@@ -7,7 +7,7 @@ from .CNN_models import Conv_AE,Conv_VAE,cal_conv_shape
 from .Self_attention import self_attention
 
 class Baseline(nn.Module):
-    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,num_label,loss_fn):
+    def __init__(self,channel_ls,padding_ls,diliat_ls,latent_dim,kernel_size,dropout_ls,num_label,loss_fn,pad_to):
         """
         Conv - Dense Framework DL Regressor to predict ribosome load (rl) from 5' UTR sequence
         Arguments:
@@ -21,17 +21,18 @@ class Baseline(nn.Module):
         self.channel_ls = channel_ls
         self.padding_ls = padding_ls
         self.diliat_ls =  diliat_ls
+        self.L_in = pad_to
         self.loss_dict_keys = ['Total','MAE','R.M.S.E']
         # the basic element block of CNN
         
         #         ==<<|  Conv layers  |>>==
         # 3 layers in the 5'UTR paper
         self.encoder = nn.ModuleList(
-            [self.Conv_block(channel_ls[i],channel_ls[i+1],padding_ls[i],diliat_ls[i]) for i in range(len(channel_ls)-1)]
+            [self.Conv_block(channel_ls[i],channel_ls[i+1],padding_ls[i],diliat_ls[i],dropout_rate=dropout_ls[i]) for i in range(len(channel_ls)-1)]
         )        
         
         # compute the output shape of conv layer
-        self.out_len = int(self.compute_out_dim(kernel_size))
+        self.out_len = int(self.compute_out_dim(kernel_size,L_in=self.L_in))
         self.out_dim = self.out_len * channel_ls[-1]
         
         #         ==<<|  Dense layers  |>>==
@@ -64,14 +65,15 @@ class Baseline(nn.Module):
             nn.init.constant_(model.weight, 1)
             nn.init.constant_(model.bias, 0)
     
-    def Conv_block(self,inChan,outChan,padding,diliation,stride=1): 
+    def Conv_block(self,inChan,outChan,padding,diliation,stride=1,dropout_rate=0): 
         """
         Building Block of stack conv
         """
         net = nn.Sequential(
                     nn.Conv1d(inChan,outChan,self.kernel_size,stride=1,padding=padding,dilation=diliation),
                     # nn.BatchNorm1d(outChan),
-                    nn.ReLU())
+                    nn.ReLU(),
+                    nn.Dropout(dropout_rate))
         return net
     
     def define_loss(self):
@@ -82,8 +84,8 @@ class Baseline(nn.Module):
         
     
     def encode(self,X):
-        if X.shape[1] == 100:
-            X = X.transpose(1,2)  # to B*4*100
+        
+        X = X.transpose(1,2)  # to B*4*100
         Z = X
         for model in self.encoder:
             Z = model(Z)
@@ -147,12 +149,12 @@ class Baseline(nn.Module):
         """
         manually compute the final length of convolved sequence
         """
-        L_in = 100
         loop_times = num_layer if type(num_layer) == int else len(self.channel_ls)-1
         for i in range(loop_times):
             L_out = cal_conv_shape(L_in,kernel_size,stride=1,padding=self.padding_ls[i],diliation=self.diliat_ls[i])
             L_in = L_out
         return L_out
+
 
 class Hi_baseline(Baseline):
     

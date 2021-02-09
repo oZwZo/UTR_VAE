@@ -51,7 +51,7 @@ elif POPEN.dataset == "mask":
 elif POPEN.dataset == "MTL":
     dataset = reader.MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,columns=POPEN.aux_task_columns)
     loader_ls = reader.get_splited_dataloader(dataset,
-                                            ratio=[0.8,0.2],
+                                            ratio=POPEN.train_test_ratio,
                                             batch_size=POPEN.batch_size,
                                             num_workers=4,
                                             split_like_paper=POPEN.split_like_paper) # new function
