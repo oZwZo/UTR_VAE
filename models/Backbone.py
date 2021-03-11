@@ -6,7 +6,7 @@ class Conv1d_block(nn.Module):
     """
     the Convolution backbone define by a list of convolution block
     """
-    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
+    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None,pad_to=None):
         """
         Argument
             channel_ls : list, [int] , channel for each conv layer
@@ -83,12 +83,12 @@ class ConvTranspose1d_block(Conv1d_block):
     """
     the Convolution transpose backbone define by a list of convolution block
     """
-    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None):
+    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None,pad_to=None):
         channel_ls = channel_ls[::-1]
         stride = stride[::-1]
         padding_ls =  padding_ls[::-1] if padding_ls  is not None else  [0] * (len(channel_ls) - 1)
         diliation_ls =  diliation_ls[::-1] if diliation_ls  is not None else  [1] * (len(channel_ls) - 1)
-        super(ConvTranspose1d_block,self).__init__(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
+        super(ConvTranspose1d_block,self).__init__(channel_ls,kernel_size,stride,padding_ls,diliation_ls,pad_to)
         
     def Conv_block(self,in_Chan,out_Chan,padding,dilation,stride): 
         """
@@ -131,14 +131,14 @@ class backbone_model(nn.Module):
         the most bottle model which define a soft-sharing convolution block some forward method 
         """
         super(backbone_model,self).__init__()
-        channel_ls,kernel_size,stride,padding_ls,diliation_ls = conv_args
-        L_in = 100 if kernel_size %2 == 0 else 101
+        channel_ls,kernel_size,stride,padding_ls,diliation_ls,pad_to = conv_args
+        
         # model
         self.soft_share = Conv1d_block(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
         # property
         self.stage = list(range(len(channel_ls)-1))
-        self.out_length = self.soft_share.last_out_len(L_in)
-        self.out_dim = self.soft_share.last_out_len(L_in)*channel_ls[-1]
+        self.out_length = self.soft_share.last_out_len(pad_to)
+        self.out_dim = self.soft_share.last_out_len(pad_to)*channel_ls[-1]
     
     def forward_stage(self,X,stage):
         return self.soft_share.forward_stage(X,stage)
@@ -192,14 +192,19 @@ class RL_regressor(backbone_model):
         assert Y.shape == out.shape
         return out,Y
     
-    def compute_acc(self,out,Y,epsilon=0.3):
+    def compute_acc(self,out,X,Y,popen=None):
+        try:
+            epsilon = popen.epsilon
+        except:
+            epislon = 0.3
+            
         out,Y = self.squeeze_out_Y(out,Y)
         # error smaller than epsilon
         with torch.no_grad():
             acc = torch.sum(torch.abs(Y-out) < epsilon).item() / Y.shape[0]
-        return acc
+        return {"Acc":acc}
     
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         out,Y = self.squeeze_out_Y(out,Y)
         loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         return {"Total":loss}
@@ -268,7 +273,7 @@ class Reconstruction(backbone_model):
     #         acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
     #     return out
     
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         """
         Computes the VAE loss function.
         KL(N(\mu, \sigma), N(0, 1)) = \log \frac{1}{\sigma} + \frac{\sigma^2 + \mu^2}{2} - \frac{1}{2}
@@ -287,7 +292,7 @@ class Reconstruction(backbone_model):
             loss_dict = {'Total': loss, 'MSE':recons_loss, 'KLD':kld_loss}
         return loss_dict
     
-    def compute_acc(self,out,Y=None):
+    def compute_acc(self,out,X,Y,popen=None):
         """
         compute the reconstruction accuracy
         """
@@ -297,7 +302,7 @@ class Reconstruction(backbone_model):
             true_max=torch.argmax(Y,dim=2)
             recon_max=torch.argmax(out[0],dim=1)
             acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
-        return acc / pad_to
+        return {"Acc":acc / pad_to}
 
 class Motif_detection(backbone_model):
     def __init__(self,conv_args,motifs:list,tower_width=40):
@@ -330,7 +335,7 @@ class Motif_detection(backbone_model):
         out = self.fc_out(inter)         # B * num_labels
         return out
     
-    def compute_loss(self,X,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         loss = popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters())))
         
         for i in range(X.shape[1]):
@@ -339,14 +344,19 @@ class Motif_detection(backbone_model):
             loss += self.loss_fn(x,y)
         return {"Total":loss}
     
-    def compute_acc(self,X,Y,threshold=0.5):
+    def compute_acc(self,out,X,Y,popen=None):
         
+        try:
+            threshold = popen.threshold
+        except:
+            threshold = 0.5
+            
         decision = X > threshold
         decision = decision.long()
         Y = Y.long()
         with torch.no_grad():
             acc = torch.sum(decision == Y).item() / (X.shape[0]*X.shape[1])
-        return acc
+        return {"Acc":acc}
     
 class Motif_detection_logit(Motif_detection):
     def __init__(self,conv_args,motifs:list,tower_width=40):

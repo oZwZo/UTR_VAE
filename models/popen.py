@@ -124,7 +124,7 @@ class Auto_popen(object):
 
         if self.model_type in ['RL_regressor','Reconstruction','Motif_detection']:           # Backbone
             # conv_args define the soft-sharing part
-            conv_args = ["channel_ls","kernel_size","stride","padding_ls","diliation_ls"]
+            conv_args = ["channel_ls","kernel_size","stride","padding_ls","diliation_ls","pad_to"]
             self.conv_args = tuple([self.__getattribute__(arg) for arg in conv_args])
             
             # left args dfine the tower part in which the arguments are different among tasks

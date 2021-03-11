@@ -30,13 +30,43 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         
         optimizer.zero_grad()
         
-        out = model(X)
-        # TODO : debug here
-        loss_dict = model.compute_loss(out,X,Y,popen)
-        loss = loss_dict['Total']
-        acc_dict = model.compute_acc(out,X,Y,popen)
+        if 'VAE' in popen.model_type:
+            X_reconstruct, mu , sigma  = model(X,epoch)
+            loss_dict = model.loss_function(X_reconstruct,X,Y,mu,sigma,kld_weight=popen.kld_weight)
+            loss = loss_dict['loss']
+            Avg_acc = model.compute_acc(X_reconstruct,X,Y)
+            
+        elif 'AE' in popen.model_type:
+            out_seq = model(X=X,epoch=epoch,Y=Y)
+            loss = model.loss_function(out_seq,X,Y)
         
+        elif (popen.path_category == 'MTL'):
+            out = model(X)
+            # TODO : debug here
+            loss_dict = model.chimela_loss(out,Y,popen.chimerla_weight)
+            acc = model.compute_acc(out,Y)
+            loss = loss_dict['Total']
+            if type(popen.te_net_l2) == int:
+                loss += popen.te_net_l2*torch.sum(next(model.predictor.parameters())**2)
         
+        elif (popen.path_category == 'Backbone')|(popen.path_category == 'Baseline'):
+            Y = X if popen.model_type == 'Reconstruction' else Y
+            out = model(X)
+            # TODO : debug here
+            loss_dict = model.compute_loss(out,Y,popen)
+            loss = loss_dict['Total']
+            acc = model.compute_acc(out,Y)
+        
+        elif popen.path_category == 'CrossStitch':
+            Y = (X,Y)
+            out = model(X)
+            # TODO : debug here
+            loss_dict = model.compute_loss(out,Y,popen)
+            loss = loss_dict['Total']
+            acc_dict = model.compute_acc(out,Y)
+            loss_dict = {**loss_dict,**acc_dict}
+            model.loss_dict_keys = list(loss_dict.keys())
+            acc = acc_dict['RL_Acc']
         
         loss.backward()        
         optimizer.step()

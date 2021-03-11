@@ -48,6 +48,10 @@ if POPEN.dataset == 'mix':
      train_loader,val_loader,test_loader  = reader.get_mix_dataloader(batch_size=POPEN.batch_size,num_workers=4)
 elif POPEN.dataset == "mask":
     train_loader,val_loader,test_loader = reader.get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+elif POPEN.dataset == "ribo":
+    train_loader,val_loader = reader.get_ribo_dataloader(DF_path=POPEN.csv_path,pad_to=POPEN.pad_to,trunc_len=POPEN.trunc_len,
+                                                                     seq_col=POPEN.seq_col,value_col=POPEN.aux_task_columns,
+                                                                     batch_size=POPEN.batch_size,num_workers=4)
 elif POPEN.dataset == "MTL":
     dataset = reader.MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,columns=POPEN.aux_task_columns)
     loader_ls = reader.get_splited_dataloader(dataset,

@@ -104,11 +104,13 @@ class TO_SEQ_TE(Conv_AE):
         mse_loss = self.mse_fn(X_reconst,X)     # compute mse loss here so that we don;t need X in the chimela loss
         return mse_loss,X_reconst, TE_pred  
     
-    def chimela_loss(self,out,Y,Lambda):
+    def compute_loss(self,out,X,Y,popen):
         """
         ALL chimela loss should only take 3 arguments : out , Y and lambda 
         Total Loss =  lambda_0 * MSE_Loss + lambda_1 * CrossEntropy_Loss
         """
+        Lambda = popen.chimerla_weight
+
         mse_loss ,X_reconst, TE_pred = out        
         if self.num_label == 1:
             TE_true = Y
@@ -122,7 +124,7 @@ class TO_SEQ_TE(Conv_AE):
         
         return {"Total":total_loss,"MSE":mse_loss,"CrossEntropy":ce_loss}
     
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         compute the accuracy of TE range class prediction
         """

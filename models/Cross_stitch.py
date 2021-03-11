@@ -105,7 +105,7 @@ class CrossStitch_Model(nn.Module):
         
         return out
     
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         out : dict {task:out}
         Y : dict {task : y}
@@ -117,10 +117,10 @@ class CrossStitch_Model(nn.Module):
             backbone = self.backbone[t]
             t_out = out[t]
             t_Y = Y[t]
-            acc_dict[t+"_Acc"] = backbone.compute_acc(t_out,t_Y)
+            acc_dict[t+"_Acc"] = backbone.compute_acc(t_out,X,t_Y,popen)
         return acc_dict
     
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         """
         out : dict {task:out}
         Y : dict {task : y}
@@ -133,7 +133,7 @@ class CrossStitch_Model(nn.Module):
             backbone = self.backbone[t]
             t_out = out[t]
             t_Y = Y[t]
-            t_loss = backbone.compute_loss(t_out,t_Y,popen)
+            t_loss = backbone.compute_loss(t_out,X,t_Y,popen)
             loss_dict[t+"_loss"] = t_loss['Total']
         
         loss_dict['Total'] = torch.stack([loss_dict[t+'_loss']*popen.chimerla_weight[t] for t in self.tasks]).sum()

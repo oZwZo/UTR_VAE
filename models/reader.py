@@ -222,3 +222,70 @@ def read_bpseq(test_bpseq_path):
     assert len(ptable) == int(bp_seq[-1].split(" ")[0])
 
     return seq,ptable
+
+def pad_zeros(X,pad_to):
+    """
+    zero padding at the right end of the sequence
+    """
+    gap = pad_to - X.shape[0]
+    pad_fn = nn.ZeroPad2d([0,0,0,gap])  #  (padding_left , padding_right , padding_top , padding_bottom )
+    # gap_array = np.zeros()
+    X_padded = pad_fn(X)
+    return X_padded
+
+class GSE65778_dataset(Dataset):
+    
+    def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count'):
+        """
+        Dataset to trancate sequence and return in one-hot encoding way
+        `dataset(DF,pad_to,trunc_len=50,seq_col='utr')`
+        ...DF: the dataframe contain sequence and its meta-info
+        ...pad_to: final size of the output tensor
+        ...trunc_len: maximum sequence to retain. number of nt preceding AUG
+        ...seq_col : which col of the DF contain sequence to convert
+        """
+        self.df =DF
+        self.pad_to = pad_to
+        self.trunc_len =trunc_len
+        
+        # X and Y
+        self.seqs = self.df.loc[:,seq_col].values
+        self.Y = self.df.loc[:,value_col].values
+        
+    def __len__(self):
+        return self.df.shape[0]
+    
+    def __getitem__(self,i):
+        seq = self.seqs[i]
+        x_padded = self.seq_chunk_N_oh(seq)
+        y = self.Y[i]
+        return x_padded,y
+    
+    def seq_chunk_N_oh(self,seq):
+        """
+        truncate the sequence and encode in one hot
+        """
+        if len(seq) >  self.trunc_len:
+            seq = seq[-1* self.trunc_len:]
+        
+        X = one_hot(seq)
+        X = torch.tensor(X)
+
+        X_padded = pad_zeros(X, self.pad_to)
+        
+        return X_padded.float()
+
+def get_ribo_dataloader(DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers):
+    """
+    params :  DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers
+    """
+    DF = pd.read_csv(DF_path,index_col=0)
+    BDF_dataset = GSE65778_dataset(DF,pad_to,trunc_len,seq_col,value_col)
+
+    train_len = round(DF.shape[0]*0.8)
+    train_set,val_set = random_split(BDF_dataset,[train_len,DF.shape[0]-train_len])
+
+    train_loader = DataLoader(train_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
+    val_loader = DataLoader(val_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
+    
+    return train_loader,val_loader
