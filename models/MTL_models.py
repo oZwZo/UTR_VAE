@@ -138,7 +138,7 @@ class TO_SEQ_TE(Conv_AE):
             else:
                 pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
             
-        return pred / batch_size
+        return {"Acc":pred / batch_size}
     
     def compute_out_dim(self,kernel_size,L_in = 100):
         """
@@ -253,11 +253,13 @@ class TRANSFORMER_SEQ_RL(TRANSFORMER_SEQ_TE):
         self.regression_loss = nn.MSELoss(reduction='mean')
         self.loss_dict_keys = ["Total","MSE","RegLoss"]
         
-    def chimela_loss(self,out,Y,Lambda):
+    def compute_loss(self,out,X,Y,popen):
         """
         ALL chimela loss should only take 3 arguments : out , Y and lambda 
         Total Loss =  lambda_0 * MSE_Loss + lambda_1 * CrossEntropy_Loss
         """
+        Lambda = popen.chimerla_weight
+        
         mse_loss ,X_reconst, TE_pred = out        
         TE_true = Y
         
@@ -267,7 +269,7 @@ class TRANSFORMER_SEQ_RL(TRANSFORMER_SEQ_TE):
         
         return {"Total":total_loss,"MSE":mse_loss,"RegLoss":ce_loss}
     
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         compute the accuracy of TE range class prediction
         """
@@ -276,13 +278,11 @@ class TRANSFORMER_SEQ_RL(TRANSFORMER_SEQ_TE):
         TE_true = Y
         batch_size = TE_true.shape[0]
         
-        
-        
         with torch.no_grad():
             # number that are
             pred = torch.sum(torch.abs(TE_pred - TE_true) < epsilon).item()
             
-        return pred / batch_size
+        return {"Acc":pred / batch_size}
     
 
 
@@ -403,14 +403,14 @@ class TWO_TASK_AT(nn.Module):
         
         return TE_out,SS_out
     
-    def chimela_loss(self,X_pred,Y,chimerla_weight):
+    def compute_loss(self,out,X_pred,Y,popen):
         """
         loss function of multi-task
         """
         
-        assert len(chimerla_weight)==3
+        assert len(popen.chimerla_weight)==3
          
-        Lamb1,Lamb2,alpha = chimerla_weight
+        Lamb1,Lamb2,alpha = popen.chimerla_weight
         assert (alpha >0 ) & (alpha<1)
         # model out : (TE_out : B*5, SS_out : B*5)
         TE_pred = X_pred[0]
@@ -433,7 +433,7 @@ class TWO_TASK_AT(nn.Module):
         return {"Total":Total_loss,"TE": TE_loss, "Loop":loop_loss , "Match":match_loss}
     
     
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         all compute_acc takes 2 arguments out,Y
         This function only compute the accuracy of TE prediction
@@ -446,7 +446,7 @@ class TWO_TASK_AT(nn.Module):
         with torch.no_grad():
             pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
             
-        return pred / batch_size
+        return {"Acc":pred / batch_size}
 
         
         
@@ -469,9 +469,9 @@ class Enc_n_Down(nn.Module):
         
         return out
     
-    def chimela_loss(self,X,Y,chimerla_weight):    
-        return self.MTL_downstream.chimela_loss(X,Y,chimerla_weight)
+    def compute_loss(self,out,X,Y,popen):    
+        return self.MTL_downstream.compute_loss(out,X,Y,popen)
     
-    def compute_acc(self,out,Y):
-        return self.MTL_downstream.compute_acc(out,Y)
+    def compute_acc(self,out,X,Y,popen):
+        return self.MTL_downstream.compute_acc(out,X,Y,popen)
         

@@ -196,7 +196,7 @@ class RL_regressor(backbone_model):
         try:
             epsilon = popen.epsilon
         except:
-            epislon = 0.3
+            epsilon = 0.3
             
         out,Y = self.squeeze_out_Y(out,Y)
         # error smaller than epsilon
@@ -338,8 +338,9 @@ class Motif_detection(backbone_model):
     def compute_loss(self,out,X,Y,popen):
         loss = popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters())))
         
-        for i in range(X.shape[1]):
-            x = X[:,i]
+        # num of motifs
+        for i in range(out.shape[1]):
+            x = out[:,i]
             y = Y[:,i]
             loss += self.loss_fn(x,y)
         return {"Total":loss}
@@ -351,11 +352,11 @@ class Motif_detection(backbone_model):
         except:
             threshold = 0.5
             
-        decision = X > threshold
+        decision = out > threshold
         decision = decision.long()
         Y = Y.long()
         with torch.no_grad():
-            acc = torch.sum(decision == Y).item() / (X.shape[0]*X.shape[1])
+            acc = torch.sum(decision == Y).item() / (out.shape[0]*out.shape[1])
         return {"Acc":acc}
     
 class Motif_detection_logit(Motif_detection):

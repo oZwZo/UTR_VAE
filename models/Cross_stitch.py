@@ -110,14 +110,14 @@ class CrossStitch_Model(nn.Module):
         out : dict {task:out}
         Y : dict {task : y}
         """
-        (x,y) = Y 
-        Y = {"RL":y[:,0], "Recons":x,"Motif":y[:,1:]}
+        # (x,y) = Y 
+        Y = {"RL":Y[:,0], "Recons":X,"Motif":Y[:,1:]}
         acc_dict  = {}
         for t in self.tasks:
             backbone = self.backbone[t]
             t_out = out[t]
             t_Y = Y[t]
-            acc_dict[t+"_Acc"] = backbone.compute_acc(t_out,X,t_Y,popen)
+            acc_dict[t+"_Acc"] = backbone.compute_acc(t_out,X,t_Y,popen)['Acc']
         return acc_dict
     
     def compute_loss(self,out,X,Y,popen):
@@ -126,8 +126,8 @@ class CrossStitch_Model(nn.Module):
         Y : dict {task : y}
         """
         assert ('rl' in popen.aux_task_columns[0])
-        (x,y) = Y 
-        Y = {"RL":y[:,0], "Recons":x,"Motif":y[:,1:]}
+        # (x,y) = Y 
+        Y = {"RL":Y[:,0], "Recons":X,"Motif":Y[:,1:]}
         loss_dict  = {}
         for t in self.tasks:
             backbone = self.backbone[t]
