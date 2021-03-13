@@ -104,10 +104,12 @@ class Baseline(nn.Module):
         return out
         
         
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         for this regression task, accuracy  is the percentage that prediction error < epsilon (Lambda) 
         """
+        
+        epsilon = popen.epsilon
         
         batch_size = Y.shape[0]
         rl_pred = out[self.rl_posi] if type(out) == tuple else out
@@ -120,10 +122,10 @@ class Baseline(nn.Module):
             loss = self.acc_hinge(rl_pred,Y,epsilon=0.3)
             n_inrange = (loss==0).squeeze().sum().item()
         
-        return n_inrange / batch_size
+        return {"Acc":n_inrange / batch_size}
        
         
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         """
         it's termed `chimela_loss` to keep compatability with MTL MODELS (the same dataset was used)
         `chiemela_loss` requires three input : 
@@ -237,7 +239,7 @@ class Hi_baseline(Baseline):
         
         return out
 
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         """
         it's termed `chimela_loss` to keep compatability with MTL MODELS (the same dataset was used)
         `chiemela_loss` requires three input : 
@@ -265,7 +267,7 @@ class Hi_baseline(Baseline):
         total_loss = Lambda[0]*uAUG_loss + Lambda[1]*loss
         return {"Total":total_loss,"Reg_loss":loss,"MAE":MAE,"R.M.S.E":RMSE,'BCE':uAUG_loss}
     
-    def compute_acc(self,out,Y):
+    def compute_acc(self,out,X,Y,popen):
         """
         compute the accuracy of TE range class prediction
         """
@@ -278,7 +280,7 @@ class Hi_baseline(Baseline):
             # else:
             #     pred = torch.sum(torch.argmax(TE_pred,dim=1) == TE_true).item()
             
-        return pred / batch_size
+        return {"Acc":pred / batch_size}
 
 class Hiep_baseline(Hi_baseline):
     def __init__(self):

@@ -23,8 +23,7 @@ class Auto_popen(object):
         self.data_dir = utils.data_dir
         self.log_dir = utils.log_dir
         self.pth_dir = utils.pth_dir
-        self.te_net_l2 = None
-        self.loss_fn = None
+        self.set_attr_as_none(['te_net_l2','loss_fn','modual_to_fix'])
         self.split_like_paper = False
         self.loss_schema = 'constant'
         
@@ -50,6 +49,10 @@ class Auto_popen(object):
     def set_attr_from_dict(self,attr_ls):
         for attr in attr_ls:
             self.__setattr__(attr,self.config_dict[attr])
+    
+    def set_attr_as_none(self,attr_ls):
+        for attr in attr_ls:
+            self.__setattr__(attr,None)
 
     def check_run_and_setting_name(self):
         file_name = self.config_file.split("/")[-1]
@@ -105,6 +108,9 @@ class Auto_popen(object):
         #                      t_k,t_b,
         #                      self.config_dict["bidirectional"],
         #                      self.config_dict["fc_output"]]
+        
+        # model_args = {k: v for k, v in args.items() if
+        #           k in [p.name for p in inspect.signature(Model.__init__).parameters.values()]}
             
         if "Conv" in self.model_type:
             args_to_read = ["channel_ls","padding_ls","diliat_ls","latent_dim","kernel_size"]

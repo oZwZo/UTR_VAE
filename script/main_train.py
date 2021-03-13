@@ -3,6 +3,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
 import time
 import logging
+import inspect
 import argparse
 import numpy as np 
 
@@ -79,10 +80,17 @@ if POPEN.pretrain_pth is not None:
     utils.load_model(pretrain_popen,pretrain_model,logger)  
     
     # DL_models.LSTM_AE
-    downstream_model = POPEN.Model_Class(*POPEN.model_args)
-    
-    # merge 
-    model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
+    if POPEN.Model_Class == pretrain_popen.Model_Class:
+        if not POPEN.Resumable:
+            # we only load pre-train for the first time 
+            # later we can resume 
+            model = pretrain_model.cuda(POPEN.cuda_id)
+            del pretrain_model
+    else:
+        downstream_model = POPEN.Model_Class(*POPEN.model_args)
+        
+        # merge 
+        model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
     
 # -- end2end -- 
 elif POPEN.path_category == "CrossStitch":
@@ -123,11 +131,14 @@ best_loss = np.inf
 best_acc = 0
 best_epoch = 0
 previous_epoch = 0
-POPEN.train_mean = -0.0027311546037015106
-POPEN.val_mean = 0.010948733354481285
 if POPEN.Resumable:
     previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
+    
 
+# =========== fix parameters ===========
+if POPEN.modual_to_fix in dir(model):
+    model = utils.fix_parameter(model,POPEN.modual_to_fix)
+    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 
 #                               |=====================================|
 #                               |==========  training  part ==========|

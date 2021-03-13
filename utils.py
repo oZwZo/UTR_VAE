@@ -7,7 +7,6 @@ import os
 import json
 import re
 import torch
-import torch
 from torch import nn
 from torch import optim
 from models import CNN_models
@@ -166,7 +165,35 @@ def setup_logs(vae_log_path):
 
     return logger
 
+def clean_value_dict(dict):
+    """
+    deal with verbose dict where the values maybe torch object, extact the item and return clean dict
+    """
+    clean_dict={}
+    for k,v in dict.items():
+        
+        try:
+            v = v.item()
+        except:
+            v = v
+        clean_dict[k] = v
+    return clean_dict
 
+def fix_parameter(model,modual_to_fix):
+    """
+    for a given model, fix part of the parameter to fine-tuning / transfering 
+    args:
+    model : `nn.Modual`,initiated model instance
+    modual_to_fix : str, define which part of the model will not update by gradient 
+                    e.g. "shoft_share" then 
+    """
+    
+    fix_part = eval("model."+modual_to_fix)   # e.g. model.shoft_share
+     
+    for param in fix_part.parameters():
+                param.requires_grad = False
+    
+    return model
 
 def snapshot(vae_pth_path, state):
     logger = logging.getLogger("VAE")
