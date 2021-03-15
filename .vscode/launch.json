@@ -11,8 +11,8 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Baseline/Baseline_MTL/unmod_df/rl_mse.ini",
-                     "--cuda","0"]
+            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Backbone/RL_regressor_ribo/transfer/debug_transfer.ini",
+                     "--cuda","1"]
         },
         {
             "name": "Python: no args",

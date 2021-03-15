@@ -574,3 +574,111 @@
 2021-01-07 09:40:50,922 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_ssslr-model_best.pth
 
 2021-01-07 09:40:50,922 -    ini file updated    
+2021-03-12 12:04:57,013 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-03-12 12:05:20,265 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-03-12 12:05:24,841 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 12:05:24,841 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-03-12 12:05:24,882 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 12:05:24,883 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-03-12 12:05:27,542 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 12:05:27,543 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-03-12 12:05:30,592 -  	 	 ========================================================= 	 	 
+2021-03-12 12:05:30,592 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-03-12 12:05:30,592 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_ssslr-model_best.pth
+
+2021-03-12 12:05:30,592 -  	 	 ========================================================= 	 	 
+
+2021-03-12 12:05:30,593 - 
+===============================|    epoch 61   |===============================
+
+2021-03-12 12:05:33,034 -     0 /  7000 (0.0%):	 RL_loss:0.6862708	 Recons_loss:0.0650986	 Motif_loss:6.7752957	 Total:0.7443924	 RL_Acc:0.5000000	 Recons_Acc:0.7899134	 Motif_Acc:0.6132812	 DTP_wt_RL:0.0500000	 DTP_wt_Recons:0.5000000	 DTP_wt_Motif:0.1000000
+2021-03-12 12:09:16,342 -  1400 /  7000 (20.0%):	 RL_loss:0.7289809	 Recons_loss:0.0639881	 Motif_loss:6.8463626	 Total:1.1333581	 RL_Acc:0.3750000	 Recons_Acc:0.8035272	 Motif_Acc:0.5976562	 DTP_wt_RL:0.3831364	 DTP_wt_Recons:0.5195948	 DTP_wt_Motif:0.1299465
+2021-03-12 13:19:27,567 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-03-12 13:19:31,988 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:19:31,988 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-03-12 13:19:32,029 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:19:32,029 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-03-12 13:19:34,665 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:19:34,665 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-03-12 13:19:37,396 -  	 	 ========================================================= 	 	 
+2021-03-12 13:19:37,396 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-03-12 13:19:37,396 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_ssslr-model_best.pth
+
+2021-03-12 13:19:37,397 -  	 	 ========================================================= 	 	 
+
+2021-03-12 13:19:37,397 - 
+===============================|    epoch 61   |===============================
+
+2021-03-12 13:19:37,397 - 
+===============================|    epoch 62   |===============================
+
+2021-03-12 13:19:37,397 - 
+===============================|    epoch 63   |===============================
+
+2021-03-12 13:19:37,397 - 
+===============================|    epoch 64   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 65   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 66   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 67   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 68   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 69   |===============================
+
+2021-03-12 13:19:37,398 - 
+===============================|    epoch 70   |===============================
+
+2021-03-12 13:24:13,589 - 
+===============================| start validation |===============================
+
+2021-03-12 13:24:13,592 - 	 RL_loss:0.8670488	 Recons_loss:0.0647168	 Motif_loss:6.5026232	 Total:0.7259732	 RL_Acc:0.3870536	 Recons_Acc:0.7950854	 Motif_Acc:0.5993571
+2021-03-12 13:24:13,599 -    ini file updated    
+2021-03-12 13:24:13,632 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_ssslr-model_best.pth
+
+2021-03-12 13:24:13,633 -    ini file updated    
+2021-03-12 13:29:03,736 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-03-12 13:29:08,283 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:29:08,284 -  	/data/users/wergillius/UTR_VAE/pth/RL_regressor_MTL/test_run/RL_test-model_best.pth
+
+2021-03-12 13:29:08,324 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:29:08,324 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/test_run/kld1e_5-model_best.pth
+
+2021-03-12 13:29:11,048 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-03-12 13:29:11,048 -  	/data/users/wergillius/UTR_VAE/pth/Motif_detection_MTL/test_run/eight_motif_test-model_best.pth
+
+2021-03-12 13:29:13,987 -  	 	 ========================================================= 	 	 
+2021-03-12 13:29:13,987 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-03-12 13:29:13,988 -  	/data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_ssslr-model_best.pth
+
+2021-03-12 13:29:13,988 -  	 	 ========================================================= 	 	 
+

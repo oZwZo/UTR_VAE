@@ -125,9 +125,9 @@ def validate(dataloader,model,popen,epoch):
 
     logger.info(val_verbose)
     
-    #TODO: what avg acc should we return
+    # what avg acc return : mean of  RL_Acc , Recons_Acc, Motif_Acc
     acc_col = list(acc_dict.keys())
-    Avg_acc = np.mean(verbose_df.loc[:,acc_col].mean(axis=0))
+    Avg_acc = np.mean(verbose_df.loc[:,acc_col].mean(axis=0))  
     
     # return these to save current performance
     return verbose_df['Total'].mean(),Avg_acc

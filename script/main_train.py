@@ -81,11 +81,11 @@ if POPEN.pretrain_pth is not None:
     
     # DL_models.LSTM_AE
     if POPEN.Model_Class == pretrain_popen.Model_Class:
-        if not POPEN.Resumable:
-            # we only load pre-train for the first time 
-            # later we can resume 
-            model = pretrain_model.cuda(POPEN.cuda_id)
-            del pretrain_model
+        # if not POPEN.Resumable:
+        #     # we only load pre-train for the first time 
+        #     # later we can resume 
+        model = pretrain_model.cuda(POPEN.cuda_id)
+        del pretrain_model
     else:
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
         
