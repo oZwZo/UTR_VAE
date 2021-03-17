@@ -41,7 +41,7 @@ def one_hot(seq,complementary=False):
     return oh_array 
 
 class MTL_enc_dataset(Dataset):
-    def __init__(self,csv_path='/data/users/wergillius/UTR_VAE/multi_task/pretrain_MTL_UTR.csv',pad_to=100,columns=None):
+    def __init__(self,csv_path='/data/users/wergillius/UTR_VAE/multi_task/pretrain_MTL_UTR.csv',pad_to=100,aux_columns=None,input_col=None):
         """
         the dataset for Multi-task learning, will return sequence in one-hot encoded version, together with some auxilary task label
         arguments:
@@ -53,7 +53,8 @@ class MTL_enc_dataset(Dataset):
         self.pad_to = pad_to
         self.csv = pd.read_csv(csv_path)     # read Df
         self.seqs = self.csv.utr.values       # take out all the sequence in DF
-        self.columns = columns
+        self.columns = aux_columns
+        self.input_col = input_col
                 
     def __len__(self):
         return self.csv.shape[0]
@@ -71,6 +72,13 @@ class MTL_enc_dataset(Dataset):
             # return what's in columns
             aux_labels = self.csv.loc[:,self.columns].values[index]
             item = X ,aux_labels
+
+            if self.input_col is not None:
+                input = [X]
+                for col in self.input_col:
+                    input.append(self.csv.loc[:,col].values[index]) 
+                item = input,aux_labels
+
         return item
         
     def pad_zeros(self,X):
@@ -140,7 +148,7 @@ def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers,split_like_
         if total_len-sum(lengths) >0:
             lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
-        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
+        set_ls = random_split(dataset,lengths)#,generator=torch.Generator().manual_seed(42))         # split dataset 
         
 
         return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
@@ -228,8 +236,11 @@ def pad_zeros(X,pad_to):
     zero padding at the right end of the sequence
     """
     gap = pad_to - X.shape[0]
-    pad_fn = nn.ZeroPad2d([0,0,0,gap])  #  (padding_left , padding_right , padding_top , padding_bottom )
+
+    #  here we change to padding ahead  , previously  nn.ZeroPad2d([0,0,0,gap])
+    pad_fn = nn.ZeroPad2d([0,0,gap,0])  #  (padding_left , padding_right , padding_top , padding_bottom )
     # gap_array = np.zeros()
+
     X_padded = pad_fn(X)
     return X_padded
 
@@ -288,4 +299,33 @@ def get_ribo_dataloader(DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,nu
     train_loader = DataLoader(train_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
     val_loader = DataLoader(val_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
     
+    return train_loader,val_loader
+
+def get_dataloader(POPEN):
+    if POPEN.dataset == 'mix':
+     train_loader,val_loader,test_loader  = get_mix_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+    elif POPEN.dataset == "mask":
+        train_loader,val_loader,test_loader = get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+    elif POPEN.dataset == "ribo":
+        train_loader,val_loader = get_ribo_dataloader(DF_path=POPEN.csv_path,pad_to=POPEN.pad_to,trunc_len=POPEN.trunc_len,
+                                                                        seq_col=POPEN.seq_col,value_col=POPEN.aux_task_columns,
+                                                                        batch_size=POPEN.batch_size,num_workers=4)
+    elif POPEN.dataset == "MTL":
+        dataset = MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,
+                                        aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
+        loader_ls = get_splited_dataloader(dataset,
+                                                ratio=POPEN.train_test_ratio,
+                                                batch_size=POPEN.batch_size,
+                                                num_workers=4,
+                                                split_like_paper=POPEN.split_like_paper) # new function
+        train_loader = loader_ls[0]
+        val_loader = loader_ls[1]
+
+        
+    else:
+        dataset = UTR_dataset(cell_line=POPEN.cell_line)
+        train_loader,val_loader,test_loader = get_splited_dataloader(dataset,
+                                                                            ratio=[0.7,0.1,0.2],
+                                                                            batch_size=POPEN.batch_size,
+                                                                            num_workers=4)
     return train_loader,val_loader

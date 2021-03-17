@@ -140,6 +140,13 @@ class Auto_popen(object):
             
             self.model_args = [self.conv_args] + [self.__getattribute__(arg) for arg in left_args]
         
+        if self.model_type in ['Multi_input_RL_regressor']:
+            conv_args = ["channel_ls","kernel_size","stride","padding_ls","diliation_ls","pad_to"]
+            self.conv_args = tuple([self.__getattribute__(arg) for arg in conv_args])
+
+            # extra_input_col = len(other_input_columns)
+            self.model_args = [self.conv_args]+[self.tower_width,self.dropout_rate,len(self.other_input_columns)]
+        
         if self.path_category == 'CrossStitch':
             
             self.model_args = [self.__getattribute__(arg) for arg in ['tasks','alpha','beta']]

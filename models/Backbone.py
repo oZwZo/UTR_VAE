@@ -367,3 +367,35 @@ class Motif_detection_logit(Motif_detection):
         super(Motif_detection,self).__init__(conv_args,motifs,tower_width)
         self.fc_out = nn.Linear(tower_width,self.num_labels)
         self.loss_fn = nn.BCEWithLogitsLoss()
+
+class Multi_input_RL_regressor(RL_regressor):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2,extra_input_num=1):
+        super(Multi_input_RL_regressor,self).__init__(conv_args,tower_width,dropout_rate)
+
+        self.merging_layer = nn.Sequential(
+                            nn.Linear(tower_width+extra_input_num,tower_width),
+                            nn.ReLU()
+                            )
+    
+    def forward(self,X):
+        if (type(X) == list) & (len(X) > 1):
+            seq = X[0]
+            other_input = [input.unsqueeze(1) for input in X[1:] if len(input.shape) == 1]
+
+            Z = self.soft_share(seq)
+            out = self.forward_tower(Z,other_input)
+        else:
+            Z = self.soft_share(seq)
+            out = self.forward_tower(Z)
+        return out
+
+    def forward_tower(self,Z,other_input):
+        # flatten
+        batch_size = Z.shape[0]
+        Z_flat = Z.view(batch_size,-1)
+        # tower part
+        Z_to_out = self.tower(Z_flat)
+        merge_info = torch.cat([Z_to_out]+other_input,dim=1)
+        merge_to_out = self.merging_layer(merge_info)    # adding one layer to fully merge info from utr and categorical
+        out = self.fc_out(merge_to_out)
+        return out

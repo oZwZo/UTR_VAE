@@ -11,7 +11,6 @@ from torch import optim
 from models.ScheduleOptimizer import ScheduledOptim , find_lr
 from models.loss import Dynamic_Task_Priority as DTP
 
-
 def train(dataloader,model,optimizer,popen,epoch,lr=None):
 
     logger = logging.getLogger("VAE")
@@ -23,11 +22,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     model.train()
     
     for idx,data in enumerate(dataloader):
-        X,y = data       
-        X = X.float().cuda(popen.cuda_id)
-        Y = y.float().cuda(popen.cuda_id)
-        X.required_grad = True  # check !!!
-        # Y = Y if X.shape == Y.shape else None  # for mask data
+        
+        X,Y = put_data_to_cuda(data,popen,require_grad=True)
         
         optimizer.zero_grad()
         
@@ -88,11 +84,7 @@ def validate(dataloader,model,popen,epoch):
     model.eval()
     with torch.no_grad():
         for idx,data in enumerate(dataloader):
-            X,y = data       
-            X = X.float().cuda(popen.cuda_id)
-            Y = y.float().cuda(popen.cuda_id)
-            X.required_grad = True  # check !!!
-            # Y = Y if X.shape == Y.shape else None  # for mask data
+            X,Y = put_data_to_cuda(data,popen,require_grad=False)
             
             out = model(X)
             # TODO : debug here
@@ -133,5 +125,24 @@ def validate(dataloader,model,popen,epoch):
     return verbose_df['Total'].mean(),Avg_acc
             
             
-            
-            
+def put_data_to_cuda(data,popen,require_grad=True):
+
+    X,y = data       
+
+    # for X is a list [seq, uAUG ....]
+    if popen.other_input_columns is not None:
+        X = [x_i.float().cuda(popen.cuda_id) for x_i in X]
+        if require_grad:
+            for x_i in X:
+                x_i.required_grad = True
+
+    # X is not a list : seq
+    else:
+        X = X.float().cuda(popen.cuda_id)
+        if require_grad:
+            X.required_grad = True  # check !!!
+    
+    Y = y.float().cuda(popen.cuda_id)
+    
+    # Y = Y if X.shape == Y.shape else None  # for mask data
+    return X,Y

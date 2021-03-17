@@ -22,7 +22,7 @@ global script_dir
 global data_dir
 global log_dir
 global pth_dir
-global cell_lines
+# global cell_lines
 
 with open(os.path.join(os.path.dirname(__file__),"machine_configure.json"),'r') as f:
     config = json.load(f)   
@@ -34,7 +34,7 @@ pth_dir = config['pth_dir']
 
 match_celline = lambda x: re.match(r"rankedTE_(.*)\.csv",x).group(1)
 data_fn = list(filter(lambda x : '.csv' in x,os.listdir(data_dir)))
-cell_lines = [match_celline(fn) for fn in data_fn]
+# cell_lines = [match_celline(fn) for fn in data_fn]
 
 
 # =====================|   read data   |=======================
