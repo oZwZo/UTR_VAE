@@ -246,7 +246,7 @@ def pad_zeros(X,pad_to):
 
 class GSE65778_dataset(Dataset):
     
-    def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count'):
+    def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count',other_input_columns=None):
         """
         Dataset to trancate sequence and return in one-hot encoding way
         `dataset(DF,pad_to,trunc_len=50,seq_col='utr')`
@@ -261,6 +261,7 @@ class GSE65778_dataset(Dataset):
         
         # X and Y
         self.seqs = self.df.loc[:,seq_col].values
+        self.other_input_columns = other_input_columns
         self.Y = self.df.loc[:,value_col].values
         
     def __len__(self):
@@ -269,8 +270,13 @@ class GSE65778_dataset(Dataset):
     def __getitem__(self,i):
         seq = self.seqs[i]
         x_padded = self.seq_chunk_N_oh(seq)
+        input = x_padded
+        if self.other_input_columns is not None:
+                input = [x_padded]
+                for col in self.other_input_columns:
+                    input.append(self.df.loc[:,col].values[i]) 
         y = self.Y[i]
-        return x_padded,y
+        return input,y
     
     def seq_chunk_N_oh(self,seq):
         """
@@ -286,18 +292,18 @@ class GSE65778_dataset(Dataset):
         
         return X_padded.float()
 
-def get_ribo_dataloader(DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers):
+def get_ribo_dataloader(DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers,other_input_columns):
     """
     params :  DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers
     """
     DF = pd.read_csv(DF_path,index_col=0)
-    BDF_dataset = GSE65778_dataset(DF,pad_to,trunc_len,seq_col,value_col)
+    BDF_dataset = GSE65778_dataset(DF,pad_to,trunc_len,seq_col,value_col,other_input_columns)
 
     train_len = round(DF.shape[0]*0.8)
     train_set,val_set = random_split(BDF_dataset,[train_len,DF.shape[0]-train_len])
 
-    train_loader = DataLoader(train_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
-    val_loader = DataLoader(val_set,batch_size=40,shuffle=True,generator=torch.Generator().manual_seed(42)) 
+    train_loader = DataLoader(train_set,batch_size=40,shuffle=True)#,generator=torch.Generator().manual_seed(42)) 
+    val_loader = DataLoader(val_set,batch_size=40,shuffle=True)#,generator=torch.Generator().manual_seed(42)) 
     
     return train_loader,val_loader
 
@@ -309,7 +315,8 @@ def get_dataloader(POPEN):
     elif POPEN.dataset == "ribo":
         train_loader,val_loader = get_ribo_dataloader(DF_path=POPEN.csv_path,pad_to=POPEN.pad_to,trunc_len=POPEN.trunc_len,
                                                                         seq_col=POPEN.seq_col,value_col=POPEN.aux_task_columns,
-                                                                        batch_size=POPEN.batch_size,num_workers=4)
+                                                                        batch_size=POPEN.batch_size,num_workers=4,
+                                                                        other_input_columns=POPEN.other_input_columns)
     elif POPEN.dataset == "MTL":
         dataset = MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,
                                         aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
