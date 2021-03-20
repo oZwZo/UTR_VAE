@@ -20,7 +20,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     model = model.cuda(popen.cuda_id)
     # model.teacher_forcing = popen.teacher_forcing     # turn on teacher_forcing
     model.train()
-    
+    verbose_list=[]
+    verbose_df = pd.DataFrame()
     for idx,data in enumerate(dataloader):
         
         X,Y = put_data_to_cuda(data,popen,require_grad=True)
@@ -47,13 +48,15 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             popen.chimerla_weight = popen.loss_schedualer._update(loss_dict)
             for t in popen.tasks:
                 loss_dict[popen.loss_schema+"_wt_"+t] = popen.chimerla_weight[t]
-        
+                
+        loss_dict= utils.clean_value_dict(loss_dict)
+        verbose_list.append(loss_dict)
        
         # ======== verbose ========
         # record result 5 times for a epoch
         if idx % int(loader_len/5) == 0:
             
-            
+            # plot that in loss dict
             loss_dict_keys = list(loss_dict.keys())
         
             train_verbose = "{:5d} / {:5d} ({:.1f}%):"
@@ -61,7 +64,13 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             for key in loss_dict_keys:
                 train_verbose += "\t %s:{:.7f}"%key
                 verbose_args.append(loss_dict[key])
-                
+            
+            # plot the cumulative mean total loss
+            short_batch_df = pd.json_normalize(verbose_list) # this will be cumulative
+            mean_total = short_batch_df.loc[:,'Total'].mean()
+            train_verbose += "\t %s:{:.7f}"%"Mean_Total"
+            verbose_args.append(mean_total)
+            
             train_verbose = train_verbose.format(*verbose_args)                         
         
             logger.info(train_verbose)

@@ -18,12 +18,20 @@ from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
 parser.add_argument('--cuda',type=int,default=None,required=False)
+parser.add_argument("--kfold_index",type=int,default=None,required=False)
 args = parser.parse_args()
 
 POPEN = Auto_popen(args.config_file)
 if args.cuda is not None:
     POPEN.cuda_id = args.cuda
-
+    
+if POPEN.kfold_cv:
+    if args.kfold_index is None:
+        raise NotImplementedError("please specify the kfold index to perform K fold cross validation")
+    POPEN.kfold_index = args.kfold_index
+    POPEN.vae_log_path = POPEN.vae_log_path.replace(".log","_cv%d.log"%args.kfold_index)
+    POPEN.vae_pth_path = POPEN.vae_pth_path.replace(".pth","_cv%d.pth"%args.kfold_index)
+    
 # device = 'cuda' if torch.cuda.is_available() else 'cpu'
 # cuda2 = torch.device('cuda:2')
 
@@ -45,7 +53,7 @@ POPEN.check_experiment(logger)
 #                               |=====================================|
 
 # read data
-train_loader,val_loader = reader.get_dataloader(POPEN)
+train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
 
 # ===========  setup model  ===========
 # train_iter = iter(train_loader)
