@@ -8,11 +8,11 @@
             "name": "main_train",
             "type": "python",
             "request": "launch",
-            "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
+            "program": "./script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Backbone/RL_regressor_ribo/transfer/debug_transfer.ini",
-                     "--cuda","1"]
+            "args": ["--config_file","/home/shuying/Documents/UTR_VAE/log/Backbone/Multi_input_RL_regressor_ribo/test/debug.ini",
+                     "--cuda","0"]
         },
         {
             "name": "Python: no args",
