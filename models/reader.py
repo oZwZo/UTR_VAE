@@ -1,5 +1,6 @@
 import torch
 from torch.utils.data import  DataLoader, Dataset ,random_split
+from sklearn.model_selection import KFold,train_test_split
 import numpy as np
 import pandas as pd
 import copy
@@ -41,7 +42,7 @@ def one_hot(seq,complementary=False):
     return oh_array 
 
 class MTL_enc_dataset(Dataset):
-    def __init__(self,csv_path='/data/users/wergillius/UTR_VAE/multi_task/pretrain_MTL_UTR.csv',pad_to=100,aux_columns=None,input_col=None):
+    def __init__(self,DF,pad_to=100,aux_columns=None,input_col=None):
         """
         the dataset for Multi-task learning, will return sequence in one-hot encoded version, together with some auxilary task label
         arguments:
@@ -49,15 +50,14 @@ class MTL_enc_dataset(Dataset):
         ...pad_to : maximum length of the sequences
         ...columns : list  contains what  axuslary task label will be 
         """
-        self.csv_path = csv_path
         self.pad_to = pad_to
-        self.csv = pd.read_csv(csv_path)     # read Df
-        self.seqs = self.csv.utr.values       # take out all the sequence in DF
+        self.df = DF     # read Df
+        self.seqs = self.df.utr.values       # take out all the sequence in DF
         self.columns = aux_columns
         self.input_col = input_col
                 
     def __len__(self):
-        return self.csv.shape[0]
+        return self.df.shape[0]
     
     def __getitem__(self,index):
         seq = self.seqs[index]        # sequence: str of len 25~100
@@ -70,13 +70,13 @@ class MTL_enc_dataset(Dataset):
             item = X,X
         elif (type(self.columns) == list) & (len(self.columns)!=0):
             # return what's in columns
-            aux_labels = self.csv.loc[:,self.columns].values[index]
+            aux_labels = self.df.loc[:,self.columns].values[index]
             item = X ,aux_labels
 
             if self.input_col is not None:
                 input = [X]
                 for col in self.input_col:
-                    input.append(self.csv.loc[:,col].values[index]) 
+                    input.append(self.df.loc[:,col].values[index]) 
                 item = input,aux_labels
 
         return item
@@ -96,62 +96,17 @@ class UTR_dataset(Dataset):
     def __init__(self,cell_line:str,script_dir = script_dir,data_dir = data_dir):
         # read csv first
         self.cell_line = cell_line 
-        self.csv = read_UTR_csv(cell_line=cell_line)
+        self.df = read_UTR_csv(cell_line=cell_line)
 
         # raw data
-        self.oh_x = Seq_one_hot().d_transform(self.csv,flattern=False) # (3970, 100, 4)
-        self.y = self.csv.TEaverage.values 
+        self.oh_x = Seq_one_hot().d_transform(self.df,flattern=False) # (3970, 100, 4)
+        self.y = self.df.TEaverage.values 
 
     def __len__(self):
         return self.oh_x.shape[0]
     
     def __getitem__(self,index):
         return self.oh_x[index],self.y[index]
-
-
-def get_splited_dataloader(dataset,ratio:list,batch_size,num_workers,split_like_paper=False):
-    """
-    split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
-    dataset : the defined <UTR_dataset>
-    ratio : the ratio of train : val : test
-    batch_size : int
-    """
-
-    # make ratio to length
-    columns = dataset.columns
-    pad_to = dataset.pad_to
-    csv_path = dataset.csv_path
-    if split_like_paper == True:
-        # 
-        train_set = copy.deepcopy(dataset)
-        train_set.csv = train_set.csv.sort_values('total_reads',axis=0,ascending=False).iloc[20000:,:]
-        val_set = dataset
-        val_set.csv = val_set.csv.sort_values('total_reads',axis=0,ascending=False).iloc[:20000,:]
-        set_ls = [train_set,val_set]
-        
-        return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
-    
-    elif type(split_like_paper) == list:
-        # read two csv
-        if not (os.path.exists(split_like_paper[0]) & os.path.exists(split_like_paper[1])):
-            raise FileNotFoundError('can not find these two dataset')
-        train_set =  MTL_enc_dataset(csv_path=split_like_paper[0],pad_to=pad_to,columns=columns)
-        val_set = MTL_enc_dataset(csv_path=split_like_paper[1],pad_to=pad_to,columns=columns)
-        set_ls = [train_set,val_set]
-        
-        return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
-    
-    else:
-        total_len = len(dataset)
-        lengths = [int(total_len*ratio[0]),int(len(dataset)*ratio[1])]
-        
-        if total_len-sum(lengths) >0:
-            lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
-
-        set_ls = random_split(dataset,lengths)#,generator=torch.Generator().manual_seed(42))         # split dataset 
-        
-
-        return [DataLoader(subset, batch_size=batch_size, shuffle=True,num_workers=num_workers) for subset in set_ls]
 
 
 class mask_reader(Dataset):
@@ -255,7 +210,7 @@ class GSE65778_dataset(Dataset):
         ...trunc_len: maximum sequence to retain. number of nt preceding AUG
         ...seq_col : which col of the DF contain sequence to convert
         """
-        self.df =DF
+        self.df = DF
         self.pad_to = pad_to
         self.trunc_len =trunc_len
         
@@ -292,47 +247,112 @@ class GSE65778_dataset(Dataset):
         
         return X_padded.float()
 
-def get_ribo_dataloader(DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers,other_input_columns):
-    """
-    params :  DF_path,pad_to,trunc_len,seq_col,value_col,batch_size,num_workers
-    """
-    DF = pd.read_csv(DF_path,index_col=0)
-    BDF_dataset = GSE65778_dataset(DF,pad_to,trunc_len,seq_col,value_col,other_input_columns)
 
-    train_len = round(DF.shape[0]*0.8)
-    train_set,val_set = random_split(BDF_dataset,[train_len,DF.shape[0]-train_len])
+def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers):
+    """
+    split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
+    dataset : the defined <UTR_dataset>
+    ratio : the ratio of train : val : test
+    batch_size : int
+    """
 
-    train_loader = DataLoader(train_set,batch_size=40,shuffle=True)#,generator=torch.Generator().manual_seed(42)) 
-    val_loader = DataLoader(val_set,batch_size=40,shuffle=True)#,generator=torch.Generator().manual_seed(42)) 
+    #  determined set-ls
+    if len(df_ls) == 1:
+        dataset = dataset_func(df_ls[0])
+        
+        total_len = len(dataset)
+        lengths = [int(total_len*sub_ratio) for sub_ratio in ratio[:-1]]
+        lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
+
+        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
     
-    return train_loader,val_loader
+    else:
+        set_ls = [dataset_func(df) for df in df_ls]
+    
+    #  wrap dataset to dataloader
+    loader_ls = [
+                 DataLoader(subset,batch_size=batch_size,
+                            shuffle=True,num_workers=num_workers,
+                            generator=torch.Generator().manual_seed(42)) for subset in set_ls
+                 ]
+    if len(loader_ls) == 2:
+        # a complement of empty test set
+        loader_ls.append(None) 
+    return loader_ls
+
+
 
 def get_dataloader(POPEN):
+    """
+    wrapper
+    """
     if POPEN.dataset == 'mix':
-     train_loader,val_loader,test_loader  = get_mix_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+        loader_ls  = get_mix_dataloader(batch_size=POPEN.batch_size,num_workers=4)
     elif POPEN.dataset == "mask":
-        train_loader,val_loader,test_loader = get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+        loader_ls = get_mask_dataloader(batch_size=POPEN.batch_size,num_workers=4)
+        
     elif POPEN.dataset == "ribo":
-        train_loader,val_loader = get_ribo_dataloader(DF_path=POPEN.csv_path,pad_to=POPEN.pad_to,trunc_len=POPEN.trunc_len,
-                                                                        seq_col=POPEN.seq_col,value_col=POPEN.aux_task_columns,
-                                                                        batch_size=POPEN.batch_size,num_workers=4,
-                                                                        other_input_columns=POPEN.other_input_columns)
+        full_df = pd.read_csv(POPEN.csv_path)
+        
+        if POPEN.kfold_cv == True:
+            # K-fold CV : 8:1:1 for each partition
+            df_ls = KFold_df_split(full_df,POPEN.kfold_index)
+        else:
+            # POPEN.ratio will determine train :val :test ratio
+            df_ls = [full_df] 
+        
+        dataset_func = lambda x :GSE65778_dataset(x,pad_to=POPEN.pad_to,trunc_len=POPEN.trunc_len,
+                                                    seq_col=POPEN.seq_col,value_col=POPEN.aux_task_columns,
+                                                    other_input_columns=POPEN.other_input_columns)
+        
+            
+        loader_ls = get_splited_dataloader(dataset_func,df_ls,ratio=POPEN.train_test_ratio,
+                                            batch_size=POPEN.batch_size,num_workers=4) # new function
     elif POPEN.dataset == "MTL":
-        dataset = MTL_enc_dataset(csv_path=POPEN.csv_path,pad_to=POPEN.pad_to,
+        full_df = pd.read_csv(POPEN.csv_path)        
+        
+        if type(POPEN.split_like_paper) == list:
+            # two csv path : 260,000 train set & 20,000 test set
+            df_ls = [pd.read_csv(path) for path in POPEN.split_like_paper]
+        elif POPEN.kfold_cv == True:
+            # K-fold CV : 8:1:1 for each partition
+            df_ls = KFold_df_split(full_df,POPEN.kfold_index)
+        else:
+            df_ls = [full_df]
+        
+        dataset_func = lambda x : MTL_enc_dataset(DF=x,pad_to=POPEN.pad_to,
                                         aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
-        loader_ls = get_splited_dataloader(dataset,
-                                                ratio=POPEN.train_test_ratio,
-                                                batch_size=POPEN.batch_size,
-                                                num_workers=4,
-                                                split_like_paper=POPEN.split_like_paper) # new function
-        train_loader = loader_ls[0]
-        val_loader = loader_ls[1]
-
+        
+        loader_ls = get_splited_dataloader(dataset_func,df_ls,ratio=POPEN.train_test_ratio,
+                                            batch_size=POPEN.batch_size,num_workers=4) # new function
         
     else:
+        # YK 's dataset
         dataset = UTR_dataset(cell_line=POPEN.cell_line)
-        train_loader,val_loader,test_loader = get_splited_dataloader(dataset,
-                                                                            ratio=[0.7,0.1,0.2],
-                                                                            batch_size=POPEN.batch_size,
-                                                                            num_workers=4)
-    return train_loader,val_loader
+        loader_ls = get_splited_dataloader(dataset,ratio=[0.7,0.1,0.2],
+                                            batch_size=POPEN.batch_size,num_workers=4)
+         # train,  val , test
+    return loader_ls 
+
+def KFold_df_split(df,K,**kfoldargs):
+    """
+    split the dataset DF in a ratio of 8:1:1 , train:val:test in the framework of  K-fold CV 
+    set random seed = 43
+    arguments:
+    df : the `pd.DataFrame` object containing all data info
+    K : [0,4] , the index of subfold 
+    """
+    
+    # K-fold partition : n_splits=5
+    fold_index = list(KFold(5,shuffle=True,random_state=43).split(df))
+    train_index, val_test_index = fold_index[K]  
+    # the first 4/5 part of it is train set
+     
+    # index the df
+    train_df = df.iloc[train_index]
+    val_test_df = df.iloc[val_test_index]
+    
+    # the remaining 1/5 data will further break into val and test
+    val_df,test_df = train_test_split(val_test_df,test_size=0.5,random_state=43)
+    
+    return [train_df,val_df,test_df]
