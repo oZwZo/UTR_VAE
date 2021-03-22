@@ -264,7 +264,7 @@ def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers)
         lengths = [int(total_len*sub_ratio) for sub_ratio in ratio[:-1]]
         lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
-        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(43))         # split dataset 
+        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
     
     else:
         set_ls = [dataset_func(df) for df in df_ls]
@@ -273,9 +273,9 @@ def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers)
     loader_ls = [
                  DataLoader(subset,batch_size=batch_size,
                             shuffle=True,num_workers=num_workers,
-                            generator=torch.Generator().manual_seed(43)) for subset in set_ls
+                            generator=torch.Generator().manual_seed(42)) for subset in set_ls
                  ]
-    if len(ratio) == 2:
+    if len(loader_ls) == 2:
         # a complement of empty test set
         loader_ls.append(None) 
     return loader_ls
@@ -294,7 +294,7 @@ def get_dataloader(POPEN):
     elif POPEN.dataset == "ribo":
         full_df = pd.read_csv(POPEN.csv_path)
         
-        if POPEN.kfold_cv is not None:
+        if POPEN.kfold_cv == True:
             # K-fold CV : 8:1:1 for each partition
             df_ls = KFold_df_split(full_df,POPEN.kfold_index)
         else:
@@ -314,7 +314,7 @@ def get_dataloader(POPEN):
         if type(POPEN.split_like_paper) == list:
             # two csv path : 260,000 train set & 20,000 test set
             df_ls = [pd.read_csv(path) for path in POPEN.split_like_paper]
-        elif POPEN.kfold_cv is not None:
+        elif POPEN.kfold_cv == True:
             # K-fold CV : 8:1:1 for each partition
             df_ls = KFold_df_split(full_df,POPEN.kfold_index)
         else:

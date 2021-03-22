@@ -24,11 +24,11 @@ args = parser.parse_args()
 POPEN = Auto_popen(args.config_file)
 if args.cuda is not None:
     POPEN.cuda_id = args.cuda
-    
+
+POPEN.kfold_index = args.kfold_index
 if POPEN.kfold_cv:
     if args.kfold_index is None:
         raise NotImplementedError("please specify the kfold index to perform K fold cross validation")
-    POPEN.kfold_index = args.kfold_index
     POPEN.vae_log_path = POPEN.vae_log_path.replace(".log","_cv%d.log"%args.kfold_index)
     POPEN.vae_pth_path = POPEN.vae_pth_path.replace(".pth","_cv%d.pth"%args.kfold_index)
     
