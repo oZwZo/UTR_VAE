@@ -21,7 +21,9 @@ __pycache__/*.pyc
 *.ipynb
 *.=checkpoint.ipynb
 
-ipynb/*
-
+ipynb/TE_gan
+ipynb/_*
+ipynb/Supplementary*
+ipynb/.*
 
 __pycache__/utils.cpython-38.pyc
