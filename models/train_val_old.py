@@ -53,7 +53,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
             Y = X if popen.model_type == 'Reconstruction' else Y
             out = model(X)
             # TODO : debug here
-            loss_dict = model.compute_loss(out,Y,popen)
+            loss_dict = model.compute_loss(out,X,Y,popen)
             loss = loss_dict['Total']
             acc = model.compute_acc(out,Y)
         
@@ -172,7 +172,7 @@ def validate(dataloader,model,popen,epoch):
                     Y = X if popen.model_type == 'Reconstruction' else Y
                     if popen.path_category == 'CrossStitch':
                         Y = (X,Y)
-                    loss_dict = model.compute_loss(out,Y,popen)
+                    loss_dict = model.compute_loss(out,X,Y,popen)
                 
         
                 # TODO : compute acc of classification
@@ -181,7 +181,7 @@ def validate(dataloader,model,popen,epoch):
                     acc_ls.append(acc_dict['RL_Acc'])
                     loss_dict = {**loss_dict,**acc_dict}
                 else:
-                    acc_ls.append(model.compute_acc(out,Y))
+                    acc_ls.append(model.compute_acc(out,X,Y,popen))
                 
                 for key in model.loss_dict_keys:
                     loss_verbose[key]  += loss_dict[key].item() if type(loss_dict[key]) == torch.Tensor else loss_dict[key]

@@ -189,15 +189,15 @@ def scatter_linearreg_plot(quanty,y,ax=None):
     y_pred = linear_mod.predict(quanty.reshape(-1,1))
     r2 = r2_score(y,y_pred)
     
-    print("y = %.3f x + %.3f"%(linear_mod.coef_,linear_mod.intercept_))
+    fit_line="y=%.2fx+%.2f"%(linear_mod.coef_,linear_mod.intercept_)
     
     if ax is None:
         fig = plt.figure(figsize=(6,4))
         ax = fig.gca()
     
-    ax.scatter(quanty,y,s=5,alpha=0.2)
+    ax.scatter(quanty,y,s=5,alpha=0.2,label=r'$R^2$=%.3f'%r2)
     ax.plot(line_x,line_x,'-.',color='orange',alpha=0.5,label='y=x')
-    ax.plot(line_x,line_y,'--',color='black',alpha=0.5,label=r'$R^2$=%.3f'%r2)
+    ax.plot(line_x,line_y,'--',color='black',alpha=0.5,label=fit_line)
     plt.legend()
 
 

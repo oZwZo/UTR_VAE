@@ -192,14 +192,18 @@ class RL_regressor(backbone_model):
         assert Y.shape == out.shape
         return out,Y
     
-    def compute_acc(self,out,Y,epsilon=0.3):
+    def compute_acc(self,out,X,Y,popen):
+        try:
+            epsilon=popen.epsilon
+        except AttributeError:
+            epsilon=0.35
         out,Y = self.squeeze_out_Y(out,Y)
         # error smaller than epsilon
         with torch.no_grad():
             acc = torch.sum(torch.abs(Y-out) < epsilon).item() / Y.shape[0]
-        return acc
+        return {'Acc':acc}
     
-    def compute_loss(self,out,Y,popen):
+    def compute_loss(self,out,X,Y,popen):
         out,Y = self.squeeze_out_Y(out,Y)
         loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         return {"Total":loss}
