@@ -16,6 +16,7 @@ launch.json
 .ipynb_checkpoints/*
 *-checkpoint.py
 *.pyc
+__pycache__/*.pyc
 
 *.ipynb
 *.=checkpoint.ipynb
