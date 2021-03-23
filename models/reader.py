@@ -248,7 +248,7 @@ class GSE65778_dataset(Dataset):
         return X_padded.float()
 
 
-def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers):
+def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers,seed=42):
     """
     split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
     dataset : the defined <UTR_dataset>
@@ -264,7 +264,7 @@ def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers)
         lengths = [int(total_len*sub_ratio) for sub_ratio in ratio[:-1]]
         lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
-        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(42))         # split dataset 
+        set_ls = random_split(dataset,lengths,generator=torch.Generator().manual_seed(seed))         # split dataset 
     
     else:
         set_ls = [dataset_func(df) for df in df_ls]
@@ -307,7 +307,7 @@ def get_dataloader(POPEN):
         
             
         loader_ls = get_splited_dataloader(dataset_func,df_ls,ratio=POPEN.train_test_ratio,
-                                            batch_size=POPEN.batch_size,num_workers=4) # new function
+                                            batch_size=POPEN.batch_size,num_workers=4,seed=42) # new function
     elif POPEN.dataset == "MTL":
         full_df = pd.read_csv(POPEN.csv_path)        
         
@@ -324,13 +324,13 @@ def get_dataloader(POPEN):
                                         aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
         
         loader_ls = get_splited_dataloader(dataset_func,df_ls,ratio=POPEN.train_test_ratio,
-                                            batch_size=POPEN.batch_size,num_workers=4) # new function
+                                            batch_size=POPEN.batch_size,num_workers=4,seed=42) # new function
         
     else:
         # YK 's dataset
         dataset = UTR_dataset(cell_line=POPEN.cell_line)
         loader_ls = get_splited_dataloader(dataset,ratio=[0.7,0.1,0.2],
-                                            batch_size=POPEN.batch_size,num_workers=4)
+                                            batch_size=POPEN.batch_size,num_workers=4,seed=42)
          # train,  val , test
     return loader_ls 
 
@@ -344,7 +344,7 @@ def KFold_df_split(df,K,**kfoldargs):
     """
     
     # K-fold partition : n_splits=5
-    fold_index = list(KFold(5,shuffle=True,random_state=43).split(df))
+    fold_index = list(KFold(5,shuffle=True,random_state=42).split(df))
     train_index, val_test_index = fold_index[K]  
     # the first 4/5 part of it is train set
      
@@ -353,6 +353,6 @@ def KFold_df_split(df,K,**kfoldargs):
     val_test_df = df.iloc[val_test_index]
     
     # the remaining 1/5 data will further break into val and test
-    val_df,test_df = train_test_split(val_test_df,test_size=0.5,random_state=43)
+    val_df,test_df = train_test_split(val_test_df,test_size=0.5,random_state=42)
     
     return [train_df,val_df,test_df]
