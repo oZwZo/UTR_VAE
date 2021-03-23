@@ -11,7 +11,7 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Backbone/RL_regressor_ribo/transfer/debug_transfer.ini",
+            "args": ["--config_file","log/Backbone/RL_regressor_ribo/repeat_big_capacity_slr/big_capacity_slr_repeat1.ini",
                      "--cuda","1"]
         },
         {
@@ -21,7 +21,7 @@
             "program": "/home/wergillius/Project/UTR_VAE/script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","/home/wergillius/Project/UTR_VAE/log/Backbone/RL_regressor_ribo/CV_for_rl/3en6.ini",
+            "args": ["--config_file","log/Backbone/RL_regressor_ribo/test_trainval_bcb/bc_CV.ini",
                      "--cuda","0",
                      "--kfold_index","1"]
         },

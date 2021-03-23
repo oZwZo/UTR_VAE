@@ -5,7 +5,7 @@ settings.json
 
 # nohup
 *.out
-
+launch.json
 # vscode
 ./.vscode/settings.json
 .vscode/*
