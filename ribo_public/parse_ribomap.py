@@ -11,6 +11,9 @@ from sklearn import linear_model
 from sklearn.metrics import r2_score
 from matplotlib import pyplot as plt
 from torch.utils.data import random_split
+from matplotlib import cm
+import matplotlib
+
 global P_M_order
 global nt_order
 P_M_order= ['Pyrimidine','Purine']
@@ -228,4 +231,50 @@ class GSE65778_dataset(Dataset):
         x_padded = seq_chunk_N_oh(seq,self.pad_to,self.trunc_len)
         y = self.Y[i]
         return x_padded,i
+        
+def zwz_cor_m(matrix,axis):
+    """
+    calculate the covariance matrix 
+    where the axis parameter denote which axis is the feature axis 
+    """
     
+    m,n = np.shape(matrix)
+    if axis == 0:
+        mean_M = np.mean(matrix,1-axis).reshape(m,1)
+        norm_M = matrix-mean_M
+        COV_M = np.dot(norm_M,np.transpose(norm_M))/n
+        std_M = np.std(matrix,1-axis).reshape(m,1)
+        db_std_M = std_M@std_M.T
+        COR_M = COV_M / db_std_M
+    else:
+        mean_M = np.mean(matrix,1-axis).reshape(1,n)
+        norm_M = matrix-mean_M
+        COV_M = np.dot(np.transpose(norm_M),norm_M)/m
+        std_M = np.std(matrix,1-axis).reshape(1,n)
+        db_std_M = std_M.T@std_M
+        COR_M = COV_M / db_std_M
+        
+    return COR_M
+
+def cor_M_heatmap(corr_M,label=TCM_col):
+    color_norm = matplotlib.colors.Normalize(vmin=0, vmax=1)
+    mapperable = cm.ScalarMappable(color_norm,cmap=cm.RdBu_r)
+
+    from matplotlib.ticker import StrMethodFormatter
+
+    fig = plt.figure(figsize=(11,9))
+    ax = fig.gca()
+    heatmap=ax.imshow(corr_M,aspect='auto',cmap=cm.RdBu_r)
+    plt.colorbar(heatmap)
+
+    valfmt = StrMethodFormatter('{x:.4f}')
+    for i in range(corr_M.shape[0]):
+        for j in range(corr_M.shape[1]):
+            if j>i:
+                continue
+            font_color = ['black','w'][(np.tril(corr_M,k=0)[i,j] <0.96)|(np.tril(corr_M,k=0)[i,j] > 0.98)]
+            ax.text(j-0.3,i+0.08,valfmt(np.tril(corr_M,k=0)[i,j],None),color=font_color,size=12);
+    ax.set_yticks(range(9))
+    ax.set_yticklabels(label,size=14);
+
+    return fig
