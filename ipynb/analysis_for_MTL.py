@@ -53,6 +53,9 @@ def reconstruct_seq(out_seq,X):
     return torch.mean(X.mul(seq).sum(dim=2).sum(dim=1)) 
 
 def read_main_(config_file,logger,cuda=None,kfold_index=None):
+    """
+    return a dict
+    """
     POPEN = Auto_popen( config_file)
     if  cuda is not None:
         POPEN.cuda_id =  cuda
@@ -250,3 +253,17 @@ def compute_acc(X,recon):
     true_max=torch.argmax(X,dim=2)
     recon_max=torch.argmax(recon,dim=1)
     return torch.sum(true_max == recon_max,dim=1)
+
+def get_input_grad(test_X,index):
+    
+    # process X
+    sampled_X = test_X[index].unsqueeze(0)
+    sampled_X.requires_grad = True
+    # forward
+    sampled_out = model(sampled_X)['RL']
+
+    # auto grad part
+    external_grad = torch.ones_like(sampled_out)
+    sampled_out.backward(gradient=external_grad,retain_graph=True) # define \frac{d out}{ }
+
+    return sampled_X.grad.abs()
