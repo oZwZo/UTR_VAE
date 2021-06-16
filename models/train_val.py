@@ -25,7 +25,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     for idx,data in enumerate(dataloader):
         
         X,Y = put_data_to_cuda(data,popen,require_grad=True)
-        
+        # X.require_grad = True
+        # Y.require_grad = True
         optimizer.zero_grad()
         
         out = model(X)

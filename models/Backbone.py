@@ -281,7 +281,7 @@ class Reconstruction(backbone_model):
         recons,mu,sigma = out
 
         # Account for the minibatch samples from the dataset
-        recons_loss =self.loss_fn(out[0], Y.transpose(1,2))
+        recons_loss =self.loss_fn(recons, X.transpose(1,2))
         loss =recons_loss + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         loss_dict = {'Total': loss}
         
@@ -299,8 +299,8 @@ class Reconstruction(backbone_model):
         pad_to = Y.shape[1]
         recons,mu,sigma = out
         with torch.no_grad():
-            true_max=torch.argmax(Y,dim=2)
-            recon_max=torch.argmax(out[0],dim=1)
+            true_max=torch.argmax(X,dim=2)
+            recon_max=torch.argmax(recons,dim=1)
             acc =  torch.mean(torch.sum(true_max == recon_max,dim=1).float()).item()
         return {"Acc":acc / pad_to}
 

@@ -89,7 +89,7 @@ elif POPEN.path_category == "CrossStitch":
     POPEN.model_args = [backbone] + POPEN.model_args
     model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
 else:
-    Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
+    Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
     model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
@@ -163,7 +163,8 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             # update the popen
             POPEN.update_ini_file({'run_name':run_name,
                                 "ran_epoch":epoch,
-                                "best_acc":best_acc},
+                             
+                                   "best_acc":best_acc},
                                 logger)
             
         elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):

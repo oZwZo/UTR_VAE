@@ -248,7 +248,7 @@ class GSE65778_dataset(Dataset):
         return X_padded.float()
 
 
-def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers,seed=42):
+def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers,seed=42,return_dataset=False):
     """
     split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
     dataset : the defined <UTR_dataset>
@@ -278,7 +278,10 @@ def get_splited_dataloader(dataset_func,df_ls,ratio:list,batch_size,num_workers,
     if len(loader_ls) == 2:
         # a complement of empty test set
         loader_ls.append(None) 
-    return loader_ls
+    if return_dataset:
+        return set_ls
+    else:
+        return loader_ls
 
 
 
@@ -356,3 +359,45 @@ def KFold_df_split(df,K,**kfoldargs):
     val_df,test_df = train_test_split(val_test_df,test_size=0.5,random_state=42)
     
     return [train_df,val_df,test_df]
+
+def DF_to_dataloader(full_df,POPEN,return_dataset):
+    """
+    An function that convert any dataframe into MTL_enc_dataset and its dataloader
+    Args:
+        full_df : list , [DataFrames,] ,must contain : ['utr','rl','scaled_rl','with_xxx'..]
+        POPEN :
+        return_dataset : boolen, if True, will return dataset instead of dataloader
+    return 
+        loader_ls : list , [torch.utils.data.DataLoader,] or [torch.utils.data.DataSet,] depending on `return dataset`
+    """
+    df_ls = [full_df]
+
+    dataset_func = lambda x : MTL_enc_dataset(DF=x,pad_to=POPEN.pad_to,
+                                aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
+
+    loader_ls = get_splited_dataloader(dataset_func,df_ls,ratio=POPEN.train_test_ratio,
+                                    batch_size=POPEN.batch_size,num_workers=4,seed=42,return_dataset=return_dataset) #
+    return loader_ls
+
+
+def loader_from_df(df,POPEN,return_set=False):
+    """
+    unlike `reader.DF_to_dataloader`, the dataloader from this function has no train test split, it used entire df to return data
+    Args:
+        df: DataFrame , must contain : ['utr','rl','scaled_rl','with_xxx'..]
+        POPEN : `models.popen.Auto_popen`
+    Return:
+        dataloader
+    """
+    
+    dataset_func = lambda x : MTL_enc_dataset(DF=x,pad_to=POPEN.pad_to,
+                                aux_columns=POPEN.aux_task_columns,input_col=POPEN.other_input_columns)
+    
+    subset = dataset_func(df)
+    dataloader = DataLoader(subset,batch_size=126,
+                            shuffle=False,num_workers=2,
+                            generator=torch.Generator().manual_seed(42))
+    if return_set:
+        return subset
+    else:
+        return dataloader

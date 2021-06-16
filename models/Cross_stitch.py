@@ -93,14 +93,18 @@ class CrossStitch_Model(nn.Module):
         task_feature =  {t:self.backbone[t].forward_stage(task_feature[t],stage) for t in self.tasks}
         # exchange by cross_stitch
         crossing_feature = self.cross_stitch_link[stage](task_feature)
-        return crossing_feature  
-        
-    def forward(self,X):
+        return crossing_feature
+    
+    def cross_stitch_encode(self,X):
         X = X.transpose(1,2) if X.shape[2] == 4 else X
         task_feature = {t:X for t in self.tasks}
         for stage in self.stage:
             task_feature = self.forward_stage(task_feature,stage)
+        return task_feature
         
+    def forward(self,X):
+
+        task_feature = self.cross_stitch_encode(X)
         out = {t:self.backbone[t].forward_tower(task_feature[t]) for t in self.tasks}
         
         return out
