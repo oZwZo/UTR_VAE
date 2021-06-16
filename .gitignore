@@ -27,3 +27,13 @@ ipynb/Supplementary*
 ipynb/.*
 
 __pycache__/utils.cpython-38.pyc
+*.npy
+log/Backbone/Reconstruction_MTL/test_run/VAE_tsne/downsampled_VAE_Z_max.npy
+log/Backbone/Reconstruction_MTL/test_run/VAE_tsne/extram_VAE_Z_mean.npy
+log/Backbone/Reconstruction_MTL/test_run/VAE_tsne/VAE_Z_max.npy
+log/CrossStitch/CrossStitch_Model_MTL/a5b5/design_RL_latents.npy
+log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/cs_latent_max_channel.npy
+log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/cs_RL_tower.npy
+log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/design_before_last_exchange_p105.npy
+log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/design_before_last_exchange.npy
+log/Backbone/Reconstruction_MTL/test_run/VAE_tsne/design_VAE_Z_max.npy

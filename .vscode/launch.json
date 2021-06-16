@@ -11,13 +11,8 @@
             "program": "./script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-<<<<<<< HEAD
-            "args": ["--config_file","log/Backbone/RL_regressor_ribo/repeat_big_capacity_slr/big_capacity_slr_repeat1.ini",
+            "args": ["--config_file","log/Backbone/Motif_detection_MTL/pretrain_with_unm2_p1_design/eight_motif_test.ini",
                      "--cuda","1"]
-=======
-            "args": ["--config_file","/home/shuying/Documents/UTR_VAE/log/Backbone/Multi_input_RL_regressor_ribo/test/debug.ini",
-                     "--cuda","0"]
->>>>>>> e6eb34b6b7ec0b22a8c5c15cd7f80b8d0647a3e0
         },
         {
             "name": "CV_main",
@@ -37,7 +32,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": []
+            "args": ["vleng_df"]
         }
     ]
 }
