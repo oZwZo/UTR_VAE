@@ -7,30 +7,98 @@ import numpy as np
 import pandas as pd
 from Bio import SeqIO
 from tqdm import tqdm
-import torch
-from torch.utils.data import Dataset
+# import torch
+# from torch.utils.data import Dataset
 # from models import reader
 from sklearn import linear_model
 from sklearn.metrics import r2_score
 from matplotlib import pyplot as plt
-from torch.utils.data import random_split
+# from torch.utils.data import random_split
 from matplotlib import cm
 import matplotlib
 import seaborn as sns
 import RNA
-
+import logomaker
 global P_M_order
 global nt_order
 global possible_codon
+global nonstop_codon
+global stop_codon
+global lasso_dt
 
+
+stop_codon = ['TAA', 'TAG', 'TGA']
 possible_codon = []
 for x in ['A','G','C','T']:
     for y in ['A','G','C','T']:
         for z in ['A','G','C','T']:
             possible_codon.append(x+y+z)
-                
+nonstop_codon = [codon for codon in possible_codon if codon not in stop_codon]
+            
 P_M_order= ['Pyrimidine','Purine']
 nt_order = ['T','C','A','G']
+
+"""
+fit = glmnet_py.cvglmnet(x=X.copy(),y=y.copy(),offset=mRNA.reshape(-1,1),family='gaussian',alpha=1,penalty_factor=pac)
+
+df= 37
+"""
+lasso_dt = np.array([-0.53864825,  3.00561386,  2.50467638,  0.        , -0.57056949,
+       -4.77666848, -0.70480545, -5.11145326,  0.        ,  0.        ,
+        2.663155  ,  0.        , -3.98555284,  4.02799363,  1.89505132,
+        0.        ,  0.        ,  0.        ,  0.66701017,  0.77901674,
+        3.03151344,  0.        ,  1.85057661,  2.05028067,  1.88401675,
+        4.39000744,  0.        ,  5.14643784,  0.        ,  0.        ,
+        0.        ,  0.        ,  0.        ,  0.7608937 , -2.37450014,
+       -2.19836656,  0.        ,  0.        ,  0.33030818,  0.94852968,
+        0.57095493,  0.        ,  0.        ,  0.50743551, -1.63151264,
+        0.        , -1.37585807, -1.07774964,  0.        ,  0.        ,
+       -4.25483726, -0.44730882, -4.43949239, -3.95417156,  0.        ,
+        0.        ,  0.        , -6.55502993, -1.27796312,  0.        ,
+       -2.32023904])
+
+l2_dt = np.array([-2.12469928,  2.81270749,  3.35819581, -1.17717383, -2.42946856,
+       -5.73383999, -2.46970098, -6.13877063, -0.52653678, -2.46156308,
+        3.45185364,  1.59640062, -5.11816967,  4.04028651,  2.20490866,
+       -1.76425757, -0.51758389, -0.36788181,  1.52525104,  2.36897099,
+        4.18470353, -2.55995921,  2.16849525,  1.87697772,  3.0960675 ,
+        5.5135327 ,  0.66962425,  4.96441128, -1.78968716, -0.38787249,
+        0.86324555,  0.69508388, -1.489359  ,  1.71871299, -3.6560144 ,
+       -2.81697537,  2.61147891, -2.97797552,  1.97183025,  2.31319664,
+        1.69416326,  1.89483017, -2.48754406,  1.66407512, -3.18414193,
+       -1.40521126, -2.54314833, -1.45658566,  1.35806316, -1.78846547,
+       -5.02102463, -2.27696305, -4.12614424, -5.26787618,  2.37892131,
+       -0.267045  , -0.01691306, -6.55898476, -2.32785785, -0.94807203,
+       -3.42040188])
+
+pcA_cds_dt = np.array([ 0.05588866, -0.10552585,  0.38827988,  0.85763632, -0.1992822 ,
+       -0.26078061, -3.74791378, -0.74356932, -2.86126272, -0.25765847,
+        1.37987138,  1.18515757, -1.26636556, -0.16989333,  3.39194809,
+        1.39562233,  0.44858402, -0.25900116, -0.75576014,  0.30961706,
+        0.12777689,  1.24128   , -0.81991945,  0.87771443,  1.43970288,
+        1.09773126,  2.21708954,  0.24419118,  0.36560133,  0.63004706,
+       -0.020403  ,  0.44097828,  0.36072482, -0.53175378, -0.81216023,
+       -2.19105109, -2.56392767,  0.44659448, -0.98768926,  0.38804422,
+       -1.05187193, -0.38687548,  1.80374798,  0.01476799, -0.96331043,
+       -0.97770741, -0.35058853, -0.8604688 , -1.21289101,  2.56124028,
+        0.72472158, -0.85025404,  0.19001718, -1.58662398, -2.23300982,
+        2.73182849, -0.0549915 , -1.82963536, -1.07065346, -1.28387825,
+        0.97566215,  0.28885791, -0.29952038])
+
+# fit = glmnet_py.cvglmnet(x=sparseX.copy(),y=y.copy(),offset=mRNA.reshape(-1,1),family='gaussian',alpha=0,lambda_min=np.array([0.13]))
+f_codon_dt=np.array([-0.12231968,  0.16074828,  0.19674995, -0.21754572, -0.27562688,
+       -0.2006851 ,  0.02901226, -0.39752658, -0.21943518,  0.2493764 ,
+        0.26878144, -0.20889891, -0.44277866,  0.16874409,  0.22986571,
+       -0.17329062, -0.10701735,  0.08870047,  0.17961145, -0.07822998,
+       -0.01494866,  0.15839096,  0.20275799,  0.09964687,  0.01404705,
+        0.25448296,  0.17838633,  0.13769552, -0.30576165,  0.15993428,
+        0.18526434, -0.21175334, -0.25733785,  0.10617409, -0.02671133,
+       -0.389852  ,  0.00562409,  0.1439438 ,  0.23744647,  0.16897006,
+       -0.04408601,  0.20894593,  0.12048961, -0.02642465, -0.40730782,
+        0.06337429,  0.04577295, -0.33413293,  0.15653345, -0.2132827 ,
+       -0.19406084, -0.04061602, -0.35733686, -0.3956885 ,  0.32621031,
+        0.08831421, -0.23414786, -0.43364724, -0.30601622,  0.06418427,
+       -0.25215704])
 
 get_value = lambda x : x.split(':')[-1].strip()
 
@@ -211,7 +279,7 @@ def scatter_linearreg_plot(quanty,y,ax=None):
     line_x = np.array([quanty.min(),quanty.max()])
     line_y = linear_mod.predict(line_x.reshape(-1,1))
     y_pred = linear_mod.predict(quanty.reshape(-1,1))
-    r2 = r2_score(y,y_pred)
+    r2 = r2_score(quanty,y)
     
     fit_line="y=%.2fx+%.2f"%(linear_mod.coef_,linear_mod.intercept_)
     
@@ -225,33 +293,33 @@ def scatter_linearreg_plot(quanty,y,ax=None):
     ax.legend()
 
 
-class GSE65778_dataset(Dataset):
+# class GSE65778_dataset(Dataset):
     
-    def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count'):
-        """
-        Dataset to trancate sequence and return in one-hot encoding way
-        `dataset(DF,pad_to,trunc_len=50,seq_col='utr')`
-        ...DF: the dataframe contain sequence and its meta-info
-        ...pad_to: final size of the output tensor
-        ...trunc_len: maximum sequence to retain. number of nt preceding AUG
-        ...seq_col : which col of the DF contain sequence to convert
-        """
-        self.df = DF
-        self.pad_to = pad_to
-        self.trunc_len =trunc_len
+#     def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count'):
+#         """
+#         Dataset to trancate sequence and return in one-hot encoding way
+#         `dataset(DF,pad_to,trunc_len=50,seq_col='utr')`
+#         ...DF: the dataframe contain sequence and its meta-info
+#         ...pad_to: final size of the output tensor
+#         ...trunc_len: maximum sequence to retain. number of nt preceding AUG
+#         ...seq_col : which col of the DF contain sequence to convert
+#         """
+#         self.df = DF
+#         self.pad_to = pad_to
+#         self.trunc_len =trunc_len
         
-        # X and Y
-        self.seqs = DF.loc[:,seq_col].values
-        self.Y = DF.loc[:,value_col].values
+#         # X and Y
+#         self.seqs = DF.loc[:,seq_col].values
+#         self.Y = DF.loc[:,value_col].values
         
-    def __len__(self):
-        return self.df.shape[0]
+#     def __len__(self):
+#         return self.df.shape[0]
     
-    def __getitem__(self,i):
-        seq = self.seqs[i]
-        x_padded = seq_chunk_N_oh(seq,self.pad_to,self.trunc_len)
-        y = self.Y[i]
-        return x_padded,i
+#     def __getitem__(self,i):
+#         seq = self.seqs[i]
+#         x_padded = seq_chunk_N_oh(seq,self.pad_to,self.trunc_len)
+#         y = self.Y[i]
+#         return x_padded,i
         
 def zwz_cor_m(matrix,axis):
     """
@@ -663,11 +731,26 @@ def compute_transcript_k_el(cds_seq,P_site_codon_stats,just_freq=False):
     # relative abundance
     for codon,summation in cds_codon_stats.items():
         cds_codon_stats[codon] = summation/protin_len
-    cds_codon_freq = np.array([freq for codon,freq in cds_codon_stats.items()])
+    cds_codon_freq = np.array([freq for codon,freq in cds_codon_stats.items() if  codon not in stop_codon])
     
     if just_freq:
         return list(cds_codon_freq)
     else:
-        dwelling_time = np.array([1/summation for codon,summation in P_site_codon_stats.items()])
+        dwelling_time = np.array([1/summation for codon,summation in P_site_codon_stats.items() if  codon not in stop_codon])
 
         return 1/np.inner(dwelling_time,cds_codon_freq)
+    
+def consensus_seq(APE):
+    APE = np.array([list(seq) for seq in APE])
+    NT_freq = []
+    for site in range(APE.shape[1]):
+        NT_freq.append([np.sum(APE[:,site] == nt)/APE.shape[0] for nt in ["A",'G','C','T']])
+    
+     
+    NT_df = pd.DataFrame(np.stack(NT_freq),columns=['A','G','C','T'])
+    logomaker.Logo(NT_df,figsize=(12,2));
+    ax = plt.gca()
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.set_xticks(range(0,10))
+    ax.set_xticklabels(range(-4,6))
