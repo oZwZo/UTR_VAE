@@ -3,12 +3,23 @@ import numpy as np
 import pandas as pd
 from torch.utils.data.sampler import Sampler,BatchSampler,SubsetRandomSampler
 
+class Basic_sampler(Sampler):
+    def __init__(self, data):
+        super().__init__(data)
+        self.data= data.dropna()
+        
+    def __len__(self):
+        return len(self.data)
+    
+    def __iter__(self):
+        return (i for i in range(self.data.shape[0]))
+    
 class sort_sampler(Sampler):
     def __init__(self, data, sort_key="utr_len"):
         super().__init__(data)
         self.data = data
         self.sort_key = sort_key
-        zip_ = [(i, seq_len) for i, seq_len in enumerate(self.data[self.sort_key].values)]
+        zip_ = [(i, seq_len) for i, seq_len in enumerate(data[sort_key].values)]
         zip_ = sorted(zip_, key=lambda r: r[1])
         self.sorted_indexes = [item[0] for item in zip_]
 
@@ -63,18 +74,18 @@ class Bucket_Sampler(BatchSampler):
                  drop_last=False,
                  sort_key='utr_len',
                  bucket_size_multiplier=100):
-        
-        self.sampler = sort_sampler(data,sort_key)
+        self.data = data
+        self.sampler = Basic_sampler(data)
         super().__init__(self.sampler, batch_size, drop_last)
         self.sort_key = sort_key
         _bucket_size = batch_size * bucket_size_multiplier
         if hasattr(self.sampler, "__len__"):
-            _bucket_size = min(_bucket_size, len(sampler))
-        self.bucket_sampler = BatchSampler(sampler, _bucket_size, False)
+            _bucket_size = min(_bucket_size, len(self.sampler))
+        self.bucket_sampler = BatchSampler(self.sampler, _bucket_size, False)
 
     def __iter__(self):
         for bucket in self.bucket_sampler:
-            sorted_sampler = sort_sampler(bucket, self.sort_key)
+            sorted_sampler = sort_sampler(self.data.iloc[bucket], self.sort_key)
             for batch in SubsetRandomSampler(
                     list(BatchSampler(sorted_sampler, self.batch_size, self.drop_last))):
                 yield [bucket[i] for i in batch]
