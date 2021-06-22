@@ -76,7 +76,7 @@ class Conv1d_block(nn.Module):
             diliation = self.diliation_ls[i]
             stride = self.stride[i]
             L_in = self.cal_out_shape(L_in,padding,diliation,stride)
-        assert int(L_in) == L_in , "convolution out shape is not int"
+        # assert int(L_in) == L_in , "convolution out shape is not int"
         return int(L_in)
     
 class ConvTranspose1d_block(Conv1d_block):
@@ -132,6 +132,13 @@ class backbone_model(nn.Module):
         """
         super(backbone_model,self).__init__()
         channel_ls,kernel_size,stride,padding_ls,diliation_ls,pad_to = conv_args
+        
+        self.channel_ls = channel_ls
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding_ls = padding_ls
+        self.diliation_ls = diliation_ls
+        self.pad_to = pad_to
         
         # model
         self.soft_share = Conv1d_block(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
@@ -208,7 +215,30 @@ class RL_regressor(backbone_model):
         out,Y = self.squeeze_out_Y(out,Y)
         loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         return {"Total":loss}
-    
+
+class RL_gru(RL_regressor):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        
+        # previous, it is a linear layer
+        self.tower = nn.GRU(input_size=self.channel_ls[-1],
+                            hidden_size=tower_width,
+                            num_layers=2,
+                            batch_first=True) # input : batch , seq , features
+        self.fc_out = nn.Linear(tower_width,1)
+        
+    def forward_tower(self,Z):
+        # flatten
+        # batch_size = Z.shape[0]
+        Z_flat = torch.transpose(Z,1,2)
+        # tower part
+        h_prim,(c1,c2) = self.tower(Z_flat)  # [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        out = self.fc_out(c2)
+        return out
+
 class Reconstruction(backbone_model):
     def __init__(self,conv_args,variational=False,latent_dim=80):
         """
