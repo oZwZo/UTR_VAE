@@ -83,6 +83,6 @@ class Bucket_Sampler(BatchSampler):
         if self.drop_last:
             return len(self.sampler) // self.batch_size
         else:
-            return math.ceil(len(self.sampler) / self.batch_size)    
+            return np.ceil(len(self.sampler) / self.batch_size)    
     
 
