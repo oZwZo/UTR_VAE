@@ -147,6 +147,23 @@ class backbone_model(nn.Module):
         self.out_length = self.soft_share.last_out_len(pad_to)
         self.out_dim = self.soft_share.last_out_len(pad_to)*channel_ls[-1]
     
+    def _weight_initialize(self, model):
+        if type(model) in [nn.Linear]:
+        	nn.init.xavier_uniform_(model.weight)
+        	nn.init.zeros_(model.bias)
+        elif type(model) in [nn.LSTM, nn.RNN, nn.GRU]:
+            nn.init.orthogonal_(model.weight_hh_l0)
+            nn.init.xavier_uniform_(model.weight_ih_l0)
+            nn.init.zeros_(model.bias_hh_l0)
+            nn.init.zeros_(model.bias_ih_l0)
+        elif isinstance(model, nn.Conv1d):
+            nn.init.orthogonal_(model.weight)
+        elif isinstance(model, nn.Conv2d):
+            nn.init.kaiming_normal_(model.weight, nonlinearity='leaky_relu',)
+        elif isinstance(model, nn.BatchNorm1d):
+            nn.init.constant_(model.weight, 1)
+            nn.init.constant_(model.bias, 0)
+    
     def forward_stage(self,X,stage):
         return self.soft_share.forward_stage(X,stage)
     
@@ -229,6 +246,8 @@ class RL_gru(RL_regressor):
                             num_layers=2,
                             batch_first=True) # input : batch , seq , features
         self.fc_out = nn.Linear(tower_width,1)
+        
+        self.apply(self._weight_initialize)
         
     def forward_tower(self,Z):
         # flatten
@@ -415,7 +434,7 @@ class Multi_input_RL_regressor(RL_regressor):
             Z = self.soft_share(seq)
             out = self.forward_tower(Z,other_input)
         else:
-            Z = self.soft_share(seq)
+            Z = self.soft_share(X)
             out = self.forward_tower(Z)
         return out
 
