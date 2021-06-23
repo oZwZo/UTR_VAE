@@ -8,7 +8,7 @@ import os
 import sys
 import json
 from torch import nn
-from bucket_sampler import Bucket_Sampler
+from .bucket_sampler import Bucket_Sampler
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from utils import Seq_one_hot,read_UTR_csv,read_label
 
@@ -78,14 +78,18 @@ def pad_zeros(X,pad_to):
     X_padded = pad_fn(X)
     return X_padded
 
-def pack_seq(ds_zls:list):
-    X_ts = [X for X,Y in ds_zls]
-    max_len = np.max([X.shape[0] for X in X_ts])
+def pack_seq(ds_zls:list,pad_to:int):
+    X_ts = [X.clone().detach() for X,Y in ds_zls]
+    if pad_to == 0:
+        max_len = np.max([X.shape[0] for X in X_ts])
+        pad_to = (max_len//8+1)*8 +1
     
-    X_packed = torch.stack([pad_zeros(X=x,pad_to=max_len) for x in X_ts])
+    X_packed = torch.stack([pad_zeros(X=x,pad_to=pad_to) for x in X_ts])
     Y_packed = torch.tensor([Y for X,Y in ds_zls])
     
     return X_packed , Y_packed
+
+
 
 class mask_reader(Dataset):
     def __init__(self,npy_path):
@@ -122,9 +126,10 @@ class ribo_dataset(Dataset):
         ...trunc_len: maximum sequence to retain. number of nt preceding AUG
         ...seq_col : which col of the DF contain sequence to convert
         """
+        DF[seq_col] = DF[seq_col].astype(str)
         self.df = DF
         self.pad_to = pad_to
-        self.trunc_len =trunc_len
+        self.trunc_len = 0 if trunc_len is None else trunc_len
         
         # X and Y
         self.seqs = self.df.loc[:,seq_col].values
@@ -155,9 +160,9 @@ class ribo_dataset(Dataset):
         X = one_hot(seq)
         X = torch.tensor(X)
 
-        X_padded = pad_zeros(X, self.pad_to)
+        # X_padded = pad_zeros(X, self.pad_to)
         
-        return X_padded.float()
+        return X.float()
 
 class MTL_dataset(Dataset):
     def __init__(self,DF,pad_to=100,seq_col='utr',aux_columns=None,other_input_columns=None,trunc_len=None):
@@ -170,6 +175,7 @@ class MTL_dataset(Dataset):
         """
         self.pad_to = pad_to
         self.trunc_len = trunc_len
+        DF[seq_col] = DF[seq_col].astype(str)
         self.df = DF     # read Df
         self.seqs = self.df[seq_col].values       # take out all the sequence in DF
         self.columns = aux_columns
@@ -184,7 +190,7 @@ class MTL_dataset(Dataset):
         seq = self.seqs[index]        # sequence: str of len 25~100
         
         X = one_hot(seq)         # seq_oh : np array, one hot encoding sequence 
-        # X = self.pad_zeros(X)    # X  : torch.tensor , zero padded to 100
+        # X = pad_zeros(X)         # X  : torch.tensor , zero padded to 100
         
         if self.columns == None:
             # which means no auxilary label is needed
@@ -219,16 +225,19 @@ def get_splited_dataloader(dataset_func, df_ls, ratio:list, batch_size, shuffle,
     if pad_to == 0 :
         # automatic padding to `8x -1`
         # and we will pad the sequence of similar length with bucket sampler
-        sampler_ls = [{"batch_sampler":Bucket_Sampler(df,batch_size=batch_size,drop_last=False),
+        col_fn = lambda x: pack_seq(x,0)
+        sampler_ls = [{"batch_sampler":Bucket_Sampler(df,batch_size=batch_size,drop_last=True),
                        "num_workers":4,
-                       "collate_fn":pack_seq} for df in df_ls]
+                       "collate_fn":col_fn} for df in df_ls]
         #  wrap dataset to dataloader
         loader_ls = [DataLoader(subset,**kwargs) for subset,kwargs in zip(set_ls,sampler_ls)]
     else:
+        col_fn = lambda x: pack_seq(x,pad_to)
         loaderargs = {"batch_size": batch_size,
                         "generator":torch.Generator().manual_seed(42),
                         "num_workers":4,
-                        "shuffle":shuffle}
+                        "shuffle":shuffle,
+                        "collate_fn":col_fn}
         #  wrap dataset to dataloader
         loader_ls = [DataLoader(subset,**loaderargs) for subset in set_ls]
         
@@ -238,13 +247,17 @@ def get_splited_dataloader(dataset_func, df_ls, ratio:list, batch_size, shuffle,
         
     return loader_ls
 
-def split_DF(csv_path,ratio,kfold_cv,kfold_index=None,seed=42):
+def split_DF(csv_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42):
     
-    full_df = pd.read_csv(csv_path)
+    full_df = pd.read_csv(csv_path,low_memory=False)
         
     if kfold_cv == True:
         # K-fold CV : 8:1:1 for each partition
         df_ls = KFold_df_split(full_df,kfold_index)
+    
+    elif type(split_like_paper) == list:
+        df_ls = [pd.read_csv(csv_path) for csv_path in split_like_paper]
+    
     else:
         # POPEN.ratio will determine train :val :test ratio
         total_len = len(full_df)
@@ -286,7 +299,7 @@ def get_dataloader(POPEN):
     wrapper
     """
     
-    df_ls = split_DF(POPEN.csv_path,POPEN.train_test_ratio,POPEN.kfold_cv,POPEN.kfold_index,seed=42)
+    df_ls = split_DF(POPEN.csv_path,POPEN.split_like_paper,POPEN.train_test_ratio,POPEN.kfold_cv,POPEN.kfold_index,seed=42)
     
     
     DS_Class = eval(POPEN.dataset+"_dataset")
