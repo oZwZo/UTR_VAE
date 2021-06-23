@@ -6,10 +6,10 @@ from torch.utils.data.sampler import Sampler,BatchSampler,SubsetRandomSampler
 class Basic_sampler(Sampler):
     def __init__(self, data):
         super().__init__(data)
-        self.data= data.dropna()
+        self.data= data
         
     def __len__(self):
-        return len(self.data)
+        return self.data.shape[0]
     
     def __iter__(self):
         return (i for i in range(self.data.shape[0]))
