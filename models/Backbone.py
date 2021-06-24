@@ -1,6 +1,7 @@
 import torch 
 from torch import nn
 import torch.nn.functional as F
+from sklearn.metrics import roc_auc_score
 
 class Conv1d_block(nn.Module):
     """
@@ -257,6 +258,53 @@ class RL_gru(RL_regressor):
         h_prim,(c1,c2) = self.tower(Z_flat)  # [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
         out = self.fc_out(c2)
         return out
+
+class RL_clf(RL_gru):
+
+    def __init__(self,conv_args,n_calss,tower_width=40,dropout_rate=0.2):
+        """
+        transform RL gru into classifier
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        self.n_calss = n_calss
+        # previous, it is a linear layer
+        self.tower = nn.GRU(input_size=self.channel_ls[-1],
+                            hidden_size=tower_width,
+                            num_layers=2,
+                            batch_first=True) # input : batch , seq , features
+        self.fc_out = nn.Linear(tower_width,n_calss)
+        
+        self.apply(self._weight_initialize)
+        
+    def forward_tower(self,Z):
+        # flatten
+        # batch_size = Z.shape[0]
+        Z_flat = torch.transpose(Z,1,2)
+        # tower part
+        h_prim,(c1,c2) = self.tower(Z_flat)  # [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        out = self.fc_out(c2)
+        class_pred = torch.softmax(out,dim=1)
+        return class_pred
+    
+    def compute_acc(self,out,X,Y,popen=None):
+            
+        # out,Y = self.squeeze_out_Y(out,Y)
+        # error smaller than epsilon
+        with torch.no_grad():
+            acc = torch.sum(torch.argmax(out,dim=1) == Y.view(-1))/ Y.shape[0]
+            y_true = np.zeros(Y.shape[0],popen.n_class)
+            for i,clas in enumerate(Y.cpu().numpy()):
+                y_true[i,clas] = 1
+                
+            auroc = roc_auc_score(Y.cpu().numpy(),out.detach().cpu().numpy(),multi_class='ovo')
+        return {"Acc":acc,'AUROC':auroc}
+    
+    def compute_loss(self,out,X,Y,popen):
+        if len(Y.shape) >1:
+            Y = Y.squeeze(dim=1).long()
+        loss_fn=nn.CrossEntropyLoss()
+        loss = loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
+        return {"Total":loss}
 
 class Reconstruction(backbone_model):
     def __init__(self,conv_args,variational=False,latent_dim=80):
