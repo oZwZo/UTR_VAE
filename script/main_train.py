@@ -63,6 +63,7 @@ if POPEN.pretrain_pth is not None:
     # load pretran model
     pretrain_popen = Auto_popen(POPEN.pretrain_pth)
     pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
+    
     utils.load_model(pretrain_popen,pretrain_model,logger)  
     
     # DL_models.LSTM_AE
@@ -72,6 +73,10 @@ if POPEN.pretrain_pth is not None:
         #     # later we can resume 
         model = pretrain_model.cuda(POPEN.cuda_id)
         del pretrain_model
+    elif POPEN.modual_to_fix in dir(pretrain_model):    
+        model = POPEN.Model_Class(*POPEN.model_args)
+        model.soft_share.load_state_dict(pretrain_model.soft_share.state_dict())
+        model =  model.cuda(POPEN.cuda_id)
     else:
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
         
