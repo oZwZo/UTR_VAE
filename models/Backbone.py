@@ -3,6 +3,7 @@ import numpy  as np
 from torch import nn
 import torch.nn.functional as F
 from sklearn.metrics import roc_auc_score
+from torch.nn.modules.dropout import Dropout
 
 class Conv1d_block(nn.Module):
     """
@@ -243,6 +244,11 @@ class RL_gru(RL_regressor):
         super().__init__(conv_args,tower_width,dropout_rate)
         
         # previous, it is a linear layer
+        if dropout_rate > 0 :
+            self.soft_share.encoder = nn.ModuleList([
+                nn.Sequential(conv_layer,nn.Dropout(dropout_rate)) 
+                                for conv_layer in self.soft_share.encoder
+             ])
         self.tower = nn.GRU(input_size=self.channel_ls[-1],
                             hidden_size=tower_width,
                             num_layers=2,
