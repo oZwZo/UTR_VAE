@@ -1,4 +1,5 @@
 import torch 
+import numpy  as np
 from torch import nn
 import torch.nn.functional as F
 from sklearn.metrics import roc_auc_score
@@ -292,12 +293,14 @@ class RL_clf(RL_gru):
         # error smaller than epsilon
         with torch.no_grad():
             acc = torch.sum(torch.argmax(out,dim=1) == Y.view(-1))/ Y.shape[0]
-            y_true = np.zeros(Y.shape[0],popen.n_class)
-            for i,clas in enumerate(Y.cpu().numpy()):
-                y_true[i,clas] = 1
+            # y_true = np.zeros((Y.shape[0],popen.n_class))
+            
+            # Y_int = np.array(Y.cpu().numpy(),dtype=np.int64)
+            # for i,clas in enumerate(Y_int):
+            #     y_true[i,int(clas)] = 1
                 
-            auroc = roc_auc_score(Y.cpu().numpy(),out.detach().cpu().numpy(),multi_class='ovo')
-        return {"Acc":acc,'AUROC':auroc}
+            # auroc = roc_auc_score(Y_int,out.detach().cpu().numpy(),multi_class='ovr')
+        return {"Acc":acc}
     
     def compute_loss(self,out,X,Y,popen):
         if len(Y.shape) >1:
