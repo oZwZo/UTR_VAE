@@ -74,12 +74,13 @@ def pad_zeros(X,pad_to):
     #  here we change to padding ahead  , previously  nn.ZeroPad2d([0,0,0,gap])
     pad_fn = nn.ZeroPad2d([0,0,gap,0])  #  (padding_left , padding_right , padding_top , padding_bottom )
     # gap_array = np.zeros()
-
+    if not isinstance(X, torch.Tensor):
+        X = torch.tensor(X)
     X_padded = pad_fn(X)
     return X_padded
 
 def pack_seq(ds_zls:list,pad_to:int):
-    X_ts = [X.clone().detach() for X,Y in ds_zls]
+    X_ts = [X for X,Y in ds_zls]
     if pad_to == 0:
         max_len = np.max([X.shape[0] for X in X_ts])
         pad_to = (max_len//8+1)*8 +1
@@ -249,9 +250,10 @@ def get_splited_dataloader(dataset_func, df_ls, ratio:list, batch_size, shuffle,
 
 def split_DF(csv_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42):
     
-    full_df = pd.read_csv(csv_path,low_memory=False)
+    
         
     if kfold_cv == True:
+        full_df = pd.read_csv(csv_path,low_memory=False)
         # K-fold CV : 8:1:1 for each partition
         df_ls = KFold_df_split(full_df,kfold_index)
     
@@ -259,6 +261,7 @@ def split_DF(csv_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42):
         df_ls = [pd.read_csv(csv_path) for csv_path in split_like_paper]
     
     else:
+        full_df = pd.read_csv(csv_path,low_memory=False)
         # POPEN.ratio will determine train :val :test ratio
         total_len = len(full_df)
         lengths = [int(total_len*sub_ratio) for sub_ratio in ratio[:-1]]
