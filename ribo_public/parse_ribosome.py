@@ -274,12 +274,12 @@ def seq_chunk_N_oh(seq,pad_to,trunc_len=50):
     
     return X_padded.float()
 
-def scatter_linearreg_plot(quanty,y,ax=None):
+def scatter_linearreg_plot(quanty,y,ax=None,yeq2x=True):
     linear_mod = linear_model.LinearRegression().fit(quanty.reshape(-1,1),y.reshape(-1,1))
     line_x = np.array([quanty.min(),quanty.max()])
     line_y = linear_mod.predict(line_x.reshape(-1,1))
     y_pred = linear_mod.predict(quanty.reshape(-1,1))
-    r2 = r2_score(quanty,y)
+    r2 = r2_score(y,y_pred)
     
     fit_line="y=%.2fx+%.2f"%(linear_mod.coef_,linear_mod.intercept_)
     
@@ -288,7 +288,8 @@ def scatter_linearreg_plot(quanty,y,ax=None):
         ax = fig.gca()
     
     ax.scatter(quanty,y,s=5,alpha=0.2,label=r'$R^2$=%.3f'%r2)
-    ax.plot(line_x,line_x,'-.',color='orange',alpha=0.5,label='y=x')
+    if yeq2x:
+        ax.plot(line_x,line_x,'-.',color='orange',alpha=0.5,label='y=x')
     ax.plot(line_x,line_y,'--',color='black',alpha=0.5,label=fit_line)
     ax.legend()
 
@@ -754,3 +755,41 @@ def consensus_seq(APE):
     ax.spines['right'].set_visible(False)
     ax.set_xticks(range(0,10))
     ax.set_xticklabels(range(-4,6))
+
+def read_coverage_dict(path):
+    """
+    Read dataset GSE112223
+    Args:
+        df path
+    Returns:
+        dict : {Gene : list of read coordinate}
+    """
+    with open(path,'r') as f:
+        coverage_dict = {}
+        for line in  f.readlines():
+            line_s = line.split("\t")
+            gene = line_s[0]
+            reads = np.array(line_s[1:],dtype=float)
+            coverage_dict[gene] = sorted(reads)
+        f.close()
+   
+    return coverage_dict
+    
+def read_GSE11223_df(sample_name, n0_thres):
+    """
+    choose mouse_sec dict from smaple name and then return a df of 0
+    """
+    ms_dict =read_coverage_dict(sample_name)
+    n0 = [np.sum( np.array(values) <= n0_thres ) for key,values in ms_dict.items()]
+    counts = [ len(values) for key,values in ms_dict.items()]
+    max_cord = [ np.max(values) for key,values in ms_dict.items()]
+    scaling_factor = np.sum(counts)/1e6
+    df = pd.DataFrame({"Gene" : ms_dict.keys(),
+                       "n0" : np.array(n0) / scaling_factor,
+                       "rest" : (np.array(counts) - np.array(n0)) ,
+                       "RPM" : (np.array(counts) - np.array(n0)) / scaling_factor,
+                       "count": np.array(counts) ,
+                       "CPM": np.array(counts) / scaling_factor,
+                       "max_cord" : max_cord},
+                     )
+    return df[np.array(counts) >0]
