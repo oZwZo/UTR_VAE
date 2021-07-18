@@ -8,6 +8,7 @@ import torch
 from torch import nn
 from torch import optim
 from torch.utils.data import DataLoader,Dataset,random_split
+from sklearn.metrics import r2_score
 from tqdm import tqdm
 
 from matplotlib import pyplot as plt
@@ -88,6 +89,7 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None):
     #                               |=====================================|
 
     # read data
+    POPEN.aux_task_columns += ['with_uAUG']
     loader_ls = reader.get_dataloader(POPEN)
 
     # ===========  setup model  ===========
@@ -203,7 +205,7 @@ def get_4_types_data_from_csv(df):
 
     return uAUG_tre,uAUG_pred,nAUG_tre,nAUG_pred
 
-def my_kde_joint_plot(uAUG_tre,uAUG_pred,nAUG_tre,nAUG_pred,title,r2="",text_posi=(7.6,1.3),**kwargs):
+def my_kde_joint_plot(uAUG_tre,uAUG_pred,nAUG_tre,nAUG_pred,title,text_posi=(7.6,1.3),**kwargs):
     sns.set_style("white")
     # sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black'})
     plt.rcParams['font.weight'] = 'normal'
@@ -225,19 +227,31 @@ def my_kde_joint_plot(uAUG_tre,uAUG_pred,nAUG_tre,nAUG_pred,title,r2="",text_pos
     plt.rcParams['axes.labelcolor'] = 'black'
     plt.rcParams['axes.edgecolor'] = 'black'
     c1 = (0.3, 0.45, 0.69)
-    c2 = 'r'
+    c2 = (0.98823529, 0.45490196, 0.14509804)
     joint = sns.JointGrid(x=uAUG_tre,y=uAUG_pred,height=8,ratio=11,space=0,**kwargs)
-    joint.plot_joint(plt.scatter, alpha=0.1,s=6)
-    joint.fig.gca().set_title(title+'\n\n',fontsize=25)
-    joint.fig.gca().text(*text_posi,r"$R^2 =$"+str(r2),fontsize=20)
-    joint.plot_marginals(sns.kdeplot,shade=c1)
+    if len(uAUG_tre)>0:
+        joint.plot_joint(plt.scatter, alpha=0.1,s=6)
+        joint.fig.gca().set_title(title+'\n\n',fontsize=25)
+        joint.plot_marginals(sns.kdeplot,shade=c1)
 
-    joint.x=nAUG_tre
-    joint.y=nAUG_pred
-    joint.plot_joint(plt.scatter, alpha=0.1,s=6)
-    joint.plot_marginals(sns.kdeplot,shade=c2)
+        uAUG_r2 = round(compute_r2(uAUG_tre, uAUG_pred) , 3)
+        joint.fig.gca().text(text_posi[0],text_posi[1]*1.1,
+                             r"$R^2 =$"+str(uAUG_r2),fontsize=20, color=c1)
+    
+    
+    if len(nAUG_tre)>0:
+        joint.x=nAUG_tre
+        joint.y=nAUG_pred
+        joint.plot_joint(plt.scatter, alpha=0.1,s=6, color=c2)
+        joint.plot_marginals(sns.kdeplot,shade=c2, color=c2)
+        nAUG_r2 = round(compute_r2(nAUG_tre, nAUG_pred), 3)
+        joint.fig.gca().text(text_posi[0],text_posi[1]*1.2,
+                             r"$R^2 =$"+str(nAUG_r2),fontsize=20, color=c2)
 
-
+    overall_r2 = round(compute_r2(np.concatenate([uAUG_tre,nAUG_tre]) ,
+                            np.concatenate([uAUG_pred,nAUG_pred])),
+                       3)
+    joint.fig.gca().text(*text_posi,r"$R^2 =$"+str(overall_r2),fontsize=20)
     joint.set_axis_labels('True TE-score', 'Predicted TE-score', **{'size':22});
 
 def compute_r2(x,y):

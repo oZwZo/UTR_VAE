@@ -162,7 +162,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,esubset=None,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -190,11 +190,27 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
             DF = log.__getattribute__(dataset+"_verbose_DF")
             if (dataset == 'train') & (type(mean_of_train)==int):
                 DF = mean_of(mean_of_train,DF)
+            elif (dataset == 'train') & (type(esubset)==slice):
+                DF = subset_of(esubset,DF)
             X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
             ax.plot(X[start_from:],DF[metric].values[start_from:],label=log_name_ls[st],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
         ax.legend()
         
+def subset_of(x,DF):
+    
+    values = DF.values
+    mean_ls = []
+    
+    for i in range(0,values.shape[0],x.stop): 
+        # x : slice , x.stop , the slice window of the 
+        mean_ls.append(values[i:i+x.stop][x])
+    
+    mean_ls = np.concatenate(mean_ls,axis=0)
+    mean_DF = pd.DataFrame(mean_ls,columns=DF.columns)
+    
+    return mean_DF
+
 def mean_of(x,DF):
     
     values = DF.values
@@ -204,7 +220,7 @@ def mean_of(x,DF):
         
         mean_ls.append(np.mean(values[i:i+x,:],axis=0))
     
-    mean_ls = np.array(mean_ls)
+    mean_ls = np.stack(mean_ls)
     mean_DF = pd.DataFrame(mean_ls,columns=DF.columns)
     
     return mean_DF

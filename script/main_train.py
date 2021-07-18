@@ -55,9 +55,11 @@ POPEN.check_experiment(logger)
 # read data
 train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
 
+
 # ===========  setup model  ===========
 # train_iter = iter(train_loader)
 # X,Y  = next(train_iter)
+
 # -- pretrain -- 
 if POPEN.pretrain_pth is not None:
     # load pretran model
@@ -96,6 +98,20 @@ elif POPEN.path_category == "CrossStitch":
 else:
     Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
     model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+
+# =========== resume ===========
+best_loss = np.inf
+best_acc = 0
+best_epoch = 0
+previous_epoch = 0
+if POPEN.Resumable:
+    model, previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,None,logger)
+
+# =========== fix parameters ===========
+if POPEN.modual_to_fix in dir(model):
+    model = utils.fix_parameter(model,POPEN.modual_to_fix)
+    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
+    
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -117,19 +133,6 @@ if POPEN.loss_schema == 'DTP':
     POPEN.loss_schedualer = Dynamic_Task_Priority(POPEN.tasks,POPEN.gamma,POPEN.chimerla_weight)
 elif POPEN.loss_schema == 'DWA':
     POPEN.loss_schedualer = Dynamic_Weight_Averaging(POPEN.tasks,POPEN.tau,POPEN.chimerla_weight)
-# =========== resume ===========
-best_loss = np.inf
-best_acc = 0
-best_epoch = 0
-previous_epoch = 0
-if POPEN.Resumable:
-    previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
-    
-
-# =========== fix parameters ===========
-if POPEN.modual_to_fix in dir(model):
-    model = utils.fix_parameter(model,POPEN.modual_to_fix)
-    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 
 #                               |=====================================|
 #                               |==========  training  part ==========|
@@ -160,7 +163,8 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             utils.snapshot(POPEN.vae_pth_path, {
                         'epoch': epoch + 1,
                         'validation_acc': val_avg_acc,
-                        'state_dict': model.state_dict(),
+                        # 'state_dict': model.state_dict(),
+                        'state_dict': model,
                         'validation_loss': val_total_loss,
                         'optimizer': optimizer.state_dict(),
                     })
