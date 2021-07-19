@@ -3,13 +3,14 @@ import numpy  as np
 from torch import nn
 import torch.nn.functional as F
 from sklearn.metrics import roc_auc_score
+from torch.nn.modules import activation
 from torch.nn.modules.dropout import Dropout
 
 class Conv1d_block(nn.Module):
     """
     the Convolution backbone define by a list of convolution block
     """
-    def __init__(self,channel_ls,kernel_size,stride,padding_ls=None,diliation_ls=None,pad_to=None):
+    def __init__(self,channel_ls,kernel_size,stride, padding_ls=None,diliation_ls=None,pad_to=None, activation='ReLU'):
         """
         Argument
             channel_ls : list, [int] , channel for each conv layer
@@ -20,6 +21,7 @@ class Conv1d_block(nn.Module):
         """
         super(Conv1d_block,self).__init__()
         ### property
+        self.activation = activation
         self.channel_ls = channel_ls
         self.kernel_size = kernel_size
         self.stride = stride
@@ -41,10 +43,12 @@ class Conv1d_block(nn.Module):
         
     def Conv_block(self,in_Chan,out_Chan,padding,dilation,stride): 
         
+        activation_layer = eval(f"nn.{self.activation}")
+        
         block = nn.Sequential(
                 nn.Conv1d(in_Chan,out_Chan,self.kernel_size,stride,padding,dilation),
                 nn.BatchNorm1d(out_Chan),
-                nn.ReLU())
+                activation_layer())
         
         return block
     
@@ -129,7 +133,7 @@ class linear_block(nn.Module):
         return self.block(x)
     
 class backbone_model(nn.Module):
-    def __init__(self,conv_args):
+    def __init__(self,conv_args,activation='ReLU'):
         """
         the most bottle model which define a soft-sharing convolution block some forward method 
         """
@@ -144,7 +148,7 @@ class backbone_model(nn.Module):
         self.pad_to = pad_to
         
         # model
-        self.soft_share = Conv1d_block(channel_ls,kernel_size,stride,padding_ls,diliation_ls)
+        self.soft_share = Conv1d_block(channel_ls,kernel_size,stride,padding_ls,diliation_ls,activation=activation)
         # property
         self.stage = list(range(len(channel_ls)-1))
         self.out_length = self.soft_share.last_out_len(pad_to)
@@ -183,13 +187,13 @@ class backbone_model(nn.Module):
     
 class RL_regressor(backbone_model):
     
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, activation='ReLU'):
         """
         backbone for RL regressor task  ,the same soft share should be used among task
         Arguments:
             conv_args: (channel_ls,kernel_size,stride,padding_ls,diliation_ls)
         """
-        super(RL_regressor,self).__init__(conv_args)
+        super(RL_regressor,self).__init__(conv_args, activation)
         
         #  ------- architecture -------
         self.tower = linear_block(in_Chan=self.out_dim,out_Chan=tower_width,dropout_rate=dropout_rate)
@@ -237,11 +241,11 @@ class RL_regressor(backbone_model):
         return {"Total":loss}
 
 class RL_gru(RL_regressor):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ,activation='ReLU'):
         """
         tower is gru
         """      
-        super().__init__(conv_args,tower_width,dropout_rate)
+        super().__init__(conv_args,tower_width,dropout_rate, activation)
         
         # previous, it is a linear layer
         if dropout_rate > 0 :
@@ -265,6 +269,13 @@ class RL_gru(RL_regressor):
         h_prim,(c1,c2) = self.tower(Z_flat)  # [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
         out = self.fc_out(c2)
         return out
+
+class RL_mish_gru(RL_gru):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ,activation='Mish'):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate, activation)
 
 class RL_clf(RL_gru):
 
