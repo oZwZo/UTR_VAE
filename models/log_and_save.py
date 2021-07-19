@@ -5,6 +5,7 @@ import re
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+import copy
 
 def snapshot(dir_path, run_name, state,logger):
     snapshot_file = os.path.join(dir_path,
@@ -162,7 +163,7 @@ class Log_parser(object):
             axs = fig.add_subplot(n//3+1,n,1+i)
         
 
-def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,esubset=None,**kwargs):
+def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,esubset=None, cycle_train=False,**kwargs):
     
     fig = plt.figure(figsize=(20,5)) if fig is None else fig
 
@@ -188,6 +189,7 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
             ax = axs[i//column,i%column]
         for st,log in enumerate(log_list):
             DF = log.__getattribute__(dataset+"_verbose_DF")
+                
             if (dataset == 'train') & (type(mean_of_train)==int):
                 DF = mean_of(mean_of_train,DF)
             elif (dataset == 'train') & (type(esubset)==slice):
@@ -196,6 +198,32 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
             ax.plot(X[start_from:],DF[metric].values[start_from:],label=log_name_ls[st],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
         ax.legend()
+        
+def plot_cycle_exp_set(log_ls,log_name,dataset='val',**kwargs):
+    interval = 2 if dataset=='val' else 6
+    new_log_ls = []
+    new_log_name = []
+    for i in range(len(log_ls)):
+        log = log_ls[i]
+        DF  = log.__getattribute__(dataset+"_verbose_DF")
+        ds1_index = [i  for i in range(DF.shape[0]) if i//interval%2 ==0]
+        ds2_index = [i  for i in range(DF.shape[0]) if i//interval%2 ==1]
+        DF1 = DF.iloc[ds1_index]
+        DF2 = DF.iloc[ds2_index]
+        log1 = copy.deepcopy(log)
+        log2 = copy.deepcopy(log)
+        
+        log1.__setattr__(dataset+'_verbose_DF', DF1)
+        log2.__setattr__(dataset+'_verbose_DF', DF2) 
+        
+        new_log_ls.append(log1)
+        new_log_ls.append(log2)
+        
+        new_log_name.append(log_name[i]+"_ds1")
+        new_log_name.append(log_name[i]+"_ds2")
+    
+    plot_a_exp_set(new_log_ls, new_log_name, **kwargs)
+                
         
 def subset_of(x,DF):
     
