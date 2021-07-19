@@ -7,6 +7,7 @@ import os
 import json
 import re
 import torch
+import collections
 from torch import nn
 from torch import optim
 from models import CNN_models
@@ -136,7 +137,7 @@ class Seq_one_hot(object):
 
 # =====================|   logger       |=======================
 
-def setup_logs(vae_log_path):
+def setup_logs(vae_log_path,level=None):
     """
 
     :param save_dir:  the directory to set up logs
@@ -147,6 +148,8 @@ def setup_logs(vae_log_path):
     # initialize logger
     logger = logging.getLogger("VAE")
     logger.setLevel(logging.INFO)
+    if level=='warning':
+        logger.setLevel(logging.WARNING)
 
     # create the logging file handler
     log_file = os.path.join(vae_log_path)
@@ -197,11 +200,10 @@ def fix_parameter(model,modual_to_fix):
 
 def snapshot(vae_pth_path, state):
     logger = logging.getLogger("VAE")
-    snapshot_file = vae_pth_path
     # torch.save can save any object
     # dict type object in our cases
-    torch.save(state, snapshot_file)
-    logger.info("Snapshot saved to {}\n".format(snapshot_file))
+    torch.save(state, vae_pth_path)
+    logger.info("Snapshot saved to {}\n".format(vae_pth_path))
 
 
 def load_model(popen,model,logger):
@@ -223,8 +225,12 @@ def resume(popen,model,optimizer,logger):
         previous_loss = checkpoint['validation_loss']
         previous_acc = checkpoint['validation_acc']
         
-        model.load_state_dict(checkpoint['state_dict'])
-        # optimizer.load_state_dict(checkpoint['optimizer'])
+        
+        if isinstance(checkpoint['state_dict'], collections.OrderedDict):
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+            model.load_state_dict(checkpoint['state_dict'])
+        else:
+            model = checkpoint['state_dict']
         
         # very important
         if (type(optimizer) == ScheduledOptim):
@@ -236,7 +242,7 @@ def resume(popen,model,optimizer,logger):
         logger.info(" \t"+popen.vae_pth_path+'\n')
         logger.info(" \t \t ========================================================= \t \t \n")
         
-        return previous_epoch,previous_loss,previous_acc
+        return model,previous_epoch,previous_loss,previous_acc
 
 # def read_model(ini_file):
 #     """
