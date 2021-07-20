@@ -155,7 +155,7 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None):
     best_epoch = 0
     previous_epoch = 0
     if POPEN.Resumable:
-        previous_epoch,best_loss,best_acc = resume(POPEN,model,optimizer,logger)
+        model,previous_epoch,best_loss,best_acc = resume(POPEN,model,optimizer,logger)
 
 
     # =========== fix parameters ===========
@@ -228,6 +228,7 @@ def my_kde_joint_plot(uAUG_tre,uAUG_pred,nAUG_tre,nAUG_pred,title,text_posi=(7.6
     plt.rcParams['axes.edgecolor'] = 'black'
     c1 = (0.3, 0.45, 0.69)
     c2 = (0.98823529, 0.45490196, 0.14509804)
+#     plt.figure(figsize=(9,9))
     joint = sns.JointGrid(x=uAUG_tre,y=uAUG_pred,height=8,ratio=11,space=0,**kwargs)
     if len(uAUG_tre)>0:
         joint.plot_joint(plt.scatter, alpha=0.1,s=6)
