@@ -364,6 +364,8 @@ class Reconstruction(backbone_model):
     def forward_tower(self,Z):
         batch_size = Z.shape[0]
         re_code = Z
+        mu = None
+        sigma=None
         if self.variational:
              # project to N(µ, ∑)
             Z_flat = Z.view(batch_size,-1)
@@ -413,7 +415,7 @@ class Reconstruction(backbone_model):
         """
         compute the reconstruction accuracy
         """
-        pad_to = Y.shape[1]
+        pad_to = X.shape[1]
         recons,mu,sigma = out
         with torch.no_grad():
             true_max=torch.argmax(X,dim=2)
