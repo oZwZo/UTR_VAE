@@ -147,7 +147,7 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             utils.snapshot(POPEN.vae_pth_path, {
                         'epoch': epoch + 1,
                         'validation_acc': val_avg_acc,
-                        'state_dict': model.state_dict(),
+                        'state_dict': model,
                         'validation_loss': val_total_loss,
                         'optimizer': optimizer.state_dict(),
                     })
