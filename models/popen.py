@@ -19,6 +19,7 @@ class Auto_popen(object):
         read the config_fiel
         """
         # machine config path
+        self.shuffle = True
         self.script_dir = utils.script_dir
         self.data_dir = utils.data_dir
         self.log_dir = utils.log_dir
