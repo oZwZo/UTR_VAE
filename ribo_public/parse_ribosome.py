@@ -26,6 +26,8 @@ global nonstop_codon
 global stop_codon
 global lasso_dt
 
+# copy this to find section:
+########################################################
 
 stop_codon = ['TAA', 'TAG', 'TGA']
 possible_codon = []
@@ -37,6 +39,11 @@ nonstop_codon = [codon for codon in possible_codon if codon not in stop_codon]
             
 P_M_order= ['Pyrimidine','Purine']
 nt_order = ['T','C','A','G']
+
+
+########################################################
+#               codon dwelling time                    #
+########################################################
 
 """
 fit = glmnet_py.cvglmnet(x=X.copy(),y=y.copy(),offset=mRNA.reshape(-1,1),family='gaussian',alpha=1,penalty_factor=pac)
@@ -152,6 +159,10 @@ def read_ribomap_stats(path):
     
     return DF
 
+########################################################
+#                   GBFF related                       #
+########################################################
+
 def read_gb(SeqRecord):
     """
     read gbff term , extract info of interest
@@ -216,267 +227,6 @@ def gbff_DF(gbff_path):
     gbff_df.loc[:,'with_uAUG'] = gbff_df.utr.apply(lambda x: 'ATG' in x)
     return gbff_df
 
-def kozak_consensus_test(seq,start,loose_criteria=False):
-    """
-    detect whether given sequencing meet kozak consensus
-    ...seq : sequence to test
-    ...start : location of start codon
-    ...loose_criteira : if True, only 'G' at +4 position is allowed. \
-                        if False, not "C" is considered as consense.
-    """
-    n_3 = seq[start-3]
-    p_4 = seq[start+3]
-
-    if loose_criteria:
-        # whatever not 'C'
-        p4_meet= (p_4 != 'C')
-    else:
-        # only 'G'
-        p4_meet= (p_4 == 'G')
-
-    # is -3 site a Purine ?
-    n3isP = n_3 in ['A','G']
-
-    return n3isP & p4_meet
-    
-def detect_uAUG_context(utr,loose_criteria=False):
-    """
-    detect uAUG , if there is , then we pipe to kozak context analysis
-    ...input : the sequence to test
-    ...loose_criteira : if True, only 'G' at +4 position is allowed. \
-                        if False, not "C" is considered as consense.
-        return: 'no_uAUG' , 'weak_uAUG' , 'strong_uAUG'
-    """
-    if "ATG" in utr:
-        # location of ATG
-        uAUG_site = utr.index("ATG")
-        # we use utr sequence and give location of uAUG,
-        is_kzk_con = kozak_consensus_test(utr,uAUG_site,loose_criteria)  
-        
-        uAUG_context = 'strong_uAUG' if (is_kzk_con==True) else 'weak_uAUG'
-        return uAUG_context
-    else:
-        return "no_uAUG"
-    
-    
-
-def seq_chunk_N_oh(seq,pad_to,trunc_len=50):
-    """
-    truncate the sequence and encode in one hot
-    """
-    if len(seq) > trunc_len:
-        seq = seq[-1*trunc_len:]
-    
-    X = reader.one_hot(seq)
-    X = torch.tensor(X)
-
-    X_padded = reader.pad_zeros(X,pad_to)
-    
-    return X_padded.float()
-
-def scatter_linearreg_plot(quanty,y,ax=None,yeq2x=True):
-    linear_mod = linear_model.LinearRegression().fit(quanty.reshape(-1,1),y.reshape(-1,1))
-    line_x = np.array([quanty.min(),quanty.max()])
-    line_y = linear_mod.predict(line_x.reshape(-1,1))
-    y_pred = linear_mod.predict(quanty.reshape(-1,1))
-    r2 = r2_score(y,y_pred)
-    
-    fit_line="y=%.2fx+%.2f"%(linear_mod.coef_,linear_mod.intercept_)
-    
-    if ax is None:
-        fig = plt.figure(figsize=(6,4))
-        ax = fig.gca()
-    
-    ax.scatter(quanty,y,s=5,alpha=0.2,label=r'$R^2$=%.3f'%r2)
-    if yeq2x:
-        ax.plot(line_x,line_x,'-.',color='orange',alpha=0.5,label='y=x')
-    ax.plot(line_x,line_y,'--',color='black',alpha=0.5,label=fit_line)
-    ax.legend()
-
-
-# class GSE65778_dataset(Dataset):
-    
-#     def __init__(self,DF,pad_to,trunc_len=50,seq_col='utr',value_col='TE_count'):
-#         """
-#         Dataset to trancate sequence and return in one-hot encoding way
-#         `dataset(DF,pad_to,trunc_len=50,seq_col='utr')`
-#         ...DF: the dataframe contain sequence and its meta-info
-#         ...pad_to: final size of the output tensor
-#         ...trunc_len: maximum sequence to retain. number of nt preceding AUG
-#         ...seq_col : which col of the DF contain sequence to convert
-#         """
-#         self.df = DF
-#         self.pad_to = pad_to
-#         self.trunc_len =trunc_len
-        
-#         # X and Y
-#         self.seqs = DF.loc[:,seq_col].values
-#         self.Y = DF.loc[:,value_col].values
-        
-#     def __len__(self):
-#         return self.df.shape[0]
-    
-#     def __getitem__(self,i):
-#         seq = self.seqs[i]
-#         x_padded = seq_chunk_N_oh(seq,self.pad_to,self.trunc_len)
-#         y = self.Y[i]
-#         return x_padded,i
-        
-def zwz_cor_m(matrix,axis):
-    """
-    calculate the covariance matrix 
-    where the axis parameter denote which axis is the feature axis 
-    """
-    
-    m,n = np.shape(matrix)
-    if axis == 0:
-        mean_M = np.mean(matrix,1-axis).reshape(m,1)
-        norm_M = matrix-mean_M
-        COV_M = np.dot(norm_M,np.transpose(norm_M))/n
-        std_M = np.std(matrix,1-axis).reshape(m,1)
-        db_std_M = std_M@std_M.T
-        COR_M = COV_M / db_std_M
-    else:
-        mean_M = np.mean(matrix,1-axis).reshape(1,n)
-        norm_M = matrix-mean_M
-        COV_M = np.dot(np.transpose(norm_M),norm_M)/m
-        std_M = np.std(matrix,1-axis).reshape(1,n)
-        db_std_M = std_M.T@std_M
-        COR_M = COV_M / db_std_M
-        
-    return COR_M
-
-def cor_M_heatmap(corr_M,label):
-    color_norm = matplotlib.colors.Normalize(vmin=0, vmax=1)
-    mapperable = cm.ScalarMappable(color_norm,cmap=cm.RdBu_r)
-
-    from matplotlib.ticker import StrMethodFormatter
-
-    fig = plt.figure(figsize=(11,9))
-    ax = fig.gca()
-    heatmap=ax.imshow(corr_M,aspect='auto',cmap=cm.RdBu_r)
-    plt.colorbar(heatmap)
-
-    valfmt = StrMethodFormatter('{x:.4f}')
-    for i in range(corr_M.shape[0]):
-        for j in range(corr_M.shape[1]):
-            if j>i:
-                continue
-            font_color = ['black','w'][(np.tril(corr_M,k=0)[i,j] <0.96)|(np.tril(corr_M,k=0)[i,j] > 0.98)]
-            ax.text(j-0.3,i+0.08,valfmt(np.tril(corr_M,k=0)[i,j],None),color=font_color,size=12);
-    ax.set_yticks(range(9))
-    ax.set_yticklabels(label,size=14);
-
-    return fig
-
-def uAUG_kozak_cooccur(with_uAUG,kozak_filter):
-    start_factor_ls=[]
-    # 0: no uAUG  , non kozak
-    # 1: either is 1
-    # 2: uAUG , kozak
-    raw_factor = with_uAUG+kozak_filter
-    for i,raw in enumerate(raw_factor):
-        if raw == 0:
-            factor='wo_uAUG_no_kozak'
-        elif raw == 1:
-            if with_uAUG[i] == 0:
-                factor = 'wo_uAUG_kozak'
-            else:
-                factor = 'uAUG_no_kozak'
-        else:
-            factor = "uAUG_kozak"
-            
-        start_factor_ls.append(factor)
-        
-    return start_factor_ls
-
-
-def process_pseudoalignment_bam(bam_path,ref:list,seq_include):
-    """
-    from kallisto pseudo alignment bam, extract refernce start and read length
-    bam path : absolute path
-    ref : list of reference ,`list(SeqIO.parse(ref_path,'fasta'))`
-    seq_include : the isoform to include  , `df.target_id.values`
-    """
-    ribo_bam = pysam.AlignmentFile(bam_path,'rb')
-    
-    # construct a dict to map o
-    tidx_2_tname = {}
-    for i,SeqRecord in tqdm(enumerate(ref)):
-        if SeqRecord.id in seq_include:
-            tidx_2_tname[i] = SeqRecord.id
-
-    # this is a super fast function to detect whtether a read falls in our interest group
-    def to_stay_(enquery):
-        try:
-            return tidx_2_tname[enquery]
-        except:
-            return 0 
-    
-    # take read / segment that we want
-    Segment_list =[]
-    for Segment in tqdm(ribo_bam):
-        if to_stay_(Segment.rname) != 0:
-            Segment_list.append(Segment)
-
-    start_dict={}
-    len_dict={}
-    # to initiate
-    for idx in tidx_2_tname.keys():
-        start_dict[idx]=[]
-        len_dict[idx] = []
-        
-
-    for Segment in tqdm(Segment_list):
-        start_dict[Segment.rname].append(Segment.reference_start)  # the 5' most of position 
-        len_dict[Segment.rname].append(Segment.reference_length)   # read length
-    
-    return Segment_list, start_dict,len_dict
-
-
-def kallisto_most_expr_isoform(input_df,tpm_col='tpm'):
-    """
-    Identify most expressive isoform from kallisto output
-    
-    args:
-        input_df : kallisto output abundance tsv 
-        tpm_col : the column to rank isoform within genes
-    """
-    if 'Gene' not in input_df.columns:
-        if 'dedup_gbff_df' in globals().keys():
-            input_df = input_df.merge(dedup_gbff_df,left_on=['target_id'],right_on=['ID'])
-        else:
-            globals()['dedup_gbff_df'] =  pd.read_csv('/data/users/wergillius/reference/GRCh38_p13_rna/2021_04_21_dedup_gbff_df.csv')
-            input_df = input_df.merge(dedup_gbff_df,left_on=['target_id'],right_on=['ID'])
-
-    input_df.sort_values(by=['Gene',tpm_col],ascending=False)
-    df = input_df.drop_duplicates(['Gene'],keep='first')
-
-    return df
-
-def data_quality_plot(df,mRNA_col='tpm',ribo_col='ribo_tpm',get_data=False,fig=None,axs=None):
-    
-    print("nubmer of orf : \n",df.shape[0])
-    
-    x=np.log10(df[mRNA_col].values)
-    y=np.log10(df[ribo_col].values)
-    
-    if fig is None:
-        fig,axs=plt.subplots(1,2,figsize=(10,4),dpi=300)        
-    
-    # scatter
-    scatter_linearreg_plot(x,y,ax=axs[0])
-    axs[0].set_xlabel("log10 mRNA RPKM",fontsize=12)
-    axs[0].set_ylabel("log10 RPF RPKM",fontsize=12)
-    
-    # TE distribution
-    TE_d = np.log2(np.divide(df[ribo_col].values,df[mRNA_col].values))
-    sns.kdeplot(TE_d,ax=axs[1])
-    axs[1].set_xlabel("log2 TE",fontsize=12)
-    
-    if get_data:
-        return x,y,TE_d
-    
 def gtf_line_2_json(gtf_line):
     """from the last one extract info"""
     json = {}
@@ -566,6 +316,335 @@ def build_exon_parent(gtf):
 
     return exon_parent
 
+########################################################
+#          UTR sequence pattern processing             #
+#  1. uAUG : number and all position.                  #
+#  2. stop codon : all position.                       #
+#. 3. kozak consensus                                  #
+########################################################
+
+def iter_ATG(seq,pattern='ATG'):
+    """
+    return the position of all ATG in the sequence
+    """
+    return np.array([itera.start() for itera in re.finditer(pattern, seq)])
+
+def iter_stop_codon(seq):
+    """
+    return the posstion of all possible stop codon in the seqeuence
+    """
+    all_stop = []
+    for codon in stop_codon:
+        all_stop += [itera.start() for itera in re.finditer(codon, seq)]
+    return np.array(sorted(all_stop))
+
+def n_uATG(seq):
+    """
+    the number of uAUG
+    """
+    return len(iter_ATG(seq))
+
+def get_NonEmptyList(x):
+    if x is None:
+        return False
+    if len(x) > 0:
+        return True
+    else:
+        return False
+
+def pair_startcodon_stopcodon(sequence):
+    """
+    pair uAUG and uStopCodon of a sequence
+    Arg:
+        UTR sequence
+    Return:
+        nonclosing_start : the position of uAUG that will really open a uORF will prolong the iORF. 
+                    3 types of output: None : input seq has no uAUG ; 
+                                       [] : all uAUG can be closed by;
+                                       [xxx] : uAUG that really starts uAUG ;
+                                       
+        valid stop : stop codon position that will close the uORF:
+                    3 types of output: None : input seq has no uAUG ; 
+                                       [] : None of stop codon can pair with a uAUG ;
+                                       [xxx] : stop codon that truely close a uORF;
+    """
+    all_start = iter_ATG(sequence)
+    all_stop = iter_stop_codon(sequence)
+    if len(all_start)==0:
+        return None, None
+    
+    valid_stop = []
+    stop_frame = np.array(all_stop) %3  # this call esily tell the frame shift 
+    current_stop = 0
+
+    for start in all_start:
+        if start < current_stop:
+            continue
+#         print(start)
+        frame =  start%3 
+        # find the first inframe stop codon
+        try:
+            # valid closing codon : larger than uAUG. and in the same frame
+            current_stop = all_stop[(all_stop > start) & (stop_frame == frame)][0]
+#             print('valida strop', current_stop)
+            valid_stop.append(current_stop)
+        except IndexError:
+            # where there are no closing stop codon 
+            continue
+    
+    nonclosing_start = all_start[all_start > current_stop]
+    
+    return nonclosing_start, valid_stop
+
+
+def closing_uORF(seq_ls):
+    """
+    wrap func `pair_startcodon_stopcodon` 
+    """
+    
+    all_closing_codon = []
+    all_nonclosing_start = []
+    
+    for seq in tqdm(seq_ls):
+        
+        nonclosing_start, valid_stop = pair_startcodon_stopcodon(seq)
+        
+        all_nonclosing_start.append(nonclosing_start)
+        all_closing_codon.append(valid_stop)
+    
+    return all_closing_codon , all_nonclosing_start
+
+def kozak_consensus_test(seq,start,loose_criteria=False):
+    """
+    detect whether given sequencing meet kozak consensus
+    ...seq : sequence to test
+    ...start : location of start codon
+    ...loose_criteira : if True, only 'G' at +4 position is allowed. \
+                        if False, not "C" is considered as consense.
+    """
+    n_3 = seq[start-3]
+    p_4 = seq[start+3]
+
+    if loose_criteria:
+        # whatever not 'C'
+        p4_meet= (p_4 != 'C')
+    else:
+        # only 'G'
+        p4_meet= (p_4 == 'G')
+
+    # is -3 site a Purine ?
+    n3isP = n_3 in ['A','G']
+
+    return n3isP & p4_meet
+    
+def detect_uAUG_context(utr,loose_criteria=False):
+    """
+    detect uAUG , if there is , then we pipe to kozak context analysis
+    ...input : the sequence to test
+    ...loose_criteira : if True, only 'G' at +4 position is allowed. \
+                        if False, not "C" is considered as consense.
+        return: 'no_uAUG' , 'weak_uAUG' , 'strong_uAUG'
+    """
+    safe_utr = utr[:-3] # uAUG that fall in [-3:] will raise error
+    if "ATG" in safe_utr:
+        # location of ATG
+        uAUG_sites = iter_ATG(safe_utr)
+        # we use utr sequence and give location of uAUG,
+        is_kzk_con = [kozak_consensus_test(utr, site, loose_criteria) for site in uAUG_sites]
+        
+        uAUG_context = ['strong_uAUG' if (kzk==True) else 'weak_uAUG' for kzk in is_kzk_con]
+        return uAUG_context
+    else:
+        return "no_uAUG"
+    
+def uAUG_kozak_cooccur(with_uAUG,kozak_filter):
+    start_factor_ls=[]
+    # 0: no uAUG  , non kozak
+    # 1: either is 1
+    # 2: uAUG , kozak
+    raw_factor = with_uAUG+kozak_filter
+    for i,raw in enumerate(raw_factor):
+        if raw == 0:
+            factor='wo_uAUG_no_kozak'
+        elif raw == 1:
+            if with_uAUG[i] == 0:
+                factor = 'wo_uAUG_kozak'
+            else:
+                factor = 'uAUG_no_kozak'
+        else:
+            factor = "uAUG_kozak"
+            
+        start_factor_ls.append(factor)
+        
+    return start_factor_ls 
+
+
+########################################################
+#                    statistical plot                  #
+########################################################
+
+def scatter_linearreg_plot(quanty,y,ax=None,yeq2x=True):
+    linear_mod = linear_model.LinearRegression().fit(quanty.reshape(-1,1),y.reshape(-1,1))
+    line_x = np.array([quanty.min(),quanty.max()])
+    line_y = linear_mod.predict(line_x.reshape(-1,1))
+    y_pred = linear_mod.predict(quanty.reshape(-1,1))
+    r2 = r2_score(y,y_pred)
+    
+    fit_line="y=%.2fx+%.2f"%(linear_mod.coef_,linear_mod.intercept_)
+    
+    if ax is None:
+        fig = plt.figure(figsize=(6,4))
+        ax = fig.gca()
+    
+    ax.scatter(quanty,y,s=5,alpha=0.2,label=r'$R^2$=%.3f'%r2)
+    if yeq2x:
+        ax.plot(line_x,line_x,'-.',color='orange',alpha=0.5,label='y=x')
+    ax.plot(line_x,line_y,'--',color='black',alpha=0.5,label=fit_line)
+    ax.legend()
+
+
+
+        
+def zwz_cor_m(matrix,axis):
+    """
+    calculate the covariance matrix 
+    where the axis parameter denote which axis is the feature axis 
+    """
+    
+    m,n = np.shape(matrix)
+    if axis == 0:
+        mean_M = np.mean(matrix,1-axis).reshape(m,1)
+        norm_M = matrix-mean_M
+        COV_M = np.dot(norm_M,np.transpose(norm_M))/n
+        std_M = np.std(matrix,1-axis).reshape(m,1)
+        db_std_M = std_M@std_M.T
+        COR_M = COV_M / db_std_M
+    else:
+        mean_M = np.mean(matrix,1-axis).reshape(1,n)
+        norm_M = matrix-mean_M
+        COV_M = np.dot(np.transpose(norm_M),norm_M)/m
+        std_M = np.std(matrix,1-axis).reshape(1,n)
+        db_std_M = std_M.T@std_M
+        COR_M = COV_M / db_std_M
+        
+    return COR_M
+
+def cor_M_heatmap(corr_M,label):
+    color_norm = matplotlib.colors.Normalize(vmin=0, vmax=1)
+    mapperable = cm.ScalarMappable(color_norm,cmap=cm.RdBu_r)
+
+    from matplotlib.ticker import StrMethodFormatter
+
+    fig = plt.figure(figsize=(11,9))
+    ax = fig.gca()
+    heatmap=ax.imshow(corr_M,aspect='auto',cmap=cm.RdBu_r,norm=color_norm)
+    plt.colorbar(heatmap)
+
+    valfmt = StrMethodFormatter('{x:.4f}')
+    for i in range(corr_M.shape[0]):
+        for j in range(corr_M.shape[1]):
+            if j>i:
+                continue
+            font_color = ['w','black'][(np.tril(corr_M,k=0)[i,j] <0.6)&(np.tril(corr_M,k=0)[i,j] > 0.3)]
+            ax.text(j-0.3,i+0.08,valfmt(np.tril(corr_M,k=0)[i,j],None),color=font_color,size=12);
+    ax.set_yticks(range(len(label)))
+    ax.set_yticklabels(label,size=14);
+
+    return fig
+
+
+########################################################
+#                 process bam or sam file              #
+########################################################
+
+def process_pseudoalignment_bam(bam_path,ref:list,seq_include):
+    """
+    from kallisto pseudo alignment bam, extract refernce start and read length
+    bam path : absolute path
+    ref : list of reference ,`list(SeqIO.parse(ref_path,'fasta'))`
+    seq_include : the isoform to include  , `df.target_id.values`
+    """
+    ribo_bam = pysam.AlignmentFile(bam_path,'rb')
+    
+    # construct a dict to map o
+    tidx_2_tname = {}
+    for i,SeqRecord in tqdm(enumerate(ref)):
+        if SeqRecord.id in seq_include:
+            tidx_2_tname[i] = SeqRecord.id
+
+    # this is a super fast function to detect whtether a read falls in our interest group
+    def to_stay_(enquery):
+        try:
+            return tidx_2_tname[enquery]
+        except:
+            return 0 
+    
+    # take read / segment that we want
+    Segment_list =[]
+    for Segment in tqdm(ribo_bam):
+        if to_stay_(Segment.rname) != 0:
+            Segment_list.append(Segment)
+
+    start_dict={}
+    len_dict={}
+    # to initiate
+    for idx in tidx_2_tname.keys():
+        start_dict[idx]=[]
+        len_dict[idx] = []
+        
+
+    for Segment in tqdm(Segment_list):
+        start_dict[Segment.rname].append(Segment.reference_start)  # the 5' most of position 
+        len_dict[Segment.rname].append(Segment.reference_length)   # read length
+    
+    return Segment_list, start_dict,len_dict
+
+
+def kallisto_most_expr_isoform(input_df,tpm_col='tpm'):
+    """
+    Identify most expressive isoform from kallisto output
+    
+    args:
+        input_df : kallisto output abundance tsv 
+        tpm_col : the column to rank isoform within genes
+    """
+    if 'Gene' not in input_df.columns:
+        if 'dedup_gbff_df' in globals().keys():
+            input_df = input_df.merge(dedup_gbff_df,left_on=['target_id'],right_on=['ID'])
+        else:
+            globals()['dedup_gbff_df'] =  pd.read_csv('/data/users/wergillius/reference/GRCh38_p13_rna/2021_04_21_dedup_gbff_df.csv')
+            input_df = input_df.merge(dedup_gbff_df,left_on=['target_id'],right_on=['ID'])
+
+    input_df.sort_values(by=['Gene',tpm_col],ascending=False)
+    df = input_df.drop_duplicates(['Gene'],keep='first')
+
+    return df
+
+def data_quality_plot(df,mRNA_col='tpm',ribo_col='ribo_tpm',get_data=False,fig=None,axs=None):
+    
+    print("nubmer of orf : \n",df.shape[0])
+    
+    x=np.log10(df[mRNA_col].values)
+    y=np.log10(df[ribo_col].values)
+    
+    if fig is None:
+        fig,axs=plt.subplots(1,2,figsize=(10,4),dpi=300)        
+    
+    # scatter
+    scatter_linearreg_plot(x,y,ax=axs[0])
+    axs[0].set_xlabel("log10 mRNA RPKM",fontsize=12)
+    axs[0].set_ylabel("log10 RPF RPKM",fontsize=12)
+    
+    # TE distribution
+    TE_d = np.log2(np.divide(df[ribo_col].values,df[mRNA_col].values))
+    sns.kdeplot(TE_d,ax=axs[1])
+    axs[1].set_xlabel("log2 TE",fontsize=12)
+    
+    if get_data:
+        return x,y,TE_d
+    
+
+
 def sam_line_cigar(test_entry):
     """
     from a line in sam or bam ,we process the line and return unmatched end
@@ -594,6 +673,10 @@ def sam_line_cigar(test_entry):
         else:        
             return test_entry.reference_start , test_seq[:-1*right_side]
 
+########################################################
+#                P siet offset                         #
+########################################################        
+        
 def compute_offset_matrix(start_codon_coordinate,reads_list,strategy='annotated start site'):
     """
     Compute P site offset matrix , read length (20,40) to probability of offset (-30,30). The transcripts / Exon to use can be specified by `start_codon_coordinate` and `reads_list`
