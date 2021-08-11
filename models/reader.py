@@ -1,6 +1,8 @@
+from Bio.SeqRecord import SeqRecord
 import torch
 from torch.utils.data import  DataLoader, Dataset ,random_split,IterableDataset
 from sklearn.model_selection import KFold,train_test_split
+from Bio import SeqIO
 import numpy as np
 import pandas as pd
 import copy
@@ -164,7 +166,8 @@ class ribo_dataset(Dataset):
         # X_padded = pad_zeros(X, self.pad_to)
         
         return X.float()
-
+        
+        
 class MTL_dataset(Dataset):
     def __init__(self,DF,pad_to=100,seq_col='utr',aux_columns=None,other_input_columns=None,trunc_len=None):
         """
@@ -209,6 +212,12 @@ class MTL_dataset(Dataset):
 
         return item   
 
+
+class FASTA_dataset(MTL_dataset):
+    def __init__(self,DF, pad_to,trunc_len, seq_col, aux_columns, other_input_columns):
+        super().__init__(DF=DF, pad_to=pad_to, trunc_len=trunc_len, seq_col=seq_col, 
+                         aux_columns=aux_columns, other_input_columns=other_input_columns)
+
 def get_splited_dataloader(dataset_func, df_ls, ratio:list, batch_size, shuffle, pad_to, seed=42,return_dataset=False):
     """
     split the total dataset into train val test, and return in a DataLoader (train_loader,val_loader,test_loader) 
@@ -248,27 +257,47 @@ def get_splited_dataloader(dataset_func, df_ls, ratio:list, batch_size, shuffle,
         
     return loader_ls
 
-def split_DF(csv_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42):
+def split_DF(data_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42):
     
+    class _cf_data(object):
+        def __init__(self,data_path):
+            self.path = data_path
+            self.is_fasta = data_path.endswith('.fasta')
+            self.__read__()
     
+        def __read__(self):
+            if self.is_fasta:
+                self.data = list(SeqIO.parse(self.path,'fasta'))
+            else:
+                self.data = pd.read_csv(self.path,low_memory=False)
+        
+        def __len__(self):
+            return len(self.data)
+                
+        def _slice_(self, indices):
+            if isinstance(self.data, list) & self.is_fasta:
+                return np.array(self.data)[indices]
+            elif isinstance(self.data, pd.DataFrame):
+                return self.data.iloc[indices]
+            
         
     if kfold_cv == True:
-        full_df = pd.read_csv(csv_path,low_memory=False)
+        full_df = pd.read_csv(data_path,low_memory=False)
         # K-fold CV : 8:1:1 for each partition
         df_ls = KFold_df_split(full_df,kfold_index)
     
     elif type(split_like_paper) == list:
-        df_ls = [pd.read_csv(csv_path) for csv_path in split_like_paper]
+        df_ls = [_cf_data(data_path).data for data_path in split_like_paper]
     
     else:
-        full_df = pd.read_csv(csv_path,low_memory=False)
+        full_df = _cf_data(data_path)
         # POPEN.ratio will determine train :val :test ratio
         total_len = len(full_df)
         lengths = [int(total_len*sub_ratio) for sub_ratio in ratio[:-1]]
         lengths.append(total_len-sum(lengths))         # make sure the sum of length is the total len
 
         set_ls = random_split(full_df,lengths,generator=torch.Generator().manual_seed(seed)) 
-        df_ls = [full_df.iloc[subset.indices] for subset in set_ls] # df.iloc [ idx ]
+        df_ls = [full_df._slice_(subset.indices) for subset in set_ls] # df.iloc [ idx ]
         
             
     return df_ls
@@ -312,7 +341,7 @@ def get_dataloader(POPEN):
                                          other_input_columns=POPEN.other_input_columns)
     
     loader_ls = get_splited_dataloader(dataset_func, df_ls,ratio=POPEN.train_test_ratio,
-                                        batch_size=POPEN.batch_size, shuffle=True,
+                                        batch_size=POPEN.batch_size, shuffle=POPEN.shuffle,
                                         pad_to=POPEN.pad_to, seed=42) # new function
         
     return loader_ls 
