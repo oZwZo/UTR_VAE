@@ -52,9 +52,12 @@ train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
 if POPEN.pretrain_pth is not None:
     # load pretran model
     pretrain_popen = Auto_popen(POPEN.pretrain_pth)
-    pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
+    try:
+        pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
 
-    utils.load_model(pretrain_popen,pretrain_model,logger)  
+        utils.load_model(pretrain_popen,pretrain_model,logger)
+    except:
+        pretrain_model = torch.load(pretrain_popen.vae_pth_path)['state_dict']
 
     # DL_models.LSTM_AE
     if POPEN.Model_Class == pretrain_popen.Model_Class:
@@ -80,7 +83,7 @@ elif POPEN.path_category == "CrossStitch":
         task_popen = Auto_popen(POPEN.backbone_config[t])
         task_model = task_popen.Model_Class(*task_popen.model_args)
         utils.load_model(task_popen,task_model,logger)
-        backbone[t] = task_model
+        backbone[t] = task_model.cuda(POPEN.cuda_id)
     POPEN.model_args = [backbone] + POPEN.model_args
     model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
 else:
@@ -147,7 +150,7 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             utils.snapshot(POPEN.vae_pth_path, {
                         'epoch': epoch + 1,
                         'validation_acc': val_avg_acc,
-                        'state_dict': model,
+                        'state_dict': model.to('cpu',),
                         'validation_loss': val_total_loss,
                         'optimizer': optimizer.state_dict(),
                     })
@@ -155,8 +158,7 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             # update the popen
             POPEN.update_ini_file({'run_name':run_name,
                                 "ran_epoch":epoch,
-                             
-                                   "best_acc":best_acc},
+                                "best_acc":best_acc},
                                 logger)
             
         elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
