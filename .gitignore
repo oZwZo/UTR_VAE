@@ -37,3 +37,17 @@ log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/cs_RL_tower.npy
 log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/design_before_last_exchange_p105.npy
 log/CrossStitch/CrossStitch_Model_MTL/a5b5/a5b5_g2_11_tsne/design_before_last_exchange.npy
 log/Backbone/Reconstruction_MTL/test_run/VAE_tsne/design_VAE_Z_max.npy
+ipynb/network_interpretation/test_log.log
+ipynb/network_interpretation/test.log
+ipynb/alan_ds/cluster_4_sample.csv
+ipynb/alan_ds/cluster_6_sample.csv
+ipynb/alan_ds/.ipynb_checkpoints/cluster_4_sample-checkpoint.csv
+.gitignore
+ipynb/test_log.log
+ipynb/test.csvv
+ipynb/test.log
+ipynb/alan_ds/test_log.log
+ipynb/some_plot/MA_logo/2021_8_4_big_lr_35/Exp_record.txt
+.gitignore
+ipynb/test_log.log
+ipynb/test.log

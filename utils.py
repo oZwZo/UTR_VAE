@@ -208,7 +208,11 @@ def snapshot(vae_pth_path, state):
 
 def load_model(popen,model,logger):
     checkpoint = torch.load(popen.vae_pth_path) 
-    model.load_state_dict(checkpoint['state_dict'])
+    if isinstance(checkpoint['state_dict'], collections.OrderedDict):
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+        model.load_state_dict(checkpoint['state_dict'])
+    else:
+        model = checkpoint['state_dict']
     logger.info(' \t \t ==============<<< encoder load from >>>============== \t \t \n')
     logger.info(" \t"+popen.vae_pth_path+'\n')
 
