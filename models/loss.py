@@ -66,6 +66,8 @@ class Dynamic_Task_Priority(object):
         """
         # TODO : test this effectiveness
         self.relative_magnitude = self.kappa.min() / (self.kappa+1e-8)
+        if np.any(self.kappa==1):
+            self.kappa[np.where(self.kappa==1)[0]] -= 1e-8
     
     def _update(self,loss_dict):
         """
