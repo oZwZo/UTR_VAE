@@ -51,3 +51,7 @@ ipynb/some_plot/MA_logo/2021_8_4_big_lr_35/Exp_record.txt
 .gitignore
 ipynb/test_log.log
 ipynb/test.log
+__pycache__/utils.cpython-38.pyc
+ipynb/GMP.log
+ipynb/test_log.log
+ipynb/test.log

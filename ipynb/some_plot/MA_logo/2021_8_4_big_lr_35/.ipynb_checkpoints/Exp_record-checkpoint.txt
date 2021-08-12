@@ -1,0 +1,3 @@
+code in `Project/UTR_VAE/ipynb/15.maxium_activation.ipynb`
+Config = "/home/wergillius/Project/UTR_VAE/log/Backbone/RL_gru/ds4rl_unmod1/big_RL_gru_long_lr3e5.ini"
+
