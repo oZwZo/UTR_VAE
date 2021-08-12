@@ -626,3 +626,4 @@
 
 2021-08-12 20:42:15,888 -     0 /  7312 (0.0%):	 RL_loss:0.1350055	 Recons_loss:0.1390960	 Motif_loss:0.2823818	 Total:0.4178635	 RL_Acc:0.6875000	 Recons_Acc:0.7933114	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5995095	 DTP_wt_Recons:0.0207367	 DTP_wt_Motif:0.7007704	 Mean_Total:0.4178635
 2021-08-12 20:44:14,698 -  1462 /  7312 (20.0%):	 RL_loss:0.1162745	 Recons_loss:0.1375984	 Motif_loss:0.4468062	 Total:0.3576388	 RL_Acc:0.6562500	 Recons_Acc:0.8081140	 Motif_Acc:0.4062500	 DTP_wt_RL:0.7585489	 DTP_wt_Recons:0.0205518	 DTP_wt_Motif:0.5348420	 Mean_Total:0.3627984
+2021-08-12 20:46:11,569 -  2924 /  7312 (40.0%):	 RL_loss:0.2252424	 Recons_loss:0.1392448	 Motif_loss:0.3453542	 Total:0.3799136	 RL_Acc:0.7187500	 Recons_Acc:0.8009868	 Motif_Acc:0.3125000	 DTP_wt_RL:0.5105185	 DTP_wt_Recons:0.0172300	 DTP_wt_Motif:0.7996661	 Mean_Total:0.3662774
