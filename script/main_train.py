@@ -129,7 +129,7 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
     
     #           ----------| train |----------
     logger.info("\n===============================|    epoch {}   |===============================\n".format(epoch))
-    # train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
            
     #         -----------| validate |-----------
     
