@@ -1,0 +1,286 @@
+2021-08-13 12:41:12,936 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-08-13 12:41:12,937 -  	/data/users/wergillius/UTR_VAE/pth/RL_gru_MTL/ds4rl_unmod1_new/big_RL_gru_long_lr3e5-model_best.pth
+
+2021-08-13 12:41:19,177 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-08-13 12:41:19,177 -  	/data/users/wergillius/UTR_VAE/pth/Reconstruction_MTL/Reconstruction_fa/test_fa_reader-model_best.pth
+
+2021-08-13 12:41:19,995 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+
+2021-08-13 12:41:19,995 -  	/data/users/wergillius/UTR_VAE/pth/RL_gru_MTL/mfe_fa/pred_scaled_mfe-model_best.pth
+
+2021-08-13 12:41:20,272 - 
+===============================|    epoch 0   |===============================
+
+2021-08-13 12:41:25,496 -     0 /  7312 (0.0%):	 RL_loss:2.0193839	 Recons_loss:2.7828064	 Motif_loss:1.7942739	 Total:2.5805225	 RL_Acc:0.1562500	 Recons_Acc:0.2604167	 Motif_Acc:0.3125000	 DTP_wt_RL:0.5000000	 DTP_wt_Recons:0.5000000	 DTP_wt_Motif:0.1000000	 Mean_Total:2.5805225
+2021-08-13 12:43:41,524 -  1462 /  7312 (20.0%):	 RL_loss:0.2765420	 Recons_loss:1.8264549	 Motif_loss:0.6357712	 Total:0.3650742	 RL_Acc:0.5312500	 Recons_Acc:0.8119518	 Motif_Acc:0.3125000	 DTP_wt_RL:0.7937538	 DTP_wt_Recons:0.0150768	 DTP_wt_Motif:0.3779672	 Mean_Total:1.4792726
+2021-08-13 12:45:58,074 -  2924 /  7312 (40.0%):	 RL_loss:0.1923291	 Recons_loss:1.2028041	 Motif_loss:0.6562690	 Total:0.5012733	 RL_Acc:0.6562500	 Recons_Acc:0.8355263	 Motif_Acc:0.4062500	 DTP_wt_RL:0.7585489	 DTP_wt_Recons:0.0143702	 DTP_wt_Motif:0.1885527	 Mean_Total:0.9596144
+2021-08-13 12:48:17,084 -  4386 /  7312 (60.0%):	 RL_loss:0.1068202	 Recons_loss:0.7629358	 Motif_loss:0.7931731	 Total:0.2348137	 RL_Acc:0.5937500	 Recons_Acc:0.8256579	 Motif_Acc:0.2500000	 DTP_wt_RL:0.5402915	 DTP_wt_Recons:0.0101130	 DTP_wt_Motif:0.5848429	 Mean_Total:0.7626229
+2021-08-13 12:50:37,123 -  5848 /  7312 (80.0%):	 RL_loss:0.1588849	 Recons_loss:0.5622192	 Motif_loss:0.4039240	 Total:0.2325006	 RL_Acc:0.6250000	 Recons_Acc:0.8432018	 Motif_Acc:0.3437500	 DTP_wt_RL:0.6893386	 DTP_wt_Recons:0.0109019	 DTP_wt_Motif:0.3017966	 Mean_Total:0.6594275
+2021-08-13 12:52:58,680 -  7310 /  7312 (100.0%):	 RL_loss:0.1829772	 Recons_loss:0.4750727	 Motif_loss:0.6153196	 Total:0.5043580	 RL_Acc:0.5937500	 Recons_Acc:0.8338816	 Motif_Acc:0.2812500	 DTP_wt_RL:0.6078280	 DTP_wt_Recons:0.0101783	 DTP_wt_Motif:0.4710076	 Mean_Total:0.6061773
+2021-08-13 12:53:23,691 - 
+===============================| start validation |===============================
+
+2021-08-13 12:53:23,693 - 	 RL_loss:0.1373167	 Recons_loss:0.4700449	 Motif_loss:0.5345865	 Total:0.2794041	 RL_Acc:0.6920413	 Recons_Acc:0.8747387	 Motif_Acc:0.3343211
+2021-08-13 12:53:23,698 -    ini file updated    
+2021-08-13 12:53:23,805 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/big_Cov/a5b5_gamma-113_scatch-model_best.pth
+
+2021-08-13 12:53:23,805 -    ini file updated    
+2021-08-13 12:53:23,805 - 
+===============================|    epoch 1   |===============================
+
+2021-08-13 12:53:24,769 -     0 /  7312 (0.0%):	 RL_loss:0.0850552	 Recons_loss:0.4805006	 Motif_loss:0.5139611	 Total:0.2203196	 RL_Acc:0.8437500	 Recons_Acc:0.8135965	 Motif_Acc:0.2812500	 DTP_wt_RL:0.3624512	 DTP_wt_Recons:0.0132928	 DTP_wt_Motif:0.4710076	 Mean_Total:0.2203196
+2021-08-13 12:55:44,452 -  1462 /  7312 (20.0%):	 RL_loss:0.0706489	 Recons_loss:0.4046392	 Motif_loss:0.2470964	 Total:0.2085908	 RL_Acc:0.7187500	 Recons_Acc:0.8163377	 Motif_Acc:0.4062500	 DTP_wt_RL:0.6636741	 DTP_wt_Recons:0.0185474	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2905564
+2021-08-13 12:58:02,915 -  2924 /  7312 (40.0%):	 RL_loss:0.0750586	 Recons_loss:0.3635972	 Motif_loss:0.4051707	 Total:0.1254309	 RL_Acc:0.8125000	 Recons_Acc:0.8283991	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5111122	 DTP_wt_Recons:0.0146241	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2835968
+2021-08-13 13:00:21,401 -  4386 /  7312 (60.0%):	 RL_loss:0.0825429	 Recons_loss:0.3278525	 Motif_loss:0.3904309	 Total:0.1875408	 RL_Acc:0.6250000	 Recons_Acc:0.8596491	 Motif_Acc:0.3437500	 DTP_wt_RL:0.6893386	 DTP_wt_Recons:0.0084875	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2798036
+2021-08-13 13:02:40,851 -  5848 /  7312 (80.0%):	 RL_loss:0.0702826	 Recons_loss:0.3050542	 Motif_loss:0.4159184	 Total:0.1951218	 RL_Acc:0.7500000	 Recons_Acc:0.8569079	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5753641	 DTP_wt_Recons:0.0096701	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2798772
+2021-08-13 13:05:00,098 -  7310 /  7312 (100.0%):	 RL_loss:0.6413951	 Recons_loss:0.2933583	 Motif_loss:0.5268564	 Total:0.7121895	 RL_Acc:0.6250000	 Recons_Acc:0.8552632	 Motif_Acc:0.3125000	 DTP_wt_RL:0.6266715	 DTP_wt_Recons:0.0082683	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2916014
+2021-08-13 13:05:25,315 - 
+===============================| start validation |===============================
+
+2021-08-13 13:05:25,317 - 	 RL_loss:0.1182055	 Recons_loss:0.3002920	 Motif_loss:0.5136246	 Total:0.5106276	 RL_Acc:0.7227909	 Recons_Acc:0.8239342	 Motif_Acc:0.3424800
+2021-08-13 13:05:25,319 -    ini file updated    
+2021-08-13 13:05:25,319 - 
+===============================|    epoch 2   |===============================
+
+2021-08-13 13:05:26,092 -     0 /  7312 (0.0%):	 RL_loss:0.1133565	 Recons_loss:0.2961144	 Motif_loss:0.4569136	 Total:0.4577213	 RL_Acc:0.7500000	 Recons_Acc:0.8333333	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4794701	 DTP_wt_Recons:0.0113951	 DTP_wt_Motif:0.3779672	 Mean_Total:0.4577213
+2021-08-13 13:07:43,640 -  1462 /  7312 (20.0%):	 RL_loss:0.1105573	 Recons_loss:0.2714042	 Motif_loss:0.6433105	 Total:0.2926400	 RL_Acc:0.6562500	 Recons_Acc:0.8464912	 Motif_Acc:0.2500000	 DTP_wt_RL:0.4667993	 DTP_wt_Recons:0.0075556	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2502758
+2021-08-13 13:09:59,239 -  2924 /  7312 (40.0%):	 RL_loss:0.0993425	 Recons_loss:0.2550408	 Motif_loss:0.3850704	 Total:0.1558892	 RL_Acc:0.6562500	 Recons_Acc:0.8410088	 Motif_Acc:0.4062500	 DTP_wt_RL:0.7585489	 DTP_wt_Recons:0.0132983	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2509874
+2021-08-13 13:12:15,209 -  4386 /  7312 (60.0%):	 RL_loss:0.0543132	 Recons_loss:0.2357768	 Motif_loss:0.4666686	 Total:0.2471231	 RL_Acc:0.8125000	 Recons_Acc:0.8344298	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4259269	 DTP_wt_Recons:0.0112237	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2524517
+2021-08-13 13:14:31,615 -  5848 /  7312 (80.0%):	 RL_loss:0.1939141	 Recons_loss:0.2216341	 Motif_loss:0.3775990	 Total:0.1805471	 RL_Acc:0.6250000	 Recons_Acc:0.8607456	 Motif_Acc:0.4687500	 DTP_wt_RL:0.9400072	 DTP_wt_Recons:0.0113721	 DTP_wt_Motif:0.1136020	 Mean_Total:0.2549495
+2021-08-13 13:16:44,669 -  7310 /  7312 (100.0%):	 RL_loss:0.1290262	 Recons_loss:0.2198856	 Motif_loss:0.3792147	 Total:0.2883233	 RL_Acc:0.5312500	 Recons_Acc:0.8552632	 Motif_Acc:0.3750000	 DTP_wt_RL:0.9525045	 DTP_wt_Recons:0.0099220	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2682030
+2021-08-13 13:17:09,620 - 
+===============================| start validation |===============================
+
+2021-08-13 13:17:09,621 - 	 RL_loss:0.1203239	 Recons_loss:0.2303635	 Motif_loss:0.5261944	 Total:0.2577846	 RL_Acc:0.7196736	 Recons_Acc:0.8115298	 Motif_Acc:0.3517164
+2021-08-13 13:17:09,625 -    ini file updated    
+2021-08-13 13:17:09,727 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/big_Cov/a5b5_gamma-113_scatch-model_best.pth
+
+2021-08-13 13:17:09,728 -    ini file updated    
+2021-08-13 13:17:09,728 - 
+===============================|    epoch 3   |===============================
+
+2021-08-13 13:17:10,936 -     0 /  7312 (0.0%):	 RL_loss:0.1205301	 Recons_loss:0.2220871	 Motif_loss:0.6717007	 Total:0.3017818	 RL_Acc:0.5937500	 Recons_Acc:0.8530702	 Motif_Acc:0.1875000	 DTP_wt_RL:0.4052186	 DTP_wt_Recons:0.0051320	 DTP_wt_Motif:0.8978823	 Mean_Total:0.3017818
+2021-08-13 13:19:30,408 -  1462 /  7312 (20.0%):	 RL_loss:0.0854597	 Recons_loss:0.2049907	 Motif_loss:0.4416597	 Total:0.1862500	 RL_Acc:0.7500000	 Recons_Acc:0.8733553	 Motif_Acc:0.4062500	 DTP_wt_RL:0.6233111	 DTP_wt_Recons:0.0079772	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2385956
+2021-08-13 13:21:46,057 -  2924 /  7312 (40.0%):	 RL_loss:0.0745653	 Recons_loss:0.2020858	 Motif_loss:0.5731363	 Total:0.1661487	 RL_Acc:0.7812500	 Recons_Acc:0.8673246	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4514013	 DTP_wt_Recons:0.0068044	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2401859
+2021-08-13 13:24:06,500 -  4386 /  7312 (60.0%):	 RL_loss:0.0498580	 Recons_loss:0.1947514	 Motif_loss:0.5238606	 Total:0.4834983	 RL_Acc:0.8125000	 Recons_Acc:0.8360746	 Motif_Acc:0.1875000	 DTP_wt_RL:0.2555561	 DTP_wt_Recons:0.0065818	 DTP_wt_Motif:0.8978823	 Mean_Total:0.2412953
+2021-08-13 13:26:25,331 -  5848 /  7312 (80.0%):	 RL_loss:0.1228725	 Recons_loss:0.1881327	 Motif_loss:0.5433966	 Total:0.2585989	 RL_Acc:0.6875000	 Recons_Acc:0.8722588	 Motif_Acc:0.2187500	 DTP_wt_RL:0.3815060	 DTP_wt_Recons:0.0043783	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2440485
+2021-08-13 13:28:40,958 -  7310 /  7312 (100.0%):	 RL_loss:0.2637908	 Recons_loss:0.1905055	 Motif_loss:0.5787933	 Total:0.3425628	 RL_Acc:0.5000000	 Recons_Acc:0.8645833	 Motif_Acc:0.2500000	 DTP_wt_RL:0.6931471	 DTP_wt_Recons:0.0056976	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2566540
+2021-08-13 13:29:06,946 - 
+===============================| start validation |===============================
+
+2021-08-13 13:29:06,948 - 	 RL_loss:0.1138271	 Recons_loss:0.2064198	 Motif_loss:0.5096147	 Total:0.2715058	 RL_Acc:0.7361453	 Recons_Acc:0.7960418	 Motif_Acc:0.3502540
+2021-08-13 13:29:06,952 -    ini file updated    
+2021-08-13 13:29:06,952 - 
+===============================|    epoch 4   |===============================
+
+2021-08-13 13:29:07,711 -     0 /  7312 (0.0%):	 RL_loss:0.1475240	 Recons_loss:0.1936696	 Motif_loss:0.5849794	 Total:0.3226245	 RL_Acc:0.7187500	 Recons_Acc:0.8547149	 Motif_Acc:0.3750000	 DTP_wt_RL:0.6126222	 DTP_wt_Recons:0.0100068	 DTP_wt_Motif:0.2394603	 Mean_Total:0.3226245
+2021-08-13 13:31:21,938 -  1462 /  7312 (20.0%):	 RL_loss:0.0626295	 Recons_loss:0.1870155	 Motif_loss:0.3825759	 Total:0.1746673	 RL_Acc:0.7500000	 Recons_Acc:0.8305921	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4794701	 DTP_wt_Recons:0.0118308	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2353490
+2021-08-13 13:33:40,946 -  2924 /  7312 (40.0%):	 RL_loss:0.1029706	 Recons_loss:0.1758502	 Motif_loss:0.5060689	 Total:0.2348421	 RL_Acc:0.7812500	 Recons_Acc:0.8399123	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5416815	 DTP_wt_Recons:0.0124694	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2357750
+2021-08-13 13:35:58,369 -  4386 /  7312 (60.0%):	 RL_loss:0.0699612	 Recons_loss:0.1790129	 Motif_loss:0.4670639	 Total:0.1192639	 RL_Acc:0.7500000	 Recons_Acc:0.8388158	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5274171	 DTP_wt_Recons:0.0116099	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2385187
+2021-08-13 13:38:16,252 -  5848 /  7312 (80.0%):	 RL_loss:0.0651094	 Recons_loss:0.1684512	 Motif_loss:0.5416789	 Total:0.4133259	 RL_Acc:0.7500000	 Recons_Acc:0.8563596	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5274171	 DTP_wt_Recons:0.0089408	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2418307
+2021-08-13 13:40:41,246 -  7310 /  7312 (100.0%):	 RL_loss:0.1676526	 Recons_loss:0.1711294	 Motif_loss:0.6416674	 Total:0.3123229	 RL_Acc:0.6250000	 Recons_Acc:0.8859649	 Motif_Acc:0.2500000	 DTP_wt_RL:0.5013372	 DTP_wt_Recons:0.0038961	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2546180
+2021-08-13 13:41:07,219 - 
+===============================| start validation |===============================
+
+2021-08-13 13:41:07,220 - 	 RL_loss:0.1209458	 Recons_loss:0.1752213	 Motif_loss:0.5557412	 Total:0.3860024	 RL_Acc:0.7130542	 Recons_Acc:0.8777007	 Motif_Acc:0.3537562
+2021-08-13 13:41:07,223 -    ini file updated    
+2021-08-13 13:41:07,322 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/big_Cov/a5b5_gamma-113_scatch-model_best.pth
+
+2021-08-13 13:41:07,324 -    ini file updated    
+2021-08-13 13:41:07,324 - 
+===============================|    epoch 5   |===============================
+
+2021-08-13 13:41:08,612 -     0 /  7312 (0.0%):	 RL_loss:0.0623801	 Recons_loss:0.1750526	 Motif_loss:0.4118122	 Total:0.2724651	 RL_Acc:0.8125000	 Recons_Acc:0.8486842	 Motif_Acc:0.2187500	 DTP_wt_RL:0.2981488	 DTP_wt_Recons:0.0063990	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2724651
+2021-08-13 13:43:32,750 -  1462 /  7312 (20.0%):	 RL_loss:0.0532600	 Recons_loss:0.1664184	 Motif_loss:0.5787627	 Total:0.1004557	 RL_Acc:0.8437500	 Recons_Acc:0.8393640	 Motif_Acc:0.3750000	 DTP_wt_RL:0.4832683	 DTP_wt_Recons:0.0125671	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2270754
+2021-08-13 13:45:51,976 -  2924 /  7312 (40.0%):	 RL_loss:0.0876341	 Recons_loss:0.1661591	 Motif_loss:0.8036837	 Total:0.2818417	 RL_Acc:0.7812500	 Recons_Acc:0.8497807	 Motif_Acc:0.2500000	 DTP_wt_RL:0.3611210	 DTP_wt_Recons:0.0071937	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2298841
+2021-08-13 13:48:10,961 -  4386 /  7312 (60.0%):	 RL_loss:0.2618244	 Recons_loss:0.1627669	 Motif_loss:0.7321277	 Total:0.4209048	 RL_Acc:0.5000000	 Recons_Acc:0.8322368	 Motif_Acc:0.2187500	 DTP_wt_RL:0.6065038	 DTP_wt_Recons:0.0080977	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2343546
+2021-08-13 13:50:33,357 -  5848 /  7312 (80.0%):	 RL_loss:0.1310706	 Recons_loss:0.1609235	 Motif_loss:0.2866444	 Total:0.1921788	 RL_Acc:0.7500000	 Recons_Acc:0.8289474	 Motif_Acc:0.4062500	 DTP_wt_RL:0.6233111	 DTP_wt_Recons:0.0157263	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2384563
+2021-08-13 13:52:52,078 -  7310 /  7312 (100.0%):	 RL_loss:0.1402311	 Recons_loss:0.1583383	 Motif_loss:0.5544942	 Total:0.2542490	 RL_Acc:0.5937500	 Recons_Acc:0.8519737	 Motif_Acc:0.2187500	 DTP_wt_RL:0.4727551	 DTP_wt_Recons:0.0060887	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2511206
+2021-08-13 13:53:18,279 - 
+===============================| start validation |===============================
+
+2021-08-13 13:53:18,280 - 	 RL_loss:0.1100944	 Recons_loss:0.2089910	 Motif_loss:0.5268699	 Total:0.2572013	 RL_Acc:0.7342980	 Recons_Acc:0.6815922	 Motif_Acc:0.3552571
+2021-08-13 13:53:18,283 -    ini file updated    
+2021-08-13 13:53:18,383 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/big_Cov/a5b5_gamma-113_scatch-model_best.pth
+
+2021-08-13 13:53:18,384 -    ini file updated    
+2021-08-13 13:53:18,384 - 
+===============================|    epoch 6   |===============================
+
+2021-08-13 13:53:19,344 -     0 /  7312 (0.0%):	 RL_loss:0.0769290	 Recons_loss:0.1621467	 Motif_loss:0.2857554	 Total:0.1550128	 RL_Acc:0.8125000	 Recons_Acc:0.8492325	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4685196	 DTP_wt_Recons:0.0099732	 DTP_wt_Motif:0.3017966	 Mean_Total:0.1550128
+2021-08-13 13:55:40,689 -  1462 /  7312 (20.0%):	 RL_loss:0.0914646	 Recons_loss:0.1587918	 Motif_loss:0.6995898	 Total:0.6524906	 RL_Acc:0.8437500	 Recons_Acc:0.8322368	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4027236	 DTP_wt_Recons:0.0115681	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2268478
+2021-08-13 13:58:03,253 -  2924 /  7312 (40.0%):	 RL_loss:0.0376944	 Recons_loss:0.1612028	 Motif_loss:0.3438060	 Total:0.2186768	 RL_Acc:0.9062500	 Recons_Acc:0.8804825	 Motif_Acc:0.4375000	 DTP_wt_RL:0.5069097	 DTP_wt_Recons:0.0075590	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2268761
+2021-08-13 14:00:21,109 -  4386 /  7312 (60.0%):	 RL_loss:0.2596951	 Recons_loss:0.1551994	 Motif_loss:0.3755248	 Total:0.2540489	 RL_Acc:0.6250000	 Recons_Acc:0.8355263	 Motif_Acc:0.4062500	 DTP_wt_RL:0.8146729	 DTP_wt_Recons:0.0143702	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2310370
+2021-08-13 14:02:41,441 -  5848 /  7312 (80.0%):	 RL_loss:0.1241534	 Recons_loss:0.1557491	 Motif_loss:0.4485833	 Total:0.2227449	 RL_Acc:0.5937500	 Recons_Acc:0.8382675	 Motif_Acc:0.1875000	 DTP_wt_RL:0.4052186	 DTP_wt_Recons:0.0063820	 DTP_wt_Motif:0.8978823	 Mean_Total:0.2349711
+2021-08-13 14:04:59,575 -  7310 /  7312 (100.0%):	 RL_loss:0.2707082	 Recons_loss:0.1556202	 Motif_loss:0.7303608	 Total:0.6000075	 RL_Acc:0.4687500	 Recons_Acc:0.8612939	 Motif_Acc:0.1875000	 DTP_wt_RL:0.5704927	 DTP_wt_Recons:0.0045088	 DTP_wt_Motif:0.8978823	 Mean_Total:0.2471478
+2021-08-13 14:05:24,879 - 
+===============================| start validation |===============================
+
+2021-08-13 14:05:24,881 - 	 RL_loss:0.1117171	 Recons_loss:0.1798959	 Motif_loss:0.5059047	 Total:0.2623292	 RL_Acc:0.7345674	 Recons_Acc:0.7670814	 Motif_Acc:0.3586053
+2021-08-13 14:05:24,884 -    ini file updated    
+2021-08-13 14:05:24,885 - 
+===============================|    epoch 7   |===============================
+
+2021-08-13 14:05:25,586 -     0 /  7312 (0.0%):	 RL_loss:0.0879276	 Recons_loss:0.1596122	 Motif_loss:0.7119868	 Total:0.3251888	 RL_Acc:0.6250000	 Recons_Acc:0.8273026	 Motif_Acc:0.2812500	 DTP_wt_RL:0.5640043	 DTP_wt_Recons:0.0111306	 DTP_wt_Motif:0.4710076	 Mean_Total:0.3251888
+2021-08-13 14:07:44,118 -  1462 /  7312 (20.0%):	 RL_loss:0.0760073	 Recons_loss:0.1550766	 Motif_loss:0.5080189	 Total:0.1167044	 RL_Acc:0.6875000	 Recons_Acc:0.8667763	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5995095	 DTP_wt_Recons:0.0075540	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2249056
+2021-08-13 14:10:02,788 -  2924 /  7312 (40.0%):	 RL_loss:0.0729640	 Recons_loss:0.1532366	 Motif_loss:0.3105200	 Total:0.2964095	 RL_Acc:0.8125000	 Recons_Acc:0.8580044	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4259269	 DTP_wt_Recons:0.0079203	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2264037
+2021-08-13 14:12:22,587 -  4386 /  7312 (60.0%):	 RL_loss:0.1661709	 Recons_loss:0.1515190	 Motif_loss:0.4649753	 Total:0.2405970	 RL_Acc:0.6250000	 Recons_Acc:0.8601974	 Motif_Acc:0.3125000	 DTP_wt_RL:0.6266715	 DTP_wt_Recons:0.0076484	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2290717
+2021-08-13 14:14:41,121 -  5848 /  7312 (80.0%):	 RL_loss:0.1407996	 Recons_loss:0.1542793	 Motif_loss:0.5447228	 Total:0.3311785	 RL_Acc:0.7187500	 Recons_Acc:0.8717105	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5615704	 DTP_wt_Recons:0.0069458	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2312892
+2021-08-13 14:17:03,852 -  7310 /  7312 (100.0%):	 RL_loss:0.3788558	 Recons_loss:0.1518860	 Motif_loss:0.5492555	 Total:0.4230193	 RL_Acc:0.4687500	 Recons_Acc:0.8355263	 Motif_Acc:0.3125000	 DTP_wt_RL:0.9508212	 DTP_wt_Recons:0.0110540	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2447144
+2021-08-13 14:17:29,691 - 
+===============================| start validation |===============================
+
+2021-08-13 14:17:29,693 - 	 RL_loss:0.1177096	 Recons_loss:0.1879095	 Motif_loss:0.5070325	 Total:0.1571637	 RL_Acc:0.7264855	 Recons_Acc:0.7024086	 Motif_Acc:0.3550647
+2021-08-13 14:17:29,697 -    ini file updated    
+2021-08-13 14:17:29,809 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/CrossStitch_Model_MTL/big_Cov/a5b5_gamma-113_scatch-model_best.pth
+
+2021-08-13 14:17:29,810 -    ini file updated    
+2021-08-13 14:17:29,810 - 
+===============================|    epoch 8   |===============================
+
+2021-08-13 14:17:31,098 -     0 /  7312 (0.0%):	 RL_loss:0.1188744	 Recons_loss:0.1503724	 Motif_loss:0.5084781	 Total:0.1576141	 RL_Acc:0.6250000	 Recons_Acc:0.8300439	 Motif_Acc:0.3750000	 DTP_wt_RL:0.7520058	 DTP_wt_Recons:0.0143030	 DTP_wt_Motif:0.2394603	 Mean_Total:0.1576141
+2021-08-13 14:19:50,779 -  1462 /  7312 (20.0%):	 RL_loss:0.0811015	 Recons_loss:0.1474072	 Motif_loss:0.7585407	 Total:0.1919818	 RL_Acc:0.8125000	 Recons_Acc:0.8651316	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5111122	 DTP_wt_Recons:0.0084693	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2185307
+2021-08-13 14:22:10,128 -  2924 /  7312 (40.0%):	 RL_loss:0.1383431	 Recons_loss:0.1464148	 Motif_loss:0.4271558	 Total:0.2564768	 RL_Acc:0.8125000	 Recons_Acc:0.8311404	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4259269	 DTP_wt_Recons:0.0117428	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2218890
+2021-08-13 14:24:31,717 -  4386 /  7312 (60.0%):	 RL_loss:0.0509631	 Recons_loss:0.1462096	 Motif_loss:0.4605786	 Total:0.2417733	 RL_Acc:0.8437500	 Recons_Acc:0.8793860	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4027236	 DTP_wt_Recons:0.0055091	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2263836
+2021-08-13 14:26:51,681 -  5848 /  7312 (80.0%):	 RL_loss:0.1840189	 Recons_loss:0.1481216	 Motif_loss:0.3919328	 Total:0.3162292	 RL_Acc:0.6875000	 Recons_Acc:0.8442982	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5995095	 DTP_wt_Recons:0.0107292	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2308290
+2021-08-13 14:29:10,348 -  7310 /  7312 (100.0%):	 RL_loss:0.1845982	 Recons_loss:0.1458293	 Motif_loss:0.3682317	 Total:0.3184917	 RL_Acc:0.5312500	 Recons_Acc:0.8448465	 Motif_Acc:0.3750000	 DTP_wt_RL:0.9525045	 DTP_wt_Recons:0.0116111	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2437289
+2021-08-13 14:29:37,958 - 
+===============================| start validation |===============================
+
+2021-08-13 14:29:37,960 - 	 RL_loss:0.1110411	 Recons_loss:0.1845131	 Motif_loss:0.5350411	 Total:0.3785677	 RL_Acc:0.7403402	 Recons_Acc:0.6854481	 Motif_Acc:0.3555650
+2021-08-13 14:29:37,963 -    ini file updated    
+2021-08-13 14:29:37,964 - 
+===============================|    epoch 9   |===============================
+
+2021-08-13 14:29:38,715 -     0 /  7312 (0.0%):	 RL_loss:0.1450353	 Recons_loss:0.1480201	 Motif_loss:0.5179522	 Total:0.3882946	 RL_Acc:0.5312500	 Recons_Acc:0.8311404	 Motif_Acc:0.2187500	 DTP_wt_RL:0.5556276	 DTP_wt_Recons:0.0082200	 DTP_wt_Motif:0.7247093	 Mean_Total:0.3882946
+2021-08-13 14:31:58,985 -  1462 /  7312 (20.0%):	 RL_loss:0.0980630	 Recons_loss:0.1418314	 Motif_loss:0.4290970	 Total:0.3094602	 RL_Acc:0.8437500	 Recons_Acc:0.8969298	 Motif_Acc:0.3750000	 DTP_wt_RL:0.4832683	 DTP_wt_Recons:0.0046875	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2178740
+2021-08-13 14:34:18,112 -  2924 /  7312 (40.0%):	 RL_loss:0.0450525	 Recons_loss:0.1422743	 Motif_loss:0.4924788	 Total:0.1899869	 RL_Acc:0.8750000	 Recons_Acc:0.8322368	 Motif_Acc:0.2812500	 DTP_wt_RL:0.3433664	 DTP_wt_Recons:0.0104113	 DTP_wt_Motif:0.4710076	 Mean_Total:0.2226854
+2021-08-13 14:36:39,009 -  4386 /  7312 (60.0%):	 RL_loss:0.1244814	 Recons_loss:0.1408905	 Motif_loss:0.3699604	 Total:0.1711394	 RL_Acc:0.6875000	 Recons_Acc:0.8936404	 Motif_Acc:0.4375000	 DTP_wt_RL:0.7630121	 DTP_wt_Recons:0.0058554	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2250300
+2021-08-13 14:38:58,704 -  5848 /  7312 (80.0%):	 RL_loss:0.1255658	 Recons_loss:0.1397171	 Motif_loss:0.4152210	 Total:0.1681877	 RL_Acc:0.6250000	 Recons_Acc:0.8793860	 Motif_Acc:0.3125000	 DTP_wt_RL:0.6266715	 DTP_wt_Recons:0.0055091	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2292402
+2021-08-13 14:41:15,667 -  7310 /  7312 (100.0%):	 RL_loss:0.2264185	 Recons_loss:0.1369335	 Motif_loss:0.5216097	 Total:0.3523161	 RL_Acc:0.4375000	 Recons_Acc:0.8930921	 Motif_Acc:0.2187500	 DTP_wt_RL:0.7348254	 DTP_wt_Recons:0.0029607	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2417116
+2021-08-13 14:41:41,545 - 
+===============================| start validation |===============================
+
+2021-08-13 14:41:41,547 - 	 RL_loss:0.1152995	 Recons_loss:0.1564628	 Motif_loss:0.5312363	 Total:0.3211626	 RL_Acc:0.7168642	 Recons_Acc:0.8496335	 Motif_Acc:0.3555265
+2021-08-13 14:41:41,550 -    ini file updated    
+2021-08-13 14:41:41,551 - 
+===============================|    epoch 10   |===============================
+
+2021-08-13 14:41:42,293 -     0 /  7312 (0.0%):	 RL_loss:0.1539432	 Recons_loss:0.1432966	 Motif_loss:0.8544541	 Total:0.4968167	 RL_Acc:0.6875000	 Recons_Acc:0.8300439	 Motif_Acc:0.2500000	 DTP_wt_RL:0.4360069	 DTP_wt_Recons:0.0095353	 DTP_wt_Motif:0.5848429	 Mean_Total:0.4968167
+2021-08-13 14:43:59,640 -  1462 /  7312 (20.0%):	 RL_loss:0.1152945	 Recons_loss:0.1407206	 Motif_loss:0.5424247	 Total:0.2504370	 RL_Acc:0.6875000	 Recons_Acc:0.8596491	 Motif_Acc:0.4687500	 DTP_wt_RL:0.8175129	 DTP_wt_Recons:0.0115738	 DTP_wt_Motif:0.1136020	 Mean_Total:0.2204413
+2021-08-13 14:46:16,342 -  2924 /  7312 (40.0%):	 RL_loss:0.0688863	 Recons_loss:0.1414264	 Motif_loss:0.4840779	 Total:0.1574138	 RL_Acc:0.7187500	 Recons_Acc:0.8267544	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5615704	 DTP_wt_Recons:0.0137040	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2217249
+2021-08-13 14:48:31,321 -  4386 /  7312 (60.0%):	 RL_loss:0.2009157	 Recons_loss:0.1402982	 Motif_loss:0.2557000	 Total:0.2078390	 RL_Acc:0.6562500	 Recons_Acc:0.8399123	 Motif_Acc:0.5625000	 DTP_wt_RL:1.0502985	 DTP_wt_Recons:0.0187041	 DTP_wt_Motif:0.0481811	 Mean_Total:0.2249952
+2021-08-13 14:50:53,220 -  5848 /  7312 (80.0%):	 RL_loss:0.0648461	 Recons_loss:0.1394076	 Motif_loss:0.5910272	 Total:0.1771149	 RL_Acc:0.7500000	 Recons_Acc:0.8256579	 Motif_Acc:0.2812500	 DTP_wt_RL:0.4315231	 DTP_wt_Recons:0.0113771	 DTP_wt_Motif:0.4710076	 Mean_Total:0.2287857
+2021-08-13 14:53:18,060 -  7310 /  7312 (100.0%):	 RL_loss:0.5746186	 Recons_loss:0.1365283	 Motif_loss:0.4725801	 Total:0.6374358	 RL_Acc:0.6562500	 Recons_Acc:0.8728070	 Motif_Acc:0.3437500	 DTP_wt_RL:0.6418491	 DTP_wt_Recons:0.0068149	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2412904
+2021-08-13 14:53:44,726 - 
+===============================| start validation |===============================
+
+2021-08-13 14:53:44,728 - 	 RL_loss:0.1096934	 Recons_loss:0.1642780	 Motif_loss:0.4891873	 Total:0.2326209	 RL_Acc:0.7378002	 Recons_Acc:0.7582736	 Motif_Acc:0.3494073
+2021-08-13 14:53:44,732 -    ini file updated    
+2021-08-13 14:53:44,732 - 
+===============================|    epoch 11   |===============================
+
+2021-08-13 14:53:45,460 -     0 /  7312 (0.0%):	 RL_loss:0.0668121	 Recons_loss:0.1398714	 Motif_loss:0.4900254	 Total:0.1880246	 RL_Acc:0.7500000	 Recons_Acc:0.8218202	 Motif_Acc:0.4375000	 DTP_wt_RL:0.6712581	 DTP_wt_Recons:0.0186137	 DTP_wt_Motif:0.1471310	 Mean_Total:0.1880246
+2021-08-13 14:56:05,680 -  1462 /  7312 (20.0%):	 RL_loss:0.0857934	 Recons_loss:0.1363314	 Motif_loss:0.5771683	 Total:0.3093857	 RL_Acc:0.6562500	 Recons_Acc:0.8618421	 Motif_Acc:0.2500000	 DTP_wt_RL:0.4667993	 DTP_wt_Recons:0.0059587	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2179865
+2021-08-13 14:58:26,056 -  2924 /  7312 (40.0%):	 RL_loss:0.1331565	 Recons_loss:0.1381057	 Motif_loss:0.4578066	 Total:0.3232057	 RL_Acc:0.6562500	 Recons_Acc:0.8399123	 Motif_Acc:0.3125000	 DTP_wt_RL:0.5834991	 DTP_wt_Recons:0.0103912	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2210953
+2021-08-13 15:00:45,567 -  4386 /  7312 (60.0%):	 RL_loss:0.0434974	 Recons_loss:0.1342147	 Motif_loss:0.3806830	 Total:0.1346300	 RL_Acc:0.8750000	 Recons_Acc:0.8843202	 Motif_Acc:0.3125000	 DTP_wt_RL:0.3815182	 DTP_wt_Recons:0.0050255	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2233880
+2021-08-13 15:03:09,945 -  5848 /  7312 (80.0%):	 RL_loss:0.1722587	 Recons_loss:0.1388128	 Motif_loss:0.3794847	 Total:0.2129634	 RL_Acc:0.5625000	 Recons_Acc:0.8289474	 Motif_Acc:0.3125000	 DTP_wt_RL:0.7306211	 DTP_wt_Recons:0.0120971	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2275081
+2021-08-13 15:05:34,178 -  7310 /  7312 (100.0%):	 RL_loss:0.2627403	 Recons_loss:0.1426637	 Motif_loss:0.4758171	 Total:0.6272143	 RL_Acc:0.5000000	 Recons_Acc:0.8497807	 Motif_Acc:0.4375000	 DTP_wt_RL:1.2130075	 DTP_wt_Recons:0.0125890	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2402412
+2021-08-13 15:06:00,055 - 
+===============================| start validation |===============================
+
+2021-08-13 15:06:00,058 - 	 RL_loss:0.1079932	 Recons_loss:0.1822040	 Motif_loss:0.5128570	 Total:0.2107951	 RL_Acc:0.7501539	 Recons_Acc:0.6728851	 Motif_Acc:0.3569504
+2021-08-13 15:06:00,062 -    ini file updated    
+2021-08-13 15:06:00,062 - 
+===============================|    epoch 12   |===============================
+
+2021-08-13 15:06:00,837 -     0 /  7312 (0.0%):	 RL_loss:0.1600247	 Recons_loss:0.1396815	 Motif_loss:0.5544264	 Total:0.2717030	 RL_Acc:0.7500000	 Recons_Acc:0.8267544	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5753641	 DTP_wt_Recons:0.0149498	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2717030
+2021-08-13 15:08:22,065 -  1462 /  7312 (20.0%):	 RL_loss:0.0953862	 Recons_loss:0.1366342	 Motif_loss:0.5830693	 Total:0.1481664	 RL_Acc:0.7500000	 Recons_Acc:0.8344298	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4794701	 DTP_wt_Recons:0.0112237	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2160376
+2021-08-13 15:10:39,618 -  2924 /  7312 (40.0%):	 RL_loss:0.0506001	 Recons_loss:0.1375822	 Motif_loss:0.4816525	 Total:0.0758622	 RL_Acc:0.7812500	 Recons_Acc:0.8859649	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4514013	 DTP_wt_Recons:0.0048701	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2196759
+2021-08-13 15:12:55,245 -  4386 /  7312 (60.0%):	 RL_loss:0.0991213	 Recons_loss:0.1356937	 Motif_loss:0.6428900	 Total:0.3525422	 RL_Acc:0.8125000	 Recons_Acc:0.8536184	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4685196	 DTP_wt_Recons:0.0093297	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2233616
+2021-08-13 15:15:11,824 -  5848 /  7312 (80.0%):	 RL_loss:0.0672105	 Recons_loss:0.1347685	 Motif_loss:0.3122358	 Total:0.1111836	 RL_Acc:0.7812500	 Recons_Acc:0.8996711	 Motif_Acc:0.4375000	 DTP_wt_RL:0.6319618	 DTP_wt_Recons:0.0051583	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2264724
+2021-08-13 15:17:25,155 -  7310 /  7312 (100.0%):	 RL_loss:0.1554026	 Recons_loss:0.1369976	 Motif_loss:0.4426910	 Total:0.2138072	 RL_Acc:0.5937500	 Recons_Acc:0.8448465	 Motif_Acc:0.3750000	 DTP_wt_RL:0.8104373	 DTP_wt_Recons:0.0116111	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2390907
+2021-08-13 15:17:53,116 - 
+===============================| start validation |===============================
+
+2021-08-13 15:17:53,118 - 	 RL_loss:0.1089872	 Recons_loss:0.1859558	 Motif_loss:0.5099193	 Total:0.2604847	 RL_Acc:0.7478448	 Recons_Acc:0.6620309	 Motif_Acc:0.3561807
+2021-08-13 15:17:53,121 -    ini file updated    
+2021-08-13 15:17:53,121 - 
+===============================|    epoch 13   |===============================
+
+2021-08-13 15:17:54,049 -     0 /  7312 (0.0%):	 RL_loss:0.0715234	 Recons_loss:0.1395866	 Motif_loss:0.4246653	 Total:0.1983714	 RL_Acc:0.7812500	 Recons_Acc:0.8229167	 Motif_Acc:0.2187500	 DTP_wt_RL:0.3159809	 DTP_wt_Recons:0.0091745	 DTP_wt_Motif:0.7247093	 Mean_Total:0.1983714
+2021-08-13 15:20:12,713 -  1462 /  7312 (20.0%):	 RL_loss:0.1323508	 Recons_loss:0.1365736	 Motif_loss:0.3288062	 Total:0.1362200	 RL_Acc:0.5625000	 Recons_Acc:0.8421053	 Motif_Acc:0.3125000	 DTP_wt_RL:0.7306211	 DTP_wt_Recons:0.0100694	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2167792
+2021-08-13 15:22:33,236 -  2924 /  7312 (40.0%):	 RL_loss:0.0879709	 Recons_loss:0.1338043	 Motif_loss:0.4859757	 Total:0.3189097	 RL_Acc:0.8437500	 Recons_Acc:0.8475877	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4429960	 DTP_wt_Recons:0.0102214	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2195322
+2021-08-13 15:24:49,263 -  4386 /  7312 (60.0%):	 RL_loss:0.0793528	 Recons_loss:0.1352439	 Motif_loss:0.6219455	 Total:0.1263629	 RL_Acc:0.8750000	 Recons_Acc:0.8711623	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4196701	 DTP_wt_Recons:0.0070119	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2232829
+2021-08-13 15:27:04,281 -  5848 /  7312 (80.0%):	 RL_loss:0.0528592	 Recons_loss:0.1361239	 Motif_loss:0.7023088	 Total:0.7982451	 RL_Acc:0.7500000	 Recons_Acc:0.8322368	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4794701	 DTP_wt_Recons:0.0115681	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2262472
+2021-08-13 15:29:31,728 -  7310 /  7312 (100.0%):	 RL_loss:0.2343560	 Recons_loss:0.1312255	 Motif_loss:0.5575211	 Total:0.3027626	 RL_Acc:0.4687500	 Recons_Acc:0.8503289	 Motif_Acc:0.2812500	 DTP_wt_RL:0.8557391	 DTP_wt_Recons:0.0080262	 DTP_wt_Motif:0.4710076	 Mean_Total:0.2384457
+2021-08-13 15:29:59,208 - 
+===============================| start validation |===============================
+
+2021-08-13 15:29:59,210 - 	 RL_loss:0.1048854	 Recons_loss:0.1789087	 Motif_loss:0.4996686	 Total:0.2817887	 RL_Acc:0.7501539	 Recons_Acc:0.7099335	 Motif_Acc:0.3476370
+2021-08-13 15:29:59,215 -    ini file updated    
+2021-08-13 15:29:59,215 - 
+===============================|    epoch 14   |===============================
+
+2021-08-13 15:29:59,981 -     0 /  7312 (0.0%):	 RL_loss:0.0451961	 Recons_loss:0.1357988	 Motif_loss:0.4448229	 Total:0.2088471	 RL_Acc:0.7812500	 Recons_Acc:0.8245614	 Motif_Acc:0.4375000	 DTP_wt_RL:0.6319618	 DTP_wt_Recons:0.0179565	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2088471
+2021-08-13 15:32:25,231 -  1462 /  7312 (20.0%):	 RL_loss:0.2102005	 Recons_loss:0.1351114	 Motif_loss:0.3383381	 Total:0.2235754	 RL_Acc:0.8125000	 Recons_Acc:0.8623904	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4259269	 DTP_wt_Recons:0.0073824	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2171401
+2021-08-13 15:34:48,243 -  2924 /  7312 (40.0%):	 RL_loss:0.0700408	 Recons_loss:0.1382334	 Motif_loss:0.6603441	 Total:0.2162614	 RL_Acc:0.6875000	 Recons_Acc:0.8837719	 Motif_Acc:0.2500000	 DTP_wt_RL:0.4360069	 DTP_wt_Recons:0.0040623	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2192288
+2021-08-13 15:37:13,110 -  4386 /  7312 (60.0%):	 RL_loss:0.0689723	 Recons_loss:0.1352904	 Motif_loss:0.2600763	 Total:0.1511828	 RL_Acc:0.8125000	 Recons_Acc:0.8898026	 Motif_Acc:0.5937500	 DTP_wt_RL:0.8092611	 DTP_wt_Recons:0.0085854	 DTP_wt_Motif:0.0349515	 Mean_Total:0.2221393
+2021-08-13 15:39:37,360 -  5848 /  7312 (80.0%):	 RL_loss:0.0875881	 Recons_loss:0.1381985	 Motif_loss:0.5955111	 Total:0.1482102	 RL_Acc:0.8125000	 Recons_Acc:0.8377193	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4685196	 DTP_wt_Recons:0.0117913	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2248980
+2021-08-13 15:41:54,113 -  7310 /  7312 (100.0%):	 RL_loss:0.1236523	 Recons_loss:0.1392536	 Motif_loss:0.3098243	 Total:0.4656153	 RL_Acc:0.7187500	 Recons_Acc:0.8283991	 Motif_Acc:0.4687500	 DTP_wt_RL:0.7657778	 DTP_wt_Recons:0.0182801	 DTP_wt_Motif:0.1136020	 Mean_Total:0.2374832
+2021-08-13 15:42:18,647 - 
+===============================| start validation |===============================
+
+2021-08-13 15:42:18,649 - 	 RL_loss:0.1119698	 Recons_loss:0.1898845	 Motif_loss:0.5057673	 Total:0.3140231	 RL_Acc:0.7348368	 Recons_Acc:0.6645054	 Motif_Acc:0.3541795
+2021-08-13 15:42:18,652 -    ini file updated    
+2021-08-13 15:42:18,652 - 
+===============================|    epoch 15   |===============================
+
+2021-08-13 15:42:19,537 -     0 /  7312 (0.0%):	 RL_loss:0.0627588	 Recons_loss:0.1362996	 Motif_loss:0.4075599	 Total:0.2347934	 RL_Acc:0.7812500	 Recons_Acc:0.8355263	 Motif_Acc:0.3750000	 DTP_wt_RL:0.5416815	 DTP_wt_Recons:0.0132648	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2347934
+2021-08-13 15:44:29,548 -  1462 /  7312 (20.0%):	 RL_loss:0.0516754	 Recons_loss:0.1344364	 Motif_loss:0.4688343	 Total:0.2040405	 RL_Acc:0.8125000	 Recons_Acc:0.8706140	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4259269	 DTP_wt_Recons:0.0064349	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2154794
+2021-08-13 15:46:35,617 -  2924 /  7312 (40.0%):	 RL_loss:0.1404016	 Recons_loss:0.1317231	 Motif_loss:0.4317003	 Total:0.1858778	 RL_Acc:0.6875000	 Recons_Acc:0.8366228	 Motif_Acc:0.2187500	 DTP_wt_RL:0.3815060	 DTP_wt_Recons:0.0076201	 DTP_wt_Motif:0.7247093	 Mean_Total:0.2177458
+2021-08-13 15:48:39,682 -  4386 /  7312 (60.0%):	 RL_loss:0.2415381	 Recons_loss:0.1318970	 Motif_loss:0.4728421	 Total:0.2376419	 RL_Acc:0.7812500	 Recons_Acc:0.8497807	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4965414	 DTP_wt_Recons:0.0098913	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2214600
+2021-08-13 15:50:38,614 -  5848 /  7312 (80.0%):	 RL_loss:0.0685601	 Recons_loss:0.1357949	 Motif_loss:0.6006498	 Total:0.2626610	 RL_Acc:0.6562500	 Recons_Acc:0.8936404	 Motif_Acc:0.3437500	 DTP_wt_RL:0.6418491	 DTP_wt_Recons:0.0046007	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2258514
+2021-08-13 15:52:44,368 -  7310 /  7312 (100.0%):	 RL_loss:0.3862392	 Recons_loss:0.1355900	 Motif_loss:0.5993133	 Total:0.6922955	 RL_Acc:0.5000000	 Recons_Acc:0.8289474	 Motif_Acc:0.4375000	 DTP_wt_RL:1.2130075	 DTP_wt_Recons:0.0169360	 DTP_wt_Motif:0.1471310	 Mean_Total:0.2378717
+2021-08-13 15:53:05,608 - 
+===============================| start validation |===============================
+
+2021-08-13 15:53:05,610 - 	 RL_loss:0.1116390	 Recons_loss:0.1718873	 Motif_loss:0.4955138	 Total:0.2699808	 RL_Acc:0.7406096	 Recons_Acc:0.7053058	 Motif_Acc:0.3491379
+2021-08-13 15:53:05,614 -    ini file updated    
+2021-08-13 15:53:05,614 - 
+===============================|    epoch 16   |===============================
+
+2021-08-13 15:53:06,571 -     0 /  7312 (0.0%):	 RL_loss:0.0562420	 Recons_loss:0.1336170	 Motif_loss:0.4351425	 Total:0.2064373	 RL_Acc:0.7812500	 Recons_Acc:0.8212719	 Motif_Acc:0.2500000	 DTP_wt_RL:0.3611210	 DTP_wt_Recons:0.0107126	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2064373
+2021-08-13 15:55:10,985 -  1462 /  7312 (20.0%):	 RL_loss:0.0873244	 Recons_loss:0.1322001	 Motif_loss:0.3788147	 Total:0.1266418	 RL_Acc:0.8437500	 Recons_Acc:0.8722588	 Motif_Acc:0.3125000	 DTP_wt_RL:0.4027236	 DTP_wt_Recons:0.0062547	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2147463
+2021-08-13 15:57:14,687 -  2924 /  7312 (40.0%):	 RL_loss:0.0825817	 Recons_loss:0.1360990	 Motif_loss:0.3300958	 Total:0.1861326	 RL_Acc:0.8125000	 Recons_Acc:0.8552632	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4685196	 DTP_wt_Recons:0.0090951	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2180025
+2021-08-13 15:59:16,161 -  4386 /  7312 (60.0%):	 RL_loss:0.0961375	 Recons_loss:0.1305777	 Motif_loss:0.3986073	 Total:0.1117724	 RL_Acc:0.6562500	 Recons_Acc:0.8530702	 Motif_Acc:0.4062500	 DTP_wt_RL:0.7585489	 DTP_wt_Recons:0.0111193	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2196806
+2021-08-13 16:01:17,839 -  5848 /  7312 (80.0%):	 RL_loss:0.0815496	 Recons_loss:0.1356580	 Motif_loss:0.4767385	 Total:0.3914365	 RL_Acc:0.7500000	 Recons_Acc:0.8739035	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5274171	 DTP_wt_Recons:0.0066854	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2237329
+2021-08-13 16:03:21,231 -  7310 /  7312 (100.0%):	 RL_loss:0.1634304	 Recons_loss:0.1296841	 Motif_loss:0.3634240	 Total:0.2217711	 RL_Acc:0.7187500	 Recons_Acc:0.8706140	 Motif_Acc:0.3125000	 DTP_wt_RL:0.5105185	 DTP_wt_Recons:0.0064349	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2364868
+2021-08-13 16:03:42,016 - 
+===============================| start validation |===============================
+
+2021-08-13 16:03:42,019 - 	 RL_loss:0.1130435	 Recons_loss:0.1977240	 Motif_loss:0.4871722	 Total:0.1924207	 RL_Acc:0.7366456	 Recons_Acc:0.6293070	 Motif_Acc:0.3447506
+2021-08-13 16:03:42,023 -    ini file updated    
+2021-08-13 16:03:42,023 - 
+===============================|    epoch 17   |===============================
+
+2021-08-13 16:03:42,973 -     0 /  7312 (0.0%):	 RL_loss:0.1004674	 Recons_loss:0.1332060	 Motif_loss:0.3821122	 Total:0.1584408	 RL_Acc:0.7187500	 Recons_Acc:0.8300439	 Motif_Acc:0.2812500	 DTP_wt_RL:0.4594667	 DTP_wt_Recons:0.0107272	 DTP_wt_Motif:0.4710076	 Mean_Total:0.1584408
+2021-08-13 16:05:50,482 -  1462 /  7312 (20.0%):	 RL_loss:0.0608896	 Recons_loss:0.1330615	 Motif_loss:0.6190071	 Total:0.2622509	 RL_Acc:0.7812500	 Recons_Acc:0.8903509	 Motif_Acc:0.4062500	 DTP_wt_RL:0.5868216	 DTP_wt_Recons:0.0058106	 DTP_wt_Motif:0.1885527	 Mean_Total:0.2163553
+2021-08-13 16:07:54,873 -  2924 /  7312 (40.0%):	 RL_loss:0.0607757	 Recons_loss:0.1324798	 Motif_loss:0.5070392	 Total:0.3877328	 RL_Acc:0.7812500	 Recons_Acc:0.8464912	 Motif_Acc:0.2500000	 DTP_wt_RL:0.3611210	 DTP_wt_Recons:0.0075556	 DTP_wt_Motif:0.5848429	 Mean_Total:0.2162830
+2021-08-13 16:09:59,493 -  4386 /  7312 (60.0%):	 RL_loss:0.0577825	 Recons_loss:0.1276450	 Motif_loss:0.4689829	 Total:0.4374131	 RL_Acc:0.7500000	 Recons_Acc:0.8656798	 Motif_Acc:0.3437500	 DTP_wt_RL:0.5274171	 DTP_wt_Recons:0.0076933	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2198961
+2021-08-13 16:12:03,725 -  5848 /  7312 (80.0%):	 RL_loss:0.0923322	 Recons_loss:0.1328214	 Motif_loss:0.4050077	 Total:0.1351027	 RL_Acc:0.7187500	 Recons_Acc:0.8640351	 Motif_Acc:0.3750000	 DTP_wt_RL:0.6126222	 DTP_wt_Recons:0.0086239	 DTP_wt_Motif:0.2394603	 Mean_Total:0.2239157
+2021-08-13 16:14:06,991 -  7310 /  7312 (100.0%):	 RL_loss:0.1202185	 Recons_loss:0.1331778	 Motif_loss:0.5538021	 Total:0.4823438	 RL_Acc:0.6250000	 Recons_Acc:0.8432018	 Motif_Acc:0.2812500	 DTP_wt_RL:0.5640043	 DTP_wt_Recons:0.0089197	 DTP_wt_Motif:0.4710076	 Mean_Total:0.2365054
+2021-08-13 16:14:28,656 - 
+===============================| start validation |===============================
+
+2021-08-13 16:14:28,658 - 	 RL_loss:0.1078748	 Recons_loss:0.2021992	 Motif_loss:0.5263035	 Total:0.5140975	 RL_Acc:0.7482297	 Recons_Acc:0.6197491	 Motif_Acc:0.3579895
+2021-08-13 16:14:28,661 -    ini file updated    
+2021-08-13 16:14:28,661 - 
+===============================|    epoch 18   |===============================
+
+2021-08-13 16:14:29,538 -     0 /  7312 (0.0%):	 RL_loss:0.2791112	 Recons_loss:0.1379555	 Motif_loss:0.6193596	 Total:0.6617257	 RL_Acc:0.5000000	 Recons_Acc:0.8223684	 Motif_Acc:0.3125000	 DTP_wt_RL:0.8664339	 DTP_wt_Recons:0.0132008	 DTP_wt_Motif:0.3779672	 Mean_Total:0.6617257
+2021-08-13 16:16:34,307 -  1462 /  7312 (20.0%):	 RL_loss:0.0847238	 Recons_loss:0.1315316	 Motif_loss:0.7768189	 Total:0.2355994	 RL_Acc:0.7187500	 Recons_Acc:0.8530702	 Motif_Acc:0.3125000	 DTP_wt_RL:0.5105185	 DTP_wt_Recons:0.0085533	 DTP_wt_Motif:0.3779672	 Mean_Total:0.2158288
+2021-08-13 16:18:34,406 -  2924 /  7312 (40.0%):	 RL_loss:0.0952943	 Recons_loss:0.1278952	 Motif_loss:0.6297362	 Total:0.4017575	 RL_Acc:0.8125000	 Recons_Acc:0.8739035	 Motif_Acc:0.3437500	 DTP_wt_RL:0.4685196	 DTP_wt_Recons:0.0066854	 DTP_wt_Motif:0.3017966	 Mean_Total:0.2171153
+2021-08-13 16:20:30,364 -  4386 /  7312 (60.0%):	 RL_loss:0.0569229	 Recons_loss:0.1277259	 Motif_loss:0.3343812	 Total:0.1147179	 RL_Acc:0.8125000	 Recons_Acc:0.8536184	 Motif_Acc:0.5000000	 DTP_wt_RL:0.6814830	 DTP_wt_Recons:0.0135704	 DTP_wt_Motif:0.0866434	 Mean_Total:0.2203006
