@@ -129,11 +129,12 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
     
     #           ----------| train |----------
     logger.info("\n===============================|    epoch {}   |===============================\n".format(epoch))
-    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+    # train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
            
     #         -----------| validate |-----------
     
     if epoch % POPEN.config_dict['setp_to_check'] == 0:
+
         val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN,epoch=epoch)
         
         DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}

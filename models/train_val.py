@@ -133,7 +133,7 @@ def validate(dataloader,model,popen,epoch):
     Avg_acc = np.mean(verbose_df.loc[:,acc_col].mean(axis=0))  
     
     # return these to save current performance
-    return verbose_df['Total'].mean(),Avg_acc
+    return (verbose_df['Total'].mean(),Avg_acc) if 'RL_loss' not in verbose_df.keys() else (verbose_df['RL_loss'].mean(),verbose_df['Recons_Acc'].mean())
             
             
 def put_data_to_cuda(data,popen,require_grad=True):
