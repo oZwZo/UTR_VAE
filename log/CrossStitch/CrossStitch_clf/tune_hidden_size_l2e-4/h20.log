@@ -1,0 +1,950 @@
+2021-08-20 18:05:30,591 - 
+===============================|    epoch 0   |===============================
+
+2021-08-20 18:05:35,370 -     0 /   301 (0.0%):	 Total:0.6585677	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6585677
+2021-08-20 18:05:36,943 -    60 /   301 (19.9%):	 Total:0.8429009	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.7649615
+2021-08-20 18:05:38,363 -   120 /   301 (39.9%):	 Total:0.8418522	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.7605823
+2021-08-20 18:05:39,873 -   180 /   301 (59.8%):	 Total:0.4950161	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.7513216
+2021-08-20 18:05:41,139 -   240 /   301 (79.7%):	 Total:0.5856917	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.7424496
+2021-08-20 18:05:42,555 -   300 /   301 (99.7%):	 Total:1.0628177	 m_precision:0.3125000	 m_recall:0.5000000	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.7331154
+2021-08-20 18:05:43,819 - 
+===============================| start validation |===============================
+
+2021-08-20 18:05:43,820 - 	 Total:0.6656126	 m_precision:0.5095137	 m_recall:0.5813953	 m_f1-score:0.5406469	 m_support:11.9767442
+2021-08-20 18:05:43,827 -    ini file updated    
+2021-08-20 18:05:43,871 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:05:43,872 -    ini file updated    
+2021-08-20 18:05:43,872 - 
+===============================|    epoch 1   |===============================
+
+2021-08-20 18:05:44,309 -     0 /   301 (0.0%):	 Total:0.7086822	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.7086822
+2021-08-20 18:05:45,703 -    60 /   301 (19.9%):	 Total:0.6762496	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6896046
+2021-08-20 18:05:47,004 -   120 /   301 (39.9%):	 Total:0.7039812	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.7143389
+2021-08-20 18:05:48,325 -   180 /   301 (59.8%):	 Total:0.8597746	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.7060170
+2021-08-20 18:05:49,719 -   240 /   301 (79.7%):	 Total:0.7043957	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6988137
+2021-08-20 18:05:50,936 -   300 /   301 (99.7%):	 Total:0.3087839	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6815804
+2021-08-20 18:05:52,346 - 
+===============================| start validation |===============================
+
+2021-08-20 18:05:52,348 - 	 Total:0.6457160	 m_precision:0.4861698	 m_recall:0.5581395	 m_f1-score:0.5183129	 m_support:11.9767442
+2021-08-20 18:05:52,351 -    ini file updated    
+2021-08-20 18:05:52,397 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:05:52,398 -    ini file updated    
+2021-08-20 18:05:52,398 - 
+===============================|    epoch 2   |===============================
+
+2021-08-20 18:05:52,890 -     0 /   301 (0.0%):	 Total:0.7119684	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.7119684
+2021-08-20 18:05:54,233 -    60 /   301 (19.9%):	 Total:0.7361221	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6608113
+2021-08-20 18:05:55,666 -   120 /   301 (39.9%):	 Total:0.4994146	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6608224
+2021-08-20 18:05:56,962 -   180 /   301 (59.8%):	 Total:0.6872889	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6742219
+2021-08-20 18:05:58,419 -   240 /   301 (79.7%):	 Total:0.8440948	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6713498
+2021-08-20 18:05:59,635 -   300 /   301 (99.7%):	 Total:1.1105313	 m_precision:0.3125000	 m_recall:0.5000000	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.6787701
+2021-08-20 18:06:01,034 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:01,035 - 	 Total:0.6451470	 m_precision:0.5095137	 m_recall:0.5813953	 m_f1-score:0.5409544	 m_support:11.9767442
+2021-08-20 18:06:01,038 -    ini file updated    
+2021-08-20 18:06:01,074 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:06:01,074 -    ini file updated    
+2021-08-20 18:06:01,075 - 
+===============================|    epoch 3   |===============================
+
+2021-08-20 18:06:01,491 -     0 /   301 (0.0%):	 Total:0.8380949	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8380949
+2021-08-20 18:06:02,846 -    60 /   301 (19.9%):	 Total:1.0828319	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6925334
+2021-08-20 18:06:04,341 -   120 /   301 (39.9%):	 Total:1.0266132	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6774053
+2021-08-20 18:06:05,770 -   180 /   301 (59.8%):	 Total:0.3283159	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6846134
+2021-08-20 18:06:07,148 -   240 /   301 (79.7%):	 Total:0.8708521	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6787578
+2021-08-20 18:06:08,577 -   300 /   301 (99.7%):	 Total:0.6390105	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6762993
+2021-08-20 18:06:10,034 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:10,035 - 	 Total:0.6433387	 m_precision:0.4979739	 m_recall:0.5697674	 m_f1-score:0.5293598	 m_support:11.9767442
+2021-08-20 18:06:10,039 -    ini file updated    
+2021-08-20 18:06:10,084 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:06:10,084 -    ini file updated    
+2021-08-20 18:06:10,084 - 
+===============================|    epoch 4   |===============================
+
+2021-08-20 18:06:10,566 -     0 /   301 (0.0%):	 Total:1.0487524	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:1.0487524
+2021-08-20 18:06:12,018 -    60 /   301 (19.9%):	 Total:0.3286152	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6725132
+2021-08-20 18:06:13,382 -   120 /   301 (39.9%):	 Total:0.6861950	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6768723
+2021-08-20 18:06:14,702 -   180 /   301 (59.8%):	 Total:0.4951912	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6825181
+2021-08-20 18:06:16,144 -   240 /   301 (79.7%):	 Total:0.3177598	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6757113
+2021-08-20 18:06:17,456 -   300 /   301 (99.7%):	 Total:0.8593824	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6745502
+2021-08-20 18:06:18,849 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:18,852 - 	 Total:0.6421150	 m_precision:0.5327696	 m_recall:0.6046512	 m_f1-score:0.5644394	 m_support:11.9767442
+2021-08-20 18:06:18,858 -    ini file updated    
+2021-08-20 18:06:18,909 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:06:18,910 -    ini file updated    
+2021-08-20 18:06:18,910 - 
+===============================|    epoch 5   |===============================
+
+2021-08-20 18:06:19,364 -     0 /   301 (0.0%):	 Total:0.5110091	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.5110091
+2021-08-20 18:06:20,644 -    60 /   301 (19.9%):	 Total:0.5130466	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6744425
+2021-08-20 18:06:22,019 -   120 /   301 (39.9%):	 Total:0.5044540	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6686233
+2021-08-20 18:06:23,225 -   180 /   301 (59.8%):	 Total:0.7062771	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6635694
+2021-08-20 18:06:24,546 -   240 /   301 (79.7%):	 Total:0.8585910	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6691022
+2021-08-20 18:06:25,874 -   300 /   301 (99.7%):	 Total:0.8539943	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6740349
+2021-08-20 18:06:27,317 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:27,319 - 	 Total:0.6427242	 m_precision:0.4862579	 m_recall:0.5581395	 m_f1-score:0.5183821	 m_support:11.9767442
+2021-08-20 18:06:27,324 -    ini file updated    
+2021-08-20 18:06:27,325 - 
+===============================|    epoch 6   |===============================
+
+2021-08-20 18:06:27,794 -     0 /   301 (0.0%):	 Total:0.8617897	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8617897
+2021-08-20 18:06:29,131 -    60 /   301 (19.9%):	 Total:0.4911610	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6743815
+2021-08-20 18:06:30,342 -   120 /   301 (39.9%):	 Total:0.6686084	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6704309
+2021-08-20 18:06:31,629 -   180 /   301 (59.8%):	 Total:0.8610874	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6815220
+2021-08-20 18:06:32,898 -   240 /   301 (79.7%):	 Total:0.7093598	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6712802
+2021-08-20 18:06:34,148 -   300 /   301 (99.7%):	 Total:0.3175392	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6711000
+2021-08-20 18:06:35,609 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:35,610 - 	 Total:0.6426189	 m_precision:0.4978858	 m_recall:0.5697674	 m_f1-score:0.5297460	 m_support:11.9767442
+2021-08-20 18:06:35,616 -    ini file updated    
+2021-08-20 18:06:35,616 - 
+===============================|    epoch 7   |===============================
+
+2021-08-20 18:06:36,114 -     0 /   301 (0.0%):	 Total:0.8261398	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8261398
+2021-08-20 18:06:37,486 -    60 /   301 (19.9%):	 Total:0.8446765	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6765231
+2021-08-20 18:06:38,784 -   120 /   301 (39.9%):	 Total:1.0425620	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6839781
+2021-08-20 18:06:40,029 -   180 /   301 (59.8%):	 Total:1.1530774	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6745865
+2021-08-20 18:06:41,328 -   240 /   301 (79.7%):	 Total:0.3400006	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6795366
+2021-08-20 18:06:42,578 -   300 /   301 (99.7%):	 Total:0.3191655	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6682853
+2021-08-20 18:06:44,034 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:44,035 - 	 Total:0.6382968	 m_precision:0.5213178	 m_recall:0.5930233	 m_f1-score:0.5527898	 m_support:11.9767442
+2021-08-20 18:06:44,038 -    ini file updated    
+2021-08-20 18:06:44,073 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:06:44,073 -    ini file updated    
+2021-08-20 18:06:44,073 - 
+===============================|    epoch 8   |===============================
+
+2021-08-20 18:06:44,572 -     0 /   301 (0.0%):	 Total:0.3185246	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.3185246
+2021-08-20 18:06:45,893 -    60 /   301 (19.9%):	 Total:0.6229765	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6542394
+2021-08-20 18:06:47,163 -   120 /   301 (39.9%):	 Total:0.6423903	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6523692
+2021-08-20 18:06:48,412 -   180 /   301 (59.8%):	 Total:0.8717960	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6605690
+2021-08-20 18:06:49,724 -   240 /   301 (79.7%):	 Total:0.3147063	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6647533
+2021-08-20 18:06:50,947 -   300 /   301 (99.7%):	 Total:0.9220247	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6665373
+2021-08-20 18:06:52,364 - 
+===============================| start validation |===============================
+
+2021-08-20 18:06:52,366 - 	 Total:0.6397338	 m_precision:0.4630021	 m_recall:0.5348837	 m_f1-score:0.4952103	 m_support:11.9767442
+2021-08-20 18:06:52,370 -    ini file updated    
+2021-08-20 18:06:52,370 - 
+===============================|    epoch 9   |===============================
+
+2021-08-20 18:06:52,867 -     0 /   301 (0.0%):	 Total:0.6149046	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6149046
+2021-08-20 18:06:54,159 -    60 /   301 (19.9%):	 Total:0.7918891	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.7058691
+2021-08-20 18:06:55,416 -   120 /   301 (39.9%):	 Total:0.4924382	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.7002397
+2021-08-20 18:06:56,833 -   180 /   301 (59.8%):	 Total:0.4700902	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6898946
+2021-08-20 18:06:58,156 -   240 /   301 (79.7%):	 Total:0.5757003	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6666941
+2021-08-20 18:06:59,474 -   300 /   301 (99.7%):	 Total:1.1538216	 m_precision:0.3125000	 m_recall:0.5000000	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.6624442
+2021-08-20 18:07:00,958 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:00,959 - 	 Total:0.6353023	 m_precision:0.4863460	 m_recall:0.5581395	 m_f1-score:0.5176143	 m_support:11.9767442
+2021-08-20 18:07:00,965 -    ini file updated    
+2021-08-20 18:07:01,018 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:01,018 -    ini file updated    
+2021-08-20 18:07:01,018 - 
+===============================|    epoch 10   |===============================
+
+2021-08-20 18:07:01,499 -     0 /   301 (0.0%):	 Total:1.1643643	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:1.1643643
+2021-08-20 18:07:02,771 -    60 /   301 (19.9%):	 Total:1.0015485	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6964937
+2021-08-20 18:07:04,031 -   120 /   301 (39.9%):	 Total:0.7824415	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.7042063
+2021-08-20 18:07:05,226 -   180 /   301 (59.8%):	 Total:0.8621320	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6941266
+2021-08-20 18:07:06,450 -   240 /   301 (79.7%):	 Total:0.8914127	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6819134
+2021-08-20 18:07:07,782 -   300 /   301 (99.7%):	 Total:0.4929781	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6615471
+2021-08-20 18:07:09,272 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:09,273 - 	 Total:0.6340750	 m_precision:0.4978858	 m_recall:0.5697674	 m_f1-score:0.5290162	 m_support:11.9767442
+2021-08-20 18:07:09,276 -    ini file updated    
+2021-08-20 18:07:09,319 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:09,320 -    ini file updated    
+2021-08-20 18:07:09,320 - 
+===============================|    epoch 11   |===============================
+
+2021-08-20 18:07:09,781 -     0 /   301 (0.0%):	 Total:1.0965717	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:1.0965717
+2021-08-20 18:07:11,107 -    60 /   301 (19.9%):	 Total:0.2553795	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6421882
+2021-08-20 18:07:12,383 -   120 /   301 (39.9%):	 Total:1.2385917	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6541796
+2021-08-20 18:07:13,721 -   180 /   301 (59.8%):	 Total:0.4458388	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6513608
+2021-08-20 18:07:15,013 -   240 /   301 (79.7%):	 Total:0.4480643	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6609782
+2021-08-20 18:07:16,443 -   300 /   301 (99.7%):	 Total:0.3076944	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6581367
+2021-08-20 18:07:17,917 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:17,919 - 	 Total:0.6359015	 m_precision:0.5326815	 m_recall:0.6046512	 m_f1-score:0.5644053	 m_support:11.9767442
+2021-08-20 18:07:17,924 -    ini file updated    
+2021-08-20 18:07:17,925 - 
+===============================|    epoch 12   |===============================
+
+2021-08-20 18:07:18,404 -     0 /   301 (0.0%):	 Total:0.2990032	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.2990032
+2021-08-20 18:07:19,628 -    60 /   301 (19.9%):	 Total:0.6661693	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6130835
+2021-08-20 18:07:20,902 -   120 /   301 (39.9%):	 Total:0.5979488	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6535654
+2021-08-20 18:07:22,253 -   180 /   301 (59.8%):	 Total:0.4732183	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6688864
+2021-08-20 18:07:23,495 -   240 /   301 (79.7%):	 Total:0.6458120	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6592745
+2021-08-20 18:07:24,948 -   300 /   301 (99.7%):	 Total:0.7005323	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6560555
+2021-08-20 18:07:26,373 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:26,375 - 	 Total:0.6311110	 m_precision:0.5095137	 m_recall:0.5813953	 m_f1-score:0.5411021	 m_support:11.9767442
+2021-08-20 18:07:26,378 -    ini file updated    
+2021-08-20 18:07:26,423 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:26,423 -    ini file updated    
+2021-08-20 18:07:26,423 - 
+===============================|    epoch 13   |===============================
+
+2021-08-20 18:07:26,938 -     0 /   301 (0.0%):	 Total:1.1360759	 m_precision:0.2916667	 m_recall:0.5000000	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:1.1360759
+2021-08-20 18:07:28,220 -    60 /   301 (19.9%):	 Total:0.4441050	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6644921
+2021-08-20 18:07:29,436 -   120 /   301 (39.9%):	 Total:0.9431691	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6411059
+2021-08-20 18:07:30,600 -   180 /   301 (59.8%):	 Total:0.7067759	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6440989
+2021-08-20 18:07:31,893 -   240 /   301 (79.7%):	 Total:1.3766516	 m_precision:0.2916667	 m_recall:0.5000000	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:0.6449041
+2021-08-20 18:07:33,206 -   300 /   301 (99.7%):	 Total:0.3709928	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6549109
+2021-08-20 18:07:34,651 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:34,655 - 	 Total:0.6310359	 m_precision:0.5444856	 m_recall:0.6162791	 m_f1-score:0.5753218	 m_support:11.9767442
+2021-08-20 18:07:34,659 -    ini file updated    
+2021-08-20 18:07:34,699 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:34,699 -    ini file updated    
+2021-08-20 18:07:34,699 - 
+===============================|    epoch 14   |===============================
+
+2021-08-20 18:07:35,225 -     0 /   301 (0.0%):	 Total:0.9889606	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.9889606
+2021-08-20 18:07:36,567 -    60 /   301 (19.9%):	 Total:0.8140652	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6385075
+2021-08-20 18:07:37,916 -   120 /   301 (39.9%):	 Total:0.7801199	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6338503
+2021-08-20 18:07:39,139 -   180 /   301 (59.8%):	 Total:0.6213699	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6335030
+2021-08-20 18:07:40,381 -   240 /   301 (79.7%):	 Total:0.8288759	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6507328
+2021-08-20 18:07:41,658 -   300 /   301 (99.7%):	 Total:0.3341107	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6492079
+2021-08-20 18:07:43,185 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:43,187 - 	 Total:0.6309028	 m_precision:0.4984144	 m_recall:0.5585917	 m_f1-score:0.5225362	 m_support:11.9767442
+2021-08-20 18:07:43,190 -    ini file updated    
+2021-08-20 18:07:43,226 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:43,227 -    ini file updated    
+2021-08-20 18:07:43,227 - 
+===============================|    epoch 15   |===============================
+
+2021-08-20 18:07:43,722 -     0 /   301 (0.0%):	 Total:0.6316022	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6316022
+2021-08-20 18:07:44,920 -    60 /   301 (19.9%):	 Total:0.7968079	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6576496
+2021-08-20 18:07:46,165 -   120 /   301 (39.9%):	 Total:0.6363720	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6344994
+2021-08-20 18:07:47,362 -   180 /   301 (59.8%):	 Total:0.7895851	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6351453
+2021-08-20 18:07:48,521 -   240 /   301 (79.7%):	 Total:0.3237832	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6355875
+2021-08-20 18:07:49,789 -   300 /   301 (99.7%):	 Total:1.5155210	 m_precision:0.2500000	 m_recall:0.5000000	 m_f1-score:0.3333333	 m_support:8.0000000	 Mean_Total:0.6475510
+2021-08-20 18:07:51,300 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:51,301 - 	 Total:0.6279122	 m_precision:0.4864870	 m_recall:0.5485788	 m_f1-score:0.5128705	 m_support:11.9767442
+2021-08-20 18:07:51,306 -    ini file updated    
+2021-08-20 18:07:51,353 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:51,354 -    ini file updated    
+2021-08-20 18:07:51,354 - 
+===============================|    epoch 16   |===============================
+
+2021-08-20 18:07:51,819 -     0 /   301 (0.0%):	 Total:0.6007450	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6007450
+2021-08-20 18:07:53,020 -    60 /   301 (19.9%):	 Total:0.5169037	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6504879
+2021-08-20 18:07:54,224 -   120 /   301 (39.9%):	 Total:0.8056409	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6411560
+2021-08-20 18:07:55,483 -   180 /   301 (59.8%):	 Total:0.6303878	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6425277
+2021-08-20 18:07:56,881 -   240 /   301 (79.7%):	 Total:0.5780072	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6401514
+2021-08-20 18:07:58,182 -   300 /   301 (99.7%):	 Total:0.6378314	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6470018
+2021-08-20 18:07:59,756 - 
+===============================| start validation |===============================
+
+2021-08-20 18:07:59,758 - 	 Total:0.6274968	 m_precision:0.5291050	 m_recall:0.5730327	 m_f1-score:0.5444810	 m_support:11.9767442
+2021-08-20 18:07:59,763 -    ini file updated    
+2021-08-20 18:07:59,816 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:07:59,817 -    ini file updated    
+2021-08-20 18:07:59,817 - 
+===============================|    epoch 17   |===============================
+
+2021-08-20 18:08:00,305 -     0 /   301 (0.0%):	 Total:0.3666934	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.3666934
+2021-08-20 18:08:01,562 -    60 /   301 (19.9%):	 Total:0.4544594	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6457055
+2021-08-20 18:08:02,789 -   120 /   301 (39.9%):	 Total:0.3264952	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6487976
+2021-08-20 18:08:04,016 -   180 /   301 (59.8%):	 Total:0.2830592	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6304112
+2021-08-20 18:08:05,323 -   240 /   301 (79.7%):	 Total:0.6143175	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6372445
+2021-08-20 18:08:06,664 -   300 /   301 (99.7%):	 Total:1.0270996	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6476002
+2021-08-20 18:08:08,068 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:08,069 - 	 Total:0.6249436	 m_precision:0.5637245	 m_recall:0.6088120	 m_f1-score:0.5796491	 m_support:11.9767442
+2021-08-20 18:08:08,072 -    ini file updated    
+2021-08-20 18:08:08,110 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:08,111 -    ini file updated    
+2021-08-20 18:08:08,111 - 
+===============================|    epoch 18   |===============================
+
+2021-08-20 18:08:08,639 -     0 /   301 (0.0%):	 Total:0.5288795	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.5288795
+2021-08-20 18:08:09,911 -    60 /   301 (19.9%):	 Total:0.8973942	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6083135
+2021-08-20 18:08:11,123 -   120 /   301 (39.9%):	 Total:0.6389260	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6251896
+2021-08-20 18:08:12,312 -   180 /   301 (59.8%):	 Total:0.5018815	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6343484
+2021-08-20 18:08:13,644 -   240 /   301 (79.7%):	 Total:0.6743914	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6414513
+2021-08-20 18:08:14,906 -   300 /   301 (99.7%):	 Total:0.3195398	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6424839
+2021-08-20 18:08:16,451 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:16,454 - 	 Total:0.6194947	 m_precision:0.5286293	 m_recall:0.5714969	 m_f1-score:0.5436207	 m_support:11.9767442
+2021-08-20 18:08:16,458 -    ini file updated    
+2021-08-20 18:08:16,502 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:16,502 -    ini file updated    
+2021-08-20 18:08:16,503 - 
+===============================|    epoch 19   |===============================
+
+2021-08-20 18:08:16,994 -     0 /   301 (0.0%):	 Total:0.8495941	 m_precision:0.8636364	 m_recall:0.6250000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.8495941
+2021-08-20 18:08:18,421 -    60 /   301 (19.9%):	 Total:0.5130860	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6357383
+2021-08-20 18:08:19,760 -   120 /   301 (39.9%):	 Total:0.7196741	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6284106
+2021-08-20 18:08:20,929 -   180 /   301 (59.8%):	 Total:0.4316820	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6375620
+2021-08-20 18:08:22,166 -   240 /   301 (79.7%):	 Total:0.4393747	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6351345
+2021-08-20 18:08:23,534 -   300 /   301 (99.7%):	 Total:0.7481223	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6394720
+2021-08-20 18:08:24,890 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:24,891 - 	 Total:0.6196622	 m_precision:0.5465469	 m_recall:0.5781654	 m_f1-score:0.5517073	 m_support:11.9767442
+2021-08-20 18:08:24,893 -    ini file updated    
+2021-08-20 18:08:24,893 - 
+===============================|    epoch 20   |===============================
+
+2021-08-20 18:08:25,367 -     0 /   301 (0.0%):	 Total:0.4251798	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.4251798
+2021-08-20 18:08:26,775 -    60 /   301 (19.9%):	 Total:0.7857668	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6145429
+2021-08-20 18:08:27,984 -   120 /   301 (39.9%):	 Total:0.4085767	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6332084
+2021-08-20 18:08:29,237 -   180 /   301 (59.8%):	 Total:0.6267904	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6313102
+2021-08-20 18:08:30,489 -   240 /   301 (79.7%):	 Total:0.5829600	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6317985
+2021-08-20 18:08:31,873 -   300 /   301 (99.7%):	 Total:0.3415872	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6395906
+2021-08-20 18:08:33,337 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:33,339 - 	 Total:0.6152839	 m_precision:0.5461064	 m_recall:0.5825200	 m_f1-score:0.5540738	 m_support:11.9767442
+2021-08-20 18:08:33,343 -    ini file updated    
+2021-08-20 18:08:33,386 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:33,386 -    ini file updated    
+2021-08-20 18:08:33,386 - 
+===============================|    epoch 21   |===============================
+
+2021-08-20 18:08:33,882 -     0 /   301 (0.0%):	 Total:0.4007769	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.4007769
+2021-08-20 18:08:35,238 -    60 /   301 (19.9%):	 Total:0.9291015	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6447729
+2021-08-20 18:08:36,474 -   120 /   301 (39.9%):	 Total:0.5102922	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6531183
+2021-08-20 18:08:37,814 -   180 /   301 (59.8%):	 Total:0.6930228	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6548370
+2021-08-20 18:08:39,106 -   240 /   301 (79.7%):	 Total:0.2488466	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6418104
+2021-08-20 18:08:40,466 -   300 /   301 (99.7%):	 Total:0.6290097	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6357573
+2021-08-20 18:08:41,852 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:41,853 - 	 Total:0.6111853	 m_precision:0.4986786	 m_recall:0.5540463	 m_f1-score:0.5211723	 m_support:11.9767442
+2021-08-20 18:08:41,856 -    ini file updated    
+2021-08-20 18:08:41,893 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:41,894 -    ini file updated    
+2021-08-20 18:08:41,894 - 
+===============================|    epoch 22   |===============================
+
+2021-08-20 18:08:42,419 -     0 /   301 (0.0%):	 Total:0.8489158	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8489158
+2021-08-20 18:08:43,713 -    60 /   301 (19.9%):	 Total:1.0177342	 m_precision:0.9090909	 m_recall:0.6666667	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6576981
+2021-08-20 18:08:44,953 -   120 /   301 (39.9%):	 Total:1.1281047	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6437254
+2021-08-20 18:08:46,189 -   180 /   301 (59.8%):	 Total:0.5790811	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6524051
+2021-08-20 18:08:47,361 -   240 /   301 (79.7%):	 Total:0.6693823	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6448677
+2021-08-20 18:08:48,856 -   300 /   301 (99.7%):	 Total:0.2984084	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6430201
+2021-08-20 18:08:50,364 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:50,365 - 	 Total:0.6100310	 m_precision:0.5353770	 m_recall:0.5678823	 m_f1-score:0.5426589	 m_support:11.9767442
+2021-08-20 18:08:50,368 -    ini file updated    
+2021-08-20 18:08:50,411 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:50,412 -    ini file updated    
+2021-08-20 18:08:50,412 - 
+===============================|    epoch 23   |===============================
+
+2021-08-20 18:08:50,933 -     0 /   301 (0.0%):	 Total:0.6985965	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6985965
+2021-08-20 18:08:52,193 -    60 /   301 (19.9%):	 Total:0.6683844	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6035535
+2021-08-20 18:08:53,498 -   120 /   301 (39.9%):	 Total:0.6542066	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6281963
+2021-08-20 18:08:54,811 -   180 /   301 (59.8%):	 Total:0.5197456	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6280893
+2021-08-20 18:08:56,111 -   240 /   301 (79.7%):	 Total:0.7005460	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6358057
+2021-08-20 18:08:57,416 -   300 /   301 (99.7%):	 Total:0.9970872	 m_precision:0.3125000	 m_recall:0.5000000	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.6396843
+2021-08-20 18:08:58,894 - 
+===============================| start validation |===============================
+
+2021-08-20 18:08:58,895 - 	 Total:0.6139395	 m_precision:0.5864341	 m_recall:0.6155802	 m_f1-score:0.5918571	 m_support:11.9767442
+2021-08-20 18:08:58,898 -    ini file updated    
+2021-08-20 18:08:58,934 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:08:58,935 -    ini file updated    
+2021-08-20 18:08:58,935 - 
+===============================|    epoch 24   |===============================
+
+2021-08-20 18:08:59,386 -     0 /   301 (0.0%):	 Total:0.8597878	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8597878
+2021-08-20 18:09:00,760 -    60 /   301 (19.9%):	 Total:0.3536165	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6281415
+2021-08-20 18:09:02,080 -   120 /   301 (39.9%):	 Total:0.5376576	 m_precision:0.4500000	 m_recall:0.4090909	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6479225
+2021-08-20 18:09:03,306 -   180 /   301 (59.8%):	 Total:0.4139249	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6371486
+2021-08-20 18:09:04,494 -   240 /   301 (79.7%):	 Total:0.9160115	 m_precision:0.3181818	 m_recall:0.4375000	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:0.6414045
+2021-08-20 18:09:05,736 -   300 /   301 (99.7%):	 Total:0.7602330	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6426100
+2021-08-20 18:09:07,211 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:07,212 - 	 Total:0.6098808	 m_precision:0.5514094	 m_recall:0.5926797	 m_f1-score:0.5643546	 m_support:11.9767442
+2021-08-20 18:09:07,215 -    ini file updated    
+2021-08-20 18:09:07,251 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:09:07,251 -    ini file updated    
+2021-08-20 18:09:07,251 - 
+===============================|    epoch 25   |===============================
+
+2021-08-20 18:09:07,726 -     0 /   301 (0.0%):	 Total:0.2689177	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.2689177
+2021-08-20 18:09:08,929 -    60 /   301 (19.9%):	 Total:0.5749192	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6538856
+2021-08-20 18:09:10,150 -   120 /   301 (39.9%):	 Total:0.8114737	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6334356
+2021-08-20 18:09:11,516 -   180 /   301 (59.8%):	 Total:0.5730149	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6273955
+2021-08-20 18:09:12,902 -   240 /   301 (79.7%):	 Total:0.3246177	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6270751
+2021-08-20 18:09:14,355 -   300 /   301 (99.7%):	 Total:0.4374511	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6277569
+2021-08-20 18:09:16,000 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:16,001 - 	 Total:0.6105857	 m_precision:0.5475335	 m_recall:0.5656595	 m_f1-score:0.5458530	 m_support:11.9767442
+2021-08-20 18:09:16,004 -    ini file updated    
+2021-08-20 18:09:16,004 - 
+===============================|    epoch 26   |===============================
+
+2021-08-20 18:09:16,539 -     0 /   301 (0.0%):	 Total:0.5127603	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.5127603
+2021-08-20 18:09:17,817 -    60 /   301 (19.9%):	 Total:0.2848976	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6167614
+2021-08-20 18:09:19,123 -   120 /   301 (39.9%):	 Total:0.7832842	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6327221
+2021-08-20 18:09:20,402 -   180 /   301 (59.8%):	 Total:0.3717266	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6301853
+2021-08-20 18:09:21,794 -   240 /   301 (79.7%):	 Total:0.4030703	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6260867
+2021-08-20 18:09:23,141 -   300 /   301 (99.7%):	 Total:0.5650748	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6306950
+2021-08-20 18:09:24,620 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:24,622 - 	 Total:0.6076438	 m_precision:0.5257047	 m_recall:0.5655420	 m_f1-score:0.5357505	 m_support:11.9767442
+2021-08-20 18:09:24,625 -    ini file updated    
+2021-08-20 18:09:24,667 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:09:24,668 -    ini file updated    
+2021-08-20 18:09:24,668 - 
+===============================|    epoch 27   |===============================
+
+2021-08-20 18:09:25,141 -     0 /   301 (0.0%):	 Total:0.4907526	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.4907526
+2021-08-20 18:09:26,312 -    60 /   301 (19.9%):	 Total:0.3153564	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6405339
+2021-08-20 18:09:27,623 -   120 /   301 (39.9%):	 Total:0.4528671	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6519936
+2021-08-20 18:09:28,856 -   180 /   301 (59.8%):	 Total:0.3439522	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6405856
+2021-08-20 18:09:30,066 -   240 /   301 (79.7%):	 Total:0.9306840	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6315449
+2021-08-20 18:09:31,355 -   300 /   301 (99.7%):	 Total:0.9834039	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6326218
+2021-08-20 18:09:32,808 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:32,809 - 	 Total:0.6086634	 m_precision:0.5075229	 m_recall:0.5359848	 m_f1-score:0.5146452	 m_support:11.9767442
+2021-08-20 18:09:32,812 -    ini file updated    
+2021-08-20 18:09:32,812 - 
+===============================|    epoch 28   |===============================
+
+2021-08-20 18:09:33,293 -     0 /   301 (0.0%):	 Total:0.5920658	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5920658
+2021-08-20 18:09:34,575 -    60 /   301 (19.9%):	 Total:0.4441305	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6268760
+2021-08-20 18:09:35,800 -   120 /   301 (39.9%):	 Total:0.4892728	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6365742
+2021-08-20 18:09:37,147 -   180 /   301 (59.8%):	 Total:0.7354540	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6398894
+2021-08-20 18:09:38,579 -   240 /   301 (79.7%):	 Total:0.3175259	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6332944
+2021-08-20 18:09:39,945 -   300 /   301 (99.7%):	 Total:0.7010150	 m_precision:0.4285714	 m_recall:0.4285714	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6338644
+2021-08-20 18:09:41,419 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:41,420 - 	 Total:0.6090540	 m_precision:0.5572939	 m_recall:0.5760806	 m_f1-score:0.5542266	 m_support:11.9767442
+2021-08-20 18:09:41,423 -    ini file updated    
+2021-08-20 18:09:41,423 - 
+===============================|    epoch 29   |===============================
+
+2021-08-20 18:09:41,937 -     0 /   301 (0.0%):	 Total:0.5444888	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5444888
+2021-08-20 18:09:43,283 -    60 /   301 (19.9%):	 Total:0.8198697	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6402017
+2021-08-20 18:09:44,674 -   120 /   301 (39.9%):	 Total:0.8741426	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6617943
+2021-08-20 18:09:45,956 -   180 /   301 (59.8%):	 Total:0.8873577	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6536005
+2021-08-20 18:09:47,384 -   240 /   301 (79.7%):	 Total:0.6192335	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6395400
+2021-08-20 18:09:48,735 -   300 /   301 (99.7%):	 Total:0.3221456	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6340602
+2021-08-20 18:09:50,114 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:50,115 - 	 Total:0.6092339	 m_precision:0.5028923	 m_recall:0.5208606	 m_f1-score:0.5049646	 m_support:11.9767442
+2021-08-20 18:09:50,118 -    ini file updated    
+2021-08-20 18:09:50,118 - 
+===============================|    epoch 30   |===============================
+
+2021-08-20 18:09:50,584 -     0 /   301 (0.0%):	 Total:0.4576536	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.4576536
+2021-08-20 18:09:51,826 -    60 /   301 (19.9%):	 Total:1.1161922	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6065443
+2021-08-20 18:09:53,081 -   120 /   301 (39.9%):	 Total:0.7384667	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6144695
+2021-08-20 18:09:54,404 -   180 /   301 (59.8%):	 Total:1.0193784	 m_precision:0.5555556	 m_recall:0.5555556	 m_f1-score:0.5555556	 m_support:12.0000000	 Mean_Total:0.6271466
+2021-08-20 18:09:55,617 -   240 /   301 (79.7%):	 Total:0.9027604	 m_precision:0.3333333	 m_recall:0.3333333	 m_f1-score:0.3333333	 m_support:12.0000000	 Mean_Total:0.6428041
+2021-08-20 18:09:56,910 -   300 /   301 (99.7%):	 Total:1.0346366	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6319229
+2021-08-20 18:09:58,356 - 
+===============================| start validation |===============================
+
+2021-08-20 18:09:58,357 - 	 Total:0.6044626	 m_precision:0.5472986	 m_recall:0.5784913	 m_f1-score:0.5555814	 m_support:11.9767442
+2021-08-20 18:09:58,361 -    ini file updated    
+2021-08-20 18:09:58,400 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:09:58,400 -    ini file updated    
+2021-08-20 18:09:58,400 - 
+===============================|    epoch 31   |===============================
+
+2021-08-20 18:09:58,920 -     0 /   301 (0.0%):	 Total:0.6985423	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6985423
+2021-08-20 18:10:00,099 -    60 /   301 (19.9%):	 Total:0.5421834	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6346218
+2021-08-20 18:10:01,506 -   120 /   301 (39.9%):	 Total:0.3999269	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6268810
+2021-08-20 18:10:02,799 -   180 /   301 (59.8%):	 Total:0.3751547	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6361194
+2021-08-20 18:10:04,117 -   240 /   301 (79.7%):	 Total:0.7951181	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6348781
+2021-08-20 18:10:05,368 -   300 /   301 (99.7%):	 Total:0.4589969	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6318708
+2021-08-20 18:10:06,784 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:06,785 - 	 Total:0.6064214	 m_precision:0.5478330	 m_recall:0.5575267	 m_f1-score:0.5428845	 m_support:11.9767442
+2021-08-20 18:10:06,789 -    ini file updated    
+2021-08-20 18:10:06,789 - 
+===============================|    epoch 32   |===============================
+
+2021-08-20 18:10:07,283 -     0 /   301 (0.0%):	 Total:0.5292265	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5292265
+2021-08-20 18:10:08,445 -    60 /   301 (19.9%):	 Total:0.3814142	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6370165
+2021-08-20 18:10:09,622 -   120 /   301 (39.9%):	 Total:1.1509619	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6231725
+2021-08-20 18:10:10,859 -   180 /   301 (59.8%):	 Total:0.4559425	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6200685
+2021-08-20 18:10:12,196 -   240 /   301 (79.7%):	 Total:0.3066171	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6268589
+2021-08-20 18:10:13,618 -   300 /   301 (99.7%):	 Total:0.5103739	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6309020
+2021-08-20 18:10:15,139 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:15,140 - 	 Total:0.6090509	 m_precision:0.5835800	 m_recall:0.5944344	 m_f1-score:0.5725972	 m_support:11.9767442
+2021-08-20 18:10:15,144 -    ini file updated    
+2021-08-20 18:10:15,144 - 
+===============================|    epoch 33   |===============================
+
+2021-08-20 18:10:15,680 -     0 /   301 (0.0%):	 Total:0.3221893	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.3221893
+2021-08-20 18:10:16,910 -    60 /   301 (19.9%):	 Total:0.5980942	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6403973
+2021-08-20 18:10:18,129 -   120 /   301 (39.9%):	 Total:0.6995355	 m_precision:0.6500000	 m_recall:0.6111111	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6437913
+2021-08-20 18:10:19,473 -   180 /   301 (59.8%):	 Total:0.4066503	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6332062
+2021-08-20 18:10:20,710 -   240 /   301 (79.7%):	 Total:0.8356534	 m_precision:0.4000000	 m_recall:0.4000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6289704
+2021-08-20 18:10:21,928 -   300 /   301 (99.7%):	 Total:0.6281753	 m_precision:0.4166667	 m_recall:0.3571429	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.6324394
+2021-08-20 18:10:23,406 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:23,407 - 	 Total:0.6045019	 m_precision:0.5440921	 m_recall:0.5391767	 m_f1-score:0.5272418	 m_support:11.9767442
+2021-08-20 18:10:23,411 -    ini file updated    
+2021-08-20 18:10:23,412 - 
+===============================|    epoch 34   |===============================
+
+2021-08-20 18:10:23,950 -     0 /   301 (0.0%):	 Total:0.9485213	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.9485213
+2021-08-20 18:10:25,348 -    60 /   301 (19.9%):	 Total:0.9246597	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6280566
+2021-08-20 18:10:26,740 -   120 /   301 (39.9%):	 Total:0.3349724	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6182243
+2021-08-20 18:10:28,019 -   180 /   301 (59.8%):	 Total:0.7729453	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6219232
+2021-08-20 18:10:29,289 -   240 /   301 (79.7%):	 Total:0.5224649	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6206051
+2021-08-20 18:10:30,508 -   300 /   301 (99.7%):	 Total:0.9896420	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6300886
+2021-08-20 18:10:32,057 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:32,058 - 	 Total:0.6104983	 m_precision:0.5576638	 m_recall:0.5787615	 m_f1-score:0.5546144	 m_support:11.9767442
+2021-08-20 18:10:32,061 -    ini file updated    
+2021-08-20 18:10:32,061 - 
+===============================|    epoch 35   |===============================
+
+2021-08-20 18:10:32,589 -     0 /   301 (0.0%):	 Total:0.5296491	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.5296491
+2021-08-20 18:10:33,846 -    60 /   301 (19.9%):	 Total:0.7130311	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6184725
+2021-08-20 18:10:35,055 -   120 /   301 (39.9%):	 Total:0.6575791	 m_precision:0.9090909	 m_recall:0.6666667	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6226086
+2021-08-20 18:10:36,274 -   180 /   301 (59.8%):	 Total:0.8523250	 m_precision:0.9090909	 m_recall:0.6666667	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.5989708
+2021-08-20 18:10:37,487 -   240 /   301 (79.7%):	 Total:0.5710591	 m_precision:0.7000000	 m_recall:0.7000000	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6257230
+2021-08-20 18:10:38,752 -   300 /   301 (99.7%):	 Total:0.7167240	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6302153
+2021-08-20 18:10:40,350 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:40,351 - 	 Total:0.6061562	 m_precision:0.5741661	 m_recall:0.5800153	 m_f1-score:0.5657861	 m_support:11.9767442
+2021-08-20 18:10:40,355 -    ini file updated    
+2021-08-20 18:10:40,355 - 
+===============================|    epoch 36   |===============================
+
+2021-08-20 18:10:40,839 -     0 /   301 (0.0%):	 Total:0.3110622	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.3110622
+2021-08-20 18:10:42,130 -    60 /   301 (19.9%):	 Total:0.9903622	 m_precision:0.8636364	 m_recall:0.6250000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6364178
+2021-08-20 18:10:43,536 -   120 /   301 (39.9%):	 Total:0.5827198	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6282864
+2021-08-20 18:10:44,794 -   180 /   301 (59.8%):	 Total:1.4031250	 m_precision:0.2727273	 m_recall:0.4285714	 m_f1-score:0.3333333	 m_support:12.0000000	 Mean_Total:0.6429455
+2021-08-20 18:10:45,964 -   240 /   301 (79.7%):	 Total:0.6141783	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6336523
+2021-08-20 18:10:47,146 -   300 /   301 (99.7%):	 Total:0.6861045	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6340935
+2021-08-20 18:10:48,517 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:48,518 - 	 Total:0.6020641	 m_precision:0.5829105	 m_recall:0.5981765	 m_f1-score:0.5808285	 m_support:11.9767442
+2021-08-20 18:10:48,521 -    ini file updated    
+2021-08-20 18:10:48,556 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:10:48,557 -    ini file updated    
+2021-08-20 18:10:48,557 - 
+===============================|    epoch 37   |===============================
+
+2021-08-20 18:10:49,075 -     0 /   301 (0.0%):	 Total:0.7343477	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.7343477
+2021-08-20 18:10:50,244 -    60 /   301 (19.9%):	 Total:0.5131674	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6496926
+2021-08-20 18:10:51,479 -   120 /   301 (39.9%):	 Total:0.4212247	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6407862
+2021-08-20 18:10:52,774 -   180 /   301 (59.8%):	 Total:0.5260297	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6416705
+2021-08-20 18:10:54,057 -   240 /   301 (79.7%):	 Total:0.3279848	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6335021
+2021-08-20 18:10:55,316 -   300 /   301 (99.7%):	 Total:0.5611229	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6287749
+2021-08-20 18:10:56,698 - 
+===============================| start validation |===============================
+
+2021-08-20 18:10:56,699 - 	 Total:0.6034522	 m_precision:0.5233263	 m_recall:0.5301445	 m_f1-score:0.5125622	 m_support:11.9767442
+2021-08-20 18:10:56,703 -    ini file updated    
+2021-08-20 18:10:56,703 - 
+===============================|    epoch 38   |===============================
+
+2021-08-20 18:10:57,215 -     0 /   301 (0.0%):	 Total:0.2660291	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.2660291
+2021-08-20 18:10:58,437 -    60 /   301 (19.9%):	 Total:0.2649085	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6098301
+2021-08-20 18:10:59,623 -   120 /   301 (39.9%):	 Total:0.7849829	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6236747
+2021-08-20 18:11:00,860 -   180 /   301 (59.8%):	 Total:0.4292275	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6239617
+2021-08-20 18:11:02,211 -   240 /   301 (79.7%):	 Total:0.3240796	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6245947
+2021-08-20 18:11:03,501 -   300 /   301 (99.7%):	 Total:0.6293268	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6267922
+2021-08-20 18:11:04,895 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:04,896 - 	 Total:0.6043413	 m_precision:0.5479152	 m_recall:0.5759308	 m_f1-score:0.5540626	 m_support:11.9767442
+2021-08-20 18:11:04,899 -    ini file updated    
+2021-08-20 18:11:04,899 - 
+===============================|    epoch 39   |===============================
+
+2021-08-20 18:11:05,437 -     0 /   301 (0.0%):	 Total:0.8109879	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8109879
+2021-08-20 18:11:06,629 -    60 /   301 (19.9%):	 Total:0.5176318	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6468007
+2021-08-20 18:11:07,814 -   120 /   301 (39.9%):	 Total:0.3587718	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6312014
+2021-08-20 18:11:09,172 -   180 /   301 (59.8%):	 Total:0.5641463	 m_precision:0.9090909	 m_recall:0.6666667	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6046932
+2021-08-20 18:11:10,638 -   240 /   301 (79.7%):	 Total:0.8493192	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6185170
+2021-08-20 18:11:11,848 -   300 /   301 (99.7%):	 Total:0.5717153	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6248836
+2021-08-20 18:11:13,219 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:13,220 - 	 Total:0.6068296	 m_precision:0.5289875	 m_recall:0.5428941	 m_f1-score:0.5227505	 m_support:11.9767442
+2021-08-20 18:11:13,223 -    ini file updated    
+2021-08-20 18:11:13,223 - 
+===============================|    epoch 40   |===============================
+
+2021-08-20 18:11:13,722 -     0 /   301 (0.0%):	 Total:0.6620638	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6620638
+2021-08-20 18:11:15,032 -    60 /   301 (19.9%):	 Total:0.4709002	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6303147
+2021-08-20 18:11:16,361 -   120 /   301 (39.9%):	 Total:0.4960185	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6023882
+2021-08-20 18:11:17,555 -   180 /   301 (59.8%):	 Total:0.6605280	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6095985
+2021-08-20 18:11:18,971 -   240 /   301 (79.7%):	 Total:0.7841159	 m_precision:0.6500000	 m_recall:0.6111111	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6216229
+2021-08-20 18:11:20,205 -   300 /   301 (99.7%):	 Total:0.4393076	 m_precision:0.4285714	 m_recall:0.4285714	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6207560
+2021-08-20 18:11:21,783 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:21,784 - 	 Total:0.6033390	 m_precision:0.5554029	 m_recall:0.5468522	 m_f1-score:0.5387577	 m_support:11.9767442
+2021-08-20 18:11:21,787 -    ini file updated    
+2021-08-20 18:11:21,787 - 
+===============================|    epoch 41   |===============================
+
+2021-08-20 18:11:22,258 -     0 /   301 (0.0%):	 Total:0.6467023	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6467023
+2021-08-20 18:11:23,417 -    60 /   301 (19.9%):	 Total:0.3284533	 m_precision:0.7500000	 m_recall:0.9545455	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6047819
+2021-08-20 18:11:24,617 -   120 /   301 (39.9%):	 Total:0.6137409	 m_precision:0.4500000	 m_recall:0.4090909	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6511669
+2021-08-20 18:11:25,772 -   180 /   301 (59.8%):	 Total:0.7251970	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6314029
+2021-08-20 18:11:27,004 -   240 /   301 (79.7%):	 Total:0.8804973	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6390662
+2021-08-20 18:11:28,181 -   300 /   301 (99.7%):	 Total:0.5466514	 m_precision:0.4285714	 m_recall:0.4285714	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6337320
+2021-08-20 18:11:29,589 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:29,590 - 	 Total:0.6032454	 m_precision:0.5676826	 m_recall:0.5712532	 m_f1-score:0.5571016	 m_support:11.9767442
+2021-08-20 18:11:29,594 -    ini file updated    
+2021-08-20 18:11:29,594 - 
+===============================|    epoch 42   |===============================
+
+2021-08-20 18:11:30,106 -     0 /   301 (0.0%):	 Total:0.6837193	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6837193
+2021-08-20 18:11:31,320 -    60 /   301 (19.9%):	 Total:0.5178148	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6411531
+2021-08-20 18:11:32,455 -   120 /   301 (39.9%):	 Total:0.5211686	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6347396
+2021-08-20 18:11:33,791 -   180 /   301 (59.8%):	 Total:0.7656328	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6284256
+2021-08-20 18:11:35,057 -   240 /   301 (79.7%):	 Total:0.3865538	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6246022
+2021-08-20 18:11:36,254 -   300 /   301 (99.7%):	 Total:0.8733514	 m_precision:0.4166667	 m_recall:0.3571429	 m_f1-score:0.3846154	 m_support:8.0000000	 Mean_Total:0.6248862
+2021-08-20 18:11:37,615 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:37,617 - 	 Total:0.6012741	 m_precision:0.5612227	 m_recall:0.5822205	 m_f1-score:0.5641022	 m_support:11.9767442
+2021-08-20 18:11:37,622 -    ini file updated    
+2021-08-20 18:11:37,669 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:11:37,670 -    ini file updated    
+2021-08-20 18:11:37,670 - 
+===============================|    epoch 43   |===============================
+
+2021-08-20 18:11:38,140 -     0 /   301 (0.0%):	 Total:0.5673930	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5673930
+2021-08-20 18:11:39,288 -    60 /   301 (19.9%):	 Total:1.1058162	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.5976149
+2021-08-20 18:11:40,596 -   120 /   301 (39.9%):	 Total:0.5620319	 m_precision:0.4000000	 m_recall:0.4000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6211339
+2021-08-20 18:11:41,755 -   180 /   301 (59.8%):	 Total:0.3828616	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6166825
+2021-08-20 18:11:42,949 -   240 /   301 (79.7%):	 Total:0.5881707	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6268486
+2021-08-20 18:11:44,150 -   300 /   301 (99.7%):	 Total:0.4816170	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6239961
+2021-08-20 18:11:45,623 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:45,624 - 	 Total:0.6002617	 m_precision:0.5766620	 m_recall:0.5935459	 m_f1-score:0.5699643	 m_support:11.9767442
+2021-08-20 18:11:45,627 -    ini file updated    
+2021-08-20 18:11:45,663 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:11:45,663 -    ini file updated    
+2021-08-20 18:11:45,663 - 
+===============================|    epoch 44   |===============================
+
+2021-08-20 18:11:46,137 -     0 /   301 (0.0%):	 Total:0.8389336	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8389336
+2021-08-20 18:11:47,449 -    60 /   301 (19.9%):	 Total:0.3965028	 m_precision:0.7500000	 m_recall:0.9545455	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6366935
+2021-08-20 18:11:48,675 -   120 /   301 (39.9%):	 Total:0.5691876	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6340758
+2021-08-20 18:11:50,029 -   180 /   301 (59.8%):	 Total:0.4141105	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6106938
+2021-08-20 18:11:51,300 -   240 /   301 (79.7%):	 Total:0.7355565	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6131837
+2021-08-20 18:11:52,451 -   300 /   301 (99.7%):	 Total:0.4136534	 m_precision:0.7500000	 m_recall:0.9285714	 m_f1-score:0.7948718	 m_support:8.0000000	 Mean_Total:0.6216006
+2021-08-20 18:11:53,919 - 
+===============================| start validation |===============================
+
+2021-08-20 18:11:53,920 - 	 Total:0.6068936	 m_precision:0.5230914	 m_recall:0.5320267	 m_f1-score:0.5129742	 m_support:11.9767442
+2021-08-20 18:11:53,924 -    ini file updated    
+2021-08-20 18:11:53,924 - 
+===============================|    epoch 45   |===============================
+
+2021-08-20 18:11:54,418 -     0 /   301 (0.0%):	 Total:0.3894481	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.3894481
+2021-08-20 18:11:55,662 -    60 /   301 (19.9%):	 Total:0.5867850	 m_precision:0.4500000	 m_recall:0.4090909	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6173560
+2021-08-20 18:11:56,796 -   120 /   301 (39.9%):	 Total:0.3306094	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6306195
+2021-08-20 18:11:57,942 -   180 /   301 (59.8%):	 Total:0.7533897	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6389839
+2021-08-20 18:11:59,132 -   240 /   301 (79.7%):	 Total:0.6763682	 m_precision:0.7000000	 m_recall:0.7000000	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6298983
+2021-08-20 18:12:00,304 -   300 /   301 (99.7%):	 Total:0.7113000	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6238659
+2021-08-20 18:12:01,764 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:01,765 - 	 Total:0.6007836	 m_precision:0.5497710	 m_recall:0.5439159	 m_f1-score:0.5315236	 m_support:11.9767442
+2021-08-20 18:12:01,768 -    ini file updated    
+2021-08-20 18:12:01,768 - 
+===============================|    epoch 46   |===============================
+
+2021-08-20 18:12:02,209 -     0 /   301 (0.0%):	 Total:0.8290021	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.8290021
+2021-08-20 18:12:03,542 -    60 /   301 (19.9%):	 Total:0.4697715	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6493598
+2021-08-20 18:12:04,800 -   120 /   301 (39.9%):	 Total:0.4411647	 m_precision:0.6111111	 m_recall:0.6500000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6408293
+2021-08-20 18:12:06,049 -   180 /   301 (59.8%):	 Total:0.4849447	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6307509
+2021-08-20 18:12:07,373 -   240 /   301 (79.7%):	 Total:0.3320070	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6246087
+2021-08-20 18:12:08,649 -   300 /   301 (99.7%):	 Total:0.7563308	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6215075
+2021-08-20 18:12:10,110 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:10,111 - 	 Total:0.6022519	 m_precision:0.5437808	 m_recall:0.5663378	 m_f1-score:0.5469184	 m_support:11.9767442
+2021-08-20 18:12:10,114 -    ini file updated    
+2021-08-20 18:12:10,114 - 
+===============================|    epoch 47   |===============================
+
+2021-08-20 18:12:10,570 -     0 /   301 (0.0%):	 Total:0.6878567	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6878567
+2021-08-20 18:12:11,805 -    60 /   301 (19.9%):	 Total:0.5536720	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5645721
+2021-08-20 18:12:13,018 -   120 /   301 (39.9%):	 Total:0.8031524	 m_precision:0.8636364	 m_recall:0.6250000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6118118
+2021-08-20 18:12:14,191 -   180 /   301 (59.8%):	 Total:0.7573583	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6250204
+2021-08-20 18:12:15,408 -   240 /   301 (79.7%):	 Total:0.5971320	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6159419
+2021-08-20 18:12:16,683 -   300 /   301 (99.7%):	 Total:0.3733170	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6237879
+2021-08-20 18:12:18,066 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:18,067 - 	 Total:0.6083363	 m_precision:0.5712209	 m_recall:0.5636599	 m_f1-score:0.5545869	 m_support:11.9767442
+2021-08-20 18:12:18,070 -    ini file updated    
+2021-08-20 18:12:18,070 - 
+===============================|    epoch 48   |===============================
+
+2021-08-20 18:12:18,567 -     0 /   301 (0.0%):	 Total:0.4270212	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.4270212
+2021-08-20 18:12:19,754 -    60 /   301 (19.9%):	 Total:0.6308134	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6276938
+2021-08-20 18:12:20,920 -   120 /   301 (39.9%):	 Total:1.0038230	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6139957
+2021-08-20 18:12:22,167 -   180 /   301 (59.8%):	 Total:0.6620699	 m_precision:0.7000000	 m_recall:0.7000000	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6259263
+2021-08-20 18:12:23,437 -   240 /   301 (79.7%):	 Total:0.9314997	 m_precision:0.3333333	 m_recall:0.5000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.6280209
+2021-08-20 18:12:24,726 -   300 /   301 (99.7%):	 Total:0.3856792	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6185537
+2021-08-20 18:12:26,092 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:26,094 - 	 Total:0.6003026	 m_precision:0.5255990	 m_recall:0.5374413	 m_f1-score:0.5193053	 m_support:11.9767442
+2021-08-20 18:12:26,098 -    ini file updated    
+2021-08-20 18:12:26,098 - 
+===============================|    epoch 49   |===============================
+
+2021-08-20 18:12:26,616 -     0 /   301 (0.0%):	 Total:0.3959459	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.3959459
+2021-08-20 18:12:27,846 -    60 /   301 (19.9%):	 Total:0.2793741	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6259954
+2021-08-20 18:12:29,074 -   120 /   301 (39.9%):	 Total:0.6342088	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6170836
+2021-08-20 18:12:30,236 -   180 /   301 (59.8%):	 Total:0.7884862	 m_precision:0.8636364	 m_recall:0.6250000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6186145
+2021-08-20 18:12:31,399 -   240 /   301 (79.7%):	 Total:0.6322592	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6236043
+2021-08-20 18:12:32,582 -   300 /   301 (99.7%):	 Total:0.8484812	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6201064
+2021-08-20 18:12:34,036 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:34,037 - 	 Total:0.6014584	 m_precision:0.5597663	 m_recall:0.5803852	 m_f1-score:0.5620079	 m_support:11.9767442
+2021-08-20 18:12:34,040 -    ini file updated    
+2021-08-20 18:12:34,040 - 
+===============================|    epoch 50   |===============================
+
+2021-08-20 18:12:34,548 -     0 /   301 (0.0%):	 Total:0.3340364	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.3340364
+2021-08-20 18:12:35,806 -    60 /   301 (19.9%):	 Total:0.4755554	 m_precision:0.6250000	 m_recall:0.8636364	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6367187
+2021-08-20 18:12:37,064 -   120 /   301 (39.9%):	 Total:0.6929535	 m_precision:0.3500000	 m_recall:0.3888889	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:0.6593178
+2021-08-20 18:12:38,285 -   180 /   301 (59.8%):	 Total:0.2752219	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6437566
+2021-08-20 18:12:39,582 -   240 /   301 (79.7%):	 Total:1.2095931	 m_precision:0.2500000	 m_recall:0.5000000	 m_f1-score:0.3333333	 m_support:12.0000000	 Mean_Total:0.6274140
+2021-08-20 18:12:40,724 -   300 /   301 (99.7%):	 Total:0.4390623	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6196060
+2021-08-20 18:12:42,307 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:42,309 - 	 Total:0.5992870	 m_precision:0.5267324	 m_recall:0.5501909	 m_f1-score:0.5298961	 m_support:11.9767442
+2021-08-20 18:12:42,313 -    ini file updated    
+2021-08-20 18:12:42,349 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:12:42,349 -    ini file updated    
+2021-08-20 18:12:42,349 - 
+===============================|    epoch 51   |===============================
+
+2021-08-20 18:12:42,876 -     0 /   301 (0.0%):	 Total:0.6550136	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6550136
+2021-08-20 18:12:44,245 -    60 /   301 (19.9%):	 Total:0.5844862	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6325196
+2021-08-20 18:12:45,392 -   120 /   301 (39.9%):	 Total:0.5432562	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6313982
+2021-08-20 18:12:46,841 -   180 /   301 (59.8%):	 Total:0.9365084	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6128001
+2021-08-20 18:12:48,130 -   240 /   301 (79.7%):	 Total:0.3218534	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6147612
+2021-08-20 18:12:49,383 -   300 /   301 (99.7%):	 Total:0.3538480	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6218328
+2021-08-20 18:12:50,761 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:50,763 - 	 Total:0.6045244	 m_precision:0.5485230	 m_recall:0.5552892	 m_f1-score:0.5434965	 m_support:11.9767442
+2021-08-20 18:12:50,766 -    ini file updated    
+2021-08-20 18:12:50,767 - 
+===============================|    epoch 52   |===============================
+
+2021-08-20 18:12:51,251 -     0 /   301 (0.0%):	 Total:0.4509711	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.4509711
+2021-08-20 18:12:52,544 -    60 /   301 (19.9%):	 Total:0.7236699	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6299956
+2021-08-20 18:12:53,935 -   120 /   301 (39.9%):	 Total:0.6000830	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6299051
+2021-08-20 18:12:55,098 -   180 /   301 (59.8%):	 Total:0.3650743	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6196919
+2021-08-20 18:12:56,331 -   240 /   301 (79.7%):	 Total:1.0410950	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6160405
+2021-08-20 18:12:57,483 -   300 /   301 (99.7%):	 Total:0.8363243	 m_precision:0.9285714	 m_recall:0.7500000	 m_f1-score:0.7948718	 m_support:8.0000000	 Mean_Total:0.6194611
+2021-08-20 18:12:58,896 - 
+===============================| start validation |===============================
+
+2021-08-20 18:12:58,898 - 	 Total:0.5994622	 m_precision:0.5389594	 m_recall:0.5606061	 m_f1-score:0.5386175	 m_support:11.9767442
+2021-08-20 18:12:58,902 -    ini file updated    
+2021-08-20 18:12:58,902 - 
+===============================|    epoch 53   |===============================
+
+2021-08-20 18:12:59,441 -     0 /   301 (0.0%):	 Total:0.9782085	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.9782085
+2021-08-20 18:13:00,676 -    60 /   301 (19.9%):	 Total:0.3598351	 m_precision:0.7500000	 m_recall:0.9545455	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6090979
+2021-08-20 18:13:01,859 -   120 /   301 (39.9%):	 Total:0.9875132	 m_precision:0.3333333	 m_recall:0.3333333	 m_f1-score:0.3333333	 m_support:12.0000000	 Mean_Total:0.6453387
+2021-08-20 18:13:03,012 -   180 /   301 (59.8%):	 Total:0.3179722	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6369918
+2021-08-20 18:13:04,190 -   240 /   301 (79.7%):	 Total:0.6419822	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6241149
+2021-08-20 18:13:05,406 -   300 /   301 (99.7%):	 Total:0.3368570	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6203354
+2021-08-20 18:13:06,821 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:06,823 - 	 Total:0.6025138	 m_precision:0.5390944	 m_recall:0.5584369	 m_f1-score:0.5369769	 m_support:11.9767442
+2021-08-20 18:13:06,828 -    ini file updated    
+2021-08-20 18:13:06,828 - 
+===============================|    epoch 54   |===============================
+
+2021-08-20 18:13:07,332 -     0 /   301 (0.0%):	 Total:0.8169422	 m_precision:0.9090909	 m_recall:0.6666667	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.8169422
+2021-08-20 18:13:08,696 -    60 /   301 (19.9%):	 Total:0.6920304	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6397212
+2021-08-20 18:13:09,879 -   120 /   301 (39.9%):	 Total:0.7247249	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6044537
+2021-08-20 18:13:11,045 -   180 /   301 (59.8%):	 Total:0.4864057	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6220201
+2021-08-20 18:13:12,295 -   240 /   301 (79.7%):	 Total:0.4768858	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6187214
+2021-08-20 18:13:13,581 -   300 /   301 (99.7%):	 Total:0.6540295	 m_precision:0.4285714	 m_recall:0.4285714	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6156096
+2021-08-20 18:13:14,951 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:14,953 - 	 Total:0.5982697	 m_precision:0.5372798	 m_recall:0.5446382	 m_f1-score:0.5312418	 m_support:11.9767442
+2021-08-20 18:13:14,956 -    ini file updated    
+2021-08-20 18:13:15,002 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:13:15,002 -    ini file updated    
+2021-08-20 18:13:15,002 - 
+===============================|    epoch 55   |===============================
+
+2021-08-20 18:13:15,489 -     0 /   301 (0.0%):	 Total:1.1766449	 m_precision:0.3181818	 m_recall:0.4375000	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:1.1766449
+2021-08-20 18:13:16,614 -    60 /   301 (19.9%):	 Total:0.8830371	 m_precision:0.6500000	 m_recall:0.6111111	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6039291
+2021-08-20 18:13:17,860 -   120 /   301 (39.9%):	 Total:0.6944184	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6063920
+2021-08-20 18:13:19,212 -   180 /   301 (59.8%):	 Total:0.8053269	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6166639
+2021-08-20 18:13:20,541 -   240 /   301 (79.7%):	 Total:1.4045570	 m_precision:0.8181818	 m_recall:0.6000000	 m_f1-score:0.5555556	 m_support:12.0000000	 Mean_Total:0.6042368
+2021-08-20 18:13:21,985 -   300 /   301 (99.7%):	 Total:0.7803954	 m_precision:0.7333333	 m_recall:0.7333333	 m_f1-score:0.7333333	 m_support:8.0000000	 Mean_Total:0.6189233
+2021-08-20 18:13:23,387 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:23,388 - 	 Total:0.6077426	 m_precision:0.5824239	 m_recall:0.5828459	 m_f1-score:0.5664890	 m_support:11.9767442
+2021-08-20 18:13:23,391 -    ini file updated    
+2021-08-20 18:13:23,391 - 
+===============================|    epoch 56   |===============================
+
+2021-08-20 18:13:23,910 -     0 /   301 (0.0%):	 Total:0.4632060	 m_precision:0.7500000	 m_recall:0.9545455	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.4632060
+2021-08-20 18:13:25,056 -    60 /   301 (19.9%):	 Total:0.2937769	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.5968505
+2021-08-20 18:13:26,312 -   120 /   301 (39.9%):	 Total:0.3899542	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5959269
+2021-08-20 18:13:27,614 -   180 /   301 (59.8%):	 Total:0.3468422	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6068564
+2021-08-20 18:13:28,778 -   240 /   301 (79.7%):	 Total:1.2865088	 m_precision:0.3181818	 m_recall:0.4375000	 m_f1-score:0.3684211	 m_support:12.0000000	 Mean_Total:0.6196749
+2021-08-20 18:13:30,005 -   300 /   301 (99.7%):	 Total:0.2765259	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6160269
+2021-08-20 18:13:31,480 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:31,481 - 	 Total:0.5988570	 m_precision:0.5449730	 m_recall:0.5485494	 m_f1-score:0.5388787	 m_support:11.9767442
+2021-08-20 18:13:31,484 -    ini file updated    
+2021-08-20 18:13:31,484 - 
+===============================|    epoch 57   |===============================
+
+2021-08-20 18:13:31,959 -     0 /   301 (0.0%):	 Total:0.3228015	 m_precision:0.5000000	 m_recall:0.4583333	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.3228015
+2021-08-20 18:13:33,114 -    60 /   301 (19.9%):	 Total:0.3576178	 m_precision:0.6666667	 m_recall:0.9090909	 m_f1-score:0.7000000	 m_support:12.0000000	 Mean_Total:0.6346719
+2021-08-20 18:13:34,275 -   120 /   301 (39.9%):	 Total:0.7903717	 m_precision:0.8636364	 m_recall:0.6250000	 m_f1-score:0.6210526	 m_support:12.0000000	 Mean_Total:0.6351505
+2021-08-20 18:13:35,565 -   180 /   301 (59.8%):	 Total:0.8066117	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6191525
+2021-08-20 18:13:36,985 -   240 /   301 (79.7%):	 Total:0.3559691	 m_precision:0.7500000	 m_recall:0.9545455	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.6140841
+2021-08-20 18:13:38,138 -   300 /   301 (99.7%):	 Total:0.2904090	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:8.0000000	 Mean_Total:0.6214944
+2021-08-20 18:13:39,637 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:39,638 - 	 Total:0.6005260	 m_precision:0.5638436	 m_recall:0.5661457	 m_f1-score:0.5554887	 m_support:11.9767442
+2021-08-20 18:13:39,642 -    ini file updated    
+2021-08-20 18:13:39,642 - 
+===============================|    epoch 58   |===============================
+
+2021-08-20 18:13:40,107 -     0 /   301 (0.0%):	 Total:0.5479905	 m_precision:0.4000000	 m_recall:0.4000000	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.5479905
+2021-08-20 18:13:41,385 -    60 /   301 (19.9%):	 Total:0.5125258	 m_precision:0.9545455	 m_recall:0.7500000	 m_f1-score:0.8095238	 m_support:12.0000000	 Mean_Total:0.5868129
+2021-08-20 18:13:42,572 -   120 /   301 (39.9%):	 Total:0.6161270	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5885009
+2021-08-20 18:13:43,780 -   180 /   301 (59.8%):	 Total:0.3536270	 m_precision:0.5000000	 m_recall:0.4166667	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5986424
+2021-08-20 18:13:45,054 -   240 /   301 (79.7%):	 Total:0.6491590	 m_precision:0.9500000	 m_recall:0.8333333	 m_f1-score:0.8736842	 m_support:12.0000000	 Mean_Total:0.6031316
+2021-08-20 18:13:46,420 -   300 /   301 (99.7%):	 Total:0.3744746	 m_precision:0.7500000	 m_recall:0.9285714	 m_f1-score:0.7948718	 m_support:8.0000000	 Mean_Total:0.6153853
+2021-08-20 18:13:47,869 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:47,871 - 	 Total:0.6008816	 m_precision:0.5491237	 m_recall:0.5430761	 m_f1-score:0.5336109	 m_support:11.9767442
+2021-08-20 18:13:47,874 -    ini file updated    
+2021-08-20 18:13:47,874 - 
+===============================|    epoch 59   |===============================
+
+2021-08-20 18:13:48,348 -     0 /   301 (0.0%):	 Total:0.7360865	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.7360865
+2021-08-20 18:13:49,486 -    60 /   301 (19.9%):	 Total:0.8696369	 m_precision:0.6000000	 m_recall:0.5625000	 m_f1-score:0.5555556	 m_support:12.0000000	 Mean_Total:0.6402030
+2021-08-20 18:13:50,703 -   120 /   301 (39.9%):	 Total:0.5416100	 m_precision:0.4090909	 m_recall:0.4500000	 m_f1-score:0.4285714	 m_support:12.0000000	 Mean_Total:0.6227608
+2021-08-20 18:13:51,856 -   180 /   301 (59.8%):	 Total:0.4314781	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6094525
+2021-08-20 18:13:53,034 -   240 /   301 (79.7%):	 Total:0.5121865	 m_precision:0.8000000	 m_recall:0.8888889	 m_f1-score:0.8125000	 m_support:12.0000000	 Mean_Total:0.6109342
+2021-08-20 18:13:54,276 -   300 /   301 (99.7%):	 Total:0.7933248	 m_precision:0.3750000	 m_recall:0.5000000	 m_f1-score:0.4285714	 m_support:8.0000000	 Mean_Total:0.6143617
+2021-08-20 18:13:55,833 - 
+===============================| start validation |===============================
+
+2021-08-20 18:13:55,834 - 	 Total:0.5971552	 m_precision:0.5676357	 m_recall:0.5535001	 m_f1-score:0.5431775	 m_support:11.9767442
+2021-08-20 18:13:55,837 -    ini file updated    
+2021-08-20 18:13:55,873 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-20 18:13:55,874 -    ini file updated    
+2021-08-20 18:13:55,874 - 
+===============================|    epoch 60   |===============================
+
+2021-08-20 18:13:56,346 -     0 /   301 (0.0%):	 Total:0.7019574	 m_precision:0.3636364	 m_recall:0.4444444	 m_f1-score:0.4000000	 m_support:12.0000000	 Mean_Total:0.7019574
+2021-08-20 18:13:57,647 -    60 /   301 (19.9%):	 Total:0.3778010	 m_precision:0.4545455	 m_recall:0.4545455	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.6053997
+2021-08-20 18:13:58,817 -   120 /   301 (39.9%):	 Total:0.7423762	 m_precision:0.4166667	 m_recall:0.5000000	 m_f1-score:0.4545455	 m_support:12.0000000	 Mean_Total:0.5939026
+2021-08-20 18:14:00,012 -   180 /   301 (59.8%):	 Total:0.2603447	 m_precision:1.0000000	 m_recall:1.0000000	 m_f1-score:1.0000000	 m_support:12.0000000	 Mean_Total:0.6053075
+2021-08-20 18:14:01,391 -   240 /   301 (79.7%):	 Total:0.7734751	 m_precision:0.4583333	 m_recall:0.5000000	 m_f1-score:0.4782609	 m_support:12.0000000	 Mean_Total:0.6058926
+2021-08-20 18:14:02,480 -   300 /   301 (99.7%):	 Total:0.7451593	 m_precision:0.4375000	 m_recall:0.5000000	 m_f1-score:0.4666667	 m_support:8.0000000	 Mean_Total:0.6175783
+2021-08-20 18:14:03,872 - 
+===============================| start validation |===============================
+
+2021-08-20 18:14:03,874 - 	 Total:0.6048679	 m_precision:0.5824289	 m_recall:0.5922086	 m_f1-score:0.5698584	 m_support:11.9767442
+2021-08-20 18:14:03,877 -    ini file updated    
+2021-08-21 11:18:41,704 -  	 	 ==============<<<  Experiment detected  >>>============== 	 	 
+
+2021-08-21 11:18:48,871 -  	 	 ========================================================= 	 	 
+2021-08-21 11:18:48,871 -  	 	 ==============<<< Resume from checkpoint>>>============== 	 	 
+
+2021-08-21 11:18:48,872 -  	/data/users/wergillius/UTR_VAE/pth/Cross_stitch_classifier_MTL/tune_hidden_size_l2e-4/h20-model_best.pth
+
+2021-08-21 11:18:48,872 -  	 	 ========================================================= 	 	 
+
+2021-08-21 11:18:48,872 - 
+===============================|    epoch 60   |===============================
+
