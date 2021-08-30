@@ -30,7 +30,7 @@ class Log_parser(object):
             print('log path error !')
         self.log_file = log_file
         
-        self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match','MAE','RMSE','RL_loss','Recons_loss','Motif_loss','RL_Acc','Recons_Acc','Motif_Acc','Acc','Mean_Total']
+#         self.possible_metric = ['LOSS','lr','Avg_ACC','teaching_rate','TOTAL','KLD','MSE','M_N','CrossEntropy','chimerla_weight','Total','TE','Loop','Match','MAE','RMSE','RL_loss','Recons_loss','Motif_loss','RL_Acc','Recons_Acc','Motif_Acc','Acc','Mean_Total', 'DTP_wt_RL','DTP_wt_Recons','DTP_wt_Motif']
         
         #          --------  basic  matcher   --------
         self.epoch_line_matcher = r"\s.* epoch (\d{1,4}).*"
@@ -47,6 +47,10 @@ class Log_parser(object):
         self.extract_training_verbose_data()
         self.extract_val_verbose_data()
         
+    def lines_to_json(self, line, sett):
+        remove_time = line.split('%):')[1].split() if sett=='train' else line.split(' - \t ')[1].split()
+        line_json = {metrics.split(':')[0]:metrics.split(':')[1] for metrics in remove_time}
+        return line_json
         
     def lines_matching(self,matcher):
         """
@@ -60,51 +64,49 @@ class Log_parser(object):
         """
         return [i for i,line in enumerate(self.log_file) if re.match(matcher,line) is not None]
     
-    def get_metrics_order(self):
-        """
-        get train verbose line and define train_verbose_matcher automatically
-        """
-        self.train_verbose_lines = self.lines_matching(self.train_verbose_finder)  # find all the train verbose lines
+#     def get_metrics_order(self):
+#         """
+#         get train verbose line and define train_verbose_matcher automatically
+#         """
+#          # find all the train verbose lines
         
-        test_t_v = self.train_verbose_lines[0]                     # a testing train verbose
+#         test_t_v = self.train_verbose_lines[0]                     # a testing train verbose
         
-        # using the esting trainverbose to determine metric order
-        train_metric = np.array([metric for metric in self.possible_metric if metric in test_t_v])
-        train_metric = self.check_dup_metric(train_metric,test_t_v)
+#         # using the esting trainverbose to determine metric order
+# #         train_metric = np.array([metric for metric in self.possible_metric if metric in test_t_v])
+# #         train_metric = self.check_dup_metric(train_metric,test_t_v)
         
-        train_metric_posi = np.array([test_t_v.index(metric) for metric in train_metric])
+# #         train_metric_posi = np.array([test_t_v.index(metric) for metric in train_metric])
         
-        order = train_metric_posi.argsort()
-        self.train_metric = train_metric[order]
+# #         order = train_metric_posi.argsort()
+# #         self.train_metric = train_metric[order]
         
-        #   ----|| automatically determine train verbose matcher ||----
-        self.train_verbose_matcher = self.train_verbose_finder
-        for metric in self.train_metric:
-            self.train_verbose_matcher += self.match_sub_verbose(metric)
+# #         #   ----|| automatically determine train verbose matcher ||----
+# #         self.train_verbose_matcher = self.train_verbose_finder
+# #         for metric in self.train_metric:
+# #             self.train_verbose_matcher += self.match_sub_verbose(metric)
     
-    def check_dup_metric(self,train_metric,test_t_v):
-        """
-        to deal with the problem of `MSE` and `RMSE` 
-        """
-        train_metric = list(train_metric)
-        if ("MSE" in train_metric) & ("RMSE" in train_metric):
-            if test_t_v.index('MSE') == test_t_v.index('RMSE')+1:
-                train_metric.remove('MSE')
-        return np.array(train_metric)
+# #     def check_dup_metric(self,train_metric,test_t_v):
+# #         """
+# #         to deal with the problem of `MSE` and `RMSE` 
+# #         """
+# #         train_metric = list(train_metric)
+# #         if ("MSE" in train_metric) & ("RMSE" in train_metric):
+# #             if test_t_v.index('MSE') == test_t_v.index('RMSE')+1:
+# #                 train_metric.remove('MSE')
+# #         return np.array(train_metric)
     
     def extract_training_verbose_data(self):
         """
         regular expression to match the printed metric during training and save to pd.DataFrame
         """
-        self.get_metrics_order()
+        self.train_verbose_lines = self.lines_matching(self.train_verbose_finder)
         
-        self.train_verbose_array = np.array(
-            [list(
-                re.match(self.train_verbose_matcher,line).groupdict().values()
-                    ) for line in self.train_verbose_lines]
-            ).astype(np.float64)
+        self.train_verbose_dict = [self.lines_to_json(line,'train') for line in self.train_verbose_lines]
         
-        self.train_verbose_DF = pd.DataFrame(self.train_verbose_array,columns=self.train_metric)
+        self.train_metric = list(self.train_verbose_dict[0].keys())
+        
+        self.train_verbose_DF = pd.json_normalize(self.train_verbose_dict).astype(float)
         
         # return self.train_verbose_DF 
     
@@ -117,33 +119,35 @@ class Log_parser(object):
         self.val_verbose_lines = self.log_file[self.val_verbose_posi]
         if self.val_split_line:
             self.val_verbose_lines = ["\t".join(self.log_file[[posi,posi+1,posi+2,posi+3,posi+4]]) for posi in self.val_verbose_posi]
-         
-        test_v_v = self.val_verbose_lines[self.use_line_as_valtest]
+
+#         test_v_v = self.val_verbose_lines[self.use_line_as_valtest]
         
          # using the esting trainverbose to determine metric order
-        val_metric = np.array([metric for metric in self.possible_metric if metric in test_v_v])
-        val_metric = self.check_dup_metric(val_metric,test_v_v)
-        val_metric_posi = np.array([test_v_v.index(metric) for metric in val_metric])
-        order = val_metric_posi.argsort()    # sort 
-        self.val_metric = val_metric[order]
+#         val_metric = np.array([metric for metric in self.possible_metric if metric in test_v_v])
+#         val_metric = self.check_dup_metric(val_metric,test_v_v)
+#         val_metric_posi = np.array([test_v_v.index(metric) for metric in val_metric])
+#         order = val_metric_posi.argsort()    # sort 
+#         self.val_metric = val_metric[order]
         
         
-        #   ----|| automatically determine val verbose matcher ||----
-        self.val_verbose_matcher = self.match_logging_time 
+#         #   ----|| automatically determine val verbose matcher ||----
+#         self.val_verbose_matcher = self.match_logging_time 
         
-        if re.match(self.match_logging_time + self.match_percentage,test_v_v) is not None:
-            self.val_verbose_matcher += self.match_percentage        # detect whether validation set also get percentage info
+#         if re.match(self.match_logging_time + self.match_percentage,test_v_v) is not None:
+#             self.val_verbose_matcher += self.match_percentage        # detect whether validation set also get percentage info
         
-        for metric in self.val_metric:
-            self.val_verbose_matcher += self.match_sub_verbose(metric)
+#         for metric in self.val_metric:
+#             self.val_verbose_matcher += self.match_sub_verbose(metric)
         
-        self.val_verbose_array = np.array(
-            [list(
-                re.match(self.val_verbose_matcher,line).groupdict().values()
-                    ) for line in self.val_verbose_lines]
-            ).astype(np.float64)
+        self.val_verbose_dict = [self.lines_to_json(line, 'val') for line in self.val_verbose_lines]
+        self.val_metric = list(self.val_verbose_dict[0].keys())
+#         np.array(
+#             [list(
+#                 re.match(self.val_verbose_matcher,line).groupdict().values()
+#                     ) for line in self.val_verbose_lines]
+#             ).astype(np.float64)
         
-        self.val_verbose_DF = pd.DataFrame(self.val_verbose_array,columns=self.val_metric)
+        self.val_verbose_DF = pd.json_normalize(self.val_verbose_dict).astype(float)
         
         # return self.val_verbose_DF 
     
@@ -164,29 +168,28 @@ class Log_parser(object):
         
 
 def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check_time=10,start_from=0,mean_of_train=None,define_order=None,esubset=None, cycle_train=False,**kwargs):
-    
-    fig = plt.figure(figsize=(20,5)) if fig is None else fig
-
-    n = len(log_list[0].__getattribute__(dataset+"_metric"))  # val or train
-    if layout is None:
-        axs = fig.subplots(1,n);
-    else:
-        row,column = layout 
-        axs = fig.subplots(row,column)
-    
     all_metric = [logg.__getattribute__(dataset+"_metric") for logg in log_list]
     share_metric = [all_metric[0]]
     for logg_metric in all_metric[1:]:
         share_metric = np.intersect1d(share_metric,logg_metric)
     if define_order is not None:
         assert set(define_order) == set(share_metric)
+    
+    n = len(share_metric) + 1 # val or train
+    fig = plt.figure(figsize=(20,5)) if fig is None else fig
+
+    
+    if layout is None:
+        axs = fig.subplots(1,n);
+    else:
+        row,column = layout 
+        axs = fig.subplots(row,column).flatten()
+    
+    
     for i,metric in enumerate(share_metric):
         # layout 
         
-        if layout is None:
-            ax = axs[i]  
-        else:
-            ax = axs[i//column,i%column]
+        ax = axs[i]
         for st,log in enumerate(log_list):
             DF = log.__getattribute__(dataset+"_verbose_DF")
                 
@@ -195,9 +198,12 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
             elif (dataset == 'train') & (type(esubset)==slice):
                 DF = subset_of(esubset,DF)
             X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
-            ax.plot(X[start_from:],DF[metric].values[start_from:],label=log_name_ls[st],**kwargs)
+            ax.plot(X[start_from:],DF[metric].values[start_from:],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
-        ax.legend()
+    for st,log in enumerate(log_list):
+        axs[-1].plot(0,0,label=log_name_ls[st])
+        axs[-1].axis('off')
+        axs[-1].legend()
         
 def plot_cycle_exp_set(log_ls,log_name,dataset='val',**kwargs):
     interval = 2 if dataset=='val' else 6
