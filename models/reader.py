@@ -312,7 +312,7 @@ def KFold_df_split(df,K,**kfoldargs):
     """
     
     # K-fold partition : n_splits=5
-    fold_index = list(KFold(5,shuffle=True,random_state=42).split(df))
+    fold_index = list(KFold(10,shuffle=True,random_state=42).split(df))
     train_index, val_test_index = fold_index[K]  
     # the first 4/5 part of it is train set
      
