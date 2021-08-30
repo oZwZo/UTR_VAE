@@ -59,7 +59,7 @@ if POPEN.pretrain_pth is not None:
     except:
         pretrain_model = torch.load(pretrain_popen.vae_pth_path)['state_dict']
 
-    # DL_models.LSTM_AE
+    
     if POPEN.Model_Class == pretrain_popen.Model_Class:
         # if not POPEN.Resumable:
         #     # we only load pre-train for the first time 
@@ -77,7 +77,7 @@ if POPEN.pretrain_pth is not None:
         model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
     
 # -- end2end -- 
-elif POPEN.path_category == "CrossStitch":
+elif POPEN.model_type == "CrossStitch_Model":
     backbone = {}
     for t in POPEN.tasks:
         task_popen = Auto_popen(POPEN.backbone_config[t])
@@ -118,8 +118,9 @@ if POPEN.Resumable:
     model, previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
     
 # =========== fix parameters ===========
-if POPEN.modual_to_fix in dir(model):
-    model = utils.fix_parameter(model,POPEN.modual_to_fix)
+if isinstance(POPEN.modual_to_fix, list):
+    for modual in POPEN.modual_to_fix:
+        model = utils.fix_parameter(model,POPEN.modual_to_fix)
     logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 #                               |=====================================|
 #                               |==========  training  part ==========|
