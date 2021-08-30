@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
+from sklearn.metrics import classification_report
 
 
 class channel_wise_mul(nn.Module):
@@ -101,6 +102,9 @@ class CrossStitch_Model(nn.Module):
         for stage in self.stage:
             task_feature = self.forward_stage(task_feature,stage)
         return task_feature
+    
+    def embed(self, X):
+        return self.cross_stitch_encode(X)['RL']
         
     def forward(self,X):
 
@@ -129,7 +133,7 @@ class CrossStitch_Model(nn.Module):
         out : dict {task:out}
         Y : dict {task : y}
         """
-        assert ('rl' in popen.aux_task_columns[0])
+        # assert ('rl' in popen.aux_task_columns[0])
         # (x,y) = Y 
         Y = {"RL":Y[:,0], "Recons":X,"Motif":Y[:,1:]}
         loss_dict  = {}
@@ -142,4 +146,131 @@ class CrossStitch_Model(nn.Module):
         
         loss_dict['Total'] = torch.stack([loss_dict[t+'_loss']*popen.chimerla_weight[t] for t in self.tasks]).sum()
         return loss_dict
+    
+class Cross_stitch_classifier(nn.Module):
+    def __init__(self, channel_ls, tower_width):
+        """
+        the downstream part of Enc&Down architecture, it took cross-stitch model as Encoder
+        """
+        super().__init__()
         
+        self.tower = nn.GRU(input_size=channel_ls[-1],
+                            hidden_size=tower_width,
+                            num_layers=2,
+                            batch_first=True) 
+        
+        self.clf_layer = nn.Sequential(
+                                    nn.Linear(tower_width, 1),
+                                    nn.Sigmoid()
+                                    )
+    
+    def forward(self,Z):
+        """
+        Z is the 'RL' features , coming from cross_stitch
+        """
+        Z_flat = torch.transpose(Z,1,2)
+        h_prim,(c1,c2) = self.tower(Z_flat)  # [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        out = self.clf_layer(c2)
+        return out
+        
+    def compute_loss(self, out, X, Y, popen):
+        self.loss_fn = nn.BCELoss(Y*(popen.class_weight -1) + 1)
+        return {'Total' : self.loss_fn(out,Y)}
+    
+    def compute_acc(self, out, X, Y, popen):
+        out_ay = out.detach().cpu().numpy()
+        out_class = (out_ay > 0.5).astype(int)
+        Y_ay = Y.cpu().numpy()
+        
+        report = classification_report(Y_ay, out_class , output_dict=True, zero_division=0)
+        acc_dict = {'m_'+k:v for k,v in report['macro avg'].items()}
+#         acc_dict.update({'1_'+k:v for k,v in report['1.0'].items()})
+        return acc_dict
+    
+class MLP_down(Cross_stitch_classifier):
+    def __init__(self, channel_ls, tower_width):
+        super().__init__(channel_ls, tower_width)
+
+        
+        self.tower = nn.Linear(channel_ls[-1]*14, tower_width)
+        
+        self.clf_layer = nn.Sequential(
+                                    nn.Linear(tower_width, 1),
+                                    nn.Sigmoid()
+                                    )
+    
+    def forward(self,Z):
+        """
+        Z is the 'RL' features , coming from cross_stitch
+        """
+        Z_flat = torch.flatten(Z,1)
+        c2 = self.tower(Z_flat)    #  [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        out = self.clf_layer(c2)
+        return out
+    
+class MLP_linear_reg(nn.Module):
+    def __init__(self, channel_ls, tower_width):
+        super().__init__()
+
+        self.loss_fn = nn.MSELoss(reduction='mean')    
+        self.tower = nn.Linear(channel_ls[-1]*14, tower_width)
+        self.clf_layer = nn.Linear(tower_width, 1)
+    
+    def forward(self,Z):
+        """
+        Z is the 'RL' features , coming from cross_stitch
+        """
+        Z_flat = torch.flatten(Z,1)
+        c2 = self.tower(Z_flat)    #  [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        c2 = torch.tanh(c2)
+        out = self.clf_layer(c2)
+        return out
+    
+    def squeeze_out_Y(self,out,Y):
+        # ------ squeeze ------
+        if len(Y.shape) == 2:
+            Y = Y.squeeze(1)
+        if len(out.shape) == 2:
+            out = out.squeeze(1)
+        
+        assert Y.shape == out.shape
+        return out,Y
+    
+    def compute_acc(self,out,X,Y,popen=None):
+        try:
+            epsilon = popen.epsilon
+        except:
+            epsilon = 0.3
+            
+        out,Y = self.squeeze_out_Y(out,Y)
+        # error smaller than epsilon
+        with torch.no_grad():
+            acc = torch.sum(torch.abs(Y-out) < epsilon).item() / Y.shape[0]
+        return {"Acc":acc}
+    
+    def compute_loss(self,out,X,Y,popen):
+        out,Y = self.squeeze_out_Y(out,Y)
+        loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.tower.parameters()))) 
+        return {"Total":loss}
+    
+    
+    
+class MLP_gru_reg(nn.Module):
+    def __init__(self, channel_ls, tower_width):
+        super().__init__()
+
+        self.loss_fn = nn.MSELoss(reduction='mean')    
+        self.tower = nn.GRU(input_size=channel_ls[-1],
+                            hidden_size=tower_width,
+                            num_layers=2,
+                            batch_first=True)
+        self.clf_layer = nn.Linear(tower_width, 1)
+    
+    def forward(self,Z):
+        """
+        Z is the 'RL' features , coming from cross_stitch
+        """
+        Z_flat = torch.torch.transpose(Z,1,2)
+        h_prim,(c1,c2) = self.tower(Z_flat)   #  [B,L,h] , [B,h] cell of layer 1, [B,h] of layer 2
+        out = self.clf_layer(c2)
+        return out
