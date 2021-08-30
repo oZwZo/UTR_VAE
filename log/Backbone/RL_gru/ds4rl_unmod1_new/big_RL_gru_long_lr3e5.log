@@ -745,7 +745,6 @@
 2021-08-03 19:32:25,702 - 	 Total:0.0863966	 Acc:0.3637238
 2021-08-03 19:32:25,706 -    ini file updated    
 2021-08-03 19:32:25,744 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/RL_gru_MTL/ds4rl_unmod1_new/big_RL_gru_long_lr3e5-model_best.pth
-
 2021-08-03 19:32:25,745 -    ini file updated    
 2021-08-03 19:32:25,745 - 
 ===============================|    epoch 59   |===============================
