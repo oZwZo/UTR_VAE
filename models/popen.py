@@ -151,9 +151,13 @@ class Auto_popen(object):
             # extra_input_col = len(other_input_columns)
             self.model_args = [self.conv_args]+[self.tower_width,self.dropout_rate,len(self.other_input_columns)]
         
-        if self.path_category == 'CrossStitch':
+        if self.model_type == 'CrossStitch':
             
             self.model_args = [self.__getattribute__(arg) for arg in ['tasks','alpha','beta']]
+        
+        if self.model_type in ['Cross_stitch_classifier', 'MLP_down','MLP_linear_reg']:
+            
+            self.model_args = [self.channel_ls, self.tower_width]
         
             
     def check_experiment(self,logger):
