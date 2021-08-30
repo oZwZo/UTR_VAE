@@ -313,15 +313,15 @@ def KFold_df_split(df,K,**kfoldargs):
     
     # K-fold partition : n_splits=5
     fold_index = list(KFold(10,shuffle=True,random_state=42).split(df))
-    train_index, val_test_index = fold_index[K]  
+    train_val_index, test_index = fold_index[K]  
     # the first 4/5 part of it is train set
      
     # index the df
-    train_df = df.iloc[train_index]
-    val_test_df = df.iloc[val_test_index]
+    train_val_df = df.iloc[train_val_index]
+    test_df = df.iloc[test_index]
     
     # the remaining 1/5 data will further break into val and test
-    val_df,test_df = train_test_split(val_test_df,test_size=0.5,random_state=42)
+    train_df, val_df = train_test_split(train_val_df,test_size=0.15,random_state=42)
     
     return [train_df,val_df,test_df]   
     
