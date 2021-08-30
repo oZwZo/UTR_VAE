@@ -21,7 +21,7 @@ from models.ScheduleOptimizer import ScheduledOptim
 from models.log_and_save import Log_parser,plot_a_exp_set
 from models import reader
 from models import DL_models
-from models import CNN_models
+from models import CNN_models,MTL_models
 from models.loss import Dynamic_Task_Priority
 
 from utils import Seq_one_hot,read_UTR_csv,read_label,resume,setup_logs,load_model,fix_parameter
@@ -98,10 +98,14 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None,return_uAUG=True):
     # X,Y  = next(train_iter)
     # -- pretrain -- 
     if POPEN.pretrain_pth is not None:
-        # load pretran model
+    # load pretran model
         pretrain_popen = Auto_popen(POPEN.pretrain_pth)
-        pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
-        load_model(pretrain_popen,pretrain_model,logger)  
+        try:
+            pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
+
+            utils.load_model(pretrain_popen,pretrain_model,logger)
+        except:
+            pretrain_model = torch.load(pretrain_popen.vae_pth_path)['state_dict']
 
         # DL_models.LSTM_AE
         if POPEN.Model_Class == pretrain_popen.Model_Class:
@@ -166,17 +170,16 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None,return_uAUG=True):
     
     return {"popen":POPEN,"model":model,"loader_ls":loader_ls}
 
-def save_result_to_csv(y_true_ls,y_true_f,y_pred_f,save_path,motif_detection):
+def save_result_to_csv(y_true_ls,y_true_f,y_pred_f,save_path,motifs_name):
     """
     save the result from forward to csv
     """
     motif_dict = {'with_uAUG':np.stack([ary[:,1] for ary in y_true_ls]).flatten()}
     
     # if motif detection is an auxiliary task
-    if motif_detection:
-        motifs_name = ['with_GCC', 'with_GGC', 'with_CGG', 'with_GGG', 'with_CCC', 'with_TTT', 'with_AAA']
-        for i in range(7):
-            motif_dict[motifs_name[i]] = np.stack([ary[:,2+i] for ary in y_true_ls]).flatten()
+    if motifs_name is not None:
+        for i in range(len(motifs_name)):
+            motif_dict[motifs_name[i]] = np.stack([ary[:,1+i] for ary in y_true_ls]).flatten()
             
     # save to csv
     data_dict = {'Y_true':y_true_f,'Y_pred':y_pred_f,**motif_dict}
