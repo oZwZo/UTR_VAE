@@ -1,28 +1,31 @@
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import utils
-import time
-import torch
-from torch import optim
-
 import argparse
-import numpy as np 
 
-
-from models import MTL_models,reader,train_val
-from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
-from models.popen import Auto_popen
-from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
 parser.add_argument('--cuda',type=int,default=None,required=False)
 parser.add_argument("--kfold_index",type=int,default=None,required=False)
 args = parser.parse_args()
+
+cuda_id = args.cuda if args.cuda is not None else utils.get_config_cuda(args.config_file)
+os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_id)
+
+
+import time
+import torch
+import utils
+from torch import optim
+import numpy as np 
+from models import MTL_models,reader,train_val
+from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
+from models.popen import Auto_popen
+from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
+
+
 POPEN = Auto_popen(args.config_file)
-if args.cuda is not None:
-    POPEN.cuda_id = args.cuda
-device = torch.device('cuda:%s'%POPEN.cuda_id) if torch.cuda.is_available() else 'cpu'
-# os.environ["CUDA_VISIBLE_DEVICES"] = str(POPEN.cuda_id)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+POPEN.cuda_id = device
 
 
 POPEN.kfold_index = args.kfold_index
@@ -33,7 +36,6 @@ if POPEN.kfold_cv:
     POPEN.vae_pth_path = POPEN.vae_pth_path.replace(".pth","_cv%d.pth"%args.kfold_index)
     
 
-# cuda2 = torch.device('cuda:2')
 # Run name
 if POPEN.run_name is None:
     run_name = POPEN.model_type + time.strftime("__%Y_%m_%d_%H:%M")
@@ -165,7 +167,8 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             # update the popen
             POPEN.update_ini_file({'run_name':run_name,
                                 "ran_epoch":epoch,
-                                "best_acc":best_acc},
+                                "best_acc":best_acc,
+                                "cuda_id":cuda_id},
                                 logger)
             
         elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
