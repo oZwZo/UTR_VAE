@@ -2,14 +2,14 @@ import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
 import time
-import logging
-import inspect
+import torch
+from torch import optim
+
 import argparse
 import numpy as np 
-import torch
-from torch import nn, optim
-from torch import functional as F
-from models import MTL_models,CNN_models,DL_models,reader,train_val, Backbone, Baseline_models
+
+
+from models import MTL_models,reader,train_val
 from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
 from models.popen import Auto_popen
 from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
@@ -21,6 +21,10 @@ args = parser.parse_args()
 POPEN = Auto_popen(args.config_file)
 if args.cuda is not None:
     POPEN.cuda_id = args.cuda
+device = torch.device('cuda:%s'%POPEN.cuda_id) if torch.cuda.is_available() else 'cpu'
+# os.environ["CUDA_VISIBLE_DEVICES"] = str(POPEN.cuda_id)
+
+
 POPEN.kfold_index = args.kfold_index
 if POPEN.kfold_cv:
     if args.kfold_index is None:
@@ -28,7 +32,7 @@ if POPEN.kfold_cv:
     POPEN.vae_log_path = POPEN.vae_log_path.replace(".log","_cv%d.log"%args.kfold_index)
     POPEN.vae_pth_path = POPEN.vae_pth_path.replace(".pth","_cv%d.pth"%args.kfold_index)
     
-# device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 # cuda2 = torch.device('cuda:2')
 # Run name
 if POPEN.run_name is None:
@@ -38,6 +42,7 @@ else:
     
 # log dir
 logger = utils.setup_logs(POPEN.vae_log_path)
+logger.info(f"  	 	 ==============<<< device used: {device}:{POPEN.cuda_id}  >>>============== 	 	 ")
 #  built model dir or check resume 
 POPEN.check_experiment(logger)
 #                               |=====================================|
@@ -64,17 +69,17 @@ if POPEN.pretrain_pth is not None:
         # if not POPEN.Resumable:
         #     # we only load pre-train for the first time 
         #     # later we can resume 
-        model = pretrain_model.cuda(POPEN.cuda_id)
+        model = pretrain_model.to(device)
         del pretrain_model
     elif POPEN.modual_to_fix in dir(pretrain_model):    
         model = POPEN.Model_Class(*POPEN.model_args)
         model.soft_share.load_state_dict(pretrain_model.soft_share.state_dict())
-        model =  model.cuda(POPEN.cuda_id)
+        model =  model.to(device)
     else:
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
 
         # merge 
-        model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
+        model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).to(device)
     
 # -- end2end -- 
 elif POPEN.model_type == "CrossStitch_Model":
@@ -83,12 +88,12 @@ elif POPEN.model_type == "CrossStitch_Model":
         task_popen = Auto_popen(POPEN.backbone_config[t])
         task_model = task_popen.Model_Class(*task_popen.model_args)
         utils.load_model(task_popen,task_model,logger)
-        backbone[t] = task_model.cuda(POPEN.cuda_id)
+        backbone[t] = task_model.to(device)
     POPEN.model_args = [backbone] + POPEN.model_args
-    model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+    model = POPEN.Model_Class(*POPEN.model_args).to(device)
 else:
     Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
-    model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+    model = Model_Class(*POPEN.model_args).to(device)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -120,7 +125,7 @@ if POPEN.Resumable:
 # =========== fix parameters ===========
 if isinstance(POPEN.modual_to_fix, list):
     for modual in POPEN.modual_to_fix:
-        model = utils.fix_parameter(model,POPEN.modual_to_fix)
+        model = utils.fix_parameter(model,modual)
     logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 #                               |=====================================|
 #                               |==========  training  part ==========|
@@ -152,9 +157,9 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
             utils.snapshot(POPEN.vae_pth_path, {
                         'epoch': epoch + 1,
                         'validation_acc': val_avg_acc,
-                        'state_dict': model.to('cpu',),
+                        'state_dict': model.to('cpu'),
                         'validation_loss': val_total_loss,
-                        'optimizer': optimizer.state_dict(),
+                        # 'optimizer': optimizer.state_dict(),
                     })
             
             # update the popen

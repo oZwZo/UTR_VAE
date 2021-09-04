@@ -194,7 +194,7 @@ def fix_parameter(model,modual_to_fix):
     fix_part = eval("model."+modual_to_fix)   # e.g. model.shoft_share
      
     for param in fix_part.parameters():
-                param.requires_grad = False
+            param.requires_grad = False
     
     return model
 

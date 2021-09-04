@@ -53,13 +53,11 @@ def reconstruct_seq(out_seq,X):
             
     return torch.mean(X.mul(seq).sum(dim=2).sum(dim=1)) 
 
-def read_main_(config_file,logger,cuda=None,kfold_index=None,return_uAUG=True):
+def read_main_(config_file,logger,kfold_index=None,return_uAUG=True):
     """
     return a dict
     """
     POPEN = Auto_popen( config_file)
-    if  cuda is not None:
-        POPEN.cuda_id =  cuda
 
     POPEN.kfold_index =  kfold_index
     if POPEN.kfold_cv:
@@ -112,13 +110,13 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None,return_uAUG=True):
             # if not POPEN.Resumable:
             #     # we only load pre-train for the first time 
             #     # later we can resume 
-            model = pretrain_model.cuda(POPEN.cuda_id)
+            model = pretrain_model
             del pretrain_model
         else:
             downstream_model = POPEN.Model_Class(*POPEN.model_args)
 
             # merge 
-            model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
+            model = MTL_models.Enc_n_Down(pretrain_model,downstream_model)
 
     # -- end2end -- 
     elif POPEN.path_category == "CrossStitch":
@@ -129,10 +127,10 @@ def read_main_(config_file,logger,cuda=None,kfold_index=None,return_uAUG=True):
             load_model(task_popen,task_model,logger)
             backbone[t] = task_model
         POPEN.model_args = [backbone] + POPEN.model_args
-        model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+        model = POPEN.Model_Class(*POPEN.model_args)
     else:
         Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE
-        model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+        model = Model_Class(*POPEN.model_args)
     # =========== set optimizer ===========
     if POPEN.optimizer == 'Schedule':
         optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -174,7 +172,7 @@ def save_result_to_csv(y_true_ls,y_true_f,y_pred_f,save_path,motifs_name):
     """
     save the result from forward to csv
     """
-    motif_dict = {'with_uAUG':np.stack([ary[:,1] for ary in y_true_ls]).flatten()}
+    motif_dict = {'with_uAUG':np.concatenate([ary[:,1] for ary in y_true_ls]).flatten()}
     
     # if motif detection is an auxiliary task
     if motifs_name is not None:
