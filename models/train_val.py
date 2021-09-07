@@ -17,7 +17,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
     loader_len = len(dataloader)       # number of iteration
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
-    model = model.cuda(popen.cuda_id)
+    model = model.to(device)
     # model.teacher_forcing = popen.teacher_forcing     # turn on teacher_forcing
     model.train()
     verbose_list=[]
@@ -40,7 +40,7 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None):
         optimizer.step()
         
         # ====== update lr =======
-        if (lr is None) & (type(optimizer) == ScheduledOptim):
+        if type(optimizer) == ScheduledOptim:
             lr = optimizer.update_learning_rate()      # see model.optim.py
             loss_dict["lr"]=lr
         elif popen.optimizer == 'Adam':
@@ -84,13 +84,14 @@ def validate(dataloader,model,popen,epoch):
     logger = logging.getLogger("VAE")
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
-    model = model.cuda(popen.cuda_id)
+    model = model.to(device)
     model.teacher_forcing = False    # turn off teacher_forcing
     
     # ====== set up empty =====
     # model.loss_dict_keys = ['RL_loss', 'Recons_loss', 'Motif_loss', 'Total', 'RL_Acc', 'Recons_Acc', 'Motif_Acc']
     verbose_list=[]
-    
+    Y_ls = []
+    pred_ls = []
     # ======== evaluate =======
     model.eval()
     with torch.no_grad():
@@ -102,7 +103,7 @@ def validate(dataloader,model,popen,epoch):
             loss_dict = model.compute_loss(out,X,Y,popen)
             loss = loss_dict['Total']
             acc_dict = model.compute_acc(out,X,Y,popen)
-            loss_dict.update(acc_dict)
+            loss_dict.update(acc_dict) 
             
             loss_dict = utils.clean_value_dict(loss_dict)  # convert possible torch to single item
             verbose_list.append(loss_dict)
@@ -133,27 +134,27 @@ def validate(dataloader,model,popen,epoch):
     Avg_acc = np.mean(verbose_df.loc[:,acc_col].mean(axis=0))  
     
     # return these to save current performance
-    return (verbose_df['Total'].mean(),Avg_acc) if 'RL_loss' not in verbose_df.keys() else (verbose_df['RL_loss'].mean(),verbose_df['Recons_Acc'].mean())
+    return (verbose_df['Total'].mean(),Avg_acc) if 'RL_loss' not in verbose_df.keys() else (verbose_df['RL_loss'].mean(),verbose_df['RL_Acc'].mean())
             
             
 def put_data_to_cuda(data,popen,require_grad=True):
 
     X,y = data       
-
+    device = popen.cuda_id 
     # for X is a list [seq, uAUG ....]
     if popen.other_input_columns is not None:
-        X = [x_i.float().cuda(popen.cuda_id) for x_i in X]
+        X = [x_i.float().to(device) for x_i in X]
         if require_grad:
             for x_i in X:
                 x_i.required_grad = True
 
     # X is not a list : seq
     else:
-        X = X.float().cuda(popen.cuda_id)
+        X = X.float().to(device)
         if require_grad:
             X.required_grad = True  # check !!!
     
-    Y = y.float().cuda(popen.cuda_id)
+    Y = y.float().to(device)
     
     # Y = Y if X.shape == Y.shape else None  # for mask data
     return X,Y

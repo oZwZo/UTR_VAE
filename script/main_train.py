@@ -44,7 +44,7 @@ else:
     
 # log dir
 logger = utils.setup_logs(POPEN.vae_log_path)
-logger.info(f"  	 	 ==============<<< device used: {device}:{POPEN.cuda_id}  >>>============== 	 	 ")
+logger.info(f"  	 	 ==============<<< device used: {device}:{cuda_id}  >>>============== 	 	 ")
 #  built model dir or check resume 
 POPEN.check_experiment(logger)
 #                               |=====================================|
@@ -64,7 +64,7 @@ if POPEN.pretrain_pth is not None:
 
         utils.load_model(pretrain_popen,pretrain_model,logger)
     except:
-        pretrain_model = torch.load(pretrain_popen.vae_pth_path)['state_dict']
+        pretrain_model = torch.load(pretrain_popen.vae_pth_path, map_location=torch.device('cpu'))['state_dict']
 
     
     if POPEN.Model_Class == pretrain_popen.Model_Class:
