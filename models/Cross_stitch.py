@@ -174,7 +174,7 @@ class Cross_stitch_classifier(nn.Module):
         return out
         
     def compute_loss(self, out, X, Y, popen):
-        self.loss_fn = nn.BCELoss(Y*(popen.class_weight -1) + 1)
+        self.loss_fn = nn.BCELoss(weight=Y*(popen.class_weight -1) + 1)
         return {'Total' : self.loss_fn(out,Y)}
     
     def compute_acc(self, out, X, Y, popen):
