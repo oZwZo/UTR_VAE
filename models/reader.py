@@ -71,14 +71,17 @@ def pad_zeros(X,pad_to):
     """
     if pad_to == 0:
         pad_to = 8*(X.shape[0]//8 + 1) + 1
-    gap = pad_to - X.shape[0]
+        
+    seq_len = X.shape[0] if isinstance(X, np.ndarray) else X[0].shape[0]
+    gap = pad_to - seq_len 
     
     #  here we change to padding ahead  , previously  nn.ZeroPad2d([0,0,0,gap])
     pad_fn = nn.ZeroPad2d([0,0,gap,0])  #  (padding_left , padding_right , padding_top , padding_bottom )
     # gap_array = np.zeros()
-    if not isinstance(X, torch.Tensor):
-        X = torch.tensor(X)
-    X_padded = pad_fn(X)
+    if isinstance(X, list):          # additional input
+        X_padded = [pad_fn(torch.tensor(X[0])), X[1]]
+    elif isinstance(X, np.ndarray):
+        X_padded = pad_fn(torch.tensor(X))
     return X_padded
 
 def pack_seq(ds_zls:list,pad_to:int):
@@ -87,7 +90,10 @@ def pack_seq(ds_zls:list,pad_to:int):
         max_len = np.max([X.shape[0] for X in X_ts])
         pad_to = (max_len//8+1)*8 +1
     
-    X_packed = torch.stack([pad_zeros(X=x,pad_to=pad_to) for x in X_ts])
+    if isinstance(X_ts[0],np.ndarray):
+        X_packed = torch.stack([pad_zeros(X=x,pad_to=pad_to) for x in X_ts])
+    else:
+        X_packed = [torch.stack([pad_zeros(X=x[0],pad_to=pad_to) for x in X_ts]), torch.tensor([x[1] for x in X_ts])]
     Y_packed = torch.tensor([Y for X,Y in ds_zls])
     
     return X_packed , Y_packed
@@ -193,15 +199,17 @@ class MTL_dataset(Dataset):
     def __getitem__(self,index):
         seq = self.seqs[index]        # sequence: str of len 25~100
         
-        X = one_hot(seq)         # seq_oh : np array, one hot encoding sequence 
+        X = one_hot(seq).astype(float)       # seq_oh : np array, one hot encoding sequence 
         # X = pad_zeros(X)         # X  : torch.tensor , zero padded to 100
         
         if self.columns == None:
             # which means no auxilary label is needed
-            item = X,X
+            item = X ,X
         elif (type(self.columns) == list) & (len(self.columns)!=0):
             # return what's in columns
             aux_labels = self.df.loc[:,self.columns].values[index]
+            # if len(self.columns) == 1:
+            #     aux_labels = aux_labels.reshape(-1,1)
             item = X ,aux_labels
 
             if self.other_input_columns is not None:
@@ -321,7 +329,7 @@ def KFold_df_split(df,K,**kfoldargs):
     test_df = df.iloc[test_index]
     
     # the remaining 1/5 data will further break into val and test
-    train_df, val_df = train_test_split(train_val_df,test_size=0.15,random_state=42)
+    train_df, val_df = train_test_split(train_val_df,test_size=0.05,random_state=42)
     
     return [train_df,val_df,test_df]   
     
