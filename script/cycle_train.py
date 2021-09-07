@@ -1,19 +1,6 @@
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import utils
-import time
-import logging
-import inspect
 import argparse
-import numpy as np 
-
-import torch
-from torch import nn, optim
-from torch import functional as F
-from models import MTL_models,CNN_models,DL_models,reader,train_val, Backbone, Baseline_models
-from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
-from models.popen import Auto_popen
-from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
 
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
@@ -21,9 +8,26 @@ parser.add_argument('--cuda',type=int,default=None,required=False)
 parser.add_argument("--kfold_index",type=int,default=None,required=False)
 args = parser.parse_args()
 
+cuda_id = args.cuda if args.cuda is not None else utils.get_config_cuda(args.config_file)
+os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_id)
+
+
+import time
+import torch
+import copy
+import utils
+from torch import optim
+import numpy as np 
+from models import MTL_models,reader,train_val
+from models.ScheduleOptimizer import ScheduledOptim,scheduleoptim_dict_str
+from models.popen import Auto_popen
+from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
+
+
 POPEN = Auto_popen(args.config_file)
-if args.cuda is not None:
-    POPEN.cuda_id = args.cuda
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+POPEN.cuda_id = device
+
 
 POPEN.kfold_index = args.kfold_index
 if POPEN.kfold_cv:
@@ -32,8 +36,6 @@ if POPEN.kfold_cv:
     POPEN.vae_log_path = POPEN.vae_log_path.replace(".log","_cv%d.log"%args.kfold_index)
     POPEN.vae_pth_path = POPEN.vae_pth_path.replace(".pth","_cv%d.pth"%args.kfold_index)
     
-# device = 'cuda' if torch.cuda.is_available() else 'cpu'
-# cuda2 = torch.device('cuda:2')
 
 # Run name
 if POPEN.run_name is None:
@@ -43,77 +45,62 @@ else:
     
 # log dir
 logger = utils.setup_logs(POPEN.vae_log_path)
-
+logger.info(f"  	 	 ==============<<< device used: {device}:{cuda_id}  >>>============== 	 	 ")
 #  built model dir or check resume 
 POPEN.check_experiment(logger)
-
-
 #                               |=====================================|
 #                               |===========   setup  part  ==========|
 #                               |=====================================|
-
 # read data
-train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
-POPEN.split_like_paper = POPEN.cycle_set
-second_train_loader, second_val_loader, second_test_loader = reader.get_dataloader(POPEN)
-
-
+loader_set = {}
+base_path = POPEN.split_like_paper.copy()
+for subset in POPEN.cycle_set:
+    POPEN.split_like_paper = [path.replace('cycle', subset) for path in base_path]
+    loader_set[subset] = reader.get_dataloader(POPEN)
 # ===========  setup model  ===========
 # train_iter = iter(train_loader)
 # X,Y  = next(train_iter)
-
 # -- pretrain -- 
 if POPEN.pretrain_pth is not None:
     # load pretran model
     pretrain_popen = Auto_popen(POPEN.pretrain_pth)
-    pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
+    try:
+        pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
+
+        utils.load_model(pretrain_popen,pretrain_model,logger)
+    except:
+        pretrain_model = torch.load(pretrain_popen.vae_pth_path, map_location=torch.device('cpu'))['state_dict']
+
     
-    utils.load_model(pretrain_popen,pretrain_model,logger)  
-    
-    # DL_models.LSTM_AE
     if POPEN.Model_Class == pretrain_popen.Model_Class:
         # if not POPEN.Resumable:
         #     # we only load pre-train for the first time 
         #     # later we can resume 
-        model = pretrain_model.cuda(POPEN.cuda_id)
+        model = pretrain_model.to(device)
         del pretrain_model
     elif POPEN.modual_to_fix in dir(pretrain_model):    
         model = POPEN.Model_Class(*POPEN.model_args)
         model.soft_share.load_state_dict(pretrain_model.soft_share.state_dict())
-        model =  model.cuda(POPEN.cuda_id)
+        model =  model.to(device)
     else:
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
-        
+
         # merge 
-        model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).cuda(POPEN.cuda_id)
+        model = MTL_models.Enc_n_Down(pretrain_model,downstream_model).to(device)
     
 # -- end2end -- 
-elif POPEN.path_category == "CrossStitch":
+elif POPEN.model_type == "CrossStitch_Model":
     backbone = {}
     for t in POPEN.tasks:
         task_popen = Auto_popen(POPEN.backbone_config[t])
         task_model = task_popen.Model_Class(*task_popen.model_args)
         utils.load_model(task_popen,task_model,logger)
-        backbone[t] = task_model
+        backbone[t] = task_model.to(device)
     POPEN.model_args = [backbone] + POPEN.model_args
-    model = POPEN.Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
+    model = POPEN.Model_Class(*POPEN.model_args).to(device)
 else:
-    Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
-    model = Model_Class(*POPEN.model_args).cuda(POPEN.cuda_id)
-
-# =========== resume ===========
-best_loss = np.inf
-best_acc = 0
-best_epoch = 0
-previous_epoch = 0
-if POPEN.Resumable:
-    model, previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,None,logger)
-
-# =========== fix parameters ===========
-if POPEN.modual_to_fix in dir(model):
-    model = utils.fix_parameter(model,POPEN.modual_to_fix)
-    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
-    
+    Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
+    model = Model_Class(*POPEN.model_args).to(device)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -130,33 +117,45 @@ else:
                             betas=(0.9, 0.98), 
                             eps=1e-09, 
                             weight_decay=POPEN.l2)
-
 if POPEN.loss_schema == 'DTP':
     POPEN.loss_schedualer = Dynamic_Task_Priority(POPEN.tasks,POPEN.gamma,POPEN.chimerla_weight)
 elif POPEN.loss_schema == 'DWA':
     POPEN.loss_schedualer = Dynamic_Weight_Averaging(POPEN.tasks,POPEN.tau,POPEN.chimerla_weight)
-
+# =========== resume ===========
+best_loss = np.inf
+best_acc = 0
+best_epoch = 0
+previous_epoch = 0
+if POPEN.Resumable:
+    model, previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
+    
+# =========== fix parameters ===========
+if isinstance(POPEN.modual_to_fix, list):
+    for modual in POPEN.modual_to_fix:
+        model = utils.fix_parameter(model,modual)
+    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 #                               |=====================================|
 #                               |==========  training  part ==========|
 #                               |=====================================|
 for epoch in range(POPEN.max_epoch-previous_epoch+1):
     epoch += previous_epoch
     
-    #           ----------| train |----------
-    logger.info("\n===============================|    epoch {}   |===============================\n".format(epoch))
-    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
-    if epoch % POPEN.cycle_freq == 0:
-        train_val.train(dataloader=second_train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
-           
-    #         -----------| validate |-----------
-    
-    if epoch % POPEN.config_dict['setp_to_check'] == 0:
-        val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN,epoch=epoch)
+    #          
+    logger.info("===============================|    epoch {}   |===============================\n".format(epoch))
+    for subset in POPEN.cycle_set:
+        logger.info("    ===========================|  set: {} |===========================    \n".format(subset))
+        #    ----------|switch tower and train |----------
+        model.task = subset
+        train_val.train(dataloader=loader_set[subset][0],model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+
+    #              -----------| validate |-----------    
+        for subset in POPEN.cycle_set:
+            val_total_loss,val_avg_acc = train_val.validate(loader_set[subset][1],model,popen=POPEN,epoch=epoch)
         
         DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}
         POPEN.update_ini_file(DICT,logger)
         
-        secon_val_total_loss,second_val_avg_acc = train_val.validate(second_val_loader,model,popen=POPEN,epoch=epoch)
+        
     #    -----------| compare the result |-----------
         if (best_loss > val_total_loss) | (best_acc < val_avg_acc):
             # update best performance
