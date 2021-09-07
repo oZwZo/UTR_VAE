@@ -270,6 +270,40 @@ class RL_gru(RL_regressor):
         out = self.fc_out(c2)
         return out
 
+class RL_3_data(RL_gru):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        self.all_tasks = ['unmod1', 'human', 'vleng']
+        tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
+                                                        hidden_size=w,
+                                                        num_layers=2,
+                                                        batch_first=True),
+                                                nn.Linear(w,1)])
+        
+        self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
+    
+    def forward(self, X):
+        
+        task = self.task # pass in cycle_train.py
+        # Con block
+        Z = self.soft_share(X)
+        # tower
+        Z_t = torch.transpose(Z, 1, 2)
+        h_prim,(c1,c2) = self.tower[task][0](Z_t)
+        out = self.tower[task][1](c2)
+        
+        return out
+    
+    def compute_acc(self,out,X,Y,popen=None):
+        task = self.task
+        Acc = super().compute_acc(out,X,Y,popen)['Acc']
+        return {task+"_Acc" : Acc}
+    
+    
+    
 class RL_mish_gru(RL_gru):
     def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ,activation='Mish'):
         """
