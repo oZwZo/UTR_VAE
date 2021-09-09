@@ -14,6 +14,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_id)
 
 import time
 import torch
+import copy
 import utils
 from torch import optim
 import numpy as np 
@@ -44,38 +45,52 @@ else:
     
 # log dir
 logger = utils.setup_logs(POPEN.vae_log_path)
-logger.info(f"  	 	 ==============<<< device used: {device}:{cuda_id}  >>>============== 	 	 ")
+logger.info(f"    ===========================| device {device}{cuda_id} |===========================    ")
 #  built model dir or check resume 
 POPEN.check_experiment(logger)
 #                               |=====================================|
 #                               |===========   setup  part  ==========|
 #                               |=====================================|
 # read data
-train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
+loader_set = {}
+base_path = copy.copy(POPEN.split_like_paper)
+base_csv = copy.copy(POPEN.csv_path)
+for subset in POPEN.cycle_set:
+    if base_path is not None:
+        POPEN.split_like_paper = [path.replace('cycle', subset) for path in base_path]
+    else:
+        POPEN.csv_path = base_csv.replace('cycle', subset)
+    loader_set[subset] = reader.get_dataloader(POPEN)
+    
 # ===========  setup model  ===========
 # train_iter = iter(train_loader)
 # X,Y  = next(train_iter)
 # -- pretrain -- 
 if POPEN.pretrain_pth is not None:
     # load pretran model
+    logger.info("===============================|   pretrain   |===============================")
+    logger.info(f" {POPEN.pretrain_pth}")
     pretrain_popen = Auto_popen(POPEN.pretrain_pth)
-    
-    pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
-    pretrain_model = utils.load_model(pretrain_popen,pretrain_model,logger)
-    
+    pretrain_model = torch.load(pretrain_popen.vae_pth_path, map_location=torch.device('cpu'))['state_dict']
 
     
-    if POPEN.Model_Class == pretrain_popen.Model_Class:
+    if POPEN.model_type == pretrain_popen.model_type:
         # if not POPEN.Resumable:
         #     # we only load pre-train for the first time 
         #     # later we can resume 
         model = pretrain_model.to(device)
         del pretrain_model
-    elif POPEN.modual_to_fix in dir(pretrain_model):    
+    elif POPEN.modual_to_fix is not None:
+        
         model = POPEN.Model_Class(*POPEN.model_args)
-        model.soft_share.load_state_dict(pretrain_model.soft_share.state_dict())
+        for modual in POPEN.modual_to_fix:
+            if modual in dir(pretrain_model):    
+                eval(f'model.{modual}').load_state_dict(
+                    eval(f'model.{modual}').state_dict()
+                    )
         model =  model.to(device)
     else:
+        # two different class -> Enc_n_Down
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
 
         # merge 
@@ -96,13 +111,13 @@ else:
     model = Model_Class(*POPEN.model_args).to(device)
     
 if POPEN.Resumable:
-    utils.load_model(POPEN, model, logger)
+    model = utils.load_model(POPEN, model, logger)
     
 # =========== fix parameters ===========
 if isinstance(POPEN.modual_to_fix, list):
     for modual in POPEN.modual_to_fix:
         model = utils.fix_parameter(model,modual)
-    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
+    logger.info(' \t \t ==============| %s fixed |============== \t \t \n'%POPEN.modual_to_fix)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -138,46 +153,50 @@ if POPEN.Resumable:
 for epoch in range(POPEN.max_epoch-previous_epoch+1):
     epoch += previous_epoch
     
-    #           ----------| train |----------
+    #          
     logger.info("===============================|    epoch {}   |===============================".format(epoch))
-    train_val.train(dataloader=train_loader,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
-           
-    #         -----------| validate |-----------
+
+
+    train_val.iter_train(loader_set,model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+
+#              -----------| validate |-----------   
+    logger.info("===============================| start validation |===============================")
+    val_total_loss,val_avg_acc = train_val.cycle_validate(loader_set,model,optimizer,popen=POPEN,epoch=epoch)
+    # matching task performance influence what to save
     
-    if epoch % POPEN.config_dict['setp_to_check'] == 0:
-        logger.info("===============================| start validation |===============================")
-        val_total_loss,val_avg_acc = train_val.validate(val_loader,model,popen=POPEN,epoch=epoch)
+    
+    DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}
+    POPEN.update_ini_file(DICT,logger)
+    
+    
+#    -----------| compare the result |-----------
+    if (best_loss > val_total_loss) :
+        # update best performance
+        best_loss = min(best_loss,val_total_loss)
+        best_acc = max(best_acc,val_avg_acc)
+        best_epoch = epoch
         
-        DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}
-        POPEN.update_ini_file(DICT,logger)
+        # save
+        utils.snapshot(POPEN.vae_pth_path, {
+                    'epoch': epoch + 1,
+                    'validation_acc': val_avg_acc,
+                    # 'state_dict': model.state_dict(),
+                    'state_dict': model,
+                    'validation_loss': val_total_loss,
+                    'optimizer': optimizer.state_dict(),
+                })
         
-    #    -----------| compare the result |-----------
-        if (best_loss > val_total_loss) | (best_acc < val_avg_acc):
-            # update best performance
-            best_loss = min(best_loss,val_total_loss)
-            best_acc = max(best_acc,val_avg_acc)
-            best_epoch = epoch
-            
-            # save
-            utils.snapshot(POPEN.vae_pth_path, {
-                        'epoch': epoch + 1,
-                        'validation_acc': val_avg_acc,
-                        'state_dict': model.to('cpu'),
-                        'validation_loss': val_total_loss,
-                        # 'optimizer': optimizer.state_dict(),
-                    })
-            
-            # update the popen
-            POPEN.update_ini_file({'run_name':run_name,
-                                "ran_epoch":epoch,
-                                "best_acc":best_acc,
-                                "cuda_id":cuda_id},
-                                logger)
-            
-        elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
-            optimizer.increase_delta()
-            
-        elif (epoch - best_epoch >= 60)&(epoch > POPEN.max_epoch/2):
-            # at the late phase of training
-            logger.info("<<<<<<<<<<< Early Stopping >>>>>>>>>>")
-            break
+        # update the popen
+        POPEN.update_ini_file({'run_name':run_name,
+                            "ran_epoch":epoch,
+                            
+                                "best_acc":best_acc},
+                            logger)
+        
+    elif (epoch - best_epoch >= 30)&((type(optimizer) == ScheduledOptim)):
+        optimizer.increase_delta()
+        
+    elif (epoch - best_epoch >= 60)&(epoch > POPEN.max_epoch/2):
+        # at the late phase of training
+        logger.info("<<<<<<<<<<< Early Stopping >>>>>>>>>>")
+        break
