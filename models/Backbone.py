@@ -302,6 +302,22 @@ class RL_3_data(RL_gru):
         Acc = super().compute_acc(out,X,Y,popen)['Acc']
         return {task+"_Acc" : Acc}
     
+class RL_celline(RL_3_data):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        self.all_tasks = ['Andrev2015', 'muscle', 'pc3']
+        tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
+                                                        hidden_size=w,
+                                                        num_layers=2,
+                                                        batch_first=True),
+                                                nn.Linear(w,1)])
+        
+        self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
+    
+   
     
     
 class RL_mish_gru(RL_gru):
