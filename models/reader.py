@@ -293,6 +293,12 @@ def split_DF(data_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42)
         full_df = pd.read_csv(data_path,low_memory=False)
         # K-fold CV : 8:1:1 for each partition
         df_ls = KFold_df_split(full_df,kfold_index)
+        
+    if kfold_cv == 'train_val':
+        train_val, test = [_cf_data(data_path).data for data_path in split_like_paper]
+        # K-fold CV : 8:1:1 for each partition
+        train, val = KFold_1_split(train_val,kfold_index)
+        df_ls = [train, val , test]
     
     elif type(split_like_paper) == list:
         df_ls = [_cf_data(data_path).data for data_path in split_like_paper]
@@ -309,7 +315,7 @@ def split_DF(data_path,split_like_paper,ratio,kfold_cv,kfold_index=None,seed=42)
         
             
     return df_ls
-
+    
 def KFold_df_split(df,K,**kfoldargs):
     """
     split the dataset DF in a ratio of 8:1:1 , train:val:test in the framework of  K-fold CV 
@@ -333,7 +339,20 @@ def KFold_df_split(df,K,**kfoldargs):
     
     return [train_df,val_df,test_df]   
     
+def KFold_1_split(df,K,**kfoldargs):
+    """
+    for dataset with standard test set, where only train_val can be splited
+    """
+    fold_index = list(KFold(10,shuffle=True,random_state=42).split(df))
+    train_index, val_index = fold_index[K]  
+    # the first 4/5 part of it is train set
+     
+    # index the df
+    train = df.iloc[train_index]
+    val = df.iloc[val_index]
 
+    return train , val
+    
 def get_dataloader(POPEN):
     """
     wrapper
