@@ -45,7 +45,7 @@ else:
     
 # log dir
 logger = utils.setup_logs(POPEN.vae_log_path)
-logger.info(f"  	 	 ==============<<< device used: {device}:{cuda_id}  >>>============== 	 	 ")
+logger.info(f"    ===========================| device {device}{cuda_id} |===========================    ")
 #  built model dir or check resume 
 POPEN.check_experiment(logger)
 #                               |=====================================|
@@ -101,6 +101,15 @@ elif POPEN.model_type == "CrossStitch_Model":
 else:
     Model_Class = POPEN.Model_Class  # DL_models.LSTM_AE 
     model = Model_Class(*POPEN.model_args).to(device)
+    
+if POPEN.Resumable:
+    model = utils.load_model(POPEN, model, logger)
+    
+# =========== fix parameters ===========
+if isinstance(POPEN.modual_to_fix, list):
+    for modual in POPEN.modual_to_fix:
+        model = utils.fix_parameter(model,modual)
+    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':
     optimizer = ScheduledOptim(optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 
@@ -127,13 +136,9 @@ best_acc = 0
 best_epoch = 0
 previous_epoch = 0
 if POPEN.Resumable:
-    model, previous_epoch,best_loss,best_acc = utils.resume(POPEN,model,optimizer,logger)
+    previous_epoch,best_loss,best_acc = utils.resume(POPEN, optimizer,logger)
     
-# =========== fix parameters ===========
-if isinstance(POPEN.modual_to_fix, list):
-    for modual in POPEN.modual_to_fix:
-        model = utils.fix_parameter(model,modual)
-    logger.info(' \t \t ==============<<< %s part is fixed>>>============== \t \t \n'%POPEN.modual_to_fix)
+
 #                               |=====================================|
 #                               |==========  training  part ==========|
 #                               |=====================================|
@@ -141,16 +146,24 @@ for epoch in range(POPEN.max_epoch-previous_epoch+1):
     epoch += previous_epoch
     
     #          
-    logger.info("===============================|    epoch {}   |===============================\n".format(epoch))
+    logger.info("===============================|    epoch {}   |===============================".format(epoch))
     for subset in POPEN.cycle_set:
-        logger.info("    ===========================|  set: {} |===========================    \n".format(subset))
+        logger.info("    ===========================|  set: {} |===========================    ".format(subset))
         #    ----------|switch tower and train |----------
         model.task = subset
+        # model = utils.fix_parameter(model,POPEN.modual_to_fix[0])
+        # logger.info("        =======================|     fix      |=======================        ")
         train_val.train(dataloader=loader_set[subset][0],model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
+        
+        # model = utils.unfix_parameter(model,POPEN.modual_to_fix[0])
+        # logger.info("        =======================|    unfix     |=======================        ")
+        # train_val.train(dataloader=loader_set[subset][0],model=model,optimizer=optimizer,popen=POPEN,epoch=epoch)
 
-    #              -----------| validate |-----------    
-        for subset in POPEN.cycle_set:
-            val_total_loss,val_avg_acc = train_val.validate(loader_set[subset][1],model,popen=POPEN,epoch=epoch)
+    #              -----------| validate |-----------   
+        logger.info("===============================| start validation |===============================")
+        val_total_loss,val_avg_acc = train_val.cycle_validate(loader_set,model,optimizer,popen=POPEN,epoch=epoch)
+        # matching task performance influence what to save
+        
         
         DICT ={"ran_epoch":epoch,"n_current_steps":optimizer.n_current_steps,"delta":optimizer.delta} if type(optimizer) == ScheduledOptim else {"ran_epoch":epoch}
         POPEN.update_ini_file(DICT,logger)

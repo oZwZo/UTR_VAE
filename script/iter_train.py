@@ -80,8 +80,15 @@ if POPEN.pretrain_pth is not None:
         #     # later we can resume 
         model = pretrain_model.to(device)
         del pretrain_model
-    elif POPEN.modual_to_fix is not None:
         
+        if (POPEN.cycle_set != pretrain_popen.cycle_set):
+            model.all_tasks = POPEN.cycle_set
+            model.tower = torch.nn.ModuleDict(
+                {POPEN.cycle_set[i] : model.tower[t]  for i, t in enumerate(pretrain_popen.cycle_set)}
+                                                )
+        
+    elif POPEN.modual_to_fix is not None:
+        # POPEN.model_type != pretrain_popen.model_type
         model = POPEN.Model_Class(*POPEN.model_args)
         for modual in POPEN.modual_to_fix:
             if modual in dir(pretrain_model):    
@@ -89,6 +96,7 @@ if POPEN.pretrain_pth is not None:
                     eval(f'model.{modual}').state_dict()
                     )
         model =  model.to(device)
+        
     else:
         # two different class -> Enc_n_Down
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
