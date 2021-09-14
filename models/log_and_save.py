@@ -115,7 +115,8 @@ class Log_parser(object):
         regular expression to match the printed metric during training and save to pd.DataFrame
         """
         self.start_val_posi = self.position_matching(self.start_val_line_matcher)
-        self.val_verbose_posi = np.array(self.start_val_posi) +2  # observe from log
+        val_verbose_posi = np.array(self.start_val_posi) +1 # observe from log
+        self.val_verbose_posi = val_verbose_posi[val_verbose_posi < len(self.log_file)]
         self.val_verbose_lines = self.log_file[self.val_verbose_posi]
         if self.val_split_line:
             self.val_verbose_lines = ["\t".join(self.log_file[[posi,posi+1,posi+2,posi+3,posi+4]]) for posi in self.val_verbose_posi]
@@ -197,7 +198,7 @@ def plot_a_exp_set(log_list,log_name_ls,dataset='val',fig=None,layout=None,check
                 DF = mean_of(mean_of_train,DF)
             elif (dataset == 'train') & (type(esubset)==slice):
                 DF = subset_of(esubset,DF)
-            X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])/6
+            X = np.arange(DF.shape[0])*check_time if dataset == 'val' else np.arange(DF.shape[0])
             ax.plot(X[start_from:],DF[metric].values[start_from:],**kwargs)
             ax.set_title(" ".join([dataset.capitalize(),metric]))
     for st,log in enumerate(log_list):
