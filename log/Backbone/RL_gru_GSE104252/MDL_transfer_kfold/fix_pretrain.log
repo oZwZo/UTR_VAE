@@ -1,0 +1,14 @@
+
+2021-09-13 12:27:10,556 -   	 	 ==============<<< device used: cuda:0  >>>============== 	 	 
+2021-09-13 12:27:12,092 -  	 	 ==============<<< encoder load from >>>============== 	 	 
+2021-09-13 12:27:12,093 -  	/data/users/wergillius/UTR_VAE/pth/RL_3_data_MTL/iter_by_iter/schedule_relay-model_best.pth
+2021-09-13 12:27:18,357 -  	 	 ==============<<< ['soft_share'] part is fixed>>>============== 	 	 
+
+2021-09-13 12:27:22,052 - ===============================|    epoch 0   |===============================
+2021-09-13 12:27:22,052 - ===============================| start validation |===============================
+2021-09-13 12:27:45,581 - 	 Total:1.3515056	 Acc:0.1069935
+2021-09-13 12:27:45,590 -    ini file updated    
+2021-09-13 12:28:29,229 - Snapshot saved to /data/users/wergillius/UTR_VAE/pth/RL_gru_MTL/MDL_transfer_kfold/fix_pretrain-model_best.pth
+
+2021-09-13 12:28:29,231 -    ini file updated    
+
