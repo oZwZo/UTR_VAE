@@ -3,8 +3,3 @@
 
  r2 : 0.497651
  model saved to layer_map/1_RF_Sep15.model
-
-
-nohup python layer_feature_RF.py --layer 3 --k 0 --data unmod1 > layer_map/l3_k0_unmod.out&
-nohup python layer_feature_RF.py --layer 3 --k 1 --data unmod1 > layer_map/l3_k1_unmod.out&
-nohup python layer_feature_RF.py --layer 3 --k 2 --data unmod1 > layer_map/l3_k2_unmod.out&
