@@ -10,8 +10,9 @@ import os
 import sys
 import json
 from torch import nn
-from .bucket_sampler import Bucket_Sampler
+
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from models.bucket_sampler import Bucket_Sampler
 from utils import Seq_one_hot,read_UTR_csv,read_label
 
 global script_dir
