@@ -1,0 +1,6 @@
+ Training size : (11881, 6912)
+ Testing size : 1486
+
+ r2 : 0.358926
+ sp : 0.591904
+ model saved to layer_map/cell_line_explain/3_k0_Andrev2015_Sep21.model
