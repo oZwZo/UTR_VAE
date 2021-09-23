@@ -1,5 +1,0 @@
- Training size : (234000, 7424)
- Testing size : 20000
-
- r2 : 0.826725
- model saved to layer_map/2_k1_unmod1_Sep15.model

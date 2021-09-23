@@ -1,5 +1,0 @@
- Training size : (68687, 3584)
- Testing size : 15200
-
- r2 : 0.729771
- model saved to layer_map/4_k0_vleng_Sep15.model
