@@ -71,9 +71,14 @@ if POPEN.pretrain_pth is not None:
         #     # later we can resume 
         model = pretrain_model.to(device)
         del pretrain_model
-    elif POPEN.modual_to_fix in dir(pretrain_model):    
+    elif POPEN.modual_to_fix is not None:
+        # POPEN.model_type != pretrain_popen.model_type
         model = POPEN.Model_Class(*POPEN.model_args)
-        model.soft_share.load_state_dict(pretrain_model.soft_share.state_dict())
+        for modual in POPEN.modual_to_fix:
+            if modual in dir(pretrain_model):    
+                eval(f'model.{modual}').load_state_dict(
+                    eval(f'model.{modual}').state_dict()
+                    )
         model =  model.to(device)
     else:
         downstream_model = POPEN.Model_Class(*POPEN.model_args)
@@ -87,7 +92,7 @@ elif POPEN.model_type == "CrossStitch_Model":
     for t in POPEN.tasks:
         task_popen = Auto_popen(POPEN.backbone_config[t])
         task_model = task_popen.Model_Class(*task_popen.model_args)
-        utils.load_model(task_popen,task_model,logger)
+        task_model = utils.load_model(task_popen,task_model,logger)
         backbone[t] = task_model.to(device)
     POPEN.model_args = [backbone] + POPEN.model_args
     model = POPEN.Model_Class(*POPEN.model_args).to(device)
@@ -96,7 +101,7 @@ else:
     model = Model_Class(*POPEN.model_args).to(device)
     
 if POPEN.Resumable:
-    utils.load_model(POPEN, model, logger)
+    model = utils.load_model(POPEN, model, logger)
     
 # =========== fix parameters ===========
 if isinstance(POPEN.modual_to_fix, list):

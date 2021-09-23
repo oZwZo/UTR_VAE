@@ -1,17 +1,21 @@
-from Bio.SeqRecord import SeqRecord
-import torch
-from torch.utils.data import  DataLoader, Dataset ,random_split,IterableDataset
-from sklearn.model_selection import KFold,train_test_split
-from Bio import SeqIO
-import numpy as np
-import pandas as pd
-import copy
 import os
 import sys
-import json
-from torch import nn
-from .bucket_sampler import Bucket_Sampler
+import copy
+sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+import json
+import torch
+import numpy as np
+import pandas as pd
+from torch import nn
+
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
+
+from torch.utils.data import  DataLoader, Dataset ,random_split,IterableDataset
+from sklearn.model_selection import KFold,train_test_split
+from bucket_sampler import Bucket_Sampler
 from utils import Seq_one_hot,read_UTR_csv,read_label
 
 global script_dir
