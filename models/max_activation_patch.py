@@ -14,7 +14,10 @@ import pandas as pd
 import seaborn as sns
 from tqdm import tqdm
 from importlib import reload
+from scipy import stats
 from matplotlib import pyplot as plt
+from sklearn import cluster
+from sklearn.manifold import TSNE
 
 class Maxium_activation_patch(object):
     def __init__(self, popen, which_layer, n_patch=9, kfold_index=None, device_string='cpu'):
@@ -55,6 +58,11 @@ class Maxium_activation_patch(object):
         
         return utils.load_model(self.popen, None)
     
+    def get_filter_param(self, model):
+        Conv_layer = model.soft_share.encoder[self.layer-1]
+        
+        return next(Conv_layer[0][0].parameters()).detach().cpu().numpy()
+    
     def loading(self,task, which_set):
         model = self.load_model().to(self.popen.cuda_id)
         dataloader = self.load_indexed_dataloader(task)[which_set]
@@ -89,7 +97,8 @@ class Maxium_activation_patch(object):
                 feature_map.append(out.detach().cpu().numpy())
                 
                 torch.cuda.empty_cache()
-        del model
+            
+        
         
         feature_map_l = np.concatenate( feature_map, axis=0)
         
@@ -100,6 +109,11 @@ class Maxium_activation_patch(object):
 #         print(self.X_ls.shape)
         print("Y : ",self.Y_ls.shape)
         self.feature_map = feature_map_l
+        
+        self.filters = self.get_filter_param(model)
+        
+        del model
+        
         return feature_map_l
     
     def compute_reception_field(self):
@@ -132,7 +146,7 @@ class Maxium_activation_patch(object):
         end = virtual_start + self.r
         return max(0,int(start)), int(end)
 
-    def locate_MA_seq(self, channel, feature_map):
+    def locate_MA_seq(self, channel, feature_map=None):
         """
         
         """
@@ -142,50 +156,67 @@ class Maxium_activation_patch(object):
         channel_feature = feature_map[:, channel,:]
         F0_ay = channel_feature.max(axis=-1)
 
-        max_9_index = np.argpartition(F0_ay, -1*self.n_patch, axis=0)[-1*self.n_patch:]
+        max_n_index = np.argpartition(F0_ay, -1*self.n_patch, axis=0)[-1*self.n_patch:]
 
 
         # a patch of sequences
-        max_patch = self.df.utr.values[max_9_index]
+        max_patch = self.df.utr.values[max_n_index]
 
         # find the location of maximally acitvated
-        Conv4_sites = np.argmax(channel_feature[max_9_index],axis=1)
+        Conv4_sites = np.argmax(channel_feature[max_n_index],axis=1)
         
         mapped_input_sites = [self.retrieve_input_site(site) for site in Conv4_sites]
         
         # the mapped region of the sequences
         max_act_region = []
         for utr, (start, end) in zip(max_patch, mapped_input_sites):
+            
+
             pad_gap = self.popen.pad_to - len(utr)
             field = utr[max(0, start-pad_gap): end-pad_gap]
+            
             max_act_region.append(field)
             
 #         print(mapped_input_sites)
-        return max_act_region, max_9_index, max_patch
+        
+        full_field = [len(field)==self.r for field in max_act_region]
+        
+        return np.array(max_act_region)[full_field], max_n_index[full_field], max_patch[full_field]
     
-    def sequence_to_matrix(self, max_act_region):
+    def sequence_to_matrix(self, max_act_region, weight=None, transformation='counts'):
+        
+        assert np.all([seq != "" for seq in max_act_region])
+        
         max_len = max([len(seq) for seq in max_act_region])
         
         M = np.zeros((max_len,4))
-        
-        for seq in max_act_region:
-            oh_M = reader.one_hot(seq)
+        if weight is None:
+            weight = np.ones((self.n_patch,))
+        for seq, w in zip(max_act_region, weight):
+            oh_M = reader.one_hot(seq)*w
             M += np.concatenate([np.zeros((max_len - len(seq),4)), oh_M],axis=0)
             
-        return M/self.n_patch
+
+        seq_logo_df = pd.DataFrame(M, columns=['A', 'C', 'G', 'T'])
+        if transformation!='counts':
+            seq_logo_df = logomaker.transform_matrix(seq_logo_df, from_type='counts', to_type=transformation)
+            
+        return seq_logo_df
         
-    def plot_sequence_logo(self, max_act_region, save_fig_path=None):
+    def plot_sequence_logo(self, seq_logo_M,  save_fig_path=None):
         """
         input : max_act_region ; list of str
         """
-        assert np.all([seq != "" for seq in max_act_region])
         
-        seq_logo_M = self.sequence_to_matrix(max_act_region)
-        seq_logo_df = pd.DataFrame(seq_logo_M, columns=['A', 'C', 'G', 'T'])
-    
+        
+        
         # plot
+        plt.figure(dpi=300)
         MA_C = logomaker.Logo(seq_logo_df);
-        MA_C.fig.gca().axis("off")
+        ax = MA_C.fig.gca()
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
         
         # save
         if save_fig_path is not None:
@@ -200,17 +231,160 @@ class Maxium_activation_patch(object):
                 print('fig saved to',self.save_dir)
             plt.close(MA_C.fig)
     
-    def fast_logo(self, channel, feature_map=None, save_fig_path=None):
+    def fast_logo(self, channel, feature_map=None, n_patch=None, transformation='information', save_fig_path=None):
         
+        if n_patch is not None:
+            self.n_patch = n_patch
         max_act_region, _, _ = self.locate_MA_seq(channel, feature_map)
-        self.plot_sequence_logo(max_act_region, save_fig_path)
+        M = self.sequence_to_matrix(max_act_region)
+        F0_ay, (spr,pr) = self.activation_density(channel, False, False)
+        self.plot_sequence_logo(M,  transformation=transformation, save_fig_path=save_fig_path)
+        ax=plt.gca()
+        ax.set_title("Fileter {} : $r =$ {}".format(channel, round(spr[0], 3)), fontsize=35)
+         
     
-    def activation_density(self, channel, feature_map=None):
+    def activation_density(self, channel, to_print=True, to_plot=True, feature_map=None, **kwargs):
         if feature_map is None:
             feature_map = self.feature_map
             
         channel_feature = feature_map[:, channel,:]
         F0_ay = channel_feature.max(axis=-1)
-        sns.kdeplot(F0_ay);
-        print("num of max acti: %s"%np.sum(F0_ay==F0_ay.max()))
+        if to_plot:
+            sns.kdeplot(F0_ay, **kwargs);
+        if to_print:
+            print("num of max acti: %s"%np.sum(F0_ay==F0_ay.max()))
         
+        spr = stats.spearmanr(F0_ay, self.Y_ls.flatten())
+        pr = stats.pearsonr(F0_ay, self.Y_ls.flatten())
+        return F0_ay, (spr,pr)
+    
+    def within_patch_clustering(self, channel, n_clusters, n_patch=None , to_plot=True,**kwargs):
+        """
+        return:
+            subclusters : list, list of patch (alignments)
+        """
+        self.n_patch = n_patch
+        act_patch, _, _ = self.locate_MA_seq(channel)
+        flatten_seq = np.stack([reader.one_hot(seq).flatten() for seq in act_patch])
+        print("the shape of sequence matrix {}".format(flatten_seq.shape))
+        
+        # clsutering
+        cluster_index = cluster.KMeans(n_clusters=n_clusters).fit_predict(flatten_seq)
+        # down
+        if to_plot:
+            tsne = TSNE(metric='cosine', square_distances=True).fit(flatten_seq)
+            self.tsne=tsne
+            plt.figure(figsize=(6,5),dpi=150)
+    #         sns.set_theme(style='ticks', palette='viridis')
+            scatter_args = {"palette":'viridis'}
+            scatter_args.update(kwargs)
+            sns.scatterplot(x=tsne.embedding_[:,0], y=tsne.embedding_[:,1], 
+                            hue=cluster_index, **scatter_args);
+        
+        return act_patch, flatten_seq, cluster_index
+    
+    def activation_overview(self, **kwargs):
+        channel_spearman = []
+       
+        fig, ax = plt.subplots(1,1, figsize=(10,5), dpi=300)
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        
+        n_channel = self.popen.channel_ls[self.layer]
+        for i in tqdm(range(n_channel)):
+            act, (spr, pr)  = self.activation_density(i, to_print=False, feature_map=None, **kwargs);
+            channel_spearman.append(spr[0])
+        return fig, ax, np.array(channel_spearman)
+    
+    def matrix_to_seq(self, matrix):
+        """
+        return the sequence with maximum weight at each site
+        """
+        max_act_seq = ''
+        assert matrix.shape[1] == 4
+        for i in matrix.argmax(axis=1):
+            max_act_seq += ['A', 'C', 'G', 'T'][i]
+            
+        return max_act_seq
+    
+    def save_as_meme_format(self,channels:list, save_path, filer_prefix='filter', transformation='probability'):
+        """
+        Save the position weight matrix as the meme-suite acceptale minimal motif format
+        """
+        
+        with open(save_path, 'w') as f:
+            f.write("MEME version 5.4.1\n\n")
+            f.write("ALPHABET= ACGT\n\n")
+            f.write("strands: + -\n\n")
+            f.write("Background letter frequencies\n")
+            f.write("A 0.25 C 0.25 G 0.25 T 0.25\n")
+
+            for cc in channels:
+                
+                try:
+                    region, index, patches = self.locate_MA_seq(channel=cc)
+                    M = self.sequence_to_matrix(region, transformation=transformation);
+                    f.write('\n')
+                    f.write(f"MOTIF {filer_prefix}_{cc}\n")
+                    seq_len = len(region[0])
+                    f.write(f"letter-probability matrix: alength= 4 w= {seq_len} \n")
+                    for line in M.values:
+                        f.write(" "+line.__str__()[1:-1]+'\n')
+                except ValueError:
+                    continue
+                    
+            f.close()
+            print('writed')
+        return None
+    
+    def get_input_grad(test_X,index,model):
+    
+        # process X
+
+        sampled_X = test_X[index].unsqueeze(0)
+        sampled_X.requires_grad = True
+        # forward
+        model.train()
+        sampled_out = model(sampled_X)
+
+        # auto grad part
+        external_grad = torch.ones_like(sampled_out)
+        sampled_out.backward(gradient=external_grad,retain_graph=True) # define \frac{d out}{ }
+        print(sampled_out)
+        return sampled_X,sampled_X.grad
+
+def extract_max_seq_pattern(condition, n_clusters=6, n_patch=3000):
+    pattern = []
+    channel_source = []
+    for channel in np.where(condition)[0]:
+
+        try:
+            act_patch, flatten_seq, cluster_index = self.within_patch_clustering(channel, n_clusters=n_clusters, to_plot=False,n_patch=n_patch)
+        except ValueError:
+            continue
+
+        for i in range(n_clusters):
+            sub_cluster = act_patch[cluster_index==i]
+            if len(sub_cluster) > 0:
+                matrix = self.sequence_to_matrix(sub_cluster)
+                pattern.append(self.matrix_to_seq(matrix))
+                channel_source.append(channel)
+        return pattern, channel_source
+
+def sum_occurrance(df, pattern):
+    pattern_occurance = []
+    for p in pattern:
+        pattern_occurance.append(np.sum([(p in utr) for utr in df.seq.values]))
+    return np.array(pattern_occurance)
+
+def generate_scramble_index(size  , N_1):
+    scramble_index=np.zeros((size,))
+
+    while scramble_index.sum() < N_1:    
+        num_ = int(N_1 - scramble_index.sum())
+        randindex = np.random.randint(0, size, size=(num_,))
+
+        for i in randindex:
+            scramble_index[i] = 1
+    return scramble_index    
+
