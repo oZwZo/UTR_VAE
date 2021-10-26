@@ -316,7 +316,21 @@ class RL_celline(RL_3_data):
                                                 nn.Linear(w,1)])
         
         self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
-    
+
+class RL_6_data(RL_3_data):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        self.all_tasks = ['unmod1', 'human', 'vleng', 'Andrev2015', 'muscle', 'pc3']
+        tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
+                                                        hidden_size=w,
+                                                        num_layers=2,
+                                                        batch_first=True),
+                                                nn.Linear(w,1)])
+        
+        self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
    
     
     
