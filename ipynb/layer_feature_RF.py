@@ -32,7 +32,7 @@ model_save_path = f'layer_map/{layer}_k{args.k}_RF_Sep15.model'
 pj = lambda x: os.path.join(utils.script_dir, x)
 
 # model
-pretrain_popen = Auto_popen(pj("log/Backbone/RL_3_data/rl_train_val_10fold/schedule_lr.ini"))
+pretrain_popen = Auto_popen(pj("log/Backbone/RL_gru/mixing_task/big_RL_gru.ini"))
 extractor = torch.load(pretrain_popen.vae_pth_path, map_location='cpu')['state_dict']
 
 
@@ -65,7 +65,7 @@ def encode_seq_fea(loader, l):
             feature_map.append(out)
 
     X = np.concatenate(feature_map, axis=0)
-    X_flat = X.reshape(len(X),-1)
+    X_flat = X#.reshape(len(X),-1)
     return X_flat
 
 

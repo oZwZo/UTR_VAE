@@ -182,21 +182,24 @@ def clean_value_dict(dict):
         clean_dict[k] = v
     return clean_dict
 
-def fix_parameter(model,modual_to_fix):
+def fix_parameter(model,modual_to_fix,fix_or_unfix=False):
     """
     for a given model, fix part of the parameter to fine-tuning / transfering 
     args:
     model : `nn.Modual`,initiated model instance
     modual_to_fix : str, define which part of the model will not update by gradient 
-                    e.g. "shoft_share" then 
+                    e.g. "soft_share" then 
     """
     
     fix_part = eval("model."+modual_to_fix)   # e.g. model.shoft_share
      
     for param in fix_part.parameters():
-            param.requires_grad = False
+            param.requires_grad = fix_or_unfix
     
     return model
+
+def unfix_parameter(model,modual_to_fix,fix_or_unfix=False):
+    return fix_parameter(model,modual_to_fix,fix_or_unfix=True)
 
 def snapshot(vae_pth_path, state):
     logger = logging.getLogger("VAE")
@@ -206,17 +209,33 @@ def snapshot(vae_pth_path, state):
     logger.info("Snapshot saved to {}\n".format(vae_pth_path))
 
 
-def load_model(popen,model,logger):
-    checkpoint = torch.load(popen.vae_pth_path) 
+def load_model(popen,model,logger=None):
+    
+    info = lambda x: print(x) if logger==None else logger.info(x)
+    
+    checkpoint = torch.load(popen.vae_pth_path, map_location=torch.device('cpu')) 
     if isinstance(checkpoint['state_dict'], collections.OrderedDict):
             # optimizer.load_state_dict(checkpoint['optimizer'])
         model.load_state_dict(checkpoint['state_dict'])
     else:
         model = checkpoint['state_dict']
-    logger.info(' \t \t ==============<<< encoder load from >>>============== \t \t \n')
-    logger.info(" \t"+popen.vae_pth_path+'\n')
+    
+    info(' \t \t ==============<<< encoder load from >>>============== \t \t ')
+    info(" \t"+popen.vae_pth_path)
+    
+    return model
+    
+def get_config_cuda(config_file):
+    with open(config_file,'r') as f:
+        lines = f.read_lines()
+        for line in lines:
+            if "cuda_id =" in line:
+                device = line.split("=")[1].strip()
+                break
+    device = int(device) if device.isdigit() else device
+    return device
 
-def resume(popen,model,optimizer,logger):
+def resume(popen,optimizer,logger):
     """
     for a experiment, check whether it;s a new run, and create dir 
     """
@@ -224,17 +243,11 @@ def resume(popen,model,optimizer,logger):
     
     if popen.Resumable:
         
-        checkpoint = torch.load(popen.vae_pth_path)   # xx-model-best.pth
+        checkpoint = torch.load(popen.vae_pth_path, map_location=torch.device('cpu'))   # xx-model-best.pth
         previous_epoch = checkpoint['epoch']
         previous_loss = checkpoint['validation_loss']
         previous_acc = checkpoint['validation_acc']
         
-        
-        if isinstance(checkpoint['state_dict'], collections.OrderedDict):
-            # optimizer.load_state_dict(checkpoint['optimizer'])
-            model.load_state_dict(checkpoint['state_dict'])
-        else:
-            model = checkpoint['state_dict']
         
         # very important
         if (type(optimizer) == ScheduledOptim):
@@ -246,7 +259,7 @@ def resume(popen,model,optimizer,logger):
         logger.info(" \t"+popen.vae_pth_path+'\n')
         logger.info(" \t \t ========================================================= \t \t \n")
         
-        return model,previous_epoch,previous_loss,previous_acc
+        return previous_epoch,previous_loss,previous_acc
 
 # def read_model(ini_file):
 #     """
