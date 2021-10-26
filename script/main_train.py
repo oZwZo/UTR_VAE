@@ -8,7 +8,7 @@ parser.add_argument('--cuda',type=int,default=None,required=False)
 parser.add_argument("--kfold_index",type=int,default=None,required=False)
 args = parser.parse_args()
 
-cuda_id = args.cuda if args.cuda is not None else utils.get_config_cuda(args.config_file)
+cuda_id = args.cuda
 os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_id)
 
 
@@ -25,6 +25,7 @@ from models.loss import Dynamic_Task_Priority,Dynamic_Weight_Averaging
 
 POPEN = Auto_popen(args.config_file)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+torch.set_num_interop_threads(4)
 POPEN.cuda_id = device
 
 

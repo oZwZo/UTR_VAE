@@ -1,0 +1,6 @@
+ Training size : (970, 13440)
+ Testing size : 122
+
+ r2 : 0.366637
+ sp : 0.596901
+ model saved to layer_map/cell_line_explain/1_k0_muscle_Sep21.model
