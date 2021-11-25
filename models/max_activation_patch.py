@@ -39,24 +39,28 @@ class Maxium_activation_patch(object):
         self.popen.shuffle = False
         self.popen.pad_to = 57 if self.popen.cycle_set==None else 105
         
-        if self.popen.cycle_set!=None:
+        tmp_popen = copy.copy(self.popen)
+        if self.popen.cycle_set != None:
             base_path = copy.copy(self.popen.split_like_paper)
             base_csv = copy.copy(self.popen.csv_path)
             
             if base_path is not None:
-                assert task!=None , "task is not defined !"
-                self.popen.split_like_paper = [path.replace('cycle', task) for path in base_path]
+                assert task != None , "task is not defined !"
+                tmp_popen.split_like_paper = [path.replace('cycle', task) for path in base_path]
             else:
-                self.popen.csv_path = base_csv.replace('cycle', task)
+                tmp_popen.csv_path = base_csv.replace('cycle', task)
                 
-        return reader.get_dataloader(self.popen)
+        return  reader.get_dataloader(tmp_popen) 
     
     def load_model(self):
         if self.kfold_index is not None:
-            pth = self.popen.vae_pth_path.replace(".pth","_cv%s.pth"%self.kfold_index)
-            self.popen.vae_pth_path = pth
+            base_pth = self.popen.vae_pth_path
+            self.popen.vae_pth_path = base_pth.replace(".pth","_cv%s.pth"%self.kfold_index)
         
-        return utils.load_model(self.popen, None)
+        model = utils.load_model(self.popen, None)
+        if self.kfold_index is not None:
+            self.popen.vae_pth_path = base_pth
+        return model
     
     def get_filter_param(self, model):
         Conv_layer = model.soft_share.encoder[self.layer-1]
@@ -160,7 +164,7 @@ class Maxium_activation_patch(object):
 
 
         # a patch of sequences
-        max_patch = self.df.utr.values[max_n_index]
+        max_patch = self.df[self.popen.seq_col].values[max_n_index]
 
         # find the location of maximally acitvated
         Conv4_sites = np.argmax(channel_feature[max_n_index],axis=1)
@@ -203,13 +207,10 @@ class Maxium_activation_patch(object):
             
         return seq_logo_df
         
-    def plot_sequence_logo(self, seq_logo_M,  save_fig_path=None):
+    def plot_sequence_logo(self, seq_logo_df,  save_fig_path=None):
         """
         input : max_act_region ; list of str
         """
-        
-        
-        
         # plot
         plt.figure(dpi=300)
         MA_C = logomaker.Logo(seq_logo_df);
@@ -236,11 +237,11 @@ class Maxium_activation_patch(object):
         if n_patch is not None:
             self.n_patch = n_patch
         max_act_region, _, _ = self.locate_MA_seq(channel, feature_map)
-        M = self.sequence_to_matrix(max_act_region)
+        M = self.sequence_to_matrix(max_act_region, transformation=transformation)
         F0_ay, (spr,pr) = self.activation_density(channel, False, False)
-        self.plot_sequence_logo(M,  transformation=transformation, save_fig_path=save_fig_path)
+        self.plot_sequence_logo(M,  save_fig_path=save_fig_path)
         ax=plt.gca()
-        ax.set_title("Fileter {} : $r =$ {}".format(channel, round(spr[0], 3)), fontsize=35)
+        ax.set_title("Fileter {} : $r =$ {}".format(channel, spr), fontsize=35)
          
     
     def activation_density(self, channel, to_print=True, to_plot=True, feature_map=None, **kwargs):
@@ -253,10 +254,13 @@ class Maxium_activation_patch(object):
             sns.kdeplot(F0_ay, **kwargs);
         if to_print:
             print("num of max acti: %s"%np.sum(F0_ay==F0_ay.max()))
+            
+            n_gtr = [np.sum(F0_ay > q) for q in np.quantile(F0_ay,[0.5,0.8,0.95])]
+            print("quantiles: 50% {} 80% {} 95% {}".format(*n_gtr))
         
         spr = stats.spearmanr(F0_ay, self.Y_ls.flatten())
         pr = stats.pearsonr(F0_ay, self.Y_ls.flatten())
-        return F0_ay, (spr,pr)
+        return F0_ay, (round(spr[0],3),round(pr[0],3))
     
     def within_patch_clustering(self, channel, n_clusters, n_patch=None , to_plot=True,**kwargs):
         """
@@ -307,7 +311,7 @@ class Maxium_activation_patch(object):
             
         return max_act_seq
     
-    def save_as_meme_format(self,channels:list, save_path, filer_prefix='filter', transformation='probability'):
+    def save_as_meme_format(self,channels:list, save_path, filter_prefix='filter', transformation='probability'):
         """
         Save the position weight matrix as the meme-suite acceptale minimal motif format
         """
@@ -325,7 +329,7 @@ class Maxium_activation_patch(object):
                     region, index, patches = self.locate_MA_seq(channel=cc)
                     M = self.sequence_to_matrix(region, transformation=transformation);
                     f.write('\n')
-                    f.write(f"MOTIF {filer_prefix}_{cc}\n")
+                    f.write(f"MOTIF {filter_prefix}_{cc}\n")
                     seq_len = len(region[0])
                     f.write(f"letter-probability matrix: alength= 4 w= {seq_len} \n")
                     for line in M.values:
@@ -335,23 +339,57 @@ class Maxium_activation_patch(object):
                     
             f.close()
             print('writed')
-        return None
-    
-    def get_input_grad(test_X,index,model):
-    
-        # process X
 
-        sampled_X = test_X[index].unsqueeze(0)
-        sampled_X.requires_grad = True
-        # forward
+    
+    def get_input_grad(self, task, focus=True, fm=None):
+        """
+        compute the gradience of Y over feature_map
+        """
+        All_grad = []
+        model = self.load_model()
         model.train()
-        sampled_out = model(sampled_X)
+        if fm is None:
+            fm = self.feature_map
+        
+        for start in tqdm(range(0, fm.shape[0], 64)):
+            # prepare input
+            minibatch = fm[start:start+64]
+            X = torch.as_tensor(minibatch, device='cpu').float()
+            X.requires_grad=True
 
-        # auto grad part
-        external_grad = torch.ones_like(sampled_out)
-        sampled_out.backward(gradient=external_grad,retain_graph=True) # define \frac{d out}{ }
-        print(sampled_out)
-        return sampled_X,sampled_X.grad
+            # forward
+            x = model.soft_share.encoder[3](X)
+            Z_t = torch.transpose(x, 1, 2)
+            h_prim,(c1,c2) = model.tower[task][0](Z_t)
+            out = model.tower[task][1](c2)
+
+            # auto grad
+            external_grad = torch.ones_like(out)
+            out.backward(gradient=external_grad,retain_graph=True)
+            grad = X.grad
+            
+            if focus:
+                indices = self.argmax_to_indeces(np.argmax(minibatch, axis=2))
+                grad = grad[indices].reshape(-1,256)
+            
+            All_grad.append(grad.detach().numpy())
+            
+        return np.concatenate(All_grad, axis=0)
+            
+            
+    def argmax_to_indeces(self,index):
+        "index : of shape [batch, 256] , the result of "
+        s_index = []
+        ch_index = []
+        loc_index = []
+        for sample in range(index.shape[0]):
+            sam_loc = index[sample]
+            for ch, pos in enumerate(sam_loc):
+                s_index.append(sample)
+                ch_index.append(ch)
+                loc_index.append(pos)
+                
+        return (s_index, ch_index, loc_index)
 
 def extract_max_seq_pattern(condition, n_clusters=6, n_patch=3000):
     pattern = []
@@ -385,6 +423,132 @@ def generate_scramble_index(size  , N_1):
         randindex = np.random.randint(0, size, size=(num_,))
 
         for i in randindex:
-            scramble_index[i] = 1
+            scramble_index[i] 
     return scramble_index    
 
+
+class merge_task_map(Maxium_activation_patch):
+    def __init__(self, popen, which_layer, n_patch , kfold_index=None, device_string='cpu'):
+        """merging all tasksa"""
+        super().__init__(popen, which_layer, n_patch , kfold_index, device_string)
+        self.old_popen = copy.copy(popen)
+        self.df_dict = {}
+        self.Y_2_task = {}
+        self.patches_ls = None
+        
+    def extract_feature_map(self, which_set=0):
+        feature_map = {}
+        for task in self.popen.cycle_set:
+            feature_map[task] = super().extract_feature_map(task=task, which_set=which_set)
+            self.Y_2_task[task] = self.Y_ls
+        self.feature_map = feature_map
+        return feature_map
+    
+    def loading(self,task, which_set):
+        model = self.load_model().to(self.popen.cuda_id)
+        dataloader = self.load_indexed_dataloader(task)[which_set]
+        self.df_dict[task] = dataloader.dataset.df
+        return model, dataloader
+    
+    def locate_MA_seq(self, channel, feature_map=None, patches_ls=None):
+        """A multi-task version of MA region retrieve"""
+        regions = []
+        indeces = {}
+        patches = []
+        
+        if patches_ls is None:
+            patches_ls = self.patches_ls
+        
+        for i, task in enumerate(self.popen.cycle_set):
+            # task out : region, index, patches
+            if patches_ls is not None:
+                self.n_patch = patches_ls[i]
+                print(f"{task} n_patch: {self.n_patch}")
+            self.df = self.df_dict[task]
+            # region , index , patches
+            r, i, p = super().locate_MA_seq(channel, feature_map=self.feature_map[task])
+            regions.append(r)
+            indeces[task] = i
+            patches.append(p)
+            
+        return np.concatenate(regions) , indeces , np.concatenate(patches)
+    
+    def activation_density(self, channel, to_print=True, to_plot=True, feature_map=None, **kwargs):
+        all_F0 = []
+        all_spr = []
+        all_pr = []
+        for i, task in enumerate(self.popen.cycle_set):
+            # task out : region, index, patches
+            task_featmap = self.feature_map[task]
+            self.Y_ls = self.Y_2_task[task]
+            
+            if to_print:
+                print(task)
+            F0, (spr,pr) = super().activation_density(channel, to_print=to_print, 
+                                                  to_plot=False,
+                                                  feature_map = task_featmap)
+            all_F0.append(F0)
+            all_spr.append(spr)
+            all_pr.append(pr)
+        
+        # merge all activateion 
+        
+        if to_plot:
+            for F0_ay in all_F0:
+                sns.kdeplot(F0_ay, **kwargs)
+            
+        return all_F0 , (all_spr, all_pr)
+    
+    def flexible_n_patch(self,channel, qtl=0.95):
+        """
+        call this function before the all other functions will enable a flexible task-wise n_patch
+        
+        """
+        all_F0 , (all_spr, all_pr) = self.activation_density(channel,False, False,None)
+        thres = np.max([np.quantile(f0, qtl) for f0 in all_F0])
+        self.patches_ls = [np.sum(f0 > thres) for f0 in all_F0]
+        return self.patches_ls 
+        
+    def activation_overview(self):
+        
+        raise NotImplementedError
+    
+    def save_as_meme_format(self,channels:list, save_path, filter_prefix='filter', transformation='probability', qtl=0.95, fix_patches_ls=None):
+        """
+        Save the position weight matrix as the meme-suite acceptale minimal motif format
+        """
+        
+        with open(save_path, 'w') as f:
+            f.write("MEME version 5.3.0\n\n")
+            f.write("ALPHABET= ACGT\n\n")
+            f.write("strands: + -\n\n")
+            f.write("Background letter frequencies\n")
+            f.write("A 0.25 C 0.25 G 0.25 T 0.25\n")
+
+            for cc in channels:
+                if fix_patches_ls is None:
+                    n_patches_ls = self.flexible_n_patch(cc, qtl=qtl)
+                else:
+                    n_patches_ls = fix_patches_ls
+                try:
+                    region, index, patches = self.locate_MA_seq(channel=cc, patches_ls=n_patches_ls)
+                    M = self.sequence_to_matrix(region, transformation=transformation);
+                    f.write('\n')
+                    f.write(f"MOTIF {filter_prefix}_{cc}\n")
+                    seq_len = len(region[0])
+                    f.write(f"letter-probability matrix: alength= 4 w= {seq_len} \n")
+                    for line in M.values:
+                        f.write(" "+line.__str__()[1:-1]+'\n')
+                except ValueError:
+                    continue
+                    
+            f.close()
+            print('writed')
+            
+    def get_input_grad(self, focus=True):
+        grads = {}
+        for task in self.popen.cycle_set:
+            grad = super().get_input_grad(focus=True, task=task, fm=self.feature_map[task])
+            grads[task] = grad.mean(axis=0)
+        return grads
+    
