@@ -1,0 +1,51 @@
+# Warning: p-values will be inaccurate if primary and control
+#          sequences have different length distributions.
+RANK	DB	ID	ALT_ID	CONSENSUS	TP	TP%	FP	FP%	ENR_RATIO	SCORE_THR	PVALUE	LOG_PVALUE	EVALUE	LOG_EVALUE	QVALUE	LOG_QVALUE
+1	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_54		KDTAGCCTC	347	47.86	2390	36.88	1.3	4.9	6.32e-6	-11.97	1.57e-3	-6.45	8.75e-4	-7.04
+2	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_49		DTTTKTTHY	610	84.14	4702	72.56	1.16	1.9	3.98e-4	-7.83	9.90e-2	-2.31	1.38e-2	-4.28
+3	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_137		WTTAGYAAT	651	89.79	5044	77.84	1.15	1.7	4.07e-4	-7.81	1.01e-1	-2.29	1.38e-2	-4.28
+4	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_199		NGTRAATGN	568	78.34	4362	67.31	1.16	0.96	4.58e-4	-7.69	1.14e-1	-2.17	1.38e-2	-4.28
+5	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_154		DTSAAAAAA	562	77.52	4328	66.79	1.16	0.31	6.01e-4	-7.42	1.50e-1	-1.90	1.38e-2	-4.28
+6	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_32		AWTTGTTYW	651	89.79	5072	78.27	1.15	0.54	6.39e-4	-7.36	1.59e-1	-1.84	1.38e-2	-4.28
+7	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_127		AWAWKRDRN	641	88.41	5005	77.24	1.14	3.3	8.28e-4	-7.10	2.06e-1	-1.58	1.38e-2	-4.28
+8	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_222		ATRAAWWWD	653	90.07	5108	78.83	1.14	0.18	8.64e-4	-7.05	2.15e-1	-1.54	1.38e-2	-4.28
+9	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_114		SBGSGTAGG	600	82.76	4668	72.04	1.15	5.2	8.97e-4	-7.02	2.23e-1	-1.50	1.38e-2	-4.28
+10	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_192		AYMHAAWHM	517	71.31	3990	61.57	1.16	4.1	1.10e-3	-6.81	2.75e-1	-1.29	1.53e-2	-4.18
+11	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_173		YADTKKATK	617	85.10	4843	74.74	1.14	2.9	1.50e-3	-6.50	3.73e-1	-0.99	1.89e-2	-3.97
+12	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_246		HAKYMAARA	572	78.90	4485	69.21	1.14	0.21	1.99e-3	-6.22	4.96e-1	-0.70	2.22e-2	-3.81
+13	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_158		RTWWWAAAD	582	80.28	4579	70.66	1.14	0.48	2.33e-3	-6.06	5.79e-1	-0.55	2.22e-2	-3.81
+14	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_243		KKMAAVATG	578	79.72	4548	70.19	1.14	2.7	2.41e-3	-6.03	6.01e-1	-0.51	2.22e-2	-3.81
+15	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_172		GTTGTKKRT	470	64.83	3648	56.30	1.15	4.5	2.51e-3	-5.99	6.26e-1	-0.47	2.22e-2	-3.81
+16	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_18		ATRTTTWKR	659	90.90	5233	80.76	1.13	1.1	2.57e-3	-5.96	6.39e-1	-0.45	2.22e-2	-3.81
+17	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_88		RTTTWWDKD	621	85.66	4926	76.02	1.13	2.9	3.07e-3	-5.78	7.66e-1	-0.27	2.32e-2	-3.76
+18	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_180		HRMTGGCTC	55	7.59	320	4.94	1.56	8.5	3.09e-3	-5.78	7.70e-1	-0.26	2.32e-2	-3.76
+19	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_193		VAKTRAMTG	421	58.07	3256	50.25	1.16	3.9	3.27e-3	-5.72	8.15e-1	-0.20	2.32e-2	-3.76
+20	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_167		ACCATTWWW	548	75.59	4321	66.68	1.13	0.18	3.48e-3	-5.66	8.67e-1	-0.14	2.32e-2	-3.76
+21	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_94		AACMACRGR	293	40.41	2205	34.03	1.19	5.9	3.68e-3	-5.60	9.17e-1	-0.09	2.32e-2	-3.76
+22	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_61		YMRCCATCW	604	83.31	4797	74.03	1.13	0.87	3.74e-3	-5.59	9.32e-1	-0.07	2.32e-2	-3.76
+23	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_14		TKTATGDNH	661	91.17	5280	81.48	1.12	1.7	3.85e-3	-5.56	9.60e-1	-0.04	2.32e-2	-3.76
+24	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_31		HWGTRRWMM	501	69.10	3943	60.85	1.14	4.3	4.44e-3	-5.42	1.10e0	0.10	2.49e-2	-3.69
+25	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_144		AWSATTTTD	518	71.45	4087	63.07	1.13	2.6	4.53e-3	-5.40	1.13e0	0.12	2.49e-2	-3.69
+26	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_125		BKTGGMGYN	324	44.69	2474	38.18	1.17	6	4.84e-3	-5.33	1.21e0	0.19	2.49e-2	-3.69
+27	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_6		TDTWYTNKT	670	92.41	5374	82.93	1.11	2.1	4.86e-3	-5.33	1.21e0	0.19	2.49e-2	-3.69
+28	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_206		GYDSTWCAT	168	23.17	1215	18.75	1.24	7.3	6.72e-3	-5.00	1.67e0	0.52	3.14e-2	-3.46
+29	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_83		WAKTWWTWG	616	84.97	4943	76.28	1.11	0.88	6.79e-3	-4.99	1.69e0	0.53	3.14e-2	-3.46
+30	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_98		VHCRTTARD	622	85.79	4994	77.07	1.11	1.9	6.81e-3	-4.99	1.69e0	0.53	3.14e-2	-3.46
+31	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_247		AAVBSTTAR	512	70.62	4071	62.82	1.12	3.1	7.43e-3	-4.90	1.85e0	0.61	3.22e-2	-3.43
+32	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_81		RWAMAGTGG	568	78.34	4544	70.12	1.12	1.1	7.45e-3	-4.90	1.85e0	0.62	3.22e-2	-3.43
+33	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_214		KBTRRTRAW	552	76.14	4413	68.10	1.12	0.17	7.88e-3	-4.84	1.96e0	0.67	3.31e-2	-3.41
+34	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_104		TKAADVTAA	641	88.41	5175	79.86	1.11	1.5	8.71e-3	-4.74	2.17e0	0.77	3.55e-2	-3.34
+35	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_186		GNATGTVMA	575	79.31	4633	71.50	1.11	0.48	1.09e-2	-4.52	2.72e0	1.00	4.12e-2	-3.19
+36	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_73		MAAAAWKGR	523	72.14	4193	64.71	1.12	3.8	1.10e-2	-4.51	2.74e0	1.01	4.12e-2	-3.19
+37	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_12		DHARWTTGR	398	54.90	3139	48.44	1.13	3.1	1.10e-2	-4.51	2.74e0	1.01	4.12e-2	-3.19
+38	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_235		ANGTARATG	663	91.45	5394	83.24	1.1	1.5	1.26e-2	-4.37	3.14e0	1.15	4.60e-2	-3.08
+39	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_161		TKTARVATG	582	80.28	4710	72.69	1.1	3.2	1.35e-2	-4.30	3.36e0	1.21	4.72e-2	-3.05
+40	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_162		NDDTRATAA	458	63.17	3661	56.50	1.12	0.97	1.39e-2	-4.27	3.47e0	1.24	4.72e-2	-3.05
+41	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_236		AAWAWKGDW	560	77.24	4526	69.85	1.11	3.5	1.40e-2	-4.27	3.49e0	1.25	4.72e-2	-3.05
+42	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_20		TTTAWWRTG	696	96.00	5687	87.76	1.09	0.63	1.43e-2	-4.25	3.56e0	1.27	4.72e-2	-3.05
+43	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_100		ANTKGTDGR	412	56.83	3280	50.62	1.12	4.5	1.55e-2	-4.17	3.85e0	1.35	4.92e-2	-3.01
+44	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt	STunmod1_l3_f_122		VATGAWKRN	558	76.97	4518	69.72	1.1	0.3	1.56e-2	-4.16	3.89e0	1.36	4.92e-2	-3.01
+
+# SEA (Simple Enrichment Analysis): Version 5.4.1 compiled on Nov  5 2021 at 20:34:26
+# The format of this file is described at http://meme-suite.org/doc/sea-output-format.html.
+# sea --verbosity 1 --qvalue --text -p /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/toenrich_sequences.fasta -m /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/STunmod1_n3000_Nov8_cv4.txt -n /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/UTRlib_background.fasta

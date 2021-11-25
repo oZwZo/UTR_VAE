@@ -1,0 +1,49 @@
+RANK	DB	ID	ALT_ID	CONSENSUS	TP	TP%	FP	FP%	ENR_RATIO	SCORE_THR	PVALUE	LOG_PVALUE	EVALUE	LOG_EVALUE	QVALUE	LOG_QVALUE
+1	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_142		DGASRTTTT	497	68.55	3692	56.98	1.2	3.4	8.51e-5	-9.37	2.17e-2	-3.83	1.09e-2	-4.52
+2	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_21		CAWTTKSAT	591	81.52	4553	70.26	1.16	2.6	4.61e-4	-7.68	1.17e-1	-2.14	2.30e-2	-3.77
+3	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_7		KTRCWAHDD	669	92.28	5214	80.46	1.15	0.019	5.62e-4	-7.48	1.43e-1	-1.94	2.30e-2	-3.77
+4	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_209		WYCGTTKKV	489	67.45	3752	57.90	1.17	4.5	9.97e-4	-6.91	2.54e-1	-1.37	2.30e-2	-3.77
+5	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_151		AWTTTTKTW	530	73.10	4094	63.18	1.16	1.3	1.03e-3	-6.88	2.63e-1	-1.33	2.30e-2	-3.77
+6	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_195		GGTKTYMYS	560	77.24	4346	67.07	1.15	4.8	1.08e-3	-6.83	2.75e-1	-1.29	2.30e-2	-3.77
+7	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_190		WTDKRYKWW	627	86.48	4920	75.93	1.14	2.7	1.35e-3	-6.60	3.46e-1	-1.06	2.46e-2	-3.71
+8	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_155		WWTYDSART	642	88.55	5054	77.99	1.14	1.9	1.53e-3	-6.48	3.91e-1	-0.94	2.46e-2	-3.71
+9	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_158		WDWTTTTWN	685	94.48	5425	83.72	1.13	0.26	1.77e-3	-6.34	4.51e-1	-0.80	2.52e-2	-3.68
+10	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_26		ATTATYTWW	684	94.34	5439	83.94	1.12	0.2	2.41e-3	-6.03	6.14e-1	-0.49	2.96e-2	-3.52
+11	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_227		YTNCWAWWA	644	88.83	5106	78.80	1.13	1.8	2.54e-3	-5.97	6.48e-1	-0.43	2.96e-2	-3.52
+12	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_27		VRMAWYATG	549	75.72	4320	66.67	1.14	2.9	3.03e-3	-5.80	7.72e-1	-0.26	3.23e-2	-3.43
+13	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_109		SGWKTAWRA	589	81.24	4665	71.99	1.13	3.4	3.45e-3	-5.67	8.81e-1	-0.13	3.36e-2	-3.39
+14	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_91		DTAAAAATG	590	81.38	4680	72.22	1.13	0.61	3.79e-3	-5.58	9.67e-1	-0.03	3.36e-2	-3.39
+15	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_255		AWATTATWK	567	78.21	4489	69.27	1.13	0.7	3.93e-3	-5.54	1.00e0	0.00	3.36e-2	-3.39
+16	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_252		AAAWTMWAR	529	72.97	4176	64.44	1.13	2.7	4.31e-3	-5.45	1.10e0	0.09	3.45e-2	-3.37
+17	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_210		ATRTARVAV	588	81.10	4677	72.18	1.12	2	4.60e-3	-5.38	1.17e0	0.16	3.46e-2	-3.36
+18	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_115		HRTKNWATG	670	92.41	5379	83.01	1.11	2.4	5.18e-3	-5.26	1.32e0	0.28	3.62e-2	-3.32
+19	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_179		VTDTDHDBG	486	67.03	3833	59.15	1.13	4.5	5.62e-3	-5.18	1.43e0	0.36	3.62e-2	-3.32
+20	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_114		DBYKKMTAA	531	73.24	4214	65.03	1.13	3.8	5.84e-3	-5.14	1.49e0	0.40	3.62e-2	-3.32
+21	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_96		MMBMWRAWA	670	92.41	5390	83.18	1.11	1.2	5.94e-3	-5.13	1.52e0	0.42	3.62e-2	-3.32
+22	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_143		RBTRCTSHR	464	64.00	3655	56.40	1.14	5.2	6.21e-3	-5.08	1.58e0	0.46	3.62e-2	-3.32
+23	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_46		SMGAWRRWR	472	65.10	3733	57.61	1.13	5.2	7.29e-3	-4.92	1.86e0	0.62	3.94e-2	-3.23
+24	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_215		AARATAGDN	424	58.48	3331	51.40	1.14	4.8	7.39e-3	-4.91	1.88e0	0.63	3.94e-2	-3.23
+25	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_248		TGTRAABBA	604	83.31	4854	74.91	1.11	1.8	7.97e-3	-4.83	2.03e0	0.71	3.99e-2	-3.22
+26	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_222		SBWAWKRTR	553	76.28	4426	68.30	1.12	4.1	8.37e-3	-4.78	2.13e0	0.76	3.99e-2	-3.22
+27	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_23		DKGTTTTAB	583	80.41	4682	72.25	1.11	1.3	8.60e-3	-4.76	2.19e0	0.79	3.99e-2	-3.22
+28	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_38		AMMABAVTK	568	78.34	4559	70.35	1.11	4.2	9.06e-3	-4.70	2.31e0	0.84	3.99e-2	-3.22
+29	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_231		ACAWHWTKV	512	70.62	4087	63.07	1.12	3.8	9.25e-3	-4.68	2.36e0	0.86	3.99e-2	-3.22
+30	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_40		TDCHGMBHT	497	68.55	3961	61.13	1.12	5.2	9.34e-3	-4.67	2.38e0	0.87	3.99e-2	-3.22
+31	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_13		RYYCTHTMG	508	70.07	4062	62.69	1.12	4.7	1.04e-2	-4.56	2.66e0	0.98	4.17e-2	-3.18
+32	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_170		TTDYWTKYS	641	88.41	5190	80.09	1.1	2.1	1.04e-2	-4.56	2.66e0	0.98	4.17e-2	-3.18
+33	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_187		TWGGAATDA	620	85.52	5015	77.39	1.11	2.2	1.09e-2	-4.52	2.77e0	1.02	4.22e-2	-3.17
+34	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_233		RHMATTKGR	192	26.48	1431	22.08	1.2	7	1.13e-2	-4.48	2.89e0	1.06	4.27e-2	-3.15
+35	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_95		WKTYYCAAK	395	54.48	3125	48.23	1.13	5.6	1.30e-2	-4.34	3.32e0	1.20	4.52e-2	-3.10
+36	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_164		RTCRHKATG	556	76.69	4488	69.26	1.11	3.2	1.33e-2	-4.32	3.40e0	1.22	4.52e-2	-3.10
+37	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_213		DNATGRWKG	640	88.28	5204	80.31	1.1	2.9	1.35e-2	-4.30	3.45e0	1.24	4.52e-2	-3.10
+38	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_130		NCTRATYMA	617	85.10	5009	77.30	1.1	2.8	1.37e-2	-4.29	3.49e0	1.25	4.52e-2	-3.10
+39	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_217		RTTWTAYGG	557	76.83	4499	69.43	1.11	2.9	1.38e-2	-4.29	3.51e0	1.26	4.52e-2	-3.10
+40	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_198		MYAWRATGG	588	81.10	4772	73.64	1.1	2.2	1.54e-2	-4.17	3.92e0	1.37	4.62e-2	-3.07
+41	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_221		ATGATGGMV	605	83.45	4917	75.88	1.1	3.2	1.54e-2	-4.17	3.93e0	1.37	4.62e-2	-3.07
+42	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_6		NRAAWTTGG	472	65.10	3787	58.44	1.11	2.5	1.54e-2	-4.17	3.93e0	1.37	4.62e-2	-3.07
+43	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_137		CTVTTGGMK	563	77.66	4560	70.37	1.1	4	1.55e-2	-4.17	3.96e0	1.38	4.62e-2	-3.07
+44	../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt	MMPA_l3_166		VAYGACDKS	95	13.10	663	10.23	1.29	8.5	1.60e-2	-4.13	4.09e0	1.41	4.67e-2	-3.06
+
+# SEA (Simple Enrichment Analysis): Version 5.4.1 compiled on Nov  5 2021 at 20:34:26
+# The format of this file is described at http://meme-suite.org/doc/sea-output-format.html.
+# sea --verbosity 1 --qvalue --text -p /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/toenrich_sequences.fasta -m ../save_motif/AllCh_MerMPA_1cfixp_Nov3.txt -n /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/UTRlib_background.fasta

@@ -1,0 +1,42 @@
+# Warning: p-values will be inaccurate if primary and control
+#          sequences have different length distributions.
+RANK	DB	ID	ALT_ID	CONSENSUS	TP	TP%	FP	FP%	ENR_RATIO	SCORE_THR	PVALUE	LOG_PVALUE	EVALUE	LOG_EVALUE	QVALUE	LOG_QVALUE
+1	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_219		RCWKTTWAT	593	81.79	4486	69.23	1.18	3.3	1.01e-4	-9.20	2.58e-2	-3.66	8.73e-3	-4.74
+2	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_12		TDTYCTAAH	641	88.41	4909	75.76	1.17	2.4	1.67e-4	-8.70	4.27e-2	-3.15	8.73e-3	-4.74
+3	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_250		SBKTKTATW	617	85.10	4721	72.85	1.17	3.5	2.01e-4	-8.51	5.14e-2	-2.97	8.73e-3	-4.74
+4	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_248		WYYGTGWCK	381	52.55	2834	43.73	1.2	5.7	5.49e-4	-7.51	1.40e-1	-1.97	1.44e-2	-4.24
+5	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_10		NTYCRKTKK	327	45.10	2396	36.98	1.22	6.2	5.54e-4	-7.50	1.41e-1	-1.96	1.44e-2	-4.24
+6	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_9		TTKTRTTTK	679	93.66	5325	82.18	1.14	0.13	8.58e-4	-7.06	2.19e-1	-1.52	1.64e-2	-4.11
+7	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_89		KTAMMWBKA	646	89.10	5053	77.98	1.14	3	9.12e-4	-7.00	2.33e-1	-1.46	1.64e-2	-4.11
+8	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_220		WDKTYWATK	639	88.14	5001	77.18	1.14	3	1.01e-3	-6.90	2.57e-1	-1.36	1.64e-2	-4.11
+9	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_100		HMRTTGGCK	125	17.24	825	12.73	1.36	7.6	1.33e-3	-6.63	3.38e-1	-1.08	1.92e-2	-3.95
+10	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_120		RMAWADTRR	591	81.52	4648	71.73	1.14	3.2	2.11e-3	-6.16	5.39e-1	-0.62	2.59e-2	-3.65
+11	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_137		RMAGVTRRA	569	78.48	4466	68.92	1.14	4.7	2.19e-3	-6.13	5.58e-1	-0.58	2.59e-2	-3.65
+12	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_5		ATGRAKRRW	606	83.59	4784	73.83	1.13	3.4	2.45e-3	-6.01	6.25e-1	-0.47	2.66e-2	-3.63
+13	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_106		MAAWDATGA	625	86.21	4955	76.47	1.13	1.7	2.88e-3	-5.85	7.34e-1	-0.31	2.88e-2	-3.55
+14	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_198		WYTTRWKGN	527	72.69	4148	64.01	1.14	4.1	3.65e-3	-5.61	9.30e-1	-0.07	3.19e-2	-3.45
+15	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_168		TGGAKKNTW	541	74.62	4266	65.83	1.13	4.6	3.68e-3	-5.61	9.38e-1	-0.06	3.19e-2	-3.45
+16	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_240		TAAMMHTKW	562	77.52	4447	68.63	1.13	3.9	3.93e-3	-5.54	1.00e0	0.00	3.20e-2	-3.44
+17	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_246		DHSSWTTTT	603	83.17	4803	74.12	1.12	3.3	4.56e-3	-5.39	1.16e0	0.15	3.21e-2	-3.44
+18	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_119		VMAGGHKWW	299	41.24	2265	34.95	1.18	6.2	4.58e-3	-5.39	1.17e0	0.15	3.21e-2	-3.44
+19	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_66		NTKAWWWRN	619	85.38	4940	76.23	1.12	3	4.69e-3	-5.36	1.20e0	0.18	3.21e-2	-3.44
+20	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_71		WNATGTGAV	579	79.86	4618	71.27	1.12	4	5.79e-3	-5.15	1.48e0	0.39	3.58e-2	-3.33
+21	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_211		NAAWGATGR	589	81.24	4708	72.65	1.12	3.4	6.23e-3	-5.08	1.59e0	0.46	3.58e-2	-3.33
+22	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_188		WVCGYTTKN	406	56.00	3170	48.92	1.15	5.5	6.26e-3	-5.07	1.60e0	0.47	3.58e-2	-3.33
+23	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_131		DYWGHAWWR	672	92.69	5413	83.53	1.11	2.6	6.40e-3	-5.05	1.63e0	0.49	3.58e-2	-3.33
+24	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_126		ABDWACSKR	376	51.86	2923	45.11	1.15	5.7	6.61e-3	-5.02	1.69e0	0.52	3.58e-2	-3.33
+25	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_115		ATGKTATAR	441	60.83	3482	53.73	1.13	0.14	8.39e-3	-4.78	2.14e0	0.76	4.30e-2	-3.15
+26	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_213		WWCRTYTKR	351	48.41	2732	42.16	1.15	5.6	8.85e-3	-4.73	2.26e0	0.81	4.30e-2	-3.15
+27	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_72		NVCTGGVVY	144	19.86	1033	15.94	1.25	6.8	8.92e-3	-4.72	2.27e0	0.82	4.30e-2	-3.15
+28	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_24		RKTDKTAAR	584	80.55	4697	72.48	1.11	2.6	9.34e-3	-4.67	2.38e0	0.87	4.34e-2	-3.14
+29	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_180		NTRRTARRN	67	9.24	433	6.68	1.4	9.7	1.01e-2	-4.60	2.57e0	0.95	4.38e-2	-3.13
+30	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_17		YVRSWYSGV	244	33.66	1852	28.58	1.18	6.1	1.01e-2	-4.59	2.58e0	0.95	4.38e-2	-3.13
+31	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_136		WWYTCMTAA	606	83.59	4895	75.54	1.11	2.8	1.07e-2	-4.53	2.74e0	1.01	4.39e-2	-3.13
+32	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_50		HMYTTYRTN	627	86.48	5074	78.30	1.1	3.8	1.08e-2	-4.53	2.76e0	1.01	4.39e-2	-3.13
+33	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_234		RTTRTATGN	602	83.03	4865	75.08	1.11	3.6	1.13e-2	-4.49	2.87e0	1.06	4.44e-2	-3.11
+34	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_194		YRKCGGTRW	212	29.24	1601	24.71	1.19	6.8	1.30e-2	-4.34	3.31e0	1.20	4.97e-2	-3.00
+35	/home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt	unmod1_l3_f_205		YHBHWGYHH	609	84.00	4939	76.22	1.1	4.2	1.34e-2	-4.31	3.42e0	1.23	4.98e-2	-3.00
+
+# SEA (Simple Enrichment Analysis): Version 5.4.1 compiled on Nov  5 2021 at 20:34:26
+# The format of this file is described at http://meme-suite.org/doc/sea-output-format.html.
+# sea --verbosity 1 --qvalue --text -p /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/toenrich_sequences.fasta -m /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/save_motif/unmod1_n3000_Nov8_cv1.txt -n /home/wergillius/Project/UTR_VAE/ipynb/network_interpretation/UTRlib_background.fasta
