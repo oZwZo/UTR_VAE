@@ -98,7 +98,7 @@ def pack_seq(ds_zls:list,pad_to:int):
         X_packed = torch.stack([pad_zeros(X=x,pad_to=pad_to) for x in X_ts])
     else:
         X_packed = [torch.stack([pad_zeros(X=x[0],pad_to=pad_to) for x in X_ts]), torch.tensor([x[1] for x in X_ts])]
-    Y_packed = torch.tensor([Y for X,Y in ds_zls])
+    Y_packed = torch.tensor(np.array([Y for X,Y in ds_zls]))
     
     return X_packed , Y_packed
 

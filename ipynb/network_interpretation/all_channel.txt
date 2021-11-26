@@ -1,0 +1,4602 @@
+>|pattern_0 0
+CGGGGTAGT
+
+>|pattern_1 1
+CGGGGGCCG
+
+>|pattern_2 2
+GGGGTGGCT
+
+>|pattern_3 3
+CGGGTTGAA
+
+>|pattern_4 4
+CGGGGGGCC
+
+>|pattern_5 5
+AAATTTAAT
+
+>|pattern_6 6
+ATTATGTTT
+
+>|pattern_7 7
+GCGATGGCG
+
+>|pattern_8 8
+ACCAAAGGG
+
+>|pattern_9 9
+ACGATGGCG
+
+>|pattern_10 10
+GGTAAAGAG
+
+>|pattern_11 11
+ATCATATCG
+
+>|pattern_12 12
+GAGCCCGCC
+
+>|pattern_13 13
+CAAGATGGC
+
+>|pattern_14 14
+TGCTCGCAT
+
+>|pattern_15 15
+TAAAATGTT
+
+>|pattern_16 16
+CGCCCCGCC
+
+>|pattern_17 17
+CACCCCCAC
+
+>|pattern_18 18
+TGCGGCTGG
+
+>|pattern_19 19
+TTCAATATG
+
+>|pattern_20 20
+TCAAAATGG
+
+>|pattern_21 21
+GCAGCTGGG
+
+>|pattern_22 22
+GCAGCCCTG
+
+>|pattern_23 23
+TACAATGTG
+
+>|pattern_24 24
+GATGCTCCC
+
+>|pattern_25 25
+ATGGCCGGC
+
+>|pattern_26 26
+ATGGCGCCC
+
+>|pattern_27 27
+CATGAGAAT
+
+>|pattern_28 28
+ATGGTTTTA
+
+>|pattern_29 29
+AATGTTTGC
+
+>|pattern_30 30
+ATGGACGTA
+
+>|pattern_31 31
+ATTATGGTA
+
+>|pattern_32 32
+ATTTCTAAA
+
+>|pattern_33 33
+CTGCATGAT
+
+>|pattern_34 34
+ATGTCCTGT
+
+>|pattern_35 35
+GATGATGAT
+
+>|pattern_36 36
+CCCCCCGGG
+
+>|pattern_37 37
+AAGATGGCG
+
+>|pattern_38 38
+GGAGGCGGG
+
+>|pattern_39 39
+GGAGGGCGG
+
+>|pattern_40 40
+CCCGGCGGG
+
+>|pattern_41 41
+ATTTTTTTT
+
+>|pattern_42 42
+TTTGGAAAT
+
+>|pattern_43 43
+TTTTTTTTT
+
+>|pattern_44 44
+TTTTTTTTA
+
+>|pattern_45 45
+TTTGGAGCA
+
+>|pattern_46 46
+TTTTTTTTG
+
+>|pattern_47 47
+TTTTGGAAA
+
+>|pattern_48 48
+AGGTAAGAA
+
+>|pattern_49 49
+ACCTGCTCT
+
+>|pattern_50 50
+TTTTAAGAT
+
+>|pattern_51 51
+CGGCCCCCT
+
+>|pattern_52 52
+GGCCGCCCT
+
+>|pattern_53 53
+ACCTAAGAA
+
+>|pattern_54 54
+TTTTGTTTT
+
+>|pattern_55 55
+TTGTGTTTT
+
+>|pattern_56 56
+TTTTATTGT
+
+>|pattern_57 57
+TTTTATTTG
+
+>|pattern_58 58
+TTTTGTGTT
+
+>|pattern_59 59
+TTGTATTGT
+
+>|pattern_60 60
+CTGCATTGG
+
+>|pattern_61 61
+TTTCGATTG
+
+>|pattern_62 62
+TTTCAGTGT
+
+>|pattern_63 63
+TTTCTGTTT
+
+>|pattern_64 64
+TTTCATTGT
+
+>|pattern_65 65
+ATTCATAAT
+
+>|pattern_66 66
+GTGGGCTAA
+
+>|pattern_67 67
+GCGGGGCGG
+
+>|pattern_68 68
+GCGATTATG
+
+>|pattern_69 69
+GTGGCCATG
+
+>|pattern_70 70
+TTAATTTGT
+
+>|pattern_71 71
+GTGGGTGCA
+
+>|pattern_72 72
+TTTTCCAAA
+
+>|pattern_73 73
+TTTTCTATT
+
+>|pattern_74 74
+TTTCTTTTT
+
+>|pattern_75 75
+TGTGAATTT
+
+>|pattern_76 76
+GATCCTAAC
+
+>|pattern_77 77
+TGTTTTATT
+
+>|pattern_78 78
+GAGTTGATT
+
+>|pattern_79 79
+GATTTTTAT
+
+>|pattern_80 80
+GAAGTGACT
+
+>|pattern_81 81
+TTAGTGATT
+
+>|pattern_82 82
+CTAGTCTAT
+
+>|pattern_83 83
+GAAGTTTAT
+
+>|pattern_84 84
+AGTAATGTA
+
+>|pattern_85 85
+AAAAATATG
+
+>|pattern_86 86
+CCCGGGCTC
+
+>|pattern_87 87
+AGAATCATA
+
+>|pattern_88 88
+GAAAATTAT
+
+>|pattern_89 89
+GGCCGGGCC
+
+>|pattern_90 90
+CATTAACCT
+
+>|pattern_91 91
+ATATGATGT
+
+>|pattern_92 92
+ATTTAATAA
+
+>|pattern_93 93
+AATTAGCCT
+
+>|pattern_94 94
+AATTAATGT
+
+>|pattern_95 95
+GCTTGACTT
+
+>|pattern_96 96
+AGTTTGCAG
+
+>|pattern_97 97
+ATGTTTATT
+
+>|pattern_98 98
+TATGTTTTT
+
+>|pattern_99 99
+AGCTGGAGC
+
+>|pattern_100 100
+CATGGTGAG
+
+>|pattern_101 101
+AATTTTATG
+
+>|pattern_102 102
+CCCCCCCCC
+
+>|pattern_103 103
+CAAGATGGA
+
+>|pattern_104 104
+TGAGTCCCC
+
+>|pattern_105 105
+TAGGCACGC
+
+>|pattern_106 106
+CCCCTCCCC
+
+>|pattern_107 107
+CCCCCGCGG
+
+>|pattern_108 108
+ATGACTGGA
+
+>|pattern_109 109
+GGTATAGGG
+
+>|pattern_110 110
+AGGATGAGG
+
+>|pattern_111 111
+TTTTTTGGA
+
+>|pattern_112 112
+ATGATGATT
+
+>|pattern_113 113
+AGTATTGGA
+
+>|pattern_114 114
+GGACATGGG
+
+>|pattern_115 115
+TATGTGTAT
+
+>|pattern_116 116
+CGGGTGGGG
+
+>|pattern_117 117
+CCAAATGGT
+
+>|pattern_118 118
+AATGGCGCG
+
+>|pattern_119 119
+GGATGCGGA
+
+>|pattern_120 120
+TTTTTACAA
+
+>|pattern_121 121
+CAGCCATCC
+
+>|pattern_122 122
+CAAAGACTC
+
+>|pattern_123 123
+TTTTCATTA
+
+>|pattern_124 124
+GAGCGAGTC
+
+>|pattern_125 125
+TTTTCATCA
+
+>|pattern_126 126
+CGGGGCGGC
+
+>|pattern_127 127
+GCCGCCGCG
+
+>|pattern_128 128
+CCGGGCGGG
+
+>|pattern_129 129
+AGAAAGATG
+
+>|pattern_130 130
+GGCGGCGGG
+
+>|pattern_131 131
+CGGGCCGGG
+
+>|pattern_132 132
+GGCCAGGTG
+
+>|pattern_133 133
+GAACATGAT
+
+>|pattern_134 134
+GGCCTCGCC
+
+>|pattern_135 135
+GGCTAAAAA
+
+>|pattern_136 136
+AAAATGATT
+
+>|pattern_137 137
+GGCCGCGCG
+
+>|pattern_138 138
+GATAGGCTC
+
+>|pattern_139 139
+CTTGTCTCT
+
+>|pattern_140 140
+CCTGACTTT
+
+>|pattern_141 141
+GTTGTCCTA
+
+>|pattern_142 142
+GGAGTCTCA
+
+>|pattern_143 143
+GGGTCACAC
+
+>|pattern_144 144
+AGTTGTAAA
+
+>|pattern_145 145
+ATTATTATT
+
+>|pattern_146 146
+GGTGGTAAG
+
+>|pattern_147 147
+CTTATTAAA
+
+>|pattern_148 148
+GTTGTATGA
+
+>|pattern_149 149
+ATTTGTAAA
+
+>|pattern_150 150
+AGTATGCTG
+
+>|pattern_151 151
+GGAATGTGG
+
+>|pattern_152 152
+AATGTAAGG
+
+>|pattern_153 153
+GAATGAGAG
+
+>|pattern_154 154
+GGTATGGGT
+
+>|pattern_155 155
+GGTATGAAT
+
+>|pattern_156 156
+GGCAACATG
+
+>|pattern_157 157
+AACATGGCG
+
+>|pattern_158 158
+AAACATGGA
+
+>|pattern_159 159
+AACATCATG
+
+>|pattern_160 160
+AACAACATA
+
+>|pattern_161 161
+AAAAAAATG
+
+>|pattern_162 162
+ATGATTATA
+
+>|pattern_163 163
+CCCCCGACC
+
+>|pattern_164 164
+CCCCCAGGA
+
+>|pattern_165 165
+TGCTCTGTA
+
+>|pattern_166 166
+GACTCGATA
+
+>|pattern_167 167
+TGCTGAATA
+
+>|pattern_168 168
+GCCCCCGGG
+
+>|pattern_169 169
+GCGTCCTGC
+
+>|pattern_170 170
+TGAATTTTT
+
+>|pattern_171 171
+GCCCCCCCC
+
+>|pattern_172 172
+GTAATCAGG
+
+>|pattern_173 173
+TGTCCCCGC
+
+>|pattern_174 174
+TTTTGGAAA
+
+>|pattern_175 175
+ATTGGAAAT
+
+>|pattern_176 176
+GCCGGAAGT
+
+>|pattern_177 177
+GCCGGACAG
+
+>|pattern_178 178
+GTTTATGTT
+
+>|pattern_179 179
+GTCTGGAGA
+
+>|pattern_180 180
+GGCAGACCT
+
+>|pattern_181 181
+TTTATTTTT
+
+>|pattern_182 182
+TTTATCGAT
+
+>|pattern_183 183
+TTCTAAATT
+
+>|pattern_184 184
+TTTTTCATT
+
+>|pattern_185 185
+TGAAGGCCC
+
+>|pattern_186 186
+ATGAGGAGG
+
+>|pattern_187 187
+ATGGAGGGG
+
+>|pattern_188 188
+AGAGAGGGG
+
+>|pattern_189 189
+ATGTTGGGG
+
+>|pattern_190 190
+ATGATTGGT
+
+>|pattern_191 191
+ATGTTGGAG
+
+>|pattern_192 192
+AAAATTATG
+
+>|pattern_193 193
+GTCAAAATG
+
+>|pattern_194 194
+AACATGAAG
+
+>|pattern_195 195
+ATCAAGTAT
+
+>|pattern_196 196
+GCCATGACG
+
+>|pattern_197 197
+AGGAAAATG
+
+>|pattern_198 198
+GGCGGGCGC
+
+>|pattern_199 199
+TTTTTCTAT
+
+>|pattern_200 200
+TATGTGTAT
+
+>|pattern_201 201
+GGCGGGCGG
+
+>|pattern_202 202
+GATGGGCGC
+
+>|pattern_203 203
+GGCGCCGGC
+
+>|pattern_204 204
+ACAATGGAG
+
+>|pattern_205 205
+CCACGATGG
+
+>|pattern_206 206
+TCATGATGT
+
+>|pattern_207 207
+AAAATGGCG
+
+>|pattern_208 208
+TCATGGAGG
+
+>|pattern_209 209
+AAAATATGG
+
+>|pattern_210 210
+TTTGTGATT
+
+>|pattern_211 211
+TTTGTTGAT
+
+>|pattern_212 212
+TTTGATAAT
+
+>|pattern_213 213
+TTTTTGATT
+
+>|pattern_214 214
+TTTGTAAAA
+
+>|pattern_215 215
+TTTTTGAAA
+
+>|pattern_216 216
+GCCCCCCCC
+
+>|pattern_217 217
+GGCCTCTAT
+
+>|pattern_218 218
+CGCCATGGC
+
+>|pattern_219 219
+CCCCCCCCC
+
+>|pattern_220 220
+CGCCCCCCC
+
+>|pattern_221 221
+TGCCATTAT
+
+>|pattern_222 222
+TTTGCATGT
+
+>|pattern_223 223
+GTTGCAATG
+
+>|pattern_224 224
+ACAAGATGG
+
+>|pattern_225 225
+GTTACTATG
+
+>|pattern_226 226
+GCAACGATG
+
+>|pattern_227 227
+GCAACATGG
+
+>|pattern_228 228
+AGCATCCCG
+
+>|pattern_229 229
+AGTGTATGT
+
+>|pattern_230 230
+ATTATATTG
+
+>|pattern_231 231
+ATTTTATTT
+
+>|pattern_232 232
+ATTTTGGTG
+
+>|pattern_233 233
+AGTGTATTG
+
+>|pattern_234 234
+TTTTTTTGT
+
+>|pattern_235 235
+GCTTGGTGG
+
+>|pattern_236 236
+GTTTTTTGT
+
+>|pattern_237 237
+GCAGTGGGG
+
+>|pattern_238 238
+GTTTTTGGG
+
+>|pattern_239 239
+TTTTTTGTG
+
+>|pattern_240 240
+CTGGCATCA
+
+>|pattern_241 241
+GGGGGGTCC
+
+>|pattern_242 242
+GGGTCATCA
+
+>|pattern_243 243
+GTGGTGGCT
+
+>|pattern_244 244
+CTGGCGTCC
+
+>|pattern_245 245
+GTGGTGTCC
+
+>|pattern_246 246
+ATGATGATA
+
+>|pattern_247 247
+GAATACATA
+
+>|pattern_248 248
+ATTATGTTT
+
+>|pattern_249 249
+ATGTTTATT
+
+>|pattern_250 250
+AAAATGCTA
+
+>|pattern_251 251
+ATGTCTCTT
+
+>|pattern_252 252
+TTTTTATTT
+
+>|pattern_253 253
+GGGCCCGAC
+
+>|pattern_254 254
+AGGCCCTTC
+
+>|pattern_255 255
+TTTTTTTTC
+
+>|pattern_256 256
+GGGCCCCGC
+
+>|pattern_257 257
+TTTTTTTTA
+
+>|pattern_258 258
+CACCCGGGG
+
+>|pattern_259 259
+CGGAGGGGT
+
+>|pattern_260 260
+CAACATGGC
+
+>|pattern_261 261
+GACGGGGGC
+
+>|pattern_262 262
+CAACCATGG
+
+>|pattern_263 263
+CGATGGGGC
+
+>|pattern_264 264
+CAAGATGGC
+
+>|pattern_265 265
+CATGGCGCC
+
+>|pattern_266 266
+CACGATGCC
+
+>|pattern_267 267
+CACAATGTT
+
+>|pattern_268 268
+CAAGATGAG
+
+>|pattern_269 269
+CACGACTCC
+
+>|pattern_270 270
+GGGGGCTGG
+
+>|pattern_271 271
+CCGGTATGG
+
+>|pattern_272 272
+CGGTGGAAC
+
+>|pattern_273 273
+CCACCATGG
+
+>|pattern_274 274
+CGGTGGAGC
+
+>|pattern_275 275
+TGGCCCAGG
+
+>|pattern_276 276
+TTTTTTTTT
+
+>|pattern_277 277
+TTTTTTTCT
+
+>|pattern_278 278
+GTGCGGTCT
+
+>|pattern_279 279
+TCCTGGCCT
+
+>|pattern_280 280
+GCTTTTTTT
+
+>|pattern_281 281
+GCCTTCTCT
+
+>|pattern_282 282
+GCGTGTCCC
+
+>|pattern_283 283
+GCTTCCCCC
+
+>|pattern_284 284
+ATGTGGCCC
+
+>|pattern_285 285
+CCGGGTCCC
+
+>|pattern_286 286
+GCTCCCCCC
+
+>|pattern_287 287
+AACATGGCC
+
+>|pattern_288 288
+AAATGGCTC
+
+>|pattern_289 289
+AGACATGAG
+
+>|pattern_290 290
+AAATTATGT
+
+>|pattern_291 291
+CGATGGAGC
+
+>|pattern_292 292
+CACCATGGC
+
+>|pattern_293 293
+TGATGATGA
+
+>|pattern_294 294
+TTTTTTGTG
+
+>|pattern_295 295
+TTTTTTGTT
+
+>|pattern_296 296
+TGTGTTGTT
+
+>|pattern_297 297
+GTATGAGCG
+
+>|pattern_298 298
+TTTGTTGTT
+
+>|pattern_299 299
+TTTGTGGCT
+
+>|pattern_300 300
+GATTTTGTT
+
+>|pattern_301 301
+TTCTTTGTG
+
+>|pattern_302 302
+CCGATTGTT
+
+>|pattern_303 303
+TCTTCCATA
+
+>|pattern_304 304
+AATTTTATT
+
+>|pattern_305 305
+CATTTTGGA
+
+>|pattern_306 306
+TTTTGAAAA
+
+>|pattern_307 307
+TTTTGATTT
+
+>|pattern_308 308
+ATGTGAGGA
+
+>|pattern_309 309
+GTTTGATAA
+
+>|pattern_310 310
+GACTGAATC
+
+>|pattern_311 311
+TTTTAGTAA
+
+>|pattern_312 312
+CGGGATGGA
+
+>|pattern_313 313
+AAGATGGCG
+
+>|pattern_314 314
+AATTATGTT
+
+>|pattern_315 315
+CAAGATGGA
+
+>|pattern_316 316
+GGGGCCGGG
+
+>|pattern_317 317
+GAACATGGA
+
+>|pattern_318 318
+ACCTGTAAA
+
+>|pattern_319 319
+ATTTTTGAA
+
+>|pattern_320 320
+AAAATTAAT
+
+>|pattern_321 321
+ATTTTTAAT
+
+>|pattern_322 322
+CCGGCTAAA
+
+>|pattern_323 323
+ATTATTGAA
+
+>|pattern_324 324
+GCAGCAATG
+
+>|pattern_325 325
+CCAGGCCCC
+
+>|pattern_326 326
+ATGGCTCCC
+
+>|pattern_327 327
+TTCAAAATG
+
+>|pattern_328 328
+CCAAGATGT
+
+>|pattern_329 329
+AAAATTATG
+
+>|pattern_330 330
+AGATGATGC
+
+>|pattern_331 331
+AAGCAATGG
+
+>|pattern_332 332
+AAAATATGG
+
+>|pattern_333 333
+AAATGGCGC
+
+>|pattern_334 334
+AAGGTACGC
+
+>|pattern_335 335
+AATGATGTC
+
+>|pattern_336 336
+TTAGCTGAT
+
+>|pattern_337 337
+TTAAATAAT
+
+>|pattern_338 338
+CTGAGCGCT
+
+>|pattern_339 339
+TTGATTGAT
+
+>|pattern_340 340
+TTAGCCTAT
+
+>|pattern_341 341
+GTGACTGCT
+
+>|pattern_342 342
+GCGATAGGG
+
+>|pattern_343 343
+CTGGAGTGG
+
+>|pattern_344 344
+GCAGAGGGG
+
+>|pattern_345 345
+GCACTGGGG
+
+>|pattern_346 346
+GTAGTAGGG
+
+>|pattern_347 347
+GTGGATTCG
+
+>|pattern_348 348
+TATGTTTAT
+
+>|pattern_349 349
+ATGTTTAAT
+
+>|pattern_350 350
+AATGATAGT
+
+>|pattern_351 351
+AAAATGGCG
+
+>|pattern_352 352
+ATTATGGAT
+
+>|pattern_353 353
+TTGGAGATT
+
+>|pattern_354 354
+AAAATTATG
+
+>|pattern_355 355
+AAAATCTCT
+
+>|pattern_356 356
+AGAAAAATG
+
+>|pattern_357 357
+AAAACTGAC
+
+>|pattern_358 358
+AAAAAATTT
+
+>|pattern_359 359
+GGCAAAATG
+
+>|pattern_360 360
+TTTAATATG
+
+>|pattern_361 361
+TTTGAAAAT
+
+>|pattern_362 362
+TGAATGTCT
+
+>|pattern_363 363
+TTTTGATTT
+
+>|pattern_364 364
+TTTAATAAT
+
+>|pattern_365 365
+TATAGTGAT
+
+>|pattern_366 366
+TTGTTTAAA
+
+>|pattern_367 367
+GCCTCTAGG
+
+>|pattern_368 368
+GCTTGCAAA
+
+>|pattern_369 369
+GCATTCACA
+
+>|pattern_370 370
+GTGTTTAGA
+
+>|pattern_371 371
+GCTTCTGAA
+
+>|pattern_372 372
+TCCACGATG
+
+>|pattern_373 373
+AAATTATGT
+
+>|pattern_374 374
+TGCAAAATG
+
+>|pattern_375 375
+CAACATGGC
+
+>|pattern_376 376
+AAAAAAATG
+
+>|pattern_377 377
+TAAAAATGA
+
+>|pattern_378 378
+CCCCGCCCC
+
+>|pattern_379 379
+CGGCCGCCC
+
+>|pattern_380 380
+CAGCAGCCC
+
+>|pattern_381 381
+CAGCTTGCC
+
+>|pattern_382 382
+CCCCGGCCC
+
+>|pattern_383 383
+CAGCAGTGT
+
+>|pattern_384 384
+CCGACAAGC
+
+>|pattern_385 385
+ACGGCAGGA
+
+>|pattern_386 386
+ACTGAAGAC
+
+>|pattern_387 387
+GCAGCAGGC
+
+>|pattern_388 388
+ACTTCAAGC
+
+>|pattern_389 389
+CCGACGGTC
+
+>|pattern_390 390
+ATTATGTGT
+
+>|pattern_391 391
+AACATGACC
+
+>|pattern_392 392
+ATTATGTTT
+
+>|pattern_393 393
+GTGGGGTGA
+
+>|pattern_394 394
+GGGGGGGCC
+
+>|pattern_395 395
+AATTTTTTT
+
+>|pattern_396 396
+TTGAATTGG
+
+>|pattern_397 397
+ATTATAAAA
+
+>|pattern_398 398
+TTGAAATAT
+
+>|pattern_399 399
+TTGGAAAAA
+
+>|pattern_400 400
+ATTCGAAAA
+
+>|pattern_401 401
+TTGCTTTGG
+
+>|pattern_402 402
+GCGCTAGTG
+
+>|pattern_403 403
+TTGGTTTTG
+
+>|pattern_404 404
+TCTGTAGTA
+
+>|pattern_405 405
+GCGAGCAGT
+
+>|pattern_406 406
+TCTGTTTTT
+
+>|pattern_407 407
+TCGCATGCT
+
+>|pattern_408 408
+TTTAGAATC
+
+>|pattern_409 409
+TCTGACCCC
+
+>|pattern_410 410
+TTTAAGGGA
+
+>|pattern_411 411
+TTTGAATTT
+
+>|pattern_412 412
+TCTAGGGCC
+
+>|pattern_413 413
+TCTGAGGGA
+
+>|pattern_414 414
+TGTTTTTTT
+
+>|pattern_415 415
+ATGTTTTTT
+
+>|pattern_416 416
+TTGTATGTT
+
+>|pattern_417 417
+ATTGTATGA
+
+>|pattern_418 418
+TATGTTTTT
+
+>|pattern_419 419
+TTTATGTTT
+
+>|pattern_420 420
+ATTTTTTTT
+
+>|pattern_421 421
+GTTTTTGCA
+
+>|pattern_422 422
+GTTTTTTTT
+
+>|pattern_423 423
+GTAGGTGTT
+
+>|pattern_424 424
+ATTTTTTAT
+
+>|pattern_425 425
+GGCCTTGTA
+
+>|pattern_426 426
+AGATGTGAG
+
+>|pattern_427 427
+ACACCTGAG
+
+>|pattern_428 428
+TGATGGTTT
+
+>|pattern_429 429
+ATGTTGTAA
+
+>|pattern_430 430
+GAGGCTGAG
+
+>|pattern_431 431
+TATGGATTC
+
+>|pattern_432 432
+TCCTTTGGT
+
+>|pattern_433 433
+CCCCCCGCC
+
+>|pattern_434 434
+CCCTACCAT
+
+>|pattern_435 435
+GGCTGGACC
+
+>|pattern_436 436
+CCCTGGCCC
+
+>|pattern_437 437
+GCCTTCGCC
+
+>|pattern_438 438
+AAAAGATGA
+
+>|pattern_439 439
+AAGATGGAG
+
+>|pattern_440 440
+CAACATGGA
+
+>|pattern_441 441
+AAATTATGT
+
+>|pattern_442 442
+GCGATGGCG
+
+>|pattern_443 443
+AAGATGGCG
+
+>|pattern_444 444
+CTCTTCAAC
+
+>|pattern_445 445
+ACCTTAAAA
+
+>|pattern_446 446
+CCCTCCACC
+
+>|pattern_447 447
+CCCCTAAAA
+
+>|pattern_448 448
+CCTTCCAAA
+
+>|pattern_449 449
+CTCTTCCTA
+
+>|pattern_450 450
+ACAAGATGG
+
+>|pattern_451 451
+AAAAAATGG
+
+>|pattern_452 452
+CCACCACCA
+
+>|pattern_453 453
+AAGATCAAA
+
+>|pattern_454 454
+AAGATGGCT
+
+>|pattern_455 455
+CCGCCCTGG
+
+>|pattern_456 456
+TGTTTTTGA
+
+>|pattern_457 457
+ATGGGTCGA
+
+>|pattern_458 458
+TATTTTTGT
+
+>|pattern_459 459
+ATGCGACCG
+
+>|pattern_460 460
+ATGGAGCCC
+
+>|pattern_461 461
+AATTTTTGA
+
+>|pattern_462 462
+CGGAGGCGC
+
+>|pattern_463 463
+TTGCGTCGA
+
+>|pattern_464 464
+TTTTTGTTT
+
+>|pattern_465 465
+TTGGAGCGC
+
+>|pattern_466 466
+TTTTGGAGC
+
+>|pattern_467 467
+TTTTTGGAA
+
+>|pattern_468 468
+GCCAGGGTC
+
+>|pattern_469 469
+ATAAGGGGG
+
+>|pattern_470 470
+GTAAACGTA
+
+>|pattern_471 471
+TTGATCTGA
+
+>|pattern_472 472
+ATGAGGGTG
+
+>|pattern_473 473
+GCCGGGCGG
+
+>|pattern_474 474
+CGCGCCCCC
+
+>|pattern_475 475
+GACCCCCCC
+
+>|pattern_476 476
+TGTAGCCCC
+
+>|pattern_477 477
+CTGAGCCCC
+
+>|pattern_478 478
+GTCTCCCCC
+
+>|pattern_479 479
+ATTGTAGCC
+
+>|pattern_480 480
+GGTGGCTCA
+
+>|pattern_481 481
+ATGTGCATG
+
+>|pattern_482 482
+GGCCCACCA
+
+>|pattern_483 483
+ATTTTATTT
+
+>|pattern_484 484
+GCCCTAGCA
+
+>|pattern_485 485
+GCCCGCTCG
+
+>|pattern_486 486
+ATTTTCAAA
+
+>|pattern_487 487
+GGTGGAACC
+
+>|pattern_488 488
+CGGGTCAAA
+
+>|pattern_489 489
+TGGAGGCAA
+
+>|pattern_490 490
+AGTGGAAAA
+
+>|pattern_491 491
+GCGGACCCA
+
+>|pattern_492 492
+AATGTAATC
+
+>|pattern_493 493
+TTAATAGTT
+
+>|pattern_494 494
+TTAGTGATT
+
+>|pattern_495 495
+ATGATGATT
+
+>|pattern_496 496
+TTGATAATT
+
+>|pattern_497 497
+TTAATAAAT
+
+>|pattern_498 498
+ATGGCACCG
+
+>|pattern_499 499
+GAAATGGCG
+
+>|pattern_500 500
+GCCGCTGCC
+
+>|pattern_501 501
+GTGGCTGCG
+
+>|pattern_502 502
+GCCGCCCGG
+
+>|pattern_503 503
+GACATGATG
+
+>|pattern_504 504
+GTTGCAATG
+
+>|pattern_505 505
+GGCAAAATG
+
+>|pattern_506 506
+TGGGAGAGA
+
+>|pattern_507 507
+GGGGGAGAG
+
+>|pattern_508 508
+TGGGAGATG
+
+>|pattern_509 509
+AGAAAAATG
+
+>|pattern_510 510
+GTTTTTCAA
+
+>|pattern_511 511
+CGTTCTCTA
+
+>|pattern_512 512
+CGGCACCAT
+
+>|pattern_513 513
+TTTCTCCTA
+
+>|pattern_514 514
+CGACTCCGA
+
+>|pattern_515 515
+TTTGGAGAT
+
+>|pattern_516 516
+CATATTTAA
+
+>|pattern_517 517
+TTTTATTGA
+
+>|pattern_518 518
+TTTTAATAG
+
+>|pattern_519 519
+TATTGATAA
+
+>|pattern_520 520
+ATTTAATAA
+
+>|pattern_521 521
+TAGTTTTAA
+
+>|pattern_522 522
+TCACTCTCT
+
+>|pattern_523 523
+TGAAAATAT
+
+>|pattern_524 524
+TTCCTTGCT
+
+>|pattern_525 525
+TTCCTTCTA
+
+>|pattern_526 526
+TTGCAATAT
+
+>|pattern_527 527
+TTGAGACTT
+
+>|pattern_528 528
+ATAATGAAA
+
+>|pattern_529 529
+ATGAATGCT
+
+>|pattern_530 530
+CTAGGAAAT
+
+>|pattern_531 531
+CTGAGTCTT
+
+>|pattern_532 532
+CGGGGGAAA
+
+>|pattern_533 533
+GTGAAATTT
+
+>|pattern_534 534
+TTTGTTGGA
+
+>|pattern_535 535
+TTTAATTTA
+
+>|pattern_536 536
+TTACAATTA
+
+>|pattern_537 537
+TTTGTTGTA
+
+>|pattern_538 538
+TTTTATATA
+
+>|pattern_539 539
+GCGACTCTA
+
+>|pattern_540 540
+GTTTTTTTT
+
+>|pattern_541 541
+TTGTTATGT
+
+>|pattern_542 542
+ATTTTTTTT
+
+>|pattern_543 543
+TTATGTTTG
+
+>|pattern_544 544
+CAATGATGG
+
+>|pattern_545 545
+TTTTTTTTG
+
+>|pattern_546 546
+ATTATGTGC
+
+>|pattern_547 547
+AAAATGGCG
+
+>|pattern_548 548
+ATTTTTTGG
+
+>|pattern_549 549
+GCGATGGCC
+
+>|pattern_550 550
+AATGTTGCC
+
+>|pattern_551 551
+ATGGCGCCC
+
+>|pattern_552 552
+TTGATTTTT
+
+>|pattern_553 553
+GTAGGCCGG
+
+>|pattern_554 554
+TTAATATGG
+
+>|pattern_555 555
+GTGACCCAG
+
+>|pattern_556 556
+GTGAACTGA
+
+>|pattern_557 557
+GTAGCCGAA
+
+>|pattern_558 558
+AACATGTTA
+
+>|pattern_559 559
+ATGGCGTGA
+
+>|pattern_560 560
+AAAATGTTT
+
+>|pattern_561 561
+TTATGATGT
+
+>|pattern_562 562
+ATGATGATA
+
+>|pattern_563 563
+ATGGCTCCC
+
+>|pattern_564 564
+TAATGATGT
+
+>|pattern_565 565
+AAATGAAAA
+
+>|pattern_566 566
+ATATGTTTT
+
+>|pattern_567 567
+CCATGATGG
+
+>|pattern_568 568
+GGATGGGAT
+
+>|pattern_569 569
+CAATGGGGT
+
+>|pattern_570 570
+TTTAATTGT
+
+>|pattern_571 571
+ATCAGTTGC
+
+>|pattern_572 572
+AAAAGTTGT
+
+>|pattern_573 573
+ATATATTGT
+
+>|pattern_574 574
+TACAGTCGT
+
+>|pattern_575 575
+GGATTTCTT
+
+>|pattern_576 576
+AAAAATGTG
+
+>|pattern_577 577
+AAAATTTTT
+
+>|pattern_578 578
+AAATTTTTT
+
+>|pattern_579 579
+CAATGGCTG
+
+>|pattern_580 580
+CAAAGATGG
+
+>|pattern_581 581
+AATGGGGTG
+
+>|pattern_582 582
+ACCAGAGGA
+
+>|pattern_583 583
+ACAGTGTCT
+
+>|pattern_584 584
+GACGTTGGA
+
+>|pattern_585 585
+TAAGTGCAT
+
+>|pattern_586 586
+TCAGTTGGA
+
+>|pattern_587 587
+AACGTTTGG
+
+>|pattern_588 588
+GCTGCTCTG
+
+>|pattern_589 589
+GCTGAGACC
+
+>|pattern_590 590
+CAGGCTCCT
+
+>|pattern_591 591
+CAGGAGCCT
+
+>|pattern_592 592
+GCTGCTCCT
+
+>|pattern_593 593
+ACTGACCCT
+
+>|pattern_594 594
+TCGCAGCGA
+
+>|pattern_595 595
+TCGTTACTA
+
+>|pattern_596 596
+TCGCAATGT
+
+>|pattern_597 597
+TCATTACTA
+
+>|pattern_598 598
+TGATTATGT
+
+>|pattern_599 599
+TCGTGGATA
+
+>|pattern_600 600
+AAGTTGTCT
+
+>|pattern_601 601
+TCGTTGGCT
+
+>|pattern_602 602
+CCGTGGGGC
+
+>|pattern_603 603
+TATTTGATT
+
+>|pattern_604 604
+CACTTGGCT
+
+>|pattern_605 605
+AACGGAGCC
+
+>|pattern_606 606
+GGACTCGGG
+
+>|pattern_607 607
+ATTTTTTTT
+
+>|pattern_608 608
+AACCACAGG
+
+>|pattern_609 609
+GGACCTCAG
+
+>|pattern_610 610
+AAATTTTTT
+
+>|pattern_611 611
+GAACTCCAA
+
+>|pattern_612 612
+CAATGATGT
+
+>|pattern_613 613
+CCCCCATGG
+
+>|pattern_614 614
+AAATTATGT
+
+>|pattern_615 615
+CACCAATGG
+
+>|pattern_616 616
+CCGGGATGG
+
+>|pattern_617 617
+ATAAGATGG
+
+>|pattern_618 618
+AAAAATGGA
+
+>|pattern_619 619
+CATGGCGCC
+
+>|pattern_620 620
+AGCATGTCG
+
+>|pattern_621 621
+AAATATGTT
+
+>|pattern_622 622
+CAGGATGGG
+
+>|pattern_623 623
+CAATGGAGG
+
+>|pattern_624 624
+AATGTCTAA
+
+>|pattern_625 625
+TATGTTTTT
+
+>|pattern_626 626
+AATGATGTT
+
+>|pattern_627 627
+TTATGCAAA
+
+>|pattern_628 628
+TATGGTTTG
+
+>|pattern_629 629
+TTATGATGT
+
+>|pattern_630 630
+CGCCCGCCC
+
+>|pattern_631 631
+AGCCCCGCC
+
+>|pattern_632 632
+CGCGCCCCG
+
+>|pattern_633 633
+TGCGTCCGC
+
+>|pattern_634 634
+AGCCGCCCA
+
+>|pattern_635 635
+TCGCCCACG
+
+>|pattern_636 636
+CAATGATGA
+
+>|pattern_637 637
+AAAATAAAA
+
+>|pattern_638 638
+CCAACATGG
+
+>|pattern_639 639
+TATTTAAAA
+
+>|pattern_640 640
+AAAAAATGA
+
+>|pattern_641 641
+AAATGGATG
+
+>|pattern_642 642
+GCGTCCCCG
+
+>|pattern_643 643
+GGGTCCGGG
+
+>|pattern_644 644
+GGGTCCCCG
+
+>|pattern_645 645
+GGGTCCCGG
+
+>|pattern_646 646
+CGGGCCGGG
+
+>|pattern_647 647
+TTTTTTTTT
+
+>|pattern_648 648
+CGGGCCCCC
+
+>|pattern_649 649
+CCGGCCCCG
+
+>|pattern_650 650
+GTTTTTTTT
+
+>|pattern_651 651
+TTTTTTTCA
+
+>|pattern_652 652
+AAATGGCGC
+
+>|pattern_653 653
+CGCCATGGC
+
+>|pattern_654 654
+AATGTTTTC
+
+>|pattern_655 655
+CAGGATGGC
+
+>|pattern_656 656
+AAAAATGTT
+
+>|pattern_657 657
+AATGATGTT
+
+>|pattern_658 658
+TCCCCCCCC
+
+>|pattern_659 659
+TTGTTATGT
+
+>|pattern_660 660
+CCGCCCCCA
+
+>|pattern_661 661
+CTGCCCTAA
+
+>|pattern_662 662
+TTGTCCTCA
+
+>|pattern_663 663
+GTTGCCCCA
+
+>|pattern_664 664
+ATGGCGAGG
+
+>|pattern_665 665
+ATGTTTTTT
+
+>|pattern_666 666
+AAAATGATG
+
+>|pattern_667 667
+ATGATGATG
+
+>|pattern_668 668
+ATGGAGCCC
+
+>|pattern_669 669
+CAAAAAATG
+
+>|pattern_670 670
+CCTGGAGCA
+
+>|pattern_671 671
+ATTTTTTTA
+
+>|pattern_672 672
+CATGGCGCC
+
+>|pattern_673 673
+CAAGATGGA
+
+>|pattern_674 674
+CCTGGCTGC
+
+>|pattern_675 675
+CCGGGCGCG
+
+>|pattern_676 676
+CTGCCTCCT
+
+>|pattern_677 677
+CTATCAAAT
+
+>|pattern_678 678
+TTTTTCAAA
+
+>|pattern_679 679
+TTTTCAAAT
+
+>|pattern_680 680
+CCTCGAAAC
+
+>|pattern_681 681
+CTATCTACC
+
+>|pattern_682 682
+CAGAAATGA
+
+>|pattern_683 683
+AAATTATGT
+
+>|pattern_684 684
+CAAAATGGA
+
+>|pattern_685 685
+CACGATGGC
+
+>|pattern_686 686
+TTATTATGT
+
+>|pattern_687 687
+CCAAAATGT
+
+>|pattern_688 688
+ATGGAATAA
+
+>|pattern_689 689
+ATGTTTATG
+
+>|pattern_690 690
+TGATTATAA
+
+>|pattern_691 691
+ATGATATAA
+
+>|pattern_692 692
+ATGTTATAT
+
+>|pattern_693 693
+TGAGAATAA
+
+>|pattern_694 694
+TCCCCGCCC
+
+>|pattern_695 695
+CCCCCCCCG
+
+>|pattern_696 696
+CCCCCGGGC
+
+>|pattern_697 697
+GCGCCGCCG
+
+>|pattern_698 698
+AAAATGGCG
+
+>|pattern_699 699
+CCCCGCCCC
+
+>|pattern_700 700
+ATCTGGCGG
+
+>|pattern_701 701
+ATTTATTTT
+
+>|pattern_702 702
+ATGGCTCCG
+
+>|pattern_703 703
+AAAATGTGG
+
+>|pattern_704 704
+ATGATGATT
+
+>|pattern_705 705
+AATTTTTTT
+
+>|pattern_706 706
+TGCCGTCCG
+
+>|pattern_707 707
+GGGGCGCGC
+
+>|pattern_708 708
+CGGCGGCGG
+
+>|pattern_709 709
+CGGGCGGCC
+
+>|pattern_710 710
+TGTGGTCCG
+
+>|pattern_711 711
+CGGCGTCCG
+
+>|pattern_712 712
+AAAGTTTTT
+
+>|pattern_713 713
+TTTGCTCTA
+
+>|pattern_714 714
+TTTGCTTTT
+
+>|pattern_715 715
+CCCGCTGTA
+
+>|pattern_716 716
+CCAGGATTT
+
+>|pattern_717 717
+CCAGGAGAA
+
+>|pattern_718 718
+GAGAATTAT
+
+>|pattern_719 719
+AAAATTTTT
+
+>|pattern_720 720
+TTATAATAA
+
+>|pattern_721 721
+GGGGGGGGG
+
+>|pattern_722 722
+TCAAATTAT
+
+>|pattern_723 723
+GCATAGGGG
+
+>|pattern_724 724
+CCAACAATG
+
+>|pattern_725 725
+GCAATGGCT
+
+>|pattern_726 726
+CCACCATGG
+
+>|pattern_727 727
+TTCAAGATG
+
+>|pattern_728 728
+ACAACATGG
+
+>|pattern_729 729
+GCAATGATG
+
+>|pattern_730 730
+ACATGGCGG
+
+>|pattern_731 731
+ATGATGGTT
+
+>|pattern_732 732
+ATGGCTCCC
+
+>|pattern_733 733
+AAAATGGCG
+
+>|pattern_734 734
+CCATGGACG
+
+>|pattern_735 735
+GCCATGGCG
+
+>|pattern_736 736
+ATTTAATAG
+
+>|pattern_737 737
+AGGATGTGA
+
+>|pattern_738 738
+AAGTGATAA
+
+>|pattern_739 739
+ATTTAATAA
+
+>|pattern_740 740
+ATGTAGTAA
+
+>|pattern_741 741
+AGGATGTAG
+
+>|pattern_742 742
+TGCTGATGG
+
+>|pattern_743 743
+CGGTGGGGC
+
+>|pattern_744 744
+TGGTGGCCC
+
+>|pattern_745 745
+TGTTTGATG
+
+>|pattern_746 746
+TGTTTTTGT
+
+>|pattern_747 747
+TGTTTATGT
+
+>|pattern_748 748
+TGAGCGTAG
+
+>|pattern_749 749
+TGACCTTTT
+
+>|pattern_750 750
+TTGGCGTTG
+
+>|pattern_751 751
+TCTCCTGGG
+
+>|pattern_752 752
+CCGCCGTGG
+
+>|pattern_753 753
+CGTCCGTAG
+
+>|pattern_754 754
+ATTTACTTG
+
+>|pattern_755 755
+AGAAACCGG
+
+>|pattern_756 756
+TCTTACAGG
+
+>|pattern_757 757
+TCTCGTCGG
+
+>|pattern_758 758
+ATGCGTCGC
+
+>|pattern_759 759
+ATTTACGGA
+
+>|pattern_760 760
+ACTGGATGG
+
+>|pattern_761 761
+AACTGGATG
+
+>|pattern_762 762
+AATTTGATG
+
+>|pattern_763 763
+AGGCGGTTC
+
+>|pattern_764 764
+AATTGGATG
+
+>|pattern_765 765
+AATTATTGC
+
+>|pattern_766 766
+TGGCCCGCC
+
+>|pattern_767 767
+GCCCCCGCC
+
+>|pattern_768 768
+CGCCCCCCC
+
+>|pattern_769 769
+TTTGCTGCT
+
+>|pattern_770 770
+CGCCCCAGG
+
+>|pattern_771 771
+TTTGCTCTA
+
+>|pattern_772 772
+ATCGAAATG
+
+>|pattern_773 773
+TTCATGGCC
+
+>|pattern_774 774
+ACGAATGTA
+
+>|pattern_775 775
+TTTATGATG
+
+>|pattern_776 776
+GCGACCATG
+
+>|pattern_777 777
+AAGATGGCG
+
+>|pattern_778 778
+GACCATGGG
+
+>|pattern_779 779
+GACAGCTGG
+
+>|pattern_780 780
+GACAGGGGC
+
+>|pattern_781 781
+CGCGGGGGC
+
+>|pattern_782 782
+AATTTTTTT
+
+>|pattern_783 783
+GGCGGCGGC
+
+>|pattern_784 784
+ATTGTTTCG
+
+>|pattern_785 785
+TTTTAAATT
+
+>|pattern_786 786
+TGTTTTGTT
+
+>|pattern_787 787
+GCAGCAGTC
+
+>|pattern_788 788
+TTTGTATTT
+
+>|pattern_789 789
+ATTGCATTT
+
+>|pattern_790 790
+TTATGTACA
+
+>|pattern_791 791
+CTGCTTTCA
+
+>|pattern_792 792
+CTGACGCCG
+
+>|pattern_793 793
+CTCTTTTCC
+
+>|pattern_794 794
+CTACGACCG
+
+>|pattern_795 795
+GCAGCGCCG
+
+>|pattern_796 796
+GGCGGTGAG
+
+>|pattern_797 797
+TGTAATAGT
+
+>|pattern_798 798
+TTTAATAAA
+
+>|pattern_799 799
+GGCGGTAGG
+
+>|pattern_800 800
+TATAGTGAT
+
+>|pattern_801 801
+GGCGTTAAG
+
+>|pattern_802 802
+GCGGCCGCC
+
+>|pattern_803 803
+GGCCCCGGC
+
+>|pattern_804 804
+GCCGCCTAA
+
+>|pattern_805 805
+GCCATGCGC
+
+>|pattern_806 806
+GCGGCCCGC
+
+>|pattern_807 807
+GCCCCGGAG
+
+>|pattern_808 808
+GTTGCAATG
+
+>|pattern_809 809
+GCAGTCGTG
+
+>|pattern_810 810
+TTTGTCGTG
+
+>|pattern_811 811
+TTTAAGATG
+
+>|pattern_812 812
+GTTGTCTCC
+
+>|pattern_813 813
+GGTGACCTC
+
+>|pattern_814 814
+TATTTCTAA
+
+>|pattern_815 815
+TTTTTCAAA
+
+>|pattern_816 816
+ATTTCACAA
+
+>|pattern_817 817
+ATCTCATCA
+
+>|pattern_818 818
+TTGTACAAA
+
+>|pattern_819 819
+TTCGCTTAA
+
+>|pattern_820 820
+GGTGAGCCA
+
+>|pattern_821 821
+GCAGCGCCA
+
+>|pattern_822 822
+GCAGCTAAA
+
+>|pattern_823 823
+GCAGCAGGA
+
+>|pattern_824 824
+AAAAATAAA
+
+>|pattern_825 825
+ATTTTTGAA
+
+>|pattern_826 826
+ATTTCCTTG
+
+>|pattern_827 827
+GAATCCCTT
+
+>|pattern_828 828
+GTTTCCTTT
+
+>|pattern_829 829
+AGGTGCTTT
+
+>|pattern_830 830
+ATTTTATTT
+
+>|pattern_831 831
+ATTTTCAGT
+
+>|pattern_832 832
+AAAATTATA
+
+>|pattern_833 833
+GAAATTATC
+
+>|pattern_834 834
+GCAATTATA
+
+>|pattern_835 835
+GGAATTTGG
+
+>|pattern_836 836
+AAAATTATC
+
+>|pattern_837 837
+AAAATAGCC
+
+>|pattern_838 838
+TAATTCTTT
+
+>|pattern_839 839
+TAGTACGAA
+
+>|pattern_840 840
+AAACGCACA
+
+>|pattern_841 841
+TAATTCCAA
+
+>|pattern_842 842
+TACTTCACA
+
+>|pattern_843 843
+TGGTGCACA
+
+>|pattern_844 844
+TATGGCTTG
+
+>|pattern_845 845
+CAAGATGGC
+
+>|pattern_846 846
+AATGTATGT
+
+>|pattern_847 847
+AATGATGTT
+
+>|pattern_848 848
+TATTTTGGA
+
+>|pattern_849 849
+CGACATGGA
+
+>|pattern_850 850
+TTTATGTGT
+
+>|pattern_851 851
+GGCAATGTG
+
+>|pattern_852 852
+TCAATGATG
+
+>|pattern_853 853
+CCAATGTGG
+
+>|pattern_854 854
+TCCAATGTT
+
+>|pattern_855 855
+TCAGATGTG
+
+>|pattern_856 856
+AATGATGTT
+
+>|pattern_857 857
+TATGGATTG
+
+>|pattern_858 858
+CAAAATGGA
+
+>|pattern_859 859
+AATTTTTTG
+
+>|pattern_860 860
+CAGGATGGA
+
+>|pattern_861 861
+CAACATGGG
+
+>|pattern_862 862
+GGCCCCTTG
+
+>|pattern_863 863
+AAATTTTTT
+
+>|pattern_864 864
+GCCCCCAGG
+
+>|pattern_865 865
+GCCCCCGGC
+
+>|pattern_866 866
+GATAATTTG
+
+>|pattern_867 867
+AACCCCGGG
+
+>|pattern_868 868
+TGCGGGGGG
+
+>|pattern_869 869
+TTTGTGGAT
+
+>|pattern_870 870
+TTTGGAAAT
+
+>|pattern_871 871
+TTTTGGAAA
+
+>|pattern_872 872
+TCTGGGGAC
+
+>|pattern_873 873
+TTTTTGGAA
+
+>|pattern_874 874
+GTATTCTAA
+
+>|pattern_875 875
+GATGTCTAG
+
+>|pattern_876 876
+ATATTATAT
+
+>|pattern_877 877
+ATATAATAG
+
+>|pattern_878 878
+GTATTGGCT
+
+>|pattern_879 879
+TTATTATAG
+
+>|pattern_880 880
+AATTTCTTT
+
+>|pattern_881 881
+AAATGATGT
+
+>|pattern_882 882
+AAAATTATT
+
+>|pattern_883 883
+TCTATTATT
+
+>|pattern_884 884
+ATTATTATT
+
+>|pattern_885 885
+TTTTAATGT
+
+>|pattern_886 886
+TATAGTGAT
+
+>|pattern_887 887
+CGTGATCAT
+
+>|pattern_888 888
+TGTTTTTGT
+
+>|pattern_889 889
+TGTTGCCGG
+
+>|pattern_890 890
+TGTTTCAAG
+
+>|pattern_891 891
+TATTGCCAT
+
+>|pattern_892 892
+GGCCCTAAG
+
+>|pattern_893 893
+TTTAATAGT
+
+>|pattern_894 894
+TTTAATAAT
+
+>|pattern_895 895
+GCTGATGAG
+
+>|pattern_896 896
+ATTTTTGAA
+
+>|pattern_897 897
+TATAGTGAT
+
+>|pattern_898 898
+TCCGTTTCC
+
+>|pattern_899 899
+TTCCTTCCT
+
+>|pattern_900 900
+CACATATCC
+
+>|pattern_901 901
+TTTATTTCA
+
+>|pattern_902 902
+CAAATTCCC
+
+>|pattern_903 903
+TTCTTATCA
+
+>|pattern_904 904
+GGTGCCCGT
+
+>|pattern_905 905
+GGGGGCCCC
+
+>|pattern_906 906
+TGGCGCCCC
+
+>|pattern_907 907
+CGCGGCCCT
+
+>|pattern_908 908
+GGGGTGCAG
+
+>|pattern_909 909
+GGGCCCAGG
+
+>|pattern_910 910
+TTTTTTTTT
+
+>|pattern_911 911
+TGTGAGCGG
+
+>|pattern_912 912
+TGTAGTTTA
+
+>|pattern_913 913
+ATTTTTTTT
+
+>|pattern_914 914
+TTTTTTTTG
+
+>|pattern_915 915
+GGTGAAGGG
+
+>|pattern_916 916
+CCCGTCCTT
+
+>|pattern_917 917
+TTGTATGTT
+
+>|pattern_918 918
+GTTTTTTTT
+
+>|pattern_919 919
+ATGCCCTGG
+
+>|pattern_920 920
+CCCGCCCCG
+
+>|pattern_921 921
+TTTATGTGT
+
+>|pattern_922 922
+GCATGTGAG
+
+>|pattern_923 923
+TAATTTAAT
+
+>|pattern_924 924
+GTAGCTAAG
+
+>|pattern_925 925
+TTGTTTGAT
+
+>|pattern_926 926
+TTGGCTGAG
+
+>|pattern_927 927
+TTATTTAAT
+
+>|pattern_928 928
+CCCATGGGG
+
+>|pattern_929 929
+CCCGCCCGG
+
+>|pattern_930 930
+CCCCCATGG
+
+>|pattern_931 931
+CCCCAGAGG
+
+>|pattern_932 932
+ATGCCGAGG
+
+>|pattern_933 933
+CCCCCCAAA
+
+>|pattern_934 934
+GTTGCAATG
+
+>|pattern_935 935
+GCCCCCGCG
+
+>|pattern_936 936
+GCCCTCATG
+
+>|pattern_937 937
+GCCCCCCGG
+
+>|pattern_938 938
+GCCAAGATG
+
+>|pattern_939 939
+TTTATGATG
+
+>|pattern_940 940
+CAAGACCGC
+
+>|pattern_941 941
+CGGCGGGTC
+
+>|pattern_942 942
+AGGCTCACC
+
+>|pattern_943 943
+CAAGACATC
+
+>|pattern_944 944
+CGAGACTCT
+
+>|pattern_945 945
+ACTCTCAGC
+
+>|pattern_946 946
+TTTTGTATG
+
+>|pattern_947 947
+TTTGTATAT
+
+>|pattern_948 948
+TTTTATTTT
+
+>|pattern_949 949
+TTTGTATGT
+
+>|pattern_950 950
+GTGGTGAAC
+
+>|pattern_951 951
+TGTATGCTT
+
+>|pattern_952 952
+GGCTGGGGG
+
+>|pattern_953 953
+GGCCGGGGG
+
+>|pattern_954 954
+CGGTGGGGG
+
+>|pattern_955 955
+CCTTTGAAG
+
+>|pattern_956 956
+CCCGGGGGG
+
+>|pattern_957 957
+GGGTAGGGC
+
+>|pattern_958 958
+AACCGATTA
+
+>|pattern_959 959
+AAATTTTGT
+
+>|pattern_960 960
+AGGCAAAAT
+
+>|pattern_961 961
+AACCAAAAT
+
+>|pattern_962 962
+AACCATGGC
+
+>|pattern_963 963
+AATTAAAAT
+
+>|pattern_964 964
+GCCGCTTCC
+
+>|pattern_965 965
+ACCATGTCT
+
+>|pattern_966 966
+ATGGCTCCC
+
+>|pattern_967 967
+ATTGAAATG
+
+>|pattern_968 968
+GCCAAAATG
+
+>|pattern_969 969
+AGAATTATG
+
+>|pattern_970 970
+TAGTGATTT
+
+>|pattern_971 971
+TAATAGAAA
+
+>|pattern_972 972
+TGATAATTT
+
+>|pattern_973 973
+ATGTAAATA
+
+>|pattern_974 974
+TGATAGATT
+
+>|pattern_975 975
+TAATAATTT
+
+>|pattern_976 976
+GGAATTATG
+
+>|pattern_977 977
+AAGATGGCG
+
+>|pattern_978 978
+AAAATTATG
+
+>|pattern_979 979
+GTCAAAATG
+
+>|pattern_980 980
+GCCATGGCC
+
+>|pattern_981 981
+AAAAAAATG
+
+>|pattern_982 982
+CGACATGGA
+
+>|pattern_983 983
+GAGATGTAG
+
+>|pattern_984 984
+AAATGTTTT
+
+>|pattern_985 985
+CAACATGGT
+
+>|pattern_986 986
+AAAATGTTT
+
+>|pattern_987 987
+AGATGGAGT
+
+>|pattern_988 988
+GACAAATGG
+
+>|pattern_989 989
+GTGGAATGT
+
+>|pattern_990 990
+AGATGGGGC
+
+>|pattern_991 991
+AAATGATGT
+
+>|pattern_992 992
+TTATTATGT
+
+>|pattern_993 993
+GGCGAATGG
+
+>|pattern_994 994
+ACTACAACA
+
+>|pattern_995 995
+TCGACTATG
+
+>|pattern_996 996
+TCTGCTAAA
+
+>|pattern_997 997
+CACGACAAA
+
+>|pattern_998 998
+TACGGCTCA
+
+>|pattern_999 999
+TCCACCAAA
+
+>|pattern_1000 1000
+CGTCAAAAT
+
+>|pattern_1001 1001
+ATTCAAAAT
+
+>|pattern_1002 1002
+TGCAGAAAT
+
+>|pattern_1003 1003
+AGCAGTCAT
+
+>|pattern_1004 1004
+CGCAAAGAT
+
+>|pattern_1005 1005
+TGCCGAAAT
+
+>|pattern_1006 1006
+TGGAATTTT
+
+>|pattern_1007 1007
+TTATGTTTT
+
+>|pattern_1008 1008
+TTTATGTTT
+
+>|pattern_1009 1009
+TTTTTTCTT
+
+>|pattern_1010 1010
+TGGAGAAAT
+
+>|pattern_1011 1011
+TATGTTCTT
+
+>|pattern_1012 1012
+GCCCTTCGG
+
+>|pattern_1013 1013
+GCCCTCATG
+
+>|pattern_1014 1014
+GCCCTCTCC
+
+>|pattern_1015 1015
+TTCTAAGTG
+
+>|pattern_1016 1016
+CCCCTTTCG
+
+>|pattern_1017 1017
+TGATGAGGG
+
+>|pattern_1018 1018
+TTACAATGT
+
+>|pattern_1019 1019
+TGTATTCTT
+
+>|pattern_1020 1020
+TGTACCCCC
+
+>|pattern_1021 1021
+TTCAATTTT
+
+>|pattern_1022 1022
+TCCACCCCC
+
+>|pattern_1023 1023
+TGCATCCTT
+
+>|pattern_1024 1024
+CGGGTGGCG
+
+>|pattern_1025 1025
+TGGTGTTGG
+
+>|pattern_1026 1026
+TGGTTGGGG
+
+>|pattern_1027 1027
+TGGTATTGG
+
+>|pattern_1028 1028
+TTAGTGGGG
+
+>|pattern_1029 1029
+AATCATTGC
+
+>|pattern_1030 1030
+CCCAGTAAC
+
+>|pattern_1031 1031
+TGTCCTAGA
+
+>|pattern_1032 1032
+GATTATAAA
+
+>|pattern_1033 1033
+CTCAGTAAA
+
+>|pattern_1034 1034
+GGTGGTAGA
+
+>|pattern_1035 1035
+TGTCCTAAA
+
+>|pattern_1036 1036
+AACTAAGAG
+
+>|pattern_1037 1037
+GAATTCAGC
+
+>|pattern_1038 1038
+CAATAGAGT
+
+>|pattern_1039 1039
+GAACGTGGG
+
+>|pattern_1040 1040
+GAAGCGAGC
+
+>|pattern_1041 1041
+AAACATACC
+
+>|pattern_1042 1042
+TAATGATGT
+
+>|pattern_1043 1043
+CGAATGATT
+
+>|pattern_1044 1044
+GCAATGGCC
+
+>|pattern_1045 1045
+GAATGAATC
+
+>|pattern_1046 1046
+TTATGTTTT
+
+>|pattern_1047 1047
+TGAATGTTT
+
+>|pattern_1048 1048
+TCAATGATG
+
+>|pattern_1049 1049
+TAAATGCGG
+
+>|pattern_1050 1050
+TTGCTAATG
+
+>|pattern_1051 1051
+TTTATGGTG
+
+>|pattern_1052 1052
+ATGGTAATG
+
+>|pattern_1053 1053
+TTTTCCGGG
+
+>|pattern_1054 1054
+GGCCGCCGG
+
+>|pattern_1055 1055
+GGCCGCAGC
+
+>|pattern_1056 1056
+GCTCGCCCC
+
+>|pattern_1057 1057
+CGCCGCCCC
+
+>|pattern_1058 1058
+GGCCCGCCG
+
+>|pattern_1059 1059
+GGCCGCCCC
+
+>|pattern_1060 1060
+GTGGGGGCG
+
+>|pattern_1061 1061
+GCCCCCCCG
+
+>|pattern_1062 1062
+GTGGGGCCG
+
+>|pattern_1063 1063
+ACGTGGCCG
+
+>|pattern_1064 1064
+GCGGCCCGG
+
+>|pattern_1065 1065
+GTCCCCCGG
+
+>|pattern_1066 1066
+GAATAGTGG
+
+>|pattern_1067 1067
+GCGACGTGG
+
+>|pattern_1068 1068
+GAAAAGATT
+
+>|pattern_1069 1069
+GAGAGGAAG
+
+>|pattern_1070 1070
+TATTTGGAG
+
+>|pattern_1071 1071
+ACAAGGATT
+
+>|pattern_1072 1072
+GTAAAACCC
+
+>|pattern_1073 1073
+TTAAAATGT
+
+>|pattern_1074 1074
+GTAAGGCCC
+
+>|pattern_1075 1075
+TTAATTTTT
+
+>|pattern_1076 1076
+ATAAAAATG
+
+>|pattern_1077 1077
+GTGAAACCC
+
+>|pattern_1078 1078
+TTAGTAGTT
+
+>|pattern_1079 1079
+TTAGTAATT
+
+>|pattern_1080 1080
+TTAATAAAG
+
+>|pattern_1081 1081
+TTAGTGATT
+
+>|pattern_1082 1082
+TTAATAGTT
+
+>|pattern_1083 1083
+TTGATAATT
+
+>|pattern_1084 1084
+TCTCCCGCC
+
+>|pattern_1085 1085
+CCTCCCCGG
+
+>|pattern_1086 1086
+TGAGCCGCA
+
+>|pattern_1087 1087
+CGAGTCGCC
+
+>|pattern_1088 1088
+TCTCCCCGG
+
+>|pattern_1089 1089
+TCTGTCCCC
+
+>|pattern_1090 1090
+AGGGCTTTC
+
+>|pattern_1091 1091
+TGAGATTTT
+
+>|pattern_1092 1092
+TGGGCTCTG
+
+>|pattern_1093 1093
+TGCCTTTTT
+
+>|pattern_1094 1094
+AGGCGTTTG
+
+>|pattern_1095 1095
+TTTTGTTTG
+
+>|pattern_1096 1096
+GGCTGACCC
+
+>|pattern_1097 1097
+GGCCCACCC
+
+>|pattern_1098 1098
+GGCCGACCC
+
+>|pattern_1099 1099
+CGCAGAGCT
+
+>|pattern_1100 1100
+GGGTAAGAT
+
+>|pattern_1101 1101
+CGGACACCT
+
+>|pattern_1102 1102
+AAAATGGCG
+
+>|pattern_1103 1103
+AAATATGTT
+
+>|pattern_1104 1104
+AAACATGGT
+
+>|pattern_1105 1105
+AATATGGAT
+
+>|pattern_1106 1106
+GCCATGGCG
+
+>|pattern_1107 1107
+CAATATGGA
+
+>|pattern_1108 1108
+CAAACGACT
+
+>|pattern_1109 1109
+GAAGCGGCG
+
+>|pattern_1110 1110
+TAAAGGGGG
+
+>|pattern_1111 1111
+CAGGCGGGT
+
+>|pattern_1112 1112
+CAAACGGCT
+
+>|pattern_1113 1113
+TCTACGGCG
+
+>|pattern_1114 1114
+ACCATGGTC
+
+>|pattern_1115 1115
+ATGATGATT
+
+>|pattern_1116 1116
+AAGATGGCG
+
+>|pattern_1117 1117
+ATGGGCCTT
+
+>|pattern_1118 1118
+AAAATGCTT
+
+>|pattern_1119 1119
+ATGTTTCTC
+
+>|pattern_1120 1120
+AATGTGGCC
+
+>|pattern_1121 1121
+AGGAATGGC
+
+>|pattern_1122 1122
+ACAATGGCC
+
+>|pattern_1123 1123
+TATGTTTAT
+
+>|pattern_1124 1124
+GATGATGTT
+
+>|pattern_1125 1125
+ATGATGTTC
+
+>|pattern_1126 1126
+TCCGCTTTG
+
+>|pattern_1127 1127
+TTTGTTTGT
+
+>|pattern_1128 1128
+AGCGTTTGT
+
+>|pattern_1129 1129
+TTTGCTGTA
+
+>|pattern_1130 1130
+AGCTGAGTG
+
+>|pattern_1131 1131
+ATTGCTTTT
+
+>|pattern_1132 1132
+GATTTAGTA
+
+>|pattern_1133 1133
+TTAATAGTT
+
+>|pattern_1134 1134
+GTAAAAATG
+
+>|pattern_1135 1135
+ATGAAAATA
+
+>|pattern_1136 1136
+TTAATAATT
+
+>|pattern_1137 1137
+ATAATGATG
+
+>|pattern_1138 1138
+CGCCACGGG
+
+>|pattern_1139 1139
+AGATGGAGG
+
+>|pattern_1140 1140
+TTAGGGAGG
+
+>|pattern_1141 1141
+ATAGTAGTG
+
+>|pattern_1142 1142
+TCTGGGAGG
+
+>|pattern_1143 1143
+GAGCTAGGG
+
+>|pattern_1144 1144
+AGAACATGG
+
+>|pattern_1145 1145
+TTATTATGT
+
+>|pattern_1146 1146
+AAGACATGG
+
+>|pattern_1147 1147
+AAATGGCGC
+
+>|pattern_1148 1148
+AAATTATGT
+
+>|pattern_1149 1149
+AAAAAATGA
+
+>|pattern_1150 1150
+GCCAGCCTC
+
+>|pattern_1151 1151
+AAATTTTTT
+
+>|pattern_1152 1152
+GCCAAGATG
+
+>|pattern_1153 1153
+TTAAATTTT
+
+>|pattern_1154 1154
+GCAAAGCTC
+
+>|pattern_1155 1155
+CCAAAATGG
+
+>|pattern_1156 1156
+ACCCGGGGC
+
+>|pattern_1157 1157
+TCGACGATG
+
+>|pattern_1158 1158
+CCGGGGGGC
+
+>|pattern_1159 1159
+GCGGGGAGG
+
+>|pattern_1160 1160
+CCGCCGGGG
+
+>|pattern_1161 1161
+TCTGGTGGC
+
+>|pattern_1162 1162
+TGTCGTCTT
+
+>|pattern_1163 1163
+TGTCGGTGT
+
+>|pattern_1164 1164
+CAGCGGTGA
+
+>|pattern_1165 1165
+CAGACTCTT
+
+>|pattern_1166 1166
+TCTCAGTGT
+
+>|pattern_1167 1167
+TGTTTTCTT
+
+>|pattern_1168 1168
+GAGATGGCG
+
+>|pattern_1169 1169
+CCGCCATGA
+
+>|pattern_1170 1170
+AGATGATGT
+
+>|pattern_1171 1171
+GCTATGTGA
+
+>|pattern_1172 1172
+ATGATGAGT
+
+>|pattern_1173 1173
+ATAATGGTA
+
+>|pattern_1174 1174
+ATGATGATT
+
+>|pattern_1175 1175
+GAATGAAAA
+
+>|pattern_1176 1176
+GCCATGGGC
+
+>|pattern_1177 1177
+GGATGGGGG
+
+>|pattern_1178 1178
+GACATGAAC
+
+>|pattern_1179 1179
+TTATGTATG
+
+>|pattern_1180 1180
+GATGTCCGG
+
+>|pattern_1181 1181
+GCCGATGCC
+
+>|pattern_1182 1182
+AATGGCGCG
+
+>|pattern_1183 1183
+AGAGATGAT
+
+>|pattern_1184 1184
+AATGATGTT
+
+>|pattern_1185 1185
+CCGGGCCGG
+
+>|pattern_1186 1186
+TTTTTAAAA
+
+>|pattern_1187 1187
+TTTTATGTT
+
+>|pattern_1188 1188
+ATTACATGC
+
+>|pattern_1189 1189
+TTATGATGT
+
+>|pattern_1190 1190
+TTTTATGAT
+
+>|pattern_1191 1191
+TGTTTATGT
+
+>|pattern_1192 1192
+TTATGATGT
+
+>|pattern_1193 1193
+CGATGGAAA
+
+>|pattern_1194 1194
+TTTTTTTGA
+
+>|pattern_1195 1195
+TGGATGTGA
+
+>|pattern_1196 1196
+CGATGGCCA
+
+>|pattern_1197 1197
+TTCCCATGA
+
+>|pattern_1198 1198
+AAATTATGT
+
+>|pattern_1199 1199
+CAATGGGGT
+
+>|pattern_1200 1200
+AAGATGGCG
+
+>|pattern_1201 1201
+CAAAAATGT
+
+>|pattern_1202 1202
+CAGCTCTGA
+
+>|pattern_1203 1203
+CACCATCGT
+
+>|pattern_1204 1204
+CAGTTTCTT
+
+>|pattern_1205 1205
+CAGGATGTG
+
+>|pattern_1206 1206
+CGGCCAGCA
+
+>|pattern_1207 1207
+TACAATGTT
+
+>|pattern_1208 1208
+CAAAATGGT
+
+>|pattern_1209 1209
+CGGCCAAGT
+
+>|pattern_1210 1210
+TGGTGCCGC
+
+>|pattern_1211 1211
+TGCTGCTGG
+
+>|pattern_1212 1212
+CGGTGCTGG
+
+>|pattern_1213 1213
+ATTTTTTTG
+
+>|pattern_1214 1214
+CCGGGCCGC
+
+>|pattern_1215 1215
+TGGCAGCAG
+
+>|pattern_1216 1216
+GGGAGGGGC
+
+>|pattern_1217 1217
+CTCCCCCCC
+
+>|pattern_1218 1218
+GGCCCCCCC
+
+>|pattern_1219 1219
+GCCCCCCCG
+
+>|pattern_1220 1220
+GCCCCCACC
+
+>|pattern_1221 1221
+GTCCCCCCC
+
+>|pattern_1222 1222
+AAATTATAT
+
+>|pattern_1223 1223
+ATTATTTGT
+
+>|pattern_1224 1224
+ATTTAATAG
+
+>|pattern_1225 1225
+TGAATTTAA
+
+>|pattern_1226 1226
+ATTATTTTG
+
+>|pattern_1227 1227
+ATTATTTAT
+
+>|pattern_1228 1228
+ATTTTGTTT
+
+>|pattern_1229 1229
+CCGCTGCCC
+
+>|pattern_1230 1230
+CTCCTGCCC
+
+>|pattern_1231 1231
+CCCAGCTCC
+
+>|pattern_1232 1232
+CTTTCCTCC
+
+>|pattern_1233 1233
+ATTTCATTT
+
+>|pattern_1234 1234
+CCCCCCCCC
+
+>|pattern_1235 1235
+CGGCCCCGG
+
+>|pattern_1236 1236
+GGGCCCCCC
+
+>|pattern_1237 1237
+CGCCCCCCC
+
+>|pattern_1238 1238
+GGCGCCCCG
+
+>|pattern_1239 1239
+CCGCCCCCG
+
+>|pattern_1240 1240
+GATGGGGTC
+
+>|pattern_1241 1241
+GGCTAGGGG
+
+>|pattern_1242 1242
+GCAGGGGGG
+
+>|pattern_1243 1243
+CCCCGGGGG
+
+>|pattern_1244 1244
+CAACGATGG
+
+>|pattern_1245 1245
+CAACATGGC
+
+>|pattern_1246 1246
+GGGCCGGGG
+
+>|pattern_1247 1247
+TTAGCGGGT
+
+>|pattern_1248 1248
+TGTGTAGCT
+
+>|pattern_1249 1249
+GGTGCTGAT
+
+>|pattern_1250 1250
+GGGGCGGCC
+
+>|pattern_1251 1251
+AGTGTGAGT
+
+>|pattern_1252 1252
+GGGCCGGCT
+
+>|pattern_1253 1253
+GATGATGTT
+
+>|pattern_1254 1254
+AATTTTTTT
+
+>|pattern_1255 1255
+GGGGCCGGC
+
+>|pattern_1256 1256
+GGGTTGACT
+
+>|pattern_1257 1257
+GAGCATGGG
+
+>|pattern_1258 1258
+GGCCCTGAG
+
+>|pattern_1259 1259
+TCACCTAGA
+
+>|pattern_1260 1260
+CTCCCTGAA
+
+>|pattern_1261 1261
+GCCCCTAGG
+
+>|pattern_1262 1262
+TCCCCTGAG
+
+>|pattern_1263 1263
+GGGCCTAGG
+
+>|pattern_1264 1264
+AGATGTCCA
+
+>|pattern_1265 1265
+AAATGATGT
+
+>|pattern_1266 1266
+TAAAAATGT
+
+>|pattern_1267 1267
+AGATGAGGA
+
+>|pattern_1268 1268
+CAGCGATGG
+
+>|pattern_1269 1269
+GCAACATGG
+
+>|pattern_1270 1270
+CGGAGCGGG
+
+>|pattern_1271 1271
+CCACCATGG
+
+>|pattern_1272 1272
+CCGGGATGG
+
+>|pattern_1273 1273
+CCGAACATG
+
+>|pattern_1274 1274
+CCGGACGGG
+
+>|pattern_1275 1275
+TCATAATGT
+
+>|pattern_1276 1276
+TATAGTTTG
+
+>|pattern_1277 1277
+TTCATTTTA
+
+>|pattern_1278 1278
+TACAAGTGG
+
+>|pattern_1279 1279
+AACATTTGA
+
+>|pattern_1280 1280
+TTCATCTTG
+
+>|pattern_1281 1281
+AACATCGTA
+
+>|pattern_1282 1282
+CAAAATGTA
+
+>|pattern_1283 1283
+TTTTTTTTT
+
+>|pattern_1284 1284
+CAAGATGGC
+
+>|pattern_1285 1285
+CGACATGTA
+
+>|pattern_1286 1286
+AATGATGTT
+
+>|pattern_1287 1287
+CTAATGAGC
+
+>|pattern_1288 1288
+TTATTATGT
+
+>|pattern_1289 1289
+CCACCATGG
+
+>|pattern_1290 1290
+AGGGGTAGG
+
+>|pattern_1291 1291
+TCGCAATGT
+
+>|pattern_1292 1292
+AGAAAATGT
+
+>|pattern_1293 1293
+CCGGGATGG
+
+>|pattern_1294 1294
+GTCGTCATG
+
+>|pattern_1295 1295
+GTCGCGTAG
+
+>|pattern_1296 1296
+GCCGCCACC
+
+>|pattern_1297 1297
+GCCACCATG
+
+>|pattern_1298 1298
+GCCGCCTGA
+
+>|pattern_1299 1299
+GCCGCCAGG
+
+>|pattern_1300 1300
+TGTATGCTA
+
+>|pattern_1301 1301
+TGGGGAGTC
+
+>|pattern_1302 1302
+TGTTTTTAA
+
+>|pattern_1303 1303
+CGGGCTCTC
+
+>|pattern_1304 1304
+TGGGTATTA
+
+>|pattern_1305 1305
+TGTGTTTTT
+
+>|pattern_1306 1306
+TGGCGTGTA
+
+>|pattern_1307 1307
+TATATCGTA
+
+>|pattern_1308 1308
+GGCGTGAAA
+
+>|pattern_1309 1309
+ATAGTGATA
+
+>|pattern_1310 1310
+AGAATCGTA
+
+>|pattern_1311 1311
+CTACGTTTC
+
+>|pattern_1312 1312
+TTTTTTTAT
+
+>|pattern_1313 1313
+ACATTTATT
+
+>|pattern_1314 1314
+CCAGTCAAT
+
+>|pattern_1315 1315
+ATTTTTTTT
+
+>|pattern_1316 1316
+GGATTTTAT
+
+>|pattern_1317 1317
+AGTTTATAT
+
+>|pattern_1318 1318
+TGTTTGAAT
+
+>|pattern_1319 1319
+ATTACCTAT
+
+>|pattern_1320 1320
+TAATCTTAT
+
+>|pattern_1321 1321
+ATGTCTAAT
+
+>|pattern_1322 1322
+ATGTTTATG
+
+>|pattern_1323 1323
+TGTTTAGTT
+
+>|pattern_1324 1324
+AATGTGAAA
+
+>|pattern_1325 1325
+CGCGTAGCT
+
+>|pattern_1326 1326
+CGGCTGAGT
+
+>|pattern_1327 1327
+CACCTGAAG
+
+>|pattern_1328 1328
+AATGTAAAT
+
+>|pattern_1329 1329
+TAGGTAAGT
+
+>|pattern_1330 1330
+AAATGGCGT
+
+>|pattern_1331 1331
+TTTTTGTTG
+
+>|pattern_1332 1332
+CTGCCATGG
+
+>|pattern_1333 1333
+CTGCTGGAG
+
+>|pattern_1334 1334
+CACTGGCGT
+
+>|pattern_1335 1335
+TTTTTGGAA
+
+>|pattern_1336 1336
+GGGTCGGCT
+
+>|pattern_1337 1337
+GGGGGTCTA
+
+>|pattern_1338 1338
+GGGCTCTGA
+
+>|pattern_1339 1339
+GGGGGGCCC
+
+>|pattern_1340 1340
+GGGGGGTGA
+
+>|pattern_1341 1341
+GGCGGCTGA
+
+>|pattern_1342 1342
+GGCATGTTA
+
+>|pattern_1343 1343
+AGTATGGAA
+
+>|pattern_1344 1344
+AAAATGCTA
+
+>|pattern_1345 1345
+ATGTTTCTT
+
+>|pattern_1346 1346
+ATTATGTTT
+
+>|pattern_1347 1347
+ATGATGTTA
+
+>|pattern_1348 1348
+CCCCTAAGG
+
+>|pattern_1349 1349
+GGCGTAGCC
+
+>|pattern_1350 1350
+GGCCTAAGC
+
+>|pattern_1351 1351
+TATGTAGGC
+
+>|pattern_1352 1352
+CCCCTAGGC
+
+>|pattern_1353 1353
+GGCCTGAGC
+
+>|pattern_1354 1354
+GGGGGTGGG
+
+>|pattern_1355 1355
+GGGGGGTGG
+
+>|pattern_1356 1356
+GGGGTGGGG
+
+>|pattern_1357 1357
+AGGGCGAGG
+
+>|pattern_1358 1358
+GGGCCTGGG
+
+>|pattern_1359 1359
+GGGGGCTGG
+
+>|pattern_1360 1360
+GGCAGATGT
+
+>|pattern_1361 1361
+TGTTTTTGT
+
+>|pattern_1362 1362
+ATATGCTTC
+
+>|pattern_1363 1363
+TCTATGTGT
+
+>|pattern_1364 1364
+GGATGCTGG
+
+>|pattern_1365 1365
+CTTGTTTGT
+
+>|pattern_1366 1366
+CCACCATGG
+
+>|pattern_1367 1367
+TCATGGAGC
+
+>|pattern_1368 1368
+CCAAAATGG
+
+>|pattern_1369 1369
+CCCCGGCTC
+
+>|pattern_1370 1370
+CCCTGGAGG
+
+>|pattern_1371 1371
+CAATGGCTT
+
+>|pattern_1372 1372
+GGAGTCAAG
+
+>|pattern_1373 1373
+TATGTTTAT
+
+>|pattern_1374 1374
+TCCGCAATG
+
+>|pattern_1375 1375
+TTTGTTTGC
+
+>|pattern_1376 1376
+TCATGCTAT
+
+>|pattern_1377 1377
+TGAATTTAT
+
+>|pattern_1378 1378
+GTCAACATG
+
+>|pattern_1379 1379
+AACATGGCG
+
+>|pattern_1380 1380
+AAAATTATG
+
+>|pattern_1381 1381
+GTTGCAATG
+
+>|pattern_1382 1382
+AGCATCAAG
+
+>|pattern_1383 1383
+GGCGCCGGG
+
+>|pattern_1384 1384
+AATGGCCCC
+
+>|pattern_1385 1385
+GCCCGCCCC
+
+>|pattern_1386 1386
+CCTGGCCCC
+
+>|pattern_1387 1387
+CCGGGCCCC
+
+>|pattern_1388 1388
+GCACTGTTT
+
+>|pattern_1389 1389
+CCCGGCCCC
+
+>|pattern_1390 1390
+GATGGAGGC
+
+>|pattern_1391 1391
+ACTATGTTT
+
+>|pattern_1392 1392
+ACCTGGCGC
+
+>|pattern_1393 1393
+AAAATGCTA
+
+>|pattern_1394 1394
+AAATGGCGC
+
+>|pattern_1395 1395
+ATGGCGCGC
+
+>|pattern_1396 1396
+ATTTGATAA
+
+>|pattern_1397 1397
+TGATTTTAA
+
+>|pattern_1398 1398
+ATTTAATAA
+
+>|pattern_1399 1399
+TAAATTTAA
+
+>|pattern_1400 1400
+AAATGATGA
+
+>|pattern_1401 1401
+AGGATGTAA
+
+>|pattern_1402 1402
+TTTGTAGAT
+
+>|pattern_1403 1403
+GTTGTCCCC
+
+>|pattern_1404 1404
+GTGTATGTG
+
+>|pattern_1405 1405
+TTTGTCTTT
+
+>|pattern_1406 1406
+GCTGTATGA
+
+>|pattern_1407 1407
+TGTTTATGT
+
+>|pattern_1408 1408
+TATATGATG
+
+>|pattern_1409 1409
+GCCAAAATG
+
+>|pattern_1410 1410
+CATATGGGC
+
+>|pattern_1411 1411
+CGGATGGGG
+
+>|pattern_1412 1412
+GACGCTATG
+
+>|pattern_1413 1413
+GACGCATGA
+
+>|pattern_1414 1414
+GGGCCGCCC
+
+>|pattern_1415 1415
+CCACCATGG
+
+>|pattern_1416 1416
+GCACCGCCC
+
+>|pattern_1417 1417
+GCCCAGGCA
+
+>|pattern_1418 1418
+GCAAAATGG
+
+>|pattern_1419 1419
+GCACCATCT
+
+>|pattern_1420 1420
+TGCCCCAGG
+
+>|pattern_1421 1421
+CCGCCCAGG
+
+>|pattern_1422 1422
+CCCGCCCTG
+
+>|pattern_1423 1423
+TGATAGTGG
+
+>|pattern_1424 1424
+CCCCAGTGG
+
+>|pattern_1425 1425
+CCCGCCCGG
+
+>|pattern_1426 1426
+CACAGATGG
+
+>|pattern_1427 1427
+CCAACATGG
+
+>|pattern_1428 1428
+CAGACATGG
+
+>|pattern_1429 1429
+TCTAATGGC
+
+>|pattern_1430 1430
+CCAATGAGG
+
+>|pattern_1431 1431
+CAAGATGGA
+
+>|pattern_1432 1432
+GGCAAAATG
+
+>|pattern_1433 1433
+TGTAGGATT
+
+>|pattern_1434 1434
+TTTAAGATG
+
+>|pattern_1435 1435
+TGTAAATTT
+
+>|pattern_1436 1436
+GGTAGGATG
+
+>|pattern_1437 1437
+TTTAATTTT
+
+>|pattern_1438 1438
+TAAAATGTT
+
+>|pattern_1439 1439
+TGACCCATA
+
+>|pattern_1440 1440
+TAAAAATGT
+
+>|pattern_1441 1441
+CAGCCCAGT
+
+>|pattern_1442 1442
+TAAATCTTT
+
+>|pattern_1443 1443
+TAACATGGG
+
+>|pattern_1444 1444
+TAGGGGTAG
+
+>|pattern_1445 1445
+TGAATTTGA
+
+>|pattern_1446 1446
+TTTTGAAAA
+
+>|pattern_1447 1447
+CAGGGGTAA
+
+>|pattern_1448 1448
+TATTGATAA
+
+>|pattern_1449 1449
+TAATAATAA
+
+>|pattern_1450 1450
+AGAGATATG
+
+>|pattern_1451 1451
+AAAATTATG
+
+>|pattern_1452 1452
+ACAGGGGCG
+
+>|pattern_1453 1453
+GGGGGCCTG
+
+>|pattern_1454 1454
+AAAATGGCG
+
+>|pattern_1455 1455
+ATGGGCCTA
+
+>|pattern_1456 1456
+GTACTGAGA
+
+>|pattern_1457 1457
+TATTTTTAA
+
+>|pattern_1458 1458
+TTAGTAATT
+
+>|pattern_1459 1459
+TGTTTAAAA
+
+>|pattern_1460 1460
+TATTTAAAA
+
+>|pattern_1461 1461
+TATTTGATT
+
+>|pattern_1462 1462
+ATTTTTTTT
+
+>|pattern_1463 1463
+CCGCCCCCG
+
+>|pattern_1464 1464
+TATTTTTTT
+
+>|pattern_1465 1465
+CGGCCCCGC
+
+>|pattern_1466 1466
+CGGCCCCCT
+
+>|pattern_1467 1467
+CCCCGCCCC
+
+>|pattern_1468 1468
+CCAACATGG
+
+>|pattern_1469 1469
+GAAAATGTT
+
+>|pattern_1470 1470
+TAATATGTT
+
+>|pattern_1471 1471
+CGCCATGGG
+
+>|pattern_1472 1472
+TACAATGTG
+
+>|pattern_1473 1473
+GAAGATGAG
+
+>|pattern_1474 1474
+TTGGTTTTT
+
+>|pattern_1475 1475
+TTTCATTTT
+
+>|pattern_1476 1476
+AACCATTTT
+
+>|pattern_1477 1477
+TTGCTTTGT
+
+>|pattern_1478 1478
+TTTCTTTTT
+
+>|pattern_1479 1479
+GAGGTGAAC
+
+>|pattern_1480 1480
+ATGGCAATA
+
+>|pattern_1481 1481
+TCTATGTGT
+
+>|pattern_1482 1482
+ACAATGCCC
+
+>|pattern_1483 1483
+ATGGCGCCC
+
+>|pattern_1484 1484
+ATGATGATG
+
+>|pattern_1485 1485
+AAAATGATG
+
+>|pattern_1486 1486
+ACTGTGTCG
+
+>|pattern_1487 1487
+TTTGTTTGT
+
+>|pattern_1488 1488
+TTTGTGTTT
+
+>|pattern_1489 1489
+TCTGTTTGC
+
+>|pattern_1490 1490
+TTTGTGACT
+
+>|pattern_1491 1491
+TTTGTTCCA
+
+>|pattern_1492 1492
+GGCCGGTAT
+
+>|pattern_1493 1493
+GGGCTGGGT
+
+>|pattern_1494 1494
+GGCCGGGCC
+
+>|pattern_1495 1495
+TTAATTTGT
+
+>|pattern_1496 1496
+TTCATCCTT
+
+>|pattern_1497 1497
+GGGCAACAT
+
+>|pattern_1498 1498
+GTTTTGTTT
+
+>|pattern_1499 1499
+ATGTTTATT
+
+>|pattern_1500 1500
+GTTTTTATT
+
+>|pattern_1501 1501
+TCTTTTATT
+
+>|pattern_1502 1502
+CTTTGTATT
+
+>|pattern_1503 1503
+GAGATTATT
+
+>|pattern_1504 1504
+GTAGCCATG
+
+>|pattern_1505 1505
+GTGAAAATG
+
+>|pattern_1506 1506
+TTGAGATGG
+
+>|pattern_1507 1507
+TTAAATTTT
+
+>|pattern_1508 1508
+GTGATGGCG
+
+>|pattern_1509 1509
+CTAAGATGG
+
+>|pattern_1510 1510
+AATTTTTTT
+
+>|pattern_1511 1511
+CAAAATGGT
+
+>|pattern_1512 1512
+AATGGCTCC
+
+>|pattern_1513 1513
+AATGATGTT
+
+>|pattern_1514 1514
+CAGGATGGG
+
+>|pattern_1515 1515
+CGGCGCTCC
+
+>|pattern_1516 1516
+TCCCGGACA
+
+>|pattern_1517 1517
+CGCCATGGA
+
+>|pattern_1518 1518
+AGGACTCGA
+
+>|pattern_1519 1519
+CCCCCCGGC
+
+>|pattern_1520 1520
+ACCACCAAC
+
+>|pattern_1521 1521
+AGCCCCCGC
+
+>|pattern_1522 1522
+TGGATTCCA
+
+>|pattern_1523 1523
+CCATGATGA
+
+>|pattern_1524 1524
+CCGGCCTCG
+
+>|pattern_1525 1525
+CCGGCTTCC
+
+>|pattern_1526 1526
+GCGCTTCCA
+
+>|pattern_1527 1527
+TCGGAATGC
+
+>|pattern_1528 1528
+ATGGCGCCA
+
+>|pattern_1529 1529
+GGGGGGCCG
+
+>|pattern_1530 1530
+GACATCACC
+
+>|pattern_1531 1531
+AAAATGTTA
+
+>|pattern_1532 1532
+AATCATGAA
+
+>|pattern_1533 1533
+GATGGGTCA
+

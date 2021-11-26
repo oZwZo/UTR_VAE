@@ -56,11 +56,21 @@ loader_set = {}
 base_path = copy.copy(POPEN.split_like_paper)
 base_csv = copy.copy(POPEN.csv_path)
 for subset in POPEN.cycle_set:
-    if base_path is not None:
-        POPEN.split_like_paper = [path.replace('cycle', subset) for path in base_path]
-    else:
-        POPEN.csv_path = base_csv.replace('cycle', subset)
-    loader_set[subset] = reader.get_dataloader(POPEN)
+    if (subset in ['unmod1', 'human', 'vleng']):
+        datapopen = Auto_popen('/home/wergillius/Project/UTR_VAE/log/Backbone/RL_3_data/rl_train_val_10fold/schedule_lr.ini')
+        datapopen.split_like_paper = [path.replace('cycle', subset) for path in base_path]
+        datapopen.kfold_index = args.kfold_index
+    elif (subset in ['Andrev2015', 'muscle', 'pc3']):
+        datapopen = Auto_popen('/home/wergillius/Project/UTR_VAE/log/Backbone/RL_celline/MDL_pretrain_relax/pretrain_relax.ini')
+        datapopen.csv_path = base_csv.replace('cycle', subset)
+        datapopen.kfold_index = args.kfold_index
+    loader_set[subset] = reader.get_dataloader(datapopen)
+# for subset in POPEN.cycle_set:
+#     if base_path is not None:
+#         POPEN.split_like_paper = [path.replace('cycle', subset) for path in base_path]
+#     else:
+#         POPEN.csv_path = base_csv.replace('cycle', subset)
+#     loader_set[subset] = reader.get_dataloader(POPEN)
     
 # ===========  setup model  ===========
 # train_iter = iter(train_loader)

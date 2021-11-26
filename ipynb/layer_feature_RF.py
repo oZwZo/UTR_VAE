@@ -79,7 +79,7 @@ def encode_seq_fea(loader, l):
             feature_map.append(out)
 
     X = np.concatenate(feature_map, axis=0)
-    X_flat = X.reshape(len(X),-1)
+    X_flat = X#.reshape(len(X),-1)
     return X_flat
 
 
