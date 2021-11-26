@@ -11,8 +11,10 @@
             "program": "./script/main_train.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["--config_file","log/Backbone/Motif_detection_MTL/big_conv/eight_motif_test.ini",
-                     "--cuda","1"]
+            "args": ["--config_file","log/Backbone/RL_gru_3DS/test_Andrev/Andrev_single_task.ini",
+                     "--cuda","1",
+                     "--kfold_index","1"
+                    ]
         },
         {
             "name": "cycle_train",
@@ -36,13 +38,15 @@
                      "--kfold_index","1"]
         },
         {
-            "name": "Python: no args",
+            "name": "the current script",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": false,
-            "args": ["vleng_df"]
+            "justMyCode": true,
+            "args": ["--layer", "3",
+                     "--k", "0",
+                     "--data", "human"]
         }
     ]
 }

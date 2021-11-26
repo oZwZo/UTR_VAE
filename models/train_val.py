@@ -75,8 +75,8 @@ def train(dataloader,model,optimizer,popen,epoch,lr=None, verbose=True):
                 train_verbose = train_verbose.format(*verbose_args)                         
             
                 logger.info(train_verbose)
-        with torch.cuda.device(popen.cuda_id):
-            torch.cuda.empty_cache()
+        
+        torch.cuda.empty_cache()
 
 def validate(dataloader,model,popen,epoch):
 
@@ -105,8 +105,8 @@ def validate(dataloader,model,popen,epoch):
             loss_dict = utils.clean_value_dict(loss_dict)  # convert possible torch to single item
             verbose_list.append(loss_dict)
                
-            with torch.cuda.device(popen.cuda_id):  
-                torch.cuda.empty_cache()
+            
+            torch.cuda.empty_cache()
             
           # # average among batch
     
