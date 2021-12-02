@@ -137,9 +137,9 @@ class Auto_popen(object):
             left_args={'RL_regressor':["tower_width","dropout_rate"],
                        'RL_clf':["n_class","tower_width","dropout_rate"],
                        'RL_gru':["tower_width","dropout_rate"],
-                       'RL_3_data':["tower_width","dropout_rate"],
-                       'RL_celline':["tower_width","dropout_rate"],
-                       'RL_6_data':["tower_width","dropout_rate"],
+                       'RL_3_data':["tower_width","dropout_rate","cycle_set" ],
+                       'RL_celline':["tower_width","dropout_rate","cycle_set"],
+                       'RL_6_data':["tower_width","dropout_rate","cycle_set"],
                        'RL_mish_gru':["tower_width","dropout_rate"],
                        'Reconstruction':["variational","latent_dim"],
                        'Motif_detection':["aux_task_columns","tower_width"]}[self.model_type]

@@ -84,7 +84,8 @@ class Conv1d_block(nn.Module):
             stride = self.stride[i]
             L_in = self.cal_out_shape(L_in,padding,diliation,stride)
         # assert int(L_in) == L_in , "convolution out shape is not int"
-        return int(L_in)
+        
+        return int(L_in) if L_in >=0  else 1
     
 class ConvTranspose1d_block(Conv1d_block):
     """
@@ -271,12 +272,12 @@ class RL_gru(RL_regressor):
         return out
 
 class RL_3_data(RL_gru):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks =['unmod1', 'human', 'vleng']):
         """
         tower is gru
         """      
         super().__init__(conv_args,tower_width,dropout_rate)
-        self.all_tasks = ['unmod1', 'human', 'vleng']
+        self.all_tasks = tasks
         tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
                                                         hidden_size=w,
                                                         num_layers=2,
@@ -303,12 +304,12 @@ class RL_3_data(RL_gru):
         return {task+"_Acc" : Acc}
     
 class RL_celline(RL_3_data):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks=['Andrev2015', 'muscle', 'pc3'] ):
         """
         tower is gru
         """      
         super().__init__(conv_args,tower_width,dropout_rate)
-        self.all_tasks = ['Andrev2015', 'muscle', 'pc3']
+        self.all_tasks = tasks
         tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
                                                         hidden_size=w,
                                                         num_layers=2,
@@ -318,12 +319,12 @@ class RL_celline(RL_3_data):
         self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
 
 class RL_6_data(RL_3_data):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks=['vleng', 'human','Andrev2015', 'muscle', 'pc3'] ):
         """
         tower is gru
         """      
         super().__init__(conv_args,tower_width,dropout_rate)
-        self.all_tasks = ['SubVleng','SubHuman', 'Andrev2015', 'muscle', 'pc3']
+        self.all_tasks = tasks
         # self.all_tasks = ['unmod1', 'human', 'vleng', 'Andrev2015', 'muscle', 'pc3']
         tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
                                                         hidden_size=w,
@@ -337,7 +338,7 @@ class RL_6_data(RL_3_data):
         try:
             task_lambda = popen.chimera_weight
         except:
-            task_lambda = {'unmod1':0.1, 'SubHuman':0.1, 'SubVleng':0.1, 'Andrev2015':1, 'muscle':1, 'pc3':1}
+            task_lambda = {'unmod1':0.1, 'SubHuman':0.1, 'SubVleng':0.1,  'Andrev2015':1, 'muscle':1, 'pc3':1}
         
         loss_weight = task_lambda[self.task]
         out,Y = self.squeeze_out_Y(out,Y)
