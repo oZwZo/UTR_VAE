@@ -1,0 +1,7 @@
+ Model load from : layer_map/1_layer_model/vleng_kernel9_cv0_Nov27.joblib
+ Training size : (68687, 25344)
+ Testing size : 15200
+
+ r2 : 0.096914
+ sp : 0.288254
+ model saved to layer_map/1_layer_model/vleng_kernel9_cv0_Nov27.joblib

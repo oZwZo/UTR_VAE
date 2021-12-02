@@ -1,0 +1,7 @@
+ Model load from : layer_map/1_layer_model/unmod1_kernel9_cv0_Nov29.joblib
+ Training size : (234000, 13056)
+ Testing size : 20000
+
+ r2 : 0.476267
+ sp : 0.766290
+ model saved to layer_map/1_layer_model/unmod1_kernel9_cv0_Nov29.joblib

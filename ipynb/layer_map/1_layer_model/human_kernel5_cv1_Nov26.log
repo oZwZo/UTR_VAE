@@ -1,0 +1,5 @@
+ Training size : (67515, 14080)
+ Testing size : 25000
+
+ r2 : 0.403009
+ sp : 0.649571

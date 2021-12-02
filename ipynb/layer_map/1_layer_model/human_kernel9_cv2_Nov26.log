@@ -1,0 +1,6 @@
+ Model load from : layer_map/1_layer_model/human_kernel9_cv2_Nov26.joblib
+ Training size : (67515, 13056)
+ Testing size : 25000
+
+ r2 : 0.381042
+ sp : 0.633183

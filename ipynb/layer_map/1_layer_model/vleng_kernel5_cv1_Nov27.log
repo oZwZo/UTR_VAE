@@ -1,0 +1,6 @@
+ Model load from : layer_map/1_layer_model/vleng_kernel5_cv1_Nov27.joblib
+ Training size : (68687, 26368)
+ Testing size : 15200
+
+ r2 : 0.303317
+ sp : 0.528059

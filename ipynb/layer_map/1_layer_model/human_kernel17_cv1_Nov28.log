@@ -1,0 +1,7 @@
+ Model load from : layer_map/1_layer_model/human_kernel17_cv1_Nov28.joblib
+ Training size : (67515, 11008)
+ Testing size : 25000
+
+ r2 : 0.373244
+ sp : 0.630784
+ model saved to layer_map/1_layer_model/human_kernel17_cv1_Nov28.joblib
