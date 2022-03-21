@@ -1,5 +1,5 @@
  Training size : (67515, 7296)
  Testing size : 25000
 
- r2 : 0.494361
+ r2 : 0.491499
  model saved to layer_map/1_RF_Sep15.model

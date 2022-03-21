@@ -1,0 +1,7 @@
+ Training size : (67515, 6912)
+ Testing size : 25000
+
+ r2 : 0.656048
+ sp : 0.809676
+ Feat Imp Array saved to /home/wergillius/Project/UTR_VAE/ipynb/layer_map/M2R256_FeatImp/3_k1_human_Jan10.M2R_ay
+ model saved to /home/wergillius/Project/UTR_VAE/ipynb/layer_map/M2R256_FeatImp/3_k1_human_Jan10.model
