@@ -157,8 +157,8 @@ class backbone_model(nn.Module):
     
     def _weight_initialize(self, model):
         if type(model) in [nn.Linear]:
-        	nn.init.xavier_uniform_(model.weight)
-        	nn.init.zeros_(model.bias)
+            nn.init.xavier_uniform_(model.weight)
+            nn.init.zeros_(model.bias) 
         elif type(model) in [nn.LSTM, nn.RNN, nn.GRU]:
             nn.init.orthogonal_(model.weight_hh_l0)
             nn.init.xavier_uniform_(model.weight_ih_l0)
@@ -298,42 +298,6 @@ class RL_3_data(RL_gru):
         
         return out
     
-    def compute_acc(self,out,X,Y,popen=None):
-        task = self.task
-        Acc = super().compute_acc(out,X,Y,popen)['Acc']
-        return {task+"_Acc" : Acc}
-    
-class RL_celline(RL_3_data):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks=['Andrev2015', 'muscle', 'pc3'] ):
-        """
-        tower is gru
-        """      
-        super().__init__(conv_args,tower_width,dropout_rate)
-        self.all_tasks = tasks
-        tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
-                                                        hidden_size=w,
-                                                        num_layers=2,
-                                                        batch_first=True),
-                                                nn.Linear(w,1)])
-        
-        self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
-
-class RL_6_data(RL_3_data):
-    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks=['vleng', 'human','Andrev2015', 'muscle', 'pc3'] ):
-        """
-        tower is gru
-        """      
-        super().__init__(conv_args,tower_width,dropout_rate)
-        self.all_tasks = tasks
-        # self.all_tasks = ['unmod1', 'human', 'vleng', 'Andrev2015', 'muscle', 'pc3']
-        tower_block = lambda c,w : nn.ModuleList([nn.GRU(input_size=c,
-                                                        hidden_size=w,
-                                                        num_layers=2,
-                                                        batch_first=True),
-                                                nn.Linear(w,1)])
-        
-        self.tower = nn.ModuleDict({task: tower_block(self.channel_ls[-1], tower_width) for task in self.all_tasks})
-    
     def compute_loss(self,out,X,Y,popen):
         try:
             task_lambda = popen.chimera_weight
@@ -344,8 +308,31 @@ class RL_6_data(RL_3_data):
         out,Y = self.squeeze_out_Y(out,Y)
         loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
         return {"Total":loss*loss_weight}
+
+    def compute_acc(self,out,X,Y,popen=None):
+        task = self.task
+        Acc = super().compute_acc(out,X,Y,popen)['Acc']
+        return {task+"_Acc" : Acc}
     
     
+
+    
+class RL_FACS(RL_gru):
+    def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, n_bins=3):
+        """
+        tower is gru
+        """      
+        super().__init__(conv_args,tower_width,dropout_rate)
+        
+        self.fc_out = nn.Sequential(nn.Linear(tower_width,n_bins),
+                                    nn.Softmax())
+        self.loss_fn = nn.CrossEntropyLoss()
+
+    def compute_loss(self,out,X,Y,popen):
+        
+        loss = self.loss_fn(out,Y) + popen.l1 * torch.sum(torch.abs(next(self.soft_share.encoder[0].parameters()))) 
+        return {"Total":loss}    
+
 class RL_mish_gru(RL_gru):
     def __init__(self,conv_args,tower_width=40,dropout_rate=0.2 ,activation='Mish'):
         """

@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import utils
@@ -18,6 +19,7 @@ from scipy import stats
 from matplotlib import pyplot as plt
 from sklearn import cluster
 from sklearn.manifold import TSNE
+from popen import Auto_popen
 
 class Maxium_activation_patch(object):
     def __init__(self, popen, which_layer, n_patch=9, kfold_index=None, device_string='cpu'):
@@ -73,7 +75,7 @@ class Maxium_activation_patch(object):
         self.df = dataloader.dataset.df
         return model, dataloader
     
-    def extract_feature_map(self, task=None,which_set=0):
+    def extract_feature_map(self, task=None,which_set=0, extra_loader=None):
         """
         load trained model and unshuffled dataloader, make model forwarded
         Arg:
@@ -81,7 +83,10 @@ class Maxium_activation_patch(object):
             which_set : int, 0 : training set, 1 : val set, 2 : test set
         """
         model, dataloader= self.loading(task, which_set)
-        
+        if extra_loader is not None:
+            dataloader = extra_loader
+            self.df = extra_loader.dataset.df
+            
         feature_map = []
         X_ls = []
         Y_ls = []
@@ -102,8 +107,7 @@ class Maxium_activation_patch(object):
                 
                 torch.cuda.empty_cache()
             
-        
-        
+
         feature_map_l = np.concatenate( feature_map, axis=0)
         
 #         self.X_ls = np.concatenate(X_ls, axis=0)
@@ -201,20 +205,22 @@ class Maxium_activation_patch(object):
             M += np.concatenate([np.zeros((max_len - len(seq),4)), oh_M],axis=0)
             
 
-        seq_logo_df = pd.DataFrame(M, columns=['A', 'C', 'G', 'T'])
+        seq_logo_df = pd.DataFrame(M, columns=['A', 'C', 'G', 'U'])
         if transformation!='counts':
             seq_logo_df = logomaker.transform_matrix(seq_logo_df, from_type='counts', to_type=transformation)
             
         return seq_logo_df
         
-    def plot_sequence_logo(self, seq_logo_df,  save_fig_path=None):
+    def plot_sequence_logo(self, seq_logo_df,  save_fig_path=None, ax=None):
         """
         input : max_act_region ; list of str
         """
         # plot
-        plt.figure(dpi=300)
-        MA_C = logomaker.Logo(seq_logo_df);
-        ax = MA_C.fig.gca()
+        if ax is None:
+            fig = plt.figure(dpi=300)
+            ax = fig.gca()
+        MA_C = logomaker.Logo(seq_logo_df,ax=ax);
+            
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
         ax.spines['bottom'].set_visible(False)
@@ -232,16 +238,20 @@ class Maxium_activation_patch(object):
                 print('fig saved to',self.save_dir)
             plt.close(MA_C.fig)
     
-    def fast_logo(self, channel, feature_map=None, n_patch=None, transformation='information', save_fig_path=None):
+    def fast_logo(self, channel, feature_map=None, n_patch=None, transformation='information', save_fig_path=None, title=None,ax=None):
         
         if n_patch is not None:
             self.n_patch = n_patch
         max_act_region, _, _ = self.locate_MA_seq(channel, feature_map)
         M = self.sequence_to_matrix(max_act_region, transformation=transformation)
         F0_ay, (spr,pr) = self.activation_density(channel, False, False)
-        self.plot_sequence_logo(M,  save_fig_path=save_fig_path)
-        ax=plt.gca()
-        ax.set_title("Fileter {} : $r =$ {}".format(channel, spr), fontsize=35)
+        self.plot_sequence_logo(M,  save_fig_path=save_fig_path, ax=ax)
+        if ax is None:
+            ax=plt.gca()
+        if title is None:
+            title = "filter {} : $r =$ {}".format(channel, spr)
+        
+        ax.set_title(title, fontsize=35)
          
     
     def activation_density(self, channel, to_print=True, to_plot=True, feature_map=None, **kwargs):
@@ -276,7 +286,7 @@ class Maxium_activation_patch(object):
         cluster_index = cluster.KMeans(n_clusters=n_clusters).fit_predict(flatten_seq)
         # down
         if to_plot:
-            tsne = TSNE(metric='cosine', square_distances=True).fit(flatten_seq)
+            tsne = TSNE(metric='cosine').fit(flatten_seq)
             self.tsne=tsne
             plt.figure(figsize=(6,5),dpi=150)
     #         sns.set_theme(style='ticks', palette='viridis')
@@ -312,34 +322,18 @@ class Maxium_activation_patch(object):
         return max_act_seq
     
     def save_as_meme_format(self,channels:list, save_path, filter_prefix='filter', transformation='probability'):
-        """
-        Save the position weight matrix as the meme-suite acceptale minimal motif format
-        """
-        
-        with open(save_path, 'w') as f:
-            f.write("MEME version 5.4.1\n\n")
-            f.write("ALPHABET= ACGT\n\n")
-            f.write("strands: + -\n\n")
-            f.write("Background letter frequencies\n")
-            f.write("A 0.25 C 0.25 G 0.25 T 0.25\n")
-
-            for cc in channels:
+        motifs = []
+        success_channel = []
+        for cc in channels:
+            try:
+                region, index, patches = self.locate_MA_seq(channel=cc)
+                M = self.sequence_to_matrix(region, transformation=transformation);
+                motifs.append(M)
+                success_channel.append(cc)
+            except ValueError:
+                continue
                 
-                try:
-                    region, index, patches = self.locate_MA_seq(channel=cc)
-                    M = self.sequence_to_matrix(region, transformation=transformation);
-                    f.write('\n')
-                    f.write(f"MOTIF {filter_prefix}_{cc}\n")
-                    seq_len = len(region[0])
-                    f.write(f"letter-probability matrix: alength= 4 w= {seq_len} \n")
-                    for line in M.values:
-                        f.write(" "+line.__str__()[1:-1]+'\n')
-                except ValueError:
-                    continue
-                    
-            f.close()
-            print('writed')
-
+        write_meme(success_channel, motifs ,save_path, filter_prefix)
     
     def get_input_grad(self, task, focus=True, fm=None):
         """
@@ -435,7 +429,19 @@ class merge_task_map(Maxium_activation_patch):
         self.df_dict = {}
         self.Y_2_task = {}
         self.patches_ls = None
+    
+    def load_indexed_dataloader(self,task):
         
+        if task in ['Andrev2015','muscle','pc3']:
+            self.popen.seq_col = 'utr'
+            self.popen.aux_task_columns = ['log_te']
+            self.popen.split_like_paper = None
+            self.popen.kfold_cv = True
+        
+        loader_ls = super().load_indexed_dataloader(task)
+        self.popen = copy.copy(self.old_popen)
+        return loader_ls
+    
     def extract_feature_map(self, which_set=0):
         feature_map = {}
         for task in self.popen.cycle_set:
@@ -463,7 +469,7 @@ class merge_task_map(Maxium_activation_patch):
             # task out : region, index, patches
             if patches_ls is not None:
                 self.n_patch = patches_ls[i]
-                print(f"{task} n_patch: {self.n_patch}")
+                # print(f"{task} n_patch: {self.n_patch}")
             self.df = self.df_dict[task]
             # region , index , patches
             r, i, p = super().locate_MA_seq(channel, feature_map=self.feature_map[task])
@@ -551,4 +557,109 @@ class merge_task_map(Maxium_activation_patch):
             grad = super().get_input_grad(focus=True, task=task, fm=self.feature_map[task])
             grads[task] = grad.mean(axis=0)
         return grads
+
+class Maximum_activation_kmer(Maxium_activation_patch):
+    def __init__(self,popen, which_layer, n_patch, kfold_index):
+        super().__init__(popen, which_layer, n_patch, kfold_index)
+        self.virtual_pad = 0
     
+    def compute_virtual_pad(self):
+        self.virtual_pad = 0
+        print('the virtual pad is', self.virtual_pad)
+    
+    def load_indexed_dataloader(self, task='kmer'):
+        self.csv_path = f"/data/users/wergillius/UTR_VAE/multi_task/ds4rl_seperate/all_{self.r}mer.csv"
+        self.popen.split_like_paper = [self.csv_path,self.csv_path]
+        self.popen.csv_path = None
+        self.popen.kfold_cv = False
+        self.popen.kfold_index = self.kfold_index
+        self.popen.pad_to = self.r
+        self.popen.seq_col = 'utr'
+        self.popen.aux_task_columns = ['rl']
+        return  reader.get_dataloader(self.popen) 
+        
+    def extract_feature_map(self):
+         
+        model, dataloader= self.loading('kmer', 1)
+        
+        for l in range(self.layer):
+            # remove padding to precisely locate
+            model.soft_share.encoder[l][0][0].padding = (0,)
+        
+        feature_map = []
+        X_ls = []
+        Y_ls = []
+        
+        model.eval()
+        with torch.no_grad():
+            for Data in tqdm(dataloader):
+                # iter each batch
+                x,y = train_val.put_data_to_cuda(Data,self.popen,False)
+                x = torch.transpose(x, 1, 2)
+#                 X_ls.append(x.numpy())
+                Y_ls.append(y.detach().cpu().numpy())
+                
+                for layer in model.soft_share.encoder[:self.layer]:
+                    out = layer(x)
+                    x = out
+                feature_map.append(out.detach().cpu().numpy())
+                
+                torch.cuda.empty_cache()
+            
+
+        feature_map_l = np.concatenate( feature_map, axis=0)
+        
+#         self.X_ls = np.concatenate(X_ls, axis=0)
+        self.Y_ls = np.concatenate(Y_ls, axis=0)
+
+        print("activation map of layer |%d|"%self.layer,feature_map_l.shape)
+#         print(self.X_ls.shape)
+        print("Y : ",self.Y_ls.shape)
+        self.feature_map = feature_map_l
+        
+        self.filters = self.get_filter_param(model)
+        
+        del model
+        self.df = pd.read_csv(self.csv_path)
+        return feature_map_l
+    
+def write_meme(channels:list, PWMs:list ,save_path, filter_prefix='filter'):
+    """
+    Save the position weight matrix as the meme-suite acceptale minimal motif format
+    """
+    assert len(channels)==len(PWMs)
+    with open(save_path, 'w') as f:
+        f.write("MEME version 5.4.1\n\n")
+        f.write("ALPHABET= ACGT\n\n")
+        f.write("strands: + -\n\n")
+        f.write("Background letter frequencies\n")
+        f.write("A 0.25 C 0.25 G 0.25 T 0.25\n")
+
+        for cc,M in zip(channels, PWMs):
+            f.write('\n')
+            f.write(f"MOTIF {filter_prefix}_{cc}\n")
+            seq_len = M.shape[0]
+            f.write(f"letter-probability matrix: alength= 4 w= {seq_len} \n")
+            for line in M.values:
+                f.write(" "+line.__str__()[1:-1]+'\n')
+
+
+        f.close()
+        print('writed to', save_path)
+        
+def extract_meme(memepath):
+    """
+    read the meme file and extract motifs to rewrite
+    """
+    with open(memepath,'r') as f:
+        all_lines = f.readlines()[9:]
+    
+    all_blocks = []
+    for i, line in enumerate(all_lines):
+        if line.startswith("MOTIF"):
+            width = re.match(r"letter-probability matrix: alength= 4 w= (\d)*",all_lines[i+1]).groups(1)
+            width = int(width[0])
+
+            all_blocks.append( all_lines[i:i+3+width])
+            
+    return all_blocks
