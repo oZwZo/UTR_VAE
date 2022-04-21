@@ -1,8 +1,9 @@
 import torch 
 import numpy  as np
 from torch import nn
+from scipy import stats
 import torch.nn.functional as F
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_auc_score, r2_score
 from torch.nn.modules import activation
 from torch.nn.modules.dropout import Dropout
 
@@ -233,7 +234,11 @@ class RL_regressor(backbone_model):
         out,Y = self.squeeze_out_Y(out,Y)
         # error smaller than epsilon
         with torch.no_grad():
-            acc = torch.sum(torch.abs(Y-out) < epsilon).item() / Y.shape[0]
+            y_ay = Y.cpu().numpy()
+            out_ay = out.cpu().numpy()
+            # acc = torch.sum(torch.abs(Y-out) < epsilon).item() / Y.shape[0]
+            acc = stats.spearmanr(y_ay,out_ay)[0]
+            # acc = r2_score(y_ay, out_ay)
         return {"Acc":acc}
     
     def compute_loss(self,out,X,Y,popen):
@@ -271,7 +276,7 @@ class RL_gru(RL_regressor):
         out = self.fc_out(c2)
         return out
 
-class RL_3_data(RL_gru):
+class RL_hard_share(RL_gru):
     def __init__(self,conv_args,tower_width=40,dropout_rate=0.2, tasks =['unmod1', 'human', 'vleng']):
         """
         tower is gru
@@ -302,7 +307,9 @@ class RL_3_data(RL_gru):
         try:
             task_lambda = popen.chimera_weight
         except:
-            task_lambda = {'unmod1':0.1, 'SubHuman':0.1, 'SubVleng':0.1,  'Andrev2015':1, 'muscle':1, 'pc3':1}
+            task_lambda = {'unmod1':0.1, 'SubHuman':0.1, 'SubVleng':0.1,
+                            'unmod1':0.1, 'human':0.1, 'vleng':0.1,  
+                            'Andrev2015':1, 'muscle':1, 'pc3':1}
         
         loss_weight = task_lambda[self.task]
         out,Y = self.squeeze_out_Y(out,Y)

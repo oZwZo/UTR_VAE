@@ -128,7 +128,7 @@ class Auto_popen(object):
             args_to_read = ["latent_dim","linear_chann_ls","num_label","te_chann_ls","ss_chann_ls","dropout_rate"]
             self.model_args=[self.__getattribute__(args) for args in args_to_read]
 
-        if self.model_type in ['RL_clf','RL_gru', 'RL_mish_gru', 'RL_regressor','Reconstruction','Motif_detection', 'RL_3_data', 'RL_celline', 'RL_6_data']:           # Backbone
+        if self.model_type in ['RL_clf','RL_gru', 'RL_FACS', 'RL_mish_gru', 'RL_regressor','Reconstruction','Motif_detection','RL_hard_share','RL_3_data', 'RL_celline', 'RL_6_data']:           # Backbone
             # conv_args define the soft-sharing part
             conv_args = ["channel_ls","kernel_size","stride","padding_ls","diliation_ls","pad_to"]
             self.conv_args = tuple([self.__getattribute__(arg) for arg in conv_args])
@@ -137,6 +137,8 @@ class Auto_popen(object):
             left_args={'RL_regressor':["tower_width","dropout_rate"],
                        'RL_clf':["n_class","tower_width","dropout_rate"],
                        'RL_gru':["tower_width","dropout_rate"],
+                       'RL_FACS': ["tower_width","dropout_rate"],
+                       'RL_hard_share':["tower_width","dropout_rate","cycle_set" ],
                        'RL_3_data':["tower_width","dropout_rate","cycle_set" ],
                        'RL_celline':["tower_width","dropout_rate","cycle_set"],
                        'RL_6_data':["tower_width","dropout_rate","cycle_set"],

@@ -137,7 +137,8 @@ def iter_train(loader_dict, model, optimizer, popen, epoch, verbose=True):
     # loader_len = len(dataloader)       # number of iteration
     all_len = [len(loader[0]) for loader in loader_dict.values()]
     max_len = np.max(all_len)
-    total_len = max_len*3
+    n_task = len(popen.cycle_set)
+    total_len = max_len*n_task
     
     all_train = {task : iter(loader[0]) for task,loader in loader_dict.items()}
     def try_next(all_train, task):
@@ -155,7 +156,7 @@ def iter_train(loader_dict, model, optimizer, popen, epoch, verbose=True):
     
     verbose_list=[]
     for idx in range(total_len):
-        task = popen.cycle_set[idx%3]
+        task = popen.cycle_set[idx%n_task]
         model.task = task
         
         data = try_next(all_train, task)
