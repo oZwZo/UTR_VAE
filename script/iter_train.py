@@ -135,6 +135,7 @@ if POPEN.Resumable:
 if isinstance(POPEN.modual_to_fix, list):
     for modual in POPEN.modual_to_fix:
         model = utils.fix_parameter(model,modual)
+        model =  model.to(device)
     logger.info(' \t \t ==============| %s fixed |============== \t \t \n'%POPEN.modual_to_fix)
 # =========== set optimizer ===========
 if POPEN.optimizer == 'Schedule':

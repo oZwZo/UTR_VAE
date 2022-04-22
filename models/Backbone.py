@@ -321,7 +321,18 @@ class RL_hard_share(RL_gru):
         Acc = super().compute_acc(out,X,Y,popen)['Acc']
         return {task+"_Acc" : Acc}
     
+class RL_celline(RL_hard_share):
+    def __init__(self,conv_args,tower_width,dropout_rate, tasks):
+        super().__init__(conv_args,tower_width,dropout_rate, tasks)
     
+
+class RL_3_data(RL_hard_share):
+    def __init__(self,conv_args,tower_width,dropout_rate, tasks):
+        super().__init__(conv_args,tower_width,dropout_rate, tasks)
+
+class RL_6_data(RL_hard_share):
+    def __init__(self,conv_args,tower_width,dropout_rate, tasks):
+        super().__init__(conv_args,tower_width,dropout_rate, tasks)
 
     
 class RL_FACS(RL_gru):
