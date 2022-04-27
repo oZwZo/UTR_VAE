@@ -4,7 +4,7 @@ import argparse
 
 parser = argparse.ArgumentParser('the main to train model')
 parser.add_argument('--config_file',type=str,required=True)
-parser.add_argument('--cuda',type=int,default=None,required=False)
+parser.add_argument('--cuda',type=int,default='cpu',required=False)
 parser.add_argument("--kfold_index",type=int,default=None,required=False)
 args = parser.parse_args()
 
@@ -57,11 +57,11 @@ base_path = copy.copy(POPEN.split_like_paper)
 base_csv = copy.copy(POPEN.csv_path)
 for subset in POPEN.cycle_set:
     if (subset in ['unmod1', 'human', 'vleng', 'SubHuman','SubVleng']):
-        datapopen = Auto_popen('/ssd/users/wergillius/Project/UTR_VAE/log/Backbone/RL_3_data/rl_train_val_10fold/schedule_lr.ini')
+        datapopen = Auto_popen('log/Backbone/RL_3_data/rl_train_val_10fold/schedule_lr.ini')
         datapopen.split_like_paper = [path.replace('cycle', subset) for path in base_path]
         datapopen.kfold_index = args.kfold_index
     elif (subset in ['Andrev2015', 'muscle', 'pc3']):
-        datapopen = Auto_popen('/ssd/users/wergillius/Project/UTR_VAE/log/Backbone/RL_celline/MDL_pretrain_relax/pretrain_relax.ini')
+        datapopen = Auto_popen('log/Backbone/RL_celline/MDL_pretrain_relax/pretrain_relax.ini')
         datapopen.csv_path = base_csv.replace('cycle', subset)
         datapopen.kfold_index = args.kfold_index
     loader_set[subset] = reader.get_dataloader(datapopen)
@@ -80,7 +80,7 @@ if POPEN.pretrain_pth is not None:
     # load pretran model
     logger.info("===============================|   pretrain   |===============================")
     logger.info(f" {POPEN.pretrain_pth}")
-    pretrain_popen = Auto_popen(POPEN.pretrain_pth)
+    pretrain_popen = Auto_popen(os.path.join(utils.script_dir, POPEN.pretrain_pth))
     pretrain_model = torch.load(pretrain_popen.vae_pth_path, map_location=torch.device('cpu'))['state_dict']
 
     
@@ -92,9 +92,10 @@ if POPEN.pretrain_pth is not None:
         del pretrain_model
         
         if (POPEN.cycle_set != pretrain_popen.cycle_set):
+            target_towers = POPEN.Model_Class(*POPEN.model_args).tower
             model.all_tasks = POPEN.cycle_set
             model.tower = torch.nn.ModuleDict(
-                {POPEN.cycle_set[i] : model.tower[t]  for i, t in enumerate(pretrain_popen.cycle_set)}
+                {POPEN.cycle_set[i] : target_towers[t]  for i, t in enumerate(POPEN.cycle_set)}
                                                 )
         
     elif POPEN.modual_to_fix is not None:

@@ -13,7 +13,7 @@ from torch import nn
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from importlib import reload
 from scipy import stats
 from matplotlib import pyplot as plt
@@ -335,6 +335,14 @@ class Maxium_activation_patch(object):
                 
         write_meme(success_channel, motifs ,save_path, filter_prefix)
     
+    def gradience_scaler(self,array):
+        """
+        a scaling function to 
+        """
+        meann = np.mean(array)
+        ranges = array.max() -  array.min()
+        return (array-meann)/ranges
+    
     def get_input_grad(self, task, focus=True, fm=None):
         """
         compute the gradience of Y over feature_map
@@ -367,8 +375,11 @@ class Maxium_activation_patch(object):
                 grad = grad[indices].reshape(-1,256)
             
             All_grad.append(grad.detach().numpy())
-            
-        return np.concatenate(All_grad, axis=0)
+        
+        # concate each channel and average over input sequences
+        grad_ay = np.concatenate(All_grad, axis=0).mean(axis=0)
+
+        return self.gradience_scaler(grad_ay)
             
             
     def argmax_to_indeces(self,index):
@@ -516,8 +527,21 @@ class merge_task_map(Maxium_activation_patch):
         return self.patches_ls 
         
     def activation_overview(self):
-        
-        raise NotImplementedError
+        pr_ay=[]
+        spr_ay=[]
+
+        # the number of convolution filters in layer 3
+        # the index is also 3 because input channel = 4 for layer 0
+        for i in tqdm(range(self.popen.channel_ls[self.layer])):
+            # 
+            _,(spr,pr) = self.activation_density(i,False,False)
+            pr_ay.append(pr)
+            spr_ay.append(spr)
+
+        # convert to ndarray
+        pr_ay = np.stack(pr_ay) 
+        spr_ay = np.stack(spr_ay) 
+        return pr_ay, spr_ay
     
     def save_as_meme_format(self,channels:list, save_path, filter_prefix='filter', transformation='probability', qtl=0.95, fix_patches_ls=None):
         """
@@ -554,8 +578,7 @@ class merge_task_map(Maxium_activation_patch):
     def get_input_grad(self, focus=True):
         grads = {}
         for task in self.popen.cycle_set:
-            grad = super().get_input_grad(focus=True, task=task, fm=self.feature_map[task])
-            grads[task] = grad.mean(axis=0)
+            grads[task] = super().get_input_grad(focus=True, task=task, fm=self.feature_map[task]) 
         return grads
 
 class Maximum_activation_kmer(Maxium_activation_patch):

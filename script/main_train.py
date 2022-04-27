@@ -59,7 +59,7 @@ train_loader,val_loader,test_loader = reader.get_dataloader(POPEN)
 # -- pretrain -- 
 if POPEN.pretrain_pth is not None:
     # load pretran model
-    pretrain_popen = Auto_popen(POPEN.pretrain_pth)
+    pretrain_popen = Auto_popen(os.path.join(utils.script_dir, POPEN.pretrain_pth))
     
     pretrain_model = pretrain_popen.Model_Class(*pretrain_popen.model_args)
     pretrain_model = utils.load_model(pretrain_popen,pretrain_model,logger)
